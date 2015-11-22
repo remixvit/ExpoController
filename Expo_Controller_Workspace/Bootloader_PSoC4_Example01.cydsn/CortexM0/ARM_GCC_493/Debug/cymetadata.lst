@@ -1,0 +1,520 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"cymetadata.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	cy_meta_chipprotect
+  18              		.global	cy_metadata
+  19              		.global	cy_meta_flashprotect
+  20              		.global	cy_meta_loader
+  21              		.section	.cyloadermeta,"a",%progbits
+  22              		.type	cy_meta_loader, %object
+  23              		.size	cy_meta_loader, 64
+  24              	cy_meta_loader:
+  25 0000 00       		.byte	0
+  26 0001 00       		.byte	0
+  27 0002 00       		.byte	0
+  28 0003 00       		.byte	0
+  29 0004 00       		.byte	0
+  30 0005 00       		.byte	0
+  31 0006 00       		.byte	0
+  32 0007 00       		.byte	0
+  33 0008 00       		.byte	0
+  34 0009 00       		.byte	0
+  35 000a 00       		.byte	0
+  36 000b 00       		.byte	0
+  37 000c 00       		.byte	0
+  38 000d 00       		.byte	0
+  39 000e 00       		.byte	0
+  40 000f 00       		.byte	0
+  41 0010 00       		.byte	0
+  42 0011 00       		.byte	0
+  43 0012 00       		.byte	0
+  44 0013 00       		.byte	0
+  45 0014 01       		.byte	1
+  46 0015 00       		.byte	0
+  47 0016 00       		.byte	0
+  48 0017 00       		.byte	0
+  49 0018 00       		.byte	0
+  50 0019 00       		.byte	0
+  51 001a 00       		.byte	0
+  52 001b 00       		.byte	0
+  53 001c 00       		.byte	0
+  54 001d 00       		.byte	0
+  55 001e 00       		.byte	0
+  56 001f 00       		.byte	0
+  57 0020 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 2
+
+
+  58 0021 00       		.byte	0
+  59 0022 00       		.byte	0
+  60 0023 00       		.byte	0
+  61 0024 00       		.byte	0
+  62 0025 00       		.byte	0
+  63 0026 00       		.byte	0
+  64 0027 00       		.byte	0
+  65 0028 00       		.byte	0
+  66 0029 00       		.byte	0
+  67 002a 00       		.byte	0
+  68 002b 00       		.byte	0
+  69 002c 00       		.byte	0
+  70 002d 00       		.byte	0
+  71 002e 00       		.byte	0
+  72 002f 00       		.byte	0
+  73 0030 00       		.byte	0
+  74 0031 00       		.byte	0
+  75 0032 00       		.byte	0
+  76 0033 00       		.byte	0
+  77 0034 00       		.byte	0
+  78 0035 00       		.byte	0
+  79 0036 00       		.byte	0
+  80 0037 00       		.byte	0
+  81 0038 00       		.byte	0
+  82 0039 00       		.byte	0
+  83 003a 00       		.byte	0
+  84 003b 00       		.byte	0
+  85 003c 00       		.byte	0
+  86 003d 00       		.byte	0
+  87 003e 00       		.byte	0
+  88 003f 00       		.byte	0
+  89              		.section	.cychipprotect,"a",%progbits
+  90              		.type	cy_meta_chipprotect, %object
+  91              		.size	cy_meta_chipprotect, 1
+  92              	cy_meta_chipprotect:
+  93 0000 01       		.byte	1
+  94              		.section	.cymeta,"a",%progbits
+  95              		.type	cy_metadata, %object
+  96              		.size	cy_metadata, 12
+  97              	cy_metadata:
+  98 0000 00       		.byte	0
+  99 0001 02       		.byte	2
+ 100 0002 04       		.byte	4
+ 101 0003 B6       		.byte	-74
+ 102 0004 11       		.byte	17
+ 103 0005 93       		.byte	-109
+ 104 0006 11       		.byte	17
+ 105 0007 01       		.byte	1
+ 106 0008 00       		.byte	0
+ 107 0009 00       		.byte	0
+ 108 000a 00       		.byte	0
+ 109 000b 00       		.byte	0
+ 110              		.section	.cyflashprotect,"a",%progbits
+ 111              		.type	cy_meta_flashprotect, %object
+ 112              		.size	cy_meta_flashprotect, 32
+ 113              	cy_meta_flashprotect:
+ 114 0000 00000000 		.space	32
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 3
+
+
+ 114      00000000 
+ 114      00000000 
+ 114      00000000 
+ 114      00000000 
+ 115              		.text
+ 116              	.Letext0:
+ 117              		.file 1 ".\\Generated_Source\\PSoC4\\cymetadata.c"
+ 118              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 119              		.section	.debug_info,"",%progbits
+ 120              	.Ldebug_info0:
+ 121 0000 1F010000 		.4byte	0x11f
+ 122 0004 0400     		.2byte	0x4
+ 123 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 124 000a 04       		.byte	0x4
+ 125 000b 01       		.uleb128 0x1
+ 126 000c 14000000 		.4byte	.LASF17
+ 127 0010 01       		.byte	0x1
+ 128 0011 FD000000 		.4byte	.LASF18
+ 129 0015 78010000 		.4byte	.LASF19
+ 130 0019 00000000 		.4byte	.Ldebug_line0
+ 131 001d 02       		.uleb128 0x2
+ 132 001e 01       		.byte	0x1
+ 133 001f 06       		.byte	0x6
+ 134 0020 F3010000 		.4byte	.LASF0
+ 135 0024 02       		.uleb128 0x2
+ 136 0025 01       		.byte	0x1
+ 137 0026 08       		.byte	0x8
+ 138 0027 C3000000 		.4byte	.LASF1
+ 139 002b 02       		.uleb128 0x2
+ 140 002c 02       		.byte	0x2
+ 141 002d 05       		.byte	0x5
+ 142 002e DA010000 		.4byte	.LASF2
+ 143 0032 02       		.uleb128 0x2
+ 144 0033 02       		.byte	0x2
+ 145 0034 07       		.byte	0x7
+ 146 0035 E3000000 		.4byte	.LASF3
+ 147 0039 02       		.uleb128 0x2
+ 148 003a 04       		.byte	0x4
+ 149 003b 05       		.byte	0x5
+ 150 003c EA010000 		.4byte	.LASF4
+ 151 0040 02       		.uleb128 0x2
+ 152 0041 04       		.byte	0x4
+ 153 0042 07       		.byte	0x7
+ 154 0043 D1000000 		.4byte	.LASF5
+ 155 0047 02       		.uleb128 0x2
+ 156 0048 08       		.byte	0x8
+ 157 0049 05       		.byte	0x5
+ 158 004a 65010000 		.4byte	.LASF6
+ 159 004e 02       		.uleb128 0x2
+ 160 004f 08       		.byte	0x8
+ 161 0050 07       		.byte	0x7
+ 162 0051 30010000 		.4byte	.LASF7
+ 163 0055 03       		.uleb128 0x3
+ 164 0056 04       		.byte	0x4
+ 165 0057 05       		.byte	0x5
+ 166 0058 696E7400 		.ascii	"int\000"
+ 167 005c 02       		.uleb128 0x2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 4
+
+
+ 168 005d 04       		.byte	0x4
+ 169 005e 07       		.byte	0x7
+ 170 005f 23010000 		.4byte	.LASF8
+ 171 0063 04       		.uleb128 0x4
+ 172 0064 E4010000 		.4byte	.LASF20
+ 173 0068 02       		.byte	0x2
+ 174 0069 C2       		.byte	0xc2
+ 175 006a 24000000 		.4byte	0x24
+ 176 006e 02       		.uleb128 0x2
+ 177 006f 04       		.byte	0x4
+ 178 0070 04       		.byte	0x4
+ 179 0071 BD000000 		.4byte	.LASF9
+ 180 0075 02       		.uleb128 0x2
+ 181 0076 08       		.byte	0x8
+ 182 0077 04       		.byte	0x4
+ 183 0078 F6000000 		.4byte	.LASF10
+ 184 007c 02       		.uleb128 0x2
+ 185 007d 01       		.byte	0x1
+ 186 007e 08       		.byte	0x8
+ 187 007f 73010000 		.4byte	.LASF11
+ 188 0083 05       		.uleb128 0x5
+ 189 0084 63000000 		.4byte	0x63
+ 190 0088 93000000 		.4byte	0x93
+ 191 008c 06       		.uleb128 0x6
+ 192 008d 93000000 		.4byte	0x93
+ 193 0091 3F       		.byte	0x3f
+ 194 0092 00       		.byte	0
+ 195 0093 02       		.uleb128 0x2
+ 196 0094 04       		.byte	0x4
+ 197 0095 07       		.byte	0x7
+ 198 0096 5C010000 		.4byte	.LASF12
+ 199 009a 07       		.uleb128 0x7
+ 200 009b A2000000 		.4byte	.LASF13
+ 201 009f 01       		.byte	0x1
+ 202 00a0 1C       		.byte	0x1c
+ 203 00a1 AB000000 		.4byte	0xab
+ 204 00a5 05       		.uleb128 0x5
+ 205 00a6 03       		.byte	0x3
+ 206 00a7 00000000 		.4byte	cy_meta_loader
+ 207 00ab 08       		.uleb128 0x8
+ 208 00ac 83000000 		.4byte	0x83
+ 209 00b0 05       		.uleb128 0x5
+ 210 00b1 63000000 		.4byte	0x63
+ 211 00b5 C0000000 		.4byte	0xc0
+ 212 00b9 06       		.uleb128 0x6
+ 213 00ba 93000000 		.4byte	0x93
+ 214 00be 1F       		.byte	0x1f
+ 215 00bf 00       		.byte	0
+ 216 00c0 07       		.uleb128 0x7
+ 217 00c1 47010000 		.4byte	.LASF14
+ 218 00c5 01       		.byte	0x1
+ 219 00c6 2E       		.byte	0x2e
+ 220 00c7 D1000000 		.4byte	0xd1
+ 221 00cb 05       		.uleb128 0x5
+ 222 00cc 03       		.byte	0x3
+ 223 00cd 00000000 		.4byte	cy_meta_flashprotect
+ 224 00d1 08       		.uleb128 0x8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 5
+
+
+ 225 00d2 B0000000 		.4byte	0xb0
+ 226 00d6 05       		.uleb128 0x5
+ 227 00d7 63000000 		.4byte	0x63
+ 228 00db E6000000 		.4byte	0xe6
+ 229 00df 06       		.uleb128 0x6
+ 230 00e0 93000000 		.4byte	0x93
+ 231 00e4 0B       		.byte	0xb
+ 232 00e5 00       		.byte	0
+ 233 00e6 07       		.uleb128 0x7
+ 234 00e7 B1000000 		.4byte	.LASF15
+ 235 00eb 01       		.byte	0x1
+ 236 00ec 3C       		.byte	0x3c
+ 237 00ed F7000000 		.4byte	0xf7
+ 238 00f1 05       		.uleb128 0x5
+ 239 00f2 03       		.byte	0x3
+ 240 00f3 00000000 		.4byte	cy_metadata
+ 241 00f7 08       		.uleb128 0x8
+ 242 00f8 D6000000 		.4byte	0xd6
+ 243 00fc 05       		.uleb128 0x5
+ 244 00fd 63000000 		.4byte	0x63
+ 245 0101 0C010000 		.4byte	0x10c
+ 246 0105 06       		.uleb128 0x6
+ 247 0106 93000000 		.4byte	0x93
+ 248 010a 00       		.byte	0
+ 249 010b 00       		.byte	0
+ 250 010c 07       		.uleb128 0x7
+ 251 010d 00000000 		.4byte	.LASF16
+ 252 0111 01       		.byte	0x1
+ 253 0112 48       		.byte	0x48
+ 254 0113 1D010000 		.4byte	0x11d
+ 255 0117 05       		.uleb128 0x5
+ 256 0118 03       		.byte	0x3
+ 257 0119 00000000 		.4byte	cy_meta_chipprotect
+ 258 011d 08       		.uleb128 0x8
+ 259 011e FC000000 		.4byte	0xfc
+ 260 0122 00       		.byte	0
+ 261              		.section	.debug_abbrev,"",%progbits
+ 262              	.Ldebug_abbrev0:
+ 263 0000 01       		.uleb128 0x1
+ 264 0001 11       		.uleb128 0x11
+ 265 0002 01       		.byte	0x1
+ 266 0003 25       		.uleb128 0x25
+ 267 0004 0E       		.uleb128 0xe
+ 268 0005 13       		.uleb128 0x13
+ 269 0006 0B       		.uleb128 0xb
+ 270 0007 03       		.uleb128 0x3
+ 271 0008 0E       		.uleb128 0xe
+ 272 0009 1B       		.uleb128 0x1b
+ 273 000a 0E       		.uleb128 0xe
+ 274 000b 10       		.uleb128 0x10
+ 275 000c 17       		.uleb128 0x17
+ 276 000d 00       		.byte	0
+ 277 000e 00       		.byte	0
+ 278 000f 02       		.uleb128 0x2
+ 279 0010 24       		.uleb128 0x24
+ 280 0011 00       		.byte	0
+ 281 0012 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 6
+
+
+ 282 0013 0B       		.uleb128 0xb
+ 283 0014 3E       		.uleb128 0x3e
+ 284 0015 0B       		.uleb128 0xb
+ 285 0016 03       		.uleb128 0x3
+ 286 0017 0E       		.uleb128 0xe
+ 287 0018 00       		.byte	0
+ 288 0019 00       		.byte	0
+ 289 001a 03       		.uleb128 0x3
+ 290 001b 24       		.uleb128 0x24
+ 291 001c 00       		.byte	0
+ 292 001d 0B       		.uleb128 0xb
+ 293 001e 0B       		.uleb128 0xb
+ 294 001f 3E       		.uleb128 0x3e
+ 295 0020 0B       		.uleb128 0xb
+ 296 0021 03       		.uleb128 0x3
+ 297 0022 08       		.uleb128 0x8
+ 298 0023 00       		.byte	0
+ 299 0024 00       		.byte	0
+ 300 0025 04       		.uleb128 0x4
+ 301 0026 16       		.uleb128 0x16
+ 302 0027 00       		.byte	0
+ 303 0028 03       		.uleb128 0x3
+ 304 0029 0E       		.uleb128 0xe
+ 305 002a 3A       		.uleb128 0x3a
+ 306 002b 0B       		.uleb128 0xb
+ 307 002c 3B       		.uleb128 0x3b
+ 308 002d 0B       		.uleb128 0xb
+ 309 002e 49       		.uleb128 0x49
+ 310 002f 13       		.uleb128 0x13
+ 311 0030 00       		.byte	0
+ 312 0031 00       		.byte	0
+ 313 0032 05       		.uleb128 0x5
+ 314 0033 01       		.uleb128 0x1
+ 315 0034 01       		.byte	0x1
+ 316 0035 49       		.uleb128 0x49
+ 317 0036 13       		.uleb128 0x13
+ 318 0037 01       		.uleb128 0x1
+ 319 0038 13       		.uleb128 0x13
+ 320 0039 00       		.byte	0
+ 321 003a 00       		.byte	0
+ 322 003b 06       		.uleb128 0x6
+ 323 003c 21       		.uleb128 0x21
+ 324 003d 00       		.byte	0
+ 325 003e 49       		.uleb128 0x49
+ 326 003f 13       		.uleb128 0x13
+ 327 0040 2F       		.uleb128 0x2f
+ 328 0041 0B       		.uleb128 0xb
+ 329 0042 00       		.byte	0
+ 330 0043 00       		.byte	0
+ 331 0044 07       		.uleb128 0x7
+ 332 0045 34       		.uleb128 0x34
+ 333 0046 00       		.byte	0
+ 334 0047 03       		.uleb128 0x3
+ 335 0048 0E       		.uleb128 0xe
+ 336 0049 3A       		.uleb128 0x3a
+ 337 004a 0B       		.uleb128 0xb
+ 338 004b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 7
+
+
+ 339 004c 0B       		.uleb128 0xb
+ 340 004d 49       		.uleb128 0x49
+ 341 004e 13       		.uleb128 0x13
+ 342 004f 3F       		.uleb128 0x3f
+ 343 0050 19       		.uleb128 0x19
+ 344 0051 02       		.uleb128 0x2
+ 345 0052 18       		.uleb128 0x18
+ 346 0053 00       		.byte	0
+ 347 0054 00       		.byte	0
+ 348 0055 08       		.uleb128 0x8
+ 349 0056 26       		.uleb128 0x26
+ 350 0057 00       		.byte	0
+ 351 0058 49       		.uleb128 0x49
+ 352 0059 13       		.uleb128 0x13
+ 353 005a 00       		.byte	0
+ 354 005b 00       		.byte	0
+ 355 005c 00       		.byte	0
+ 356              		.section	.debug_aranges,"",%progbits
+ 357 0000 14000000 		.4byte	0x14
+ 358 0004 0200     		.2byte	0x2
+ 359 0006 00000000 		.4byte	.Ldebug_info0
+ 360 000a 04       		.byte	0x4
+ 361 000b 00       		.byte	0
+ 362 000c 0000     		.2byte	0
+ 363 000e 0000     		.2byte	0
+ 364 0010 00000000 		.4byte	0
+ 365 0014 00000000 		.4byte	0
+ 366              		.section	.debug_line,"",%progbits
+ 367              	.Ldebug_line0:
+ 368 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 368      02004900 
+ 368      00000201 
+ 368      FB0E0D00 
+ 368      01010101 
+ 369              	.LASF16:
+ 370 0000 63795F6D 		.ascii	"cy_meta_chipprotect\000"
+ 370      6574615F 
+ 370      63686970 
+ 370      70726F74 
+ 370      65637400 
+ 371              	.LASF17:
+ 372 0014 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 372      4320342E 
+ 372      392E3320 
+ 372      32303135 
+ 372      30333033 
+ 373 0047 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 373      20726576 
+ 373      6973696F 
+ 373      6E203232 
+ 373      31323230 
+ 374 007a 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 374      66756E63 
+ 374      74696F6E 
+ 374      2D736563 
+ 374      74696F6E 
+ 375              	.LASF13:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 8
+
+
+ 376 00a2 63795F6D 		.ascii	"cy_meta_loader\000"
+ 376      6574615F 
+ 376      6C6F6164 
+ 376      657200
+ 377              	.LASF15:
+ 378 00b1 63795F6D 		.ascii	"cy_metadata\000"
+ 378      65746164 
+ 378      61746100 
+ 379              	.LASF9:
+ 380 00bd 666C6F61 		.ascii	"float\000"
+ 380      7400
+ 381              	.LASF1:
+ 382 00c3 756E7369 		.ascii	"unsigned char\000"
+ 382      676E6564 
+ 382      20636861 
+ 382      7200
+ 383              	.LASF5:
+ 384 00d1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 384      20756E73 
+ 384      69676E65 
+ 384      6420696E 
+ 384      7400
+ 385              	.LASF3:
+ 386 00e3 73686F72 		.ascii	"short unsigned int\000"
+ 386      7420756E 
+ 386      7369676E 
+ 386      65642069 
+ 386      6E7400
+ 387              	.LASF10:
+ 388 00f6 646F7562 		.ascii	"double\000"
+ 388      6C6500
+ 389              	.LASF18:
+ 390 00fd 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\cymetadata.c\000"
+ 390      6E657261 
+ 390      7465645F 
+ 390      536F7572 
+ 390      63655C50 
+ 391              	.LASF8:
+ 392 0123 756E7369 		.ascii	"unsigned int\000"
+ 392      676E6564 
+ 392      20696E74 
+ 392      00
+ 393              	.LASF7:
+ 394 0130 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 394      206C6F6E 
+ 394      6720756E 
+ 394      7369676E 
+ 394      65642069 
+ 395              	.LASF14:
+ 396 0147 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 396      6574615F 
+ 396      666C6173 
+ 396      6870726F 
+ 396      74656374 
+ 397              	.LASF12:
+ 398 015c 73697A65 		.ascii	"sizetype\000"
+ 398      74797065 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc5OTwRd.s 			page 9
+
+
+ 398      00
+ 399              	.LASF6:
+ 400 0165 6C6F6E67 		.ascii	"long long int\000"
+ 400      206C6F6E 
+ 400      6720696E 
+ 400      7400
+ 401              	.LASF11:
+ 402 0173 63686172 		.ascii	"char\000"
+ 402      00
+ 403              	.LASF19:
+ 404 0178 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 404      73657273 
+ 404      5C566974 
+ 404      616C695C 
+ 404      446F6375 
+ 405 01a6 6E74726F 		.ascii	"ntroller_Workspace\\Bootloader_PSoC4_Example01.cyds"
+ 405      6C6C6572 
+ 405      5F576F72 
+ 405      6B737061 
+ 405      63655C42 
+ 406 01d8 6E00     		.ascii	"n\000"
+ 407              	.LASF2:
+ 408 01da 73686F72 		.ascii	"short int\000"
+ 408      7420696E 
+ 408      7400
+ 409              	.LASF20:
+ 410 01e4 75696E74 		.ascii	"uint8\000"
+ 410      3800
+ 411              	.LASF4:
+ 412 01ea 6C6F6E67 		.ascii	"long int\000"
+ 412      20696E74 
+ 412      00
+ 413              	.LASF0:
+ 414 01f3 7369676E 		.ascii	"signed char\000"
+ 414      65642063 
+ 414      68617200 
+ 415              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

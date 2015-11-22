@@ -1,0 +1,20 @@
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/CortexM0/ARM_GCC_493/Debug/PWM.o : C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/CyLFClk.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/CyLib.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM.c C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cydevice_trm.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cyfitter.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM.c : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM.h : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/CortexM0/ARM_GCC_493/Debug/PWM_PM.o : C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/CyLFClk.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/CyLib.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM_PM.c C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cydevice_trm.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cyfitter.h C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+C:/Users/Vitali/Documents/PSoC\ Creator/Expo_Controller_Workspace/Expo_Controller2.cydsn/Generated_Source/PSoC4/PWM_PM.c : 
+

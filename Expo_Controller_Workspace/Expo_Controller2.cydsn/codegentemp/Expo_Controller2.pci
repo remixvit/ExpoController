@@ -1,0 +1,27 @@
+# Expo_Controller2
+# 2015-11-22 18:10:40Z
+
+# IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 2
+# IO_3@[IOP=(3)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 3
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "\I2C:sda(0)\" iocell 4 1
+set_io "\I2C:scl(0)\" iocell 4 0
+set_io "\UART:tx(0)\" iocell 0 5
+set_io "\UART:rx(0)\" iocell 0 4
+set_io "\LCD:LCDPort(0)\" iocell 2 0
+set_io "\LCD:LCDPort(1)\" iocell 2 1
+set_io "\LCD:LCDPort(2)\" iocell 2 2
+set_io "\LCD:LCDPort(3)\" iocell 2 3
+set_io "\LCD:LCDPort(4)\" iocell 2 4
+set_io "\LCD:LCDPort(5)\" iocell 2 5
+set_io "\LCD:LCDPort(6)\" iocell 2 6
+set_io "PWM_Contrast(0)" iocell 1 7
+set_io "PWM_LCD_Led(0)" iocell 1 4
+set_io "ADC_12V(0)" iocell 2 7
+set_io "ADC_3V(0)" iocell 0 0
+set_io "Led_Strobe(0)" iocell 3 6
+set_io "Led_BLE(0)" iocell 3 5
+set_io "Bootloader_En(0)" iocell 3 0
+set_location "\ADC:cy_psoc4_sar\" p4sarcell -1 -1 0

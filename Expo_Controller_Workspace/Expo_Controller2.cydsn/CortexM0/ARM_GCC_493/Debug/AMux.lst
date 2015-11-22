@@ -1,0 +1,917 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"AMux.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.AMux_Start,"ax",%progbits
+  18              		.align	1
+  19              		.global	AMux_Start
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	AMux_Start, %function
+  23              	AMux_Start:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\AMux.c"
+   1:.\Generated_Source\PSoC4/AMux.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/AMux.c **** * File Name: AMux.c
+   3:.\Generated_Source\PSoC4/AMux.c **** * Version 1.80
+   4:.\Generated_Source\PSoC4/AMux.c **** *
+   5:.\Generated_Source\PSoC4/AMux.c **** *  Description:
+   6:.\Generated_Source\PSoC4/AMux.c **** *    This file contains all functions required for the analog multiplexer
+   7:.\Generated_Source\PSoC4/AMux.c **** *    AMux User Module.
+   8:.\Generated_Source\PSoC4/AMux.c **** *
+   9:.\Generated_Source\PSoC4/AMux.c **** *   Note:
+  10:.\Generated_Source\PSoC4/AMux.c **** *
+  11:.\Generated_Source\PSoC4/AMux.c **** *******************************************************************************
+  12:.\Generated_Source\PSoC4/AMux.c **** * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/AMux.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC4/AMux.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC4/AMux.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/AMux.c **** ********************************************************************************/
+  17:.\Generated_Source\PSoC4/AMux.c **** 
+  18:.\Generated_Source\PSoC4/AMux.c **** #include "AMux.h"
+  19:.\Generated_Source\PSoC4/AMux.c **** 
+  20:.\Generated_Source\PSoC4/AMux.c **** static uint8 AMux_lastChannel = AMux_NULL_CHANNEL;
+  21:.\Generated_Source\PSoC4/AMux.c **** 
+  22:.\Generated_Source\PSoC4/AMux.c **** 
+  23:.\Generated_Source\PSoC4/AMux.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC4/AMux.c **** * Function Name: AMux_Start
+  25:.\Generated_Source\PSoC4/AMux.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC4/AMux.c **** * Summary:
+  27:.\Generated_Source\PSoC4/AMux.c **** *  Disconnect all channels.
+  28:.\Generated_Source\PSoC4/AMux.c **** *
+  29:.\Generated_Source\PSoC4/AMux.c **** * Parameters:
+  30:.\Generated_Source\PSoC4/AMux.c **** *  void
+  31:.\Generated_Source\PSoC4/AMux.c **** *
+  32:.\Generated_Source\PSoC4/AMux.c **** * Return:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/AMux.c **** *  void
+  34:.\Generated_Source\PSoC4/AMux.c **** *
+  35:.\Generated_Source\PSoC4/AMux.c **** *******************************************************************************/
+  36:.\Generated_Source\PSoC4/AMux.c **** void AMux_Start(void) 
+  37:.\Generated_Source\PSoC4/AMux.c **** {
+  26              		.loc 1 37 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 08B5     		push	{r3, lr}
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 3, -8
+  32              		.cfi_offset 14, -4
+  38:.\Generated_Source\PSoC4/AMux.c ****     uint8 chan;
+  39:.\Generated_Source\PSoC4/AMux.c **** 
+  40:.\Generated_Source\PSoC4/AMux.c ****     for(chan = 0u; chan < AMux_CHANNELS ; chan++)
+  41:.\Generated_Source\PSoC4/AMux.c ****     {
+  42:.\Generated_Source\PSoC4/AMux.c **** #if (AMux_MUXTYPE == AMux_MUX_SINGLE)
+  43:.\Generated_Source\PSoC4/AMux.c ****         AMux_Unset(chan);
+  33              		.loc 1 43 0
+  34 0002 0020     		mov	r0, #0
+  35 0004 FFF7FEFF 		bl	AMux_Unset
+  36              	.LVL1:
+  37 0008 0120     		mov	r0, #1
+  38 000a FFF7FEFF 		bl	AMux_Unset
+  39              	.LVL2:
+  44:.\Generated_Source\PSoC4/AMux.c **** #else
+  45:.\Generated_Source\PSoC4/AMux.c ****         AMux_CYAMUXSIDE_A_Unset(chan);
+  46:.\Generated_Source\PSoC4/AMux.c ****         AMux_CYAMUXSIDE_B_Unset(chan);
+  47:.\Generated_Source\PSoC4/AMux.c **** #endif
+  48:.\Generated_Source\PSoC4/AMux.c ****     }
+  49:.\Generated_Source\PSoC4/AMux.c **** 
+  50:.\Generated_Source\PSoC4/AMux.c ****     AMux_lastChannel = AMux_NULL_CHANNEL;
+  40              		.loc 1 50 0
+  41 000e FF22     		mov	r2, #255
+  42 0010 014B     		ldr	r3, .L2
+  51:.\Generated_Source\PSoC4/AMux.c **** }
+  43              		.loc 1 51 0
+  44              		@ sp needed
+  50:.\Generated_Source\PSoC4/AMux.c **** }
+  45              		.loc 1 50 0
+  46 0012 1A70     		strb	r2, [r3]
+  47              		.loc 1 51 0
+  48 0014 08BD     		pop	{r3, pc}
+  49              	.L3:
+  50 0016 C046     		.align	2
+  51              	.L2:
+  52 0018 00000000 		.word	.LANCHOR0
+  53              		.cfi_endproc
+  54              	.LFE0:
+  55              		.size	AMux_Start, .-AMux_Start
+  56              		.section	.text.AMux_Select,"ax",%progbits
+  57              		.align	1
+  58              		.global	AMux_Select
+  59              		.code	16
+  60              		.thumb_func
+  61              		.type	AMux_Select, %function
+  62              	AMux_Select:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 3
+
+
+  63              	.LFB1:
+  52:.\Generated_Source\PSoC4/AMux.c **** 
+  53:.\Generated_Source\PSoC4/AMux.c **** 
+  54:.\Generated_Source\PSoC4/AMux.c **** #if (!AMux_ATMOSTONE)
+  55:.\Generated_Source\PSoC4/AMux.c **** /*******************************************************************************
+  56:.\Generated_Source\PSoC4/AMux.c **** * Function Name: AMux_Select
+  57:.\Generated_Source\PSoC4/AMux.c **** ********************************************************************************
+  58:.\Generated_Source\PSoC4/AMux.c **** * Summary:
+  59:.\Generated_Source\PSoC4/AMux.c **** *  This functions first disconnects all channels then connects the given
+  60:.\Generated_Source\PSoC4/AMux.c **** *  channel.
+  61:.\Generated_Source\PSoC4/AMux.c **** *
+  62:.\Generated_Source\PSoC4/AMux.c **** * Parameters:
+  63:.\Generated_Source\PSoC4/AMux.c **** *  channel:  The channel to connect to the common terminal.
+  64:.\Generated_Source\PSoC4/AMux.c **** *
+  65:.\Generated_Source\PSoC4/AMux.c **** * Return:
+  66:.\Generated_Source\PSoC4/AMux.c **** *  void
+  67:.\Generated_Source\PSoC4/AMux.c **** *
+  68:.\Generated_Source\PSoC4/AMux.c **** *******************************************************************************/
+  69:.\Generated_Source\PSoC4/AMux.c **** void AMux_Select(uint8 channel) 
+  70:.\Generated_Source\PSoC4/AMux.c **** {
+  64              		.loc 1 70 0
+  65              		.cfi_startproc
+  66              	.LVL3:
+  67 0000 10B5     		push	{r4, lr}
+  68              		.cfi_def_cfa_offset 8
+  69              		.cfi_offset 4, -8
+  70              		.cfi_offset 14, -4
+  71              		.loc 1 70 0
+  72 0002 041C     		mov	r4, r0
+  71:.\Generated_Source\PSoC4/AMux.c ****     AMux_DisconnectAll();        /* Disconnect all previous connections */
+  73              		.loc 1 71 0
+  74 0004 FFF7FEFF 		bl	AMux_Start
+  75              	.LVL4:
+  72:.\Generated_Source\PSoC4/AMux.c ****     AMux_Connect(channel);       /* Make the given selection */
+  76              		.loc 1 72 0
+  77 0008 201C     		mov	r0, r4
+  78 000a FFF7FEFF 		bl	AMux_Set
+  79              	.LVL5:
+  73:.\Generated_Source\PSoC4/AMux.c ****     AMux_lastChannel = channel;  /* Update last channel */
+  80              		.loc 1 73 0
+  81 000e 014B     		ldr	r3, .L5
+  74:.\Generated_Source\PSoC4/AMux.c **** }
+  82              		.loc 1 74 0
+  83              		@ sp needed
+  73:.\Generated_Source\PSoC4/AMux.c ****     AMux_lastChannel = channel;  /* Update last channel */
+  84              		.loc 1 73 0
+  85 0010 1C70     		strb	r4, [r3]
+  86              		.loc 1 74 0
+  87 0012 10BD     		pop	{r4, pc}
+  88              	.L6:
+  89              		.align	2
+  90              	.L5:
+  91 0014 00000000 		.word	.LANCHOR0
+  92              		.cfi_endproc
+  93              	.LFE1:
+  94              		.size	AMux_Select, .-AMux_Select
+  95              		.section	.text.AMux_FastSelect,"ax",%progbits
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 4
+
+
+  96              		.align	1
+  97              		.global	AMux_FastSelect
+  98              		.code	16
+  99              		.thumb_func
+ 100              		.type	AMux_FastSelect, %function
+ 101              	AMux_FastSelect:
+ 102              	.LFB2:
+  75:.\Generated_Source\PSoC4/AMux.c **** #endif
+  76:.\Generated_Source\PSoC4/AMux.c **** 
+  77:.\Generated_Source\PSoC4/AMux.c **** 
+  78:.\Generated_Source\PSoC4/AMux.c **** /*******************************************************************************
+  79:.\Generated_Source\PSoC4/AMux.c **** * Function Name: AMux_FastSelect
+  80:.\Generated_Source\PSoC4/AMux.c **** ********************************************************************************
+  81:.\Generated_Source\PSoC4/AMux.c **** * Summary:
+  82:.\Generated_Source\PSoC4/AMux.c **** *  This function first disconnects the last connection made with FastSelect or
+  83:.\Generated_Source\PSoC4/AMux.c **** *  Select, then connects the given channel. The FastSelect function is similar
+  84:.\Generated_Source\PSoC4/AMux.c **** *  to the Select function, except it is faster since it only disconnects the
+  85:.\Generated_Source\PSoC4/AMux.c **** *  last channel selected rather than all channels.
+  86:.\Generated_Source\PSoC4/AMux.c **** *
+  87:.\Generated_Source\PSoC4/AMux.c **** * Parameters:
+  88:.\Generated_Source\PSoC4/AMux.c **** *  channel:  The channel to connect to the common terminal.
+  89:.\Generated_Source\PSoC4/AMux.c **** *
+  90:.\Generated_Source\PSoC4/AMux.c **** * Return:
+  91:.\Generated_Source\PSoC4/AMux.c **** *  void
+  92:.\Generated_Source\PSoC4/AMux.c **** *
+  93:.\Generated_Source\PSoC4/AMux.c **** *******************************************************************************/
+  94:.\Generated_Source\PSoC4/AMux.c **** void AMux_FastSelect(uint8 channel) 
+  95:.\Generated_Source\PSoC4/AMux.c **** {
+ 103              		.loc 1 95 0
+ 104              		.cfi_startproc
+ 105              	.LVL6:
+ 106 0000 38B5     		push	{r3, r4, r5, lr}
+ 107              		.cfi_def_cfa_offset 16
+ 108              		.cfi_offset 3, -16
+ 109              		.cfi_offset 4, -12
+ 110              		.cfi_offset 5, -8
+ 111              		.cfi_offset 14, -4
+  96:.\Generated_Source\PSoC4/AMux.c ****     /* Disconnect the last valid channel */
+  97:.\Generated_Source\PSoC4/AMux.c ****     if( AMux_lastChannel != AMux_NULL_CHANNEL)
+ 112              		.loc 1 97 0
+ 113 0002 064B     		ldr	r3, .L13
+  95:.\Generated_Source\PSoC4/AMux.c ****     /* Disconnect the last valid channel */
+ 114              		.loc 1 95 0
+ 115 0004 051C     		mov	r5, r0
+ 116              		.loc 1 97 0
+ 117 0006 1878     		ldrb	r0, [r3]
+ 118              	.LVL7:
+ 119 0008 1C1C     		mov	r4, r3
+ 120 000a FF28     		cmp	r0, #255
+ 121 000c 01D0     		beq	.L8
+  98:.\Generated_Source\PSoC4/AMux.c ****     {
+  99:.\Generated_Source\PSoC4/AMux.c ****         AMux_Disconnect(AMux_lastChannel);
+ 122              		.loc 1 99 0
+ 123 000e FFF7FEFF 		bl	AMux_Unset
+ 124              	.LVL8:
+ 125              	.L8:
+ 100:.\Generated_Source\PSoC4/AMux.c ****     }
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 5
+
+
+ 101:.\Generated_Source\PSoC4/AMux.c **** 
+ 102:.\Generated_Source\PSoC4/AMux.c ****     /* Make the new channel connection */
+ 103:.\Generated_Source\PSoC4/AMux.c **** #if (AMux_MUXTYPE == AMux_MUX_SINGLE)
+ 104:.\Generated_Source\PSoC4/AMux.c ****     AMux_Set(channel);
+ 126              		.loc 1 104 0
+ 127 0012 281C     		mov	r0, r5
+ 128 0014 FFF7FEFF 		bl	AMux_Set
+ 129              	.LVL9:
+ 105:.\Generated_Source\PSoC4/AMux.c **** #else
+ 106:.\Generated_Source\PSoC4/AMux.c ****     AMux_CYAMUXSIDE_A_Set(channel);
+ 107:.\Generated_Source\PSoC4/AMux.c ****     AMux_CYAMUXSIDE_B_Set(channel);
+ 108:.\Generated_Source\PSoC4/AMux.c **** #endif
+ 109:.\Generated_Source\PSoC4/AMux.c **** 
+ 110:.\Generated_Source\PSoC4/AMux.c **** 
+ 111:.\Generated_Source\PSoC4/AMux.c ****     AMux_lastChannel = channel;   /* Update last channel */
+ 112:.\Generated_Source\PSoC4/AMux.c **** }
+ 130              		.loc 1 112 0
+ 131              		@ sp needed
+ 111:.\Generated_Source\PSoC4/AMux.c **** }
+ 132              		.loc 1 111 0
+ 133 0018 2570     		strb	r5, [r4]
+ 134              		.loc 1 112 0
+ 135 001a 38BD     		pop	{r3, r4, r5, pc}
+ 136              	.L14:
+ 137              		.align	2
+ 138              	.L13:
+ 139 001c 00000000 		.word	.LANCHOR0
+ 140              		.cfi_endproc
+ 141              	.LFE2:
+ 142              		.size	AMux_FastSelect, .-AMux_FastSelect
+ 143              		.data
+ 144              		.set	.LANCHOR0,. + 0
+ 145              		.type	AMux_lastChannel, %object
+ 146              		.size	AMux_lastChannel, 1
+ 147              	AMux_lastChannel:
+ 148 0000 FF       		.byte	-1
+ 149              		.text
+ 150              	.Letext0:
+ 151              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 152              		.file 3 ".\\Generated_Source\\PSoC4\\cyfitter_cfg.h"
+ 153              		.section	.debug_info,"",%progbits
+ 154              	.Ldebug_info0:
+ 155 0000 7A010000 		.4byte	0x17a
+ 156 0004 0400     		.2byte	0x4
+ 157 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 158 000a 04       		.byte	0x4
+ 159 000b 01       		.uleb128 0x1
+ 160 000c 08000000 		.4byte	.LASF18
+ 161 0010 01       		.byte	0x1
+ 162 0011 B3010000 		.4byte	.LASF19
+ 163 0015 2A010000 		.4byte	.LASF20
+ 164 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 165 001d 00000000 		.4byte	0
+ 166 0021 00000000 		.4byte	.Ldebug_line0
+ 167 0025 02       		.uleb128 0x2
+ 168 0026 01       		.byte	0x1
+ 169 0027 06       		.byte	0x6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 6
+
+
+ 170 0028 D3010000 		.4byte	.LASF0
+ 171 002c 02       		.uleb128 0x2
+ 172 002d 01       		.byte	0x1
+ 173 002e 08       		.byte	0x8
+ 174 002f 9C000000 		.4byte	.LASF1
+ 175 0033 02       		.uleb128 0x2
+ 176 0034 02       		.byte	0x2
+ 177 0035 05       		.byte	0x5
+ 178 0036 9A010000 		.4byte	.LASF2
+ 179 003a 02       		.uleb128 0x2
+ 180 003b 02       		.byte	0x2
+ 181 003c 07       		.byte	0x7
+ 182 003d C7000000 		.4byte	.LASF3
+ 183 0041 02       		.uleb128 0x2
+ 184 0042 04       		.byte	0x4
+ 185 0043 05       		.byte	0x5
+ 186 0044 AA010000 		.4byte	.LASF4
+ 187 0048 02       		.uleb128 0x2
+ 188 0049 04       		.byte	0x4
+ 189 004a 07       		.byte	0x7
+ 190 004b B5000000 		.4byte	.LASF5
+ 191 004f 02       		.uleb128 0x2
+ 192 0050 08       		.byte	0x8
+ 193 0051 05       		.byte	0x5
+ 194 0052 87010000 		.4byte	.LASF6
+ 195 0056 02       		.uleb128 0x2
+ 196 0057 08       		.byte	0x8
+ 197 0058 07       		.byte	0x7
+ 198 0059 13010000 		.4byte	.LASF7
+ 199 005d 03       		.uleb128 0x3
+ 200 005e 04       		.byte	0x4
+ 201 005f 05       		.byte	0x5
+ 202 0060 696E7400 		.ascii	"int\000"
+ 203 0064 02       		.uleb128 0x2
+ 204 0065 04       		.byte	0x4
+ 205 0066 07       		.byte	0x7
+ 206 0067 06010000 		.4byte	.LASF8
+ 207 006b 04       		.uleb128 0x4
+ 208 006c A4010000 		.4byte	.LASF21
+ 209 0070 02       		.byte	0x2
+ 210 0071 C2       		.byte	0xc2
+ 211 0072 2C000000 		.4byte	0x2c
+ 212 0076 02       		.uleb128 0x2
+ 213 0077 04       		.byte	0x4
+ 214 0078 04       		.byte	0x4
+ 215 0079 96000000 		.4byte	.LASF9
+ 216 007d 02       		.uleb128 0x2
+ 217 007e 08       		.byte	0x8
+ 218 007f 04       		.byte	0x4
+ 219 0080 F3000000 		.4byte	.LASF10
+ 220 0084 02       		.uleb128 0x2
+ 221 0085 01       		.byte	0x1
+ 222 0086 08       		.byte	0x8
+ 223 0087 95010000 		.4byte	.LASF11
+ 224 008b 05       		.uleb128 0x5
+ 225 008c AA000000 		.4byte	.LASF12
+ 226 0090 01       		.byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 7
+
+
+ 227 0091 24       		.byte	0x24
+ 228 0092 00000000 		.4byte	.LFB0
+ 229 0096 1C000000 		.4byte	.LFE0-.LFB0
+ 230 009a 01       		.uleb128 0x1
+ 231 009b 9C       		.byte	0x9c
+ 232 009c D2000000 		.4byte	0xd2
+ 233 00a0 06       		.uleb128 0x6
+ 234 00a1 82010000 		.4byte	.LASF16
+ 235 00a5 01       		.byte	0x1
+ 236 00a6 26       		.byte	0x26
+ 237 00a7 6B000000 		.4byte	0x6b
+ 238 00ab 00000000 		.4byte	.LLST0
+ 239 00af 07       		.uleb128 0x7
+ 240 00b0 08000000 		.4byte	.LVL1
+ 241 00b4 5F010000 		.4byte	0x15f
+ 242 00b8 C2000000 		.4byte	0xc2
+ 243 00bc 08       		.uleb128 0x8
+ 244 00bd 01       		.uleb128 0x1
+ 245 00be 50       		.byte	0x50
+ 246 00bf 01       		.uleb128 0x1
+ 247 00c0 30       		.byte	0x30
+ 248 00c1 00       		.byte	0
+ 249 00c2 09       		.uleb128 0x9
+ 250 00c3 0E000000 		.4byte	.LVL2
+ 251 00c7 5F010000 		.4byte	0x15f
+ 252 00cb 08       		.uleb128 0x8
+ 253 00cc 01       		.uleb128 0x1
+ 254 00cd 50       		.byte	0x50
+ 255 00ce 01       		.uleb128 0x1
+ 256 00cf 31       		.byte	0x31
+ 257 00d0 00       		.byte	0
+ 258 00d1 00       		.byte	0
+ 259 00d2 05       		.uleb128 0x5
+ 260 00d3 FA000000 		.4byte	.LASF13
+ 261 00d7 01       		.byte	0x1
+ 262 00d8 45       		.byte	0x45
+ 263 00d9 00000000 		.4byte	.LFB1
+ 264 00dd 18000000 		.4byte	.LFE1-.LFB1
+ 265 00e1 01       		.uleb128 0x1
+ 266 00e2 9C       		.byte	0x9c
+ 267 00e3 10010000 		.4byte	0x110
+ 268 00e7 0A       		.uleb128 0xa
+ 269 00e8 00000000 		.4byte	.LASF15
+ 270 00ec 01       		.byte	0x1
+ 271 00ed 45       		.byte	0x45
+ 272 00ee 6B000000 		.4byte	0x6b
+ 273 00f2 2C000000 		.4byte	.LLST1
+ 274 00f6 0B       		.uleb128 0xb
+ 275 00f7 08000000 		.4byte	.LVL4
+ 276 00fb 8B000000 		.4byte	0x8b
+ 277 00ff 09       		.uleb128 0x9
+ 278 0100 0E000000 		.4byte	.LVL5
+ 279 0104 70010000 		.4byte	0x170
+ 280 0108 08       		.uleb128 0x8
+ 281 0109 01       		.uleb128 0x1
+ 282 010a 50       		.byte	0x50
+ 283 010b 02       		.uleb128 0x2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 8
+
+
+ 284 010c 74       		.byte	0x74
+ 285 010d 00       		.sleb128 0
+ 286 010e 00       		.byte	0
+ 287 010f 00       		.byte	0
+ 288 0110 05       		.uleb128 0x5
+ 289 0111 E3000000 		.4byte	.LASF14
+ 290 0115 01       		.byte	0x1
+ 291 0116 5E       		.byte	0x5e
+ 292 0117 00000000 		.4byte	.LFB2
+ 293 011b 20000000 		.4byte	.LFE2-.LFB2
+ 294 011f 01       		.uleb128 0x1
+ 295 0120 9C       		.byte	0x9c
+ 296 0121 4E010000 		.4byte	0x14e
+ 297 0125 0A       		.uleb128 0xa
+ 298 0126 00000000 		.4byte	.LASF15
+ 299 012a 01       		.byte	0x1
+ 300 012b 5E       		.byte	0x5e
+ 301 012c 6B000000 		.4byte	0x6b
+ 302 0130 4D000000 		.4byte	.LLST2
+ 303 0134 0B       		.uleb128 0xb
+ 304 0135 12000000 		.4byte	.LVL8
+ 305 0139 5F010000 		.4byte	0x15f
+ 306 013d 09       		.uleb128 0x9
+ 307 013e 18000000 		.4byte	.LVL9
+ 308 0142 70010000 		.4byte	0x170
+ 309 0146 08       		.uleb128 0x8
+ 310 0147 01       		.uleb128 0x1
+ 311 0148 50       		.byte	0x50
+ 312 0149 02       		.uleb128 0x2
+ 313 014a 75       		.byte	0x75
+ 314 014b 00       		.sleb128 0
+ 315 014c 00       		.byte	0
+ 316 014d 00       		.byte	0
+ 317 014e 0C       		.uleb128 0xc
+ 318 014f EA010000 		.4byte	.LASF17
+ 319 0153 01       		.byte	0x1
+ 320 0154 14       		.byte	0x14
+ 321 0155 6B000000 		.4byte	0x6b
+ 322 0159 05       		.uleb128 0x5
+ 323 015a 03       		.byte	0x3
+ 324 015b 00000000 		.4byte	AMux_lastChannel
+ 325 015f 0D       		.uleb128 0xd
+ 326 0160 DF010000 		.4byte	.LASF22
+ 327 0164 03       		.byte	0x3
+ 328 0165 1B       		.byte	0x1b
+ 329 0166 70010000 		.4byte	0x170
+ 330 016a 0E       		.uleb128 0xe
+ 331 016b 6B000000 		.4byte	0x6b
+ 332 016f 00       		.byte	0
+ 333 0170 0F       		.uleb128 0xf
+ 334 0171 DA000000 		.4byte	.LASF23
+ 335 0175 03       		.byte	0x3
+ 336 0176 1A       		.byte	0x1a
+ 337 0177 0E       		.uleb128 0xe
+ 338 0178 6B000000 		.4byte	0x6b
+ 339 017c 00       		.byte	0
+ 340 017d 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 9
+
+
+ 341              		.section	.debug_abbrev,"",%progbits
+ 342              	.Ldebug_abbrev0:
+ 343 0000 01       		.uleb128 0x1
+ 344 0001 11       		.uleb128 0x11
+ 345 0002 01       		.byte	0x1
+ 346 0003 25       		.uleb128 0x25
+ 347 0004 0E       		.uleb128 0xe
+ 348 0005 13       		.uleb128 0x13
+ 349 0006 0B       		.uleb128 0xb
+ 350 0007 03       		.uleb128 0x3
+ 351 0008 0E       		.uleb128 0xe
+ 352 0009 1B       		.uleb128 0x1b
+ 353 000a 0E       		.uleb128 0xe
+ 354 000b 55       		.uleb128 0x55
+ 355 000c 17       		.uleb128 0x17
+ 356 000d 11       		.uleb128 0x11
+ 357 000e 01       		.uleb128 0x1
+ 358 000f 10       		.uleb128 0x10
+ 359 0010 17       		.uleb128 0x17
+ 360 0011 00       		.byte	0
+ 361 0012 00       		.byte	0
+ 362 0013 02       		.uleb128 0x2
+ 363 0014 24       		.uleb128 0x24
+ 364 0015 00       		.byte	0
+ 365 0016 0B       		.uleb128 0xb
+ 366 0017 0B       		.uleb128 0xb
+ 367 0018 3E       		.uleb128 0x3e
+ 368 0019 0B       		.uleb128 0xb
+ 369 001a 03       		.uleb128 0x3
+ 370 001b 0E       		.uleb128 0xe
+ 371 001c 00       		.byte	0
+ 372 001d 00       		.byte	0
+ 373 001e 03       		.uleb128 0x3
+ 374 001f 24       		.uleb128 0x24
+ 375 0020 00       		.byte	0
+ 376 0021 0B       		.uleb128 0xb
+ 377 0022 0B       		.uleb128 0xb
+ 378 0023 3E       		.uleb128 0x3e
+ 379 0024 0B       		.uleb128 0xb
+ 380 0025 03       		.uleb128 0x3
+ 381 0026 08       		.uleb128 0x8
+ 382 0027 00       		.byte	0
+ 383 0028 00       		.byte	0
+ 384 0029 04       		.uleb128 0x4
+ 385 002a 16       		.uleb128 0x16
+ 386 002b 00       		.byte	0
+ 387 002c 03       		.uleb128 0x3
+ 388 002d 0E       		.uleb128 0xe
+ 389 002e 3A       		.uleb128 0x3a
+ 390 002f 0B       		.uleb128 0xb
+ 391 0030 3B       		.uleb128 0x3b
+ 392 0031 0B       		.uleb128 0xb
+ 393 0032 49       		.uleb128 0x49
+ 394 0033 13       		.uleb128 0x13
+ 395 0034 00       		.byte	0
+ 396 0035 00       		.byte	0
+ 397 0036 05       		.uleb128 0x5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 10
+
+
+ 398 0037 2E       		.uleb128 0x2e
+ 399 0038 01       		.byte	0x1
+ 400 0039 3F       		.uleb128 0x3f
+ 401 003a 19       		.uleb128 0x19
+ 402 003b 03       		.uleb128 0x3
+ 403 003c 0E       		.uleb128 0xe
+ 404 003d 3A       		.uleb128 0x3a
+ 405 003e 0B       		.uleb128 0xb
+ 406 003f 3B       		.uleb128 0x3b
+ 407 0040 0B       		.uleb128 0xb
+ 408 0041 27       		.uleb128 0x27
+ 409 0042 19       		.uleb128 0x19
+ 410 0043 11       		.uleb128 0x11
+ 411 0044 01       		.uleb128 0x1
+ 412 0045 12       		.uleb128 0x12
+ 413 0046 06       		.uleb128 0x6
+ 414 0047 40       		.uleb128 0x40
+ 415 0048 18       		.uleb128 0x18
+ 416 0049 9742     		.uleb128 0x2117
+ 417 004b 19       		.uleb128 0x19
+ 418 004c 01       		.uleb128 0x1
+ 419 004d 13       		.uleb128 0x13
+ 420 004e 00       		.byte	0
+ 421 004f 00       		.byte	0
+ 422 0050 06       		.uleb128 0x6
+ 423 0051 34       		.uleb128 0x34
+ 424 0052 00       		.byte	0
+ 425 0053 03       		.uleb128 0x3
+ 426 0054 0E       		.uleb128 0xe
+ 427 0055 3A       		.uleb128 0x3a
+ 428 0056 0B       		.uleb128 0xb
+ 429 0057 3B       		.uleb128 0x3b
+ 430 0058 0B       		.uleb128 0xb
+ 431 0059 49       		.uleb128 0x49
+ 432 005a 13       		.uleb128 0x13
+ 433 005b 02       		.uleb128 0x2
+ 434 005c 17       		.uleb128 0x17
+ 435 005d 00       		.byte	0
+ 436 005e 00       		.byte	0
+ 437 005f 07       		.uleb128 0x7
+ 438 0060 898201   		.uleb128 0x4109
+ 439 0063 01       		.byte	0x1
+ 440 0064 11       		.uleb128 0x11
+ 441 0065 01       		.uleb128 0x1
+ 442 0066 31       		.uleb128 0x31
+ 443 0067 13       		.uleb128 0x13
+ 444 0068 01       		.uleb128 0x1
+ 445 0069 13       		.uleb128 0x13
+ 446 006a 00       		.byte	0
+ 447 006b 00       		.byte	0
+ 448 006c 08       		.uleb128 0x8
+ 449 006d 8A8201   		.uleb128 0x410a
+ 450 0070 00       		.byte	0
+ 451 0071 02       		.uleb128 0x2
+ 452 0072 18       		.uleb128 0x18
+ 453 0073 9142     		.uleb128 0x2111
+ 454 0075 18       		.uleb128 0x18
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 11
+
+
+ 455 0076 00       		.byte	0
+ 456 0077 00       		.byte	0
+ 457 0078 09       		.uleb128 0x9
+ 458 0079 898201   		.uleb128 0x4109
+ 459 007c 01       		.byte	0x1
+ 460 007d 11       		.uleb128 0x11
+ 461 007e 01       		.uleb128 0x1
+ 462 007f 31       		.uleb128 0x31
+ 463 0080 13       		.uleb128 0x13
+ 464 0081 00       		.byte	0
+ 465 0082 00       		.byte	0
+ 466 0083 0A       		.uleb128 0xa
+ 467 0084 05       		.uleb128 0x5
+ 468 0085 00       		.byte	0
+ 469 0086 03       		.uleb128 0x3
+ 470 0087 0E       		.uleb128 0xe
+ 471 0088 3A       		.uleb128 0x3a
+ 472 0089 0B       		.uleb128 0xb
+ 473 008a 3B       		.uleb128 0x3b
+ 474 008b 0B       		.uleb128 0xb
+ 475 008c 49       		.uleb128 0x49
+ 476 008d 13       		.uleb128 0x13
+ 477 008e 02       		.uleb128 0x2
+ 478 008f 17       		.uleb128 0x17
+ 479 0090 00       		.byte	0
+ 480 0091 00       		.byte	0
+ 481 0092 0B       		.uleb128 0xb
+ 482 0093 898201   		.uleb128 0x4109
+ 483 0096 00       		.byte	0
+ 484 0097 11       		.uleb128 0x11
+ 485 0098 01       		.uleb128 0x1
+ 486 0099 31       		.uleb128 0x31
+ 487 009a 13       		.uleb128 0x13
+ 488 009b 00       		.byte	0
+ 489 009c 00       		.byte	0
+ 490 009d 0C       		.uleb128 0xc
+ 491 009e 34       		.uleb128 0x34
+ 492 009f 00       		.byte	0
+ 493 00a0 03       		.uleb128 0x3
+ 494 00a1 0E       		.uleb128 0xe
+ 495 00a2 3A       		.uleb128 0x3a
+ 496 00a3 0B       		.uleb128 0xb
+ 497 00a4 3B       		.uleb128 0x3b
+ 498 00a5 0B       		.uleb128 0xb
+ 499 00a6 49       		.uleb128 0x49
+ 500 00a7 13       		.uleb128 0x13
+ 501 00a8 02       		.uleb128 0x2
+ 502 00a9 18       		.uleb128 0x18
+ 503 00aa 00       		.byte	0
+ 504 00ab 00       		.byte	0
+ 505 00ac 0D       		.uleb128 0xd
+ 506 00ad 2E       		.uleb128 0x2e
+ 507 00ae 01       		.byte	0x1
+ 508 00af 3F       		.uleb128 0x3f
+ 509 00b0 19       		.uleb128 0x19
+ 510 00b1 03       		.uleb128 0x3
+ 511 00b2 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 12
+
+
+ 512 00b3 3A       		.uleb128 0x3a
+ 513 00b4 0B       		.uleb128 0xb
+ 514 00b5 3B       		.uleb128 0x3b
+ 515 00b6 0B       		.uleb128 0xb
+ 516 00b7 27       		.uleb128 0x27
+ 517 00b8 19       		.uleb128 0x19
+ 518 00b9 3C       		.uleb128 0x3c
+ 519 00ba 19       		.uleb128 0x19
+ 520 00bb 01       		.uleb128 0x1
+ 521 00bc 13       		.uleb128 0x13
+ 522 00bd 00       		.byte	0
+ 523 00be 00       		.byte	0
+ 524 00bf 0E       		.uleb128 0xe
+ 525 00c0 05       		.uleb128 0x5
+ 526 00c1 00       		.byte	0
+ 527 00c2 49       		.uleb128 0x49
+ 528 00c3 13       		.uleb128 0x13
+ 529 00c4 00       		.byte	0
+ 530 00c5 00       		.byte	0
+ 531 00c6 0F       		.uleb128 0xf
+ 532 00c7 2E       		.uleb128 0x2e
+ 533 00c8 01       		.byte	0x1
+ 534 00c9 3F       		.uleb128 0x3f
+ 535 00ca 19       		.uleb128 0x19
+ 536 00cb 03       		.uleb128 0x3
+ 537 00cc 0E       		.uleb128 0xe
+ 538 00cd 3A       		.uleb128 0x3a
+ 539 00ce 0B       		.uleb128 0xb
+ 540 00cf 3B       		.uleb128 0x3b
+ 541 00d0 0B       		.uleb128 0xb
+ 542 00d1 27       		.uleb128 0x27
+ 543 00d2 19       		.uleb128 0x19
+ 544 00d3 3C       		.uleb128 0x3c
+ 545 00d4 19       		.uleb128 0x19
+ 546 00d5 00       		.byte	0
+ 547 00d6 00       		.byte	0
+ 548 00d7 00       		.byte	0
+ 549              		.section	.debug_loc,"",%progbits
+ 550              	.Ldebug_loc0:
+ 551              	.LLST0:
+ 552 0000 00000000 		.4byte	.LVL0
+ 553 0004 08000000 		.4byte	.LVL1
+ 554 0008 0200     		.2byte	0x2
+ 555 000a 30       		.byte	0x30
+ 556 000b 9F       		.byte	0x9f
+ 557 000c 08000000 		.4byte	.LVL1
+ 558 0010 0E000000 		.4byte	.LVL2
+ 559 0014 0200     		.2byte	0x2
+ 560 0016 31       		.byte	0x31
+ 561 0017 9F       		.byte	0x9f
+ 562 0018 0E000000 		.4byte	.LVL2
+ 563 001c 1C000000 		.4byte	.LFE0
+ 564 0020 0200     		.2byte	0x2
+ 565 0022 32       		.byte	0x32
+ 566 0023 9F       		.byte	0x9f
+ 567 0024 00000000 		.4byte	0
+ 568 0028 00000000 		.4byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 13
+
+
+ 569              	.LLST1:
+ 570 002c 00000000 		.4byte	.LVL3
+ 571 0030 07000000 		.4byte	.LVL4-1
+ 572 0034 0100     		.2byte	0x1
+ 573 0036 50       		.byte	0x50
+ 574 0037 07000000 		.4byte	.LVL4-1
+ 575 003b 18000000 		.4byte	.LFE1
+ 576 003f 0400     		.2byte	0x4
+ 577 0041 F3       		.byte	0xf3
+ 578 0042 01       		.uleb128 0x1
+ 579 0043 50       		.byte	0x50
+ 580 0044 9F       		.byte	0x9f
+ 581 0045 00000000 		.4byte	0
+ 582 0049 00000000 		.4byte	0
+ 583              	.LLST2:
+ 584 004d 00000000 		.4byte	.LVL6
+ 585 0051 08000000 		.4byte	.LVL7
+ 586 0055 0100     		.2byte	0x1
+ 587 0057 50       		.byte	0x50
+ 588 0058 08000000 		.4byte	.LVL7
+ 589 005c 20000000 		.4byte	.LFE2
+ 590 0060 0400     		.2byte	0x4
+ 591 0062 F3       		.byte	0xf3
+ 592 0063 01       		.uleb128 0x1
+ 593 0064 50       		.byte	0x50
+ 594 0065 9F       		.byte	0x9f
+ 595 0066 00000000 		.4byte	0
+ 596 006a 00000000 		.4byte	0
+ 597              		.section	.debug_aranges,"",%progbits
+ 598 0000 2C000000 		.4byte	0x2c
+ 599 0004 0200     		.2byte	0x2
+ 600 0006 00000000 		.4byte	.Ldebug_info0
+ 601 000a 04       		.byte	0x4
+ 602 000b 00       		.byte	0
+ 603 000c 0000     		.2byte	0
+ 604 000e 0000     		.2byte	0
+ 605 0010 00000000 		.4byte	.LFB0
+ 606 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 607 0018 00000000 		.4byte	.LFB1
+ 608 001c 18000000 		.4byte	.LFE1-.LFB1
+ 609 0020 00000000 		.4byte	.LFB2
+ 610 0024 20000000 		.4byte	.LFE2-.LFB2
+ 611 0028 00000000 		.4byte	0
+ 612 002c 00000000 		.4byte	0
+ 613              		.section	.debug_ranges,"",%progbits
+ 614              	.Ldebug_ranges0:
+ 615 0000 00000000 		.4byte	.LFB0
+ 616 0004 1C000000 		.4byte	.LFE0
+ 617 0008 00000000 		.4byte	.LFB1
+ 618 000c 18000000 		.4byte	.LFE1
+ 619 0010 00000000 		.4byte	.LFB2
+ 620 0014 20000000 		.4byte	.LFE2
+ 621 0018 00000000 		.4byte	0
+ 622 001c 00000000 		.4byte	0
+ 623              		.section	.debug_line,"",%progbits
+ 624              	.Ldebug_line0:
+ 625 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 14
+
+
+ 625      02005500 
+ 625      00000201 
+ 625      FB0E0D00 
+ 625      01010101 
+ 626              	.LASF15:
+ 627 0000 6368616E 		.ascii	"channel\000"
+ 627      6E656C00 
+ 628              	.LASF18:
+ 629 0008 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 629      4320342E 
+ 629      392E3320 
+ 629      32303135 
+ 629      30333033 
+ 630 003b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 630      20726576 
+ 630      6973696F 
+ 630      6E203232 
+ 630      31323230 
+ 631 006e 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 631      66756E63 
+ 631      74696F6E 
+ 631      2D736563 
+ 631      74696F6E 
+ 632              	.LASF9:
+ 633 0096 666C6F61 		.ascii	"float\000"
+ 633      7400
+ 634              	.LASF1:
+ 635 009c 756E7369 		.ascii	"unsigned char\000"
+ 635      676E6564 
+ 635      20636861 
+ 635      7200
+ 636              	.LASF12:
+ 637 00aa 414D7578 		.ascii	"AMux_Start\000"
+ 637      5F537461 
+ 637      727400
+ 638              	.LASF5:
+ 639 00b5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 639      20756E73 
+ 639      69676E65 
+ 639      6420696E 
+ 639      7400
+ 640              	.LASF3:
+ 641 00c7 73686F72 		.ascii	"short unsigned int\000"
+ 641      7420756E 
+ 641      7369676E 
+ 641      65642069 
+ 641      6E7400
+ 642              	.LASF23:
+ 643 00da 414D7578 		.ascii	"AMux_Set\000"
+ 643      5F536574 
+ 643      00
+ 644              	.LASF14:
+ 645 00e3 414D7578 		.ascii	"AMux_FastSelect\000"
+ 645      5F466173 
+ 645      7453656C 
+ 645      65637400 
+ 646              	.LASF10:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 15
+
+
+ 647 00f3 646F7562 		.ascii	"double\000"
+ 647      6C6500
+ 648              	.LASF13:
+ 649 00fa 414D7578 		.ascii	"AMux_Select\000"
+ 649      5F53656C 
+ 649      65637400 
+ 650              	.LASF8:
+ 651 0106 756E7369 		.ascii	"unsigned int\000"
+ 651      676E6564 
+ 651      20696E74 
+ 651      00
+ 652              	.LASF7:
+ 653 0113 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 653      206C6F6E 
+ 653      6720756E 
+ 653      7369676E 
+ 653      65642069 
+ 654              	.LASF20:
+ 655 012a 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 655      73657273 
+ 655      5C566974 
+ 655      616C695C 
+ 655      446F6375 
+ 656 0158 6E74726F 		.ascii	"ntroller_Workspace\\Expo_Controller2.cydsn\000"
+ 656      6C6C6572 
+ 656      5F576F72 
+ 656      6B737061 
+ 656      63655C45 
+ 657              	.LASF16:
+ 658 0182 6368616E 		.ascii	"chan\000"
+ 658      00
+ 659              	.LASF6:
+ 660 0187 6C6F6E67 		.ascii	"long long int\000"
+ 660      206C6F6E 
+ 660      6720696E 
+ 660      7400
+ 661              	.LASF11:
+ 662 0195 63686172 		.ascii	"char\000"
+ 662      00
+ 663              	.LASF2:
+ 664 019a 73686F72 		.ascii	"short int\000"
+ 664      7420696E 
+ 664      7400
+ 665              	.LASF21:
+ 666 01a4 75696E74 		.ascii	"uint8\000"
+ 666      3800
+ 667              	.LASF4:
+ 668 01aa 6C6F6E67 		.ascii	"long int\000"
+ 668      20696E74 
+ 668      00
+ 669              	.LASF19:
+ 670 01b3 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\AMux.c\000"
+ 670      6E657261 
+ 670      7465645F 
+ 670      536F7572 
+ 670      63655C50 
+ 671              	.LASF0:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 16
+
+
+ 672 01d3 7369676E 		.ascii	"signed char\000"
+ 672      65642063 
+ 672      68617200 
+ 673              	.LASF22:
+ 674 01df 414D7578 		.ascii	"AMux_Unset\000"
+ 674      5F556E73 
+ 674      657400
+ 675              	.LASF17:
+ 676 01ea 414D7578 		.ascii	"AMux_lastChannel\000"
+ 676      5F6C6173 
+ 676      74436861 
+ 676      6E6E656C 
+ 676      00
+ 677              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

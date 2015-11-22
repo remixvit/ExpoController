@@ -1,0 +1,1722 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"UART_UART_BOOT.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.UART_UartCyBtldrCommStart,"ax",%progbits
+  18              		.align	1
+  19              		.global	UART_UartCyBtldrCommStart
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	UART_UartCyBtldrCommStart, %function
+  23              	UART_UartCyBtldrCommStart:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\UART_UART_BOOT.c"
+   1:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * File Name: UART_UART_BOOT.c
+   3:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Version 3.0
+   4:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+   5:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Description:
+   6:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  This file provides the source code of the bootloader communication APIs
+   7:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  for the SCB Component UART mode.
+   8:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+   9:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Note:
+  10:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  11:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Copyright 2013-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  18:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** #include "UART_BOOT.h"
+  19:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** #include "UART_SPI_UART.h"
+  20:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  21:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** #if defined(CYDEV_BOOTLOADER_IO_COMP) && (UART_UART_BTLDR_COMM_ENABLED)
+  22:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  23:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommStart
+  25:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  27:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  28:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Starts the UART component.
+  29:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  30:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  31:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  32:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+  34:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  35:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  36:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommStart(void)
+  38:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  26              		.loc 1 38 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  39:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_Start();
+  32              		.loc 1 39 0
+  33 0002 FFF7FEFF 		bl	UART_Start
+  34              	.LVL0:
+  40:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  35              		.loc 1 40 0
+  36              		@ sp needed
+  37 0006 08BD     		pop	{r3, pc}
+  38              		.cfi_endproc
+  39              	.LFE0:
+  40              		.size	UART_UartCyBtldrCommStart, .-UART_UartCyBtldrCommStart
+  41              		.section	.text.UART_UartCyBtldrCommStop,"ax",%progbits
+  42              		.align	1
+  43              		.global	UART_UartCyBtldrCommStop
+  44              		.code	16
+  45              		.thumb_func
+  46              		.type	UART_UartCyBtldrCommStop, %function
+  47              	UART_UartCyBtldrCommStop:
+  48              	.LFB1:
+  41:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  42:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  43:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  44:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommStop
+  45:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  46:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  47:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  48:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Disables the UART component.
+  49:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  50:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  51:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  52:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  53:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+  54:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  55:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  56:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  57:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommStop(void)
+  58:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  49              		.loc 1 58 0
+  50              		.cfi_startproc
+  51 0000 08B5     		push	{r3, lr}
+  52              		.cfi_def_cfa_offset 8
+  53              		.cfi_offset 3, -8
+  54              		.cfi_offset 14, -4
+  59:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_Stop();
+  55              		.loc 1 59 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 3
+
+
+  56 0002 FFF7FEFF 		bl	UART_Stop
+  57              	.LVL1:
+  60:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  58              		.loc 1 60 0
+  59              		@ sp needed
+  60 0006 08BD     		pop	{r3, pc}
+  61              		.cfi_endproc
+  62              	.LFE1:
+  63              		.size	UART_UartCyBtldrCommStop, .-UART_UartCyBtldrCommStop
+  64              		.section	.text.UART_UartCyBtldrCommReset,"ax",%progbits
+  65              		.align	1
+  66              		.global	UART_UartCyBtldrCommReset
+  67              		.code	16
+  68              		.thumb_func
+  69              		.type	UART_UartCyBtldrCommReset, %function
+  70              	UART_UartCyBtldrCommReset:
+  71              	.LFB2:
+  61:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  62:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  63:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  64:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommReset
+  65:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  66:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  67:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  68:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Resets the receive and transmit communication buffers.
+  69:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  70:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  71:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  72:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  73:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+  74:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  None
+  75:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  76:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+  77:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** void UART_UartCyBtldrCommReset(void)
+  78:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  72              		.loc 1 78 0
+  73              		.cfi_startproc
+  74 0000 08B5     		push	{r3, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 3, -8
+  77              		.cfi_offset 14, -4
+  79:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     /* Clear RX and TX buffers */
+  80:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearRxBuffer();
+  78              		.loc 1 80 0
+  79 0002 FFF7FEFF 		bl	UART_SpiUartClearRxBuffer
+  80              	.LVL2:
+  81:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearTxBuffer();
+  82:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+  81              		.loc 1 82 0
+  82              		@ sp needed
+  81:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     UART_SpiUartClearTxBuffer();
+  83              		.loc 1 81 0
+  84 0006 FFF7FEFF 		bl	UART_SpiUartClearTxBuffer
+  85              	.LVL3:
+  86              		.loc 1 82 0
+  87 000a 08BD     		pop	{r3, pc}
+  88              		.cfi_endproc
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 4
+
+
+  89              	.LFE2:
+  90              		.size	UART_UartCyBtldrCommReset, .-UART_UartCyBtldrCommReset
+  91              		.section	.text.UART_UartCyBtldrCommRead,"ax",%progbits
+  92              		.align	1
+  93              		.global	UART_UartCyBtldrCommRead
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	UART_UartCyBtldrCommRead, %function
+  97              	UART_UartCyBtldrCommRead:
+  98              	.LFB3:
+  83:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  84:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+  85:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+  86:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommRead
+  87:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+  88:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  89:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+  90:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Allows the caller to read data from the bootloader host (the host writes the
+  91:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data). The function handles polling to allow a block of data to be completely
+  92:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  received from the host device.
+  93:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+  94:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+  95:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  pData:    Pointer to storage for the block of data to be read from the
+  96:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            bootloader host
+  97:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  size:     Number of bytes to be read.
+  98:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  count:    Pointer to the variable to write the number of bytes actually
+  99:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            read.
+ 100:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  timeOut:  Number of units in 10 ms to wait before returning because of a
+ 101:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            timeout.
+ 102:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 103:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+ 104:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 105:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  that best describes the problem. For more information refer to the
+ 106:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  "Return Codes" section of the System Reference Guide.
+ 107:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 108:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+ 109:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** cystatus UART_UartCyBtldrCommRead(uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+ 110:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+  99              		.loc 1 110 0
+ 100              		.cfi_startproc
+ 101              	.LVL4:
+ 102 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 103              		.cfi_def_cfa_offset 24
+ 104              		.cfi_offset 3, -24
+ 105              		.cfi_offset 4, -20
+ 106              		.cfi_offset 5, -16
+ 107              		.cfi_offset 6, -12
+ 108              		.cfi_offset 7, -8
+ 109              		.cfi_offset 14, -4
+ 111:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     cystatus status;
+ 112:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 byteCount;
+ 113:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 timeoutMs;
+ 114:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     uint32 i;
+ 115:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 116:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 110              		.loc 1 116 0
+ 111 0002 0127     		mov	r7, #1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 5
+
+
+ 117:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 118:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 112              		.loc 1 118 0
+ 113 0004 0028     		cmp	r0, #0
+ 114 0006 2BD0     		beq	.L5
+ 115              		.loc 1 118 0 is_stmt 0 discriminator 1
+ 116 0008 0029     		cmp	r1, #0
+ 117 000a 29D0     		beq	.L5
+ 118 000c 161C     		mov	r6, r2
+ 119 000e 0D1C     		mov	r5, r1
+ 120 0010 041C     		mov	r4, r0
+ 121              	.LVL5:
+ 119:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     {
+ 120:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_TIMEOUT;
+ 121:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         timeoutMs = ((uint32) 10u * timeOut); /* Convert from 10mS check to 1mS checks */
+ 122              		.loc 1 121 0 is_stmt 1
+ 123 0012 0937     		add	r7, r7, #9
+ 124 0014 5F43     		mul	r7, r3
+ 125              	.LVL6:
+ 126              	.L10:
+ 122:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 123:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Wait with timeout 1mS for packet end */
+ 124:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         byteCount = 0u;
+ 125:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         do
+ 126:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 127:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             /* Check packet start */
+ 128:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             if (0u != UART_SpiUartGetRxBufferSize())
+ 127              		.loc 1 128 0
+ 128 0016 FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 129              	.LVL7:
+ 130 001a 0028     		cmp	r0, #0
+ 131 001c 10D0     		beq	.L6
+ 132              	.LVL8:
+ 133              	.L7:
+ 129:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             {
+ 130:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 /* Wait for end of packet */
+ 131:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 do
+ 132:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 {
+ 133:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                     byteCount = UART_SpiUartGetRxBufferSize();
+ 134              		.loc 1 133 0 discriminator 1
+ 135 001e FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 136              	.LVL9:
+ 137 0022 071C     		mov	r7, r0
+ 138              	.LVL10:
+ 134:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                     CyDelayUs(UART_UART_BYTE_TO_BYTE);
+ 139              		.loc 1 134 0 discriminator 1
+ 140 0024 AD20     		mov	r0, #173
+ 141              	.LVL11:
+ 142 0026 FFF7FEFF 		bl	CyDelayUs
+ 143              	.LVL12:
+ 135:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 }
+ 136:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 while (byteCount != UART_SpiUartGetRxBufferSize());
+ 144              		.loc 1 136 0 discriminator 1
+ 145 002a FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 146              	.LVL13:
+ 147 002e 8742     		cmp	r7, r0
+ 148 0030 F5D1     		bne	.L7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 6
+
+
+ 137:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 138:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 byteCount = UART_BYTES_TO_COPY(byteCount, size);
+ 149              		.loc 1 138 0
+ 150 0032 3B1E     		sub	r3, r7, #0
+ 151 0034 AB42     		cmp	r3, r5
+ 152 0036 00D9     		bls	.L8
+ 153 0038 2B1C     		mov	r3, r5
+ 154              	.L8:
+ 155              	.LVL14:
+ 139:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 *count = (uint16) byteCount;
+ 156              		.loc 1 139 0
+ 157 003a 3380     		strh	r3, [r6]
+ 158              	.LVL15:
+ 140:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 status = CYRET_SUCCESS;
+ 159              		.loc 1 140 0
+ 160 003c 0027     		mov	r7, #0
+ 141:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 142:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****                 break;
+ 161              		.loc 1 142 0
+ 162 003e 07E0     		b	.L9
+ 163              	.LVL16:
+ 164              	.L6:
+ 143:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             }
+ 144:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 145:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             CyDelay(UART_WAIT_1_MS);
+ 165              		.loc 1 145 0
+ 166 0040 0120     		mov	r0, #1
+ 146:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             --timeoutMs;
+ 167              		.loc 1 146 0
+ 168 0042 013F     		sub	r7, r7, #1
+ 169              	.LVL17:
+ 145:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             --timeoutMs;
+ 170              		.loc 1 145 0
+ 171 0044 FFF7FEFF 		bl	CyDelay
+ 172              	.LVL18:
+ 147:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 148:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         while (0u != timeoutMs);
+ 173              		.loc 1 148 0
+ 174 0048 002F     		cmp	r7, #0
+ 175 004a E4D1     		bne	.L10
+ 124:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         do
+ 176              		.loc 1 124 0
+ 177 004c 3B1C     		mov	r3, r7
+ 120:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         timeoutMs = ((uint32) 10u * timeOut); /* Convert from 10mS check to 1mS checks */
+ 178              		.loc 1 120 0
+ 179 004e 1037     		add	r7, r7, #16
+ 180              	.LVL19:
+ 181              	.L9:
+ 182 0050 E518     		add	r5, r4, r3
+ 183              	.LVL20:
+ 184              	.L11:
+ 149:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 150:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Get data from RX buffer into bootloader buffer */
+ 151:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         for (i = 0u; i < byteCount; ++i)
+ 185              		.loc 1 151 0 discriminator 1
+ 186 0052 AC42     		cmp	r4, r5
+ 187 0054 04D0     		beq	.L5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 7
+
+
+ 152:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 153:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             pData[i] = (uint8) UART_SpiUartReadRxData();
+ 188              		.loc 1 153 0 discriminator 3
+ 189 0056 FFF7FEFF 		bl	UART_SpiUartReadRxData
+ 190              	.LVL21:
+ 191 005a 2070     		strb	r0, [r4]
+ 192              	.LVL22:
+ 193 005c 0134     		add	r4, r4, #1
+ 194              	.LVL23:
+ 195 005e F8E7     		b	.L11
+ 196              	.LVL24:
+ 197              	.L5:
+ 154:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 155:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     }
+ 156:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 157:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     return (status);
+ 158:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+ 198              		.loc 1 158 0
+ 199 0060 381C     		mov	r0, r7
+ 200              		@ sp needed
+ 201              	.LVL25:
+ 202 0062 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 203              		.cfi_endproc
+ 204              	.LFE3:
+ 205              		.size	UART_UartCyBtldrCommRead, .-UART_UartCyBtldrCommRead
+ 206              		.section	.text.UART_UartCyBtldrCommWrite,"ax",%progbits
+ 207              		.align	1
+ 208              		.global	UART_UartCyBtldrCommWrite
+ 209              		.code	16
+ 210              		.thumb_func
+ 211              		.type	UART_UartCyBtldrCommWrite, %function
+ 212              	UART_UartCyBtldrCommWrite:
+ 213              	.LFB4:
+ 159:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 160:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 161:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** /*******************************************************************************
+ 162:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Function Name: UART_UartCyBtldrCommWrite
+ 163:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** ********************************************************************************
+ 164:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 165:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Summary:
+ 166:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Allows the caller to write data to the bootloader host (the host reads the
+ 167:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data). The function does not use timeout and returns after data has been
+ 168:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  copied into the transmit buffer. The data transmission starts immediately
+ 169:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  after the first data element is written into the buffer and lasts until all
+ 170:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  data elements from the buffer are sent.
+ 171:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 172:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Parameters:
+ 173:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  pData:    Pointer to the block of data to be written to the bootloader host.
+ 174:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  size:     Number of bytes to be written.
+ 175:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  count:    Pointer to the variable to write the number of bytes actually
+ 176:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            written.
+ 177:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  timeOut:  The timeout is not used by this function. The function returns
+ 178:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *            as soon as data is copied into the transmit buffer.
+ 179:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 180:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** * Return:
+ 181:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  Returns CYRET_SUCCESS if no problem was encountered or returns the value
+ 182:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  that best describes the problem. For more information refer to the
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 8
+
+
+ 183:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *  "Return Codes" section of the System Reference Guide.
+ 184:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *
+ 185:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** *******************************************************************************/
+ 186:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** cystatus UART_UartCyBtldrCommWrite(const uint8 pData[], uint16 size, uint16 * count, uint8 timeOut)
+ 187:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** {
+ 214              		.loc 1 187 0
+ 215              		.cfi_startproc
+ 216              	.LVL26:
+ 217 0000 38B5     		push	{r3, r4, r5, lr}
+ 218              		.cfi_def_cfa_offset 16
+ 219              		.cfi_offset 3, -16
+ 220              		.cfi_offset 4, -12
+ 221              		.cfi_offset 5, -8
+ 222              		.cfi_offset 14, -4
+ 223              		.loc 1 187 0
+ 224 0002 0C1C     		mov	r4, r1
+ 225 0004 151C     		mov	r5, r2
+ 188:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     cystatus status;
+ 189:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 190:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     status = CYRET_BAD_PARAM;
+ 226              		.loc 1 190 0
+ 227 0006 0123     		mov	r3, #1
+ 228              	.LVL27:
+ 191:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 192:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     if ((NULL != pData) && (size > 0u))
+ 229              		.loc 1 192 0
+ 230 0008 0028     		cmp	r0, #0
+ 231 000a 05D0     		beq	.L18
+ 232              		.loc 1 192 0 is_stmt 0 discriminator 1
+ 233 000c 0029     		cmp	r1, #0
+ 234 000e 03D0     		beq	.L18
+ 193:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     {
+ 194:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         /* Transmit data. This function does not wait until data is sent. */
+ 195:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         UART_SpiUartPutArray(pData, (uint32) size);
+ 235              		.loc 1 195 0 is_stmt 1
+ 236 0010 FFF7FEFF 		bl	UART_SpiUartPutArray
+ 237              	.LVL28:
+ 196:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 197:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         *count = size;
+ 198:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_SUCCESS;
+ 238              		.loc 1 198 0
+ 239 0014 0023     		mov	r3, #0
+ 197:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         status = CYRET_SUCCESS;
+ 240              		.loc 1 197 0
+ 241 0016 2C80     		strh	r4, [r5]
+ 242              	.LVL29:
+ 243              	.L18:
+ 199:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 200:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         if (0u != timeOut)
+ 201:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         {
+ 202:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****             /* Suppress compiler warning */
+ 203:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****         }
+ 204:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     }
+ 205:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** 
+ 206:.\Generated_Source\PSoC4/UART_UART_BOOT.c ****     return (status);
+ 207:.\Generated_Source\PSoC4/UART_UART_BOOT.c **** }
+ 244              		.loc 1 207 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 9
+
+
+ 245 0018 181C     		mov	r0, r3
+ 246              		@ sp needed
+ 247              	.LVL30:
+ 248 001a 38BD     		pop	{r3, r4, r5, pc}
+ 249              		.cfi_endproc
+ 250              	.LFE4:
+ 251              		.size	UART_UartCyBtldrCommWrite, .-UART_UartCyBtldrCommWrite
+ 252              		.text
+ 253              	.Letext0:
+ 254              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 255              		.file 3 ".\\Generated_Source\\PSoC4\\UART.h"
+ 256              		.file 4 ".\\Generated_Source\\PSoC4\\UART_SPI_UART.h"
+ 257              		.file 5 "Generated_Source\\PSoC4/CyLib.h"
+ 258              		.section	.debug_info,"",%progbits
+ 259              	.Ldebug_info0:
+ 260 0000 F0020000 		.4byte	0x2f0
+ 261 0004 0400     		.2byte	0x4
+ 262 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 263 000a 04       		.byte	0x4
+ 264 000b 01       		.uleb128 0x1
+ 265 000c 13000000 		.4byte	.LASF37
+ 266 0010 01       		.byte	0x1
+ 267 0011 F1010000 		.4byte	.LASF38
+ 268 0015 1B020000 		.4byte	.LASF39
+ 269 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 270 001d 00000000 		.4byte	0
+ 271 0021 00000000 		.4byte	.Ldebug_line0
+ 272 0025 02       		.uleb128 0x2
+ 273 0026 01       		.byte	0x1
+ 274 0027 06       		.byte	0x6
+ 275 0028 FD020000 		.4byte	.LASF0
+ 276 002c 02       		.uleb128 0x2
+ 277 002d 01       		.byte	0x1
+ 278 002e 08       		.byte	0x8
+ 279 002f 19010000 		.4byte	.LASF1
+ 280 0033 02       		.uleb128 0x2
+ 281 0034 02       		.byte	0x2
+ 282 0035 05       		.byte	0x5
+ 283 0036 7D020000 		.4byte	.LASF2
+ 284 003a 02       		.uleb128 0x2
+ 285 003b 02       		.byte	0x2
+ 286 003c 07       		.byte	0x7
+ 287 003d A7000000 		.4byte	.LASF3
+ 288 0041 02       		.uleb128 0x2
+ 289 0042 04       		.byte	0x4
+ 290 0043 05       		.byte	0x5
+ 291 0044 DA020000 		.4byte	.LASF4
+ 292 0048 02       		.uleb128 0x2
+ 293 0049 04       		.byte	0x4
+ 294 004a 07       		.byte	0x7
+ 295 004b EC000000 		.4byte	.LASF5
+ 296 004f 02       		.uleb128 0x2
+ 297 0050 08       		.byte	0x8
+ 298 0051 05       		.byte	0x5
+ 299 0052 D4010000 		.4byte	.LASF6
+ 300 0056 02       		.uleb128 0x2
+ 301 0057 08       		.byte	0x8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 10
+
+
+ 302 0058 07       		.byte	0x7
+ 303 0059 92010000 		.4byte	.LASF7
+ 304 005d 03       		.uleb128 0x3
+ 305 005e 04       		.byte	0x4
+ 306 005f 05       		.byte	0x5
+ 307 0060 696E7400 		.ascii	"int\000"
+ 308 0064 02       		.uleb128 0x2
+ 309 0065 04       		.byte	0x4
+ 310 0066 07       		.byte	0x7
+ 311 0067 85010000 		.4byte	.LASF8
+ 312 006b 04       		.uleb128 0x4
+ 313 006c FE000000 		.4byte	.LASF9
+ 314 0070 02       		.byte	0x2
+ 315 0071 C2       		.byte	0xc2
+ 316 0072 2C000000 		.4byte	0x2c
+ 317 0076 04       		.uleb128 0x4
+ 318 0077 48010000 		.4byte	.LASF10
+ 319 007b 02       		.byte	0x2
+ 320 007c C3       		.byte	0xc3
+ 321 007d 3A000000 		.4byte	0x3a
+ 322 0081 04       		.uleb128 0x4
+ 323 0082 4F010000 		.4byte	.LASF11
+ 324 0086 02       		.byte	0x2
+ 325 0087 C4       		.byte	0xc4
+ 326 0088 48000000 		.4byte	0x48
+ 327 008c 02       		.uleb128 0x2
+ 328 008d 04       		.byte	0x4
+ 329 008e 04       		.byte	0x4
+ 330 008f C7000000 		.4byte	.LASF12
+ 331 0093 02       		.uleb128 0x2
+ 332 0094 08       		.byte	0x8
+ 333 0095 04       		.byte	0x4
+ 334 0096 41010000 		.4byte	.LASF13
+ 335 009a 02       		.uleb128 0x2
+ 336 009b 01       		.byte	0x1
+ 337 009c 08       		.byte	0x8
+ 338 009d EC010000 		.4byte	.LASF14
+ 339 00a1 05       		.uleb128 0x5
+ 340 00a2 0A000000 		.4byte	.LASF15
+ 341 00a6 02       		.byte	0x2
+ 342 00a7 6401     		.2byte	0x164
+ 343 00a9 48000000 		.4byte	0x48
+ 344 00ad 02       		.uleb128 0x2
+ 345 00ae 04       		.byte	0x4
+ 346 00af 07       		.byte	0x7
+ 347 00b0 CB010000 		.4byte	.LASF16
+ 348 00b4 06       		.uleb128 0x6
+ 349 00b5 04       		.byte	0x4
+ 350 00b6 6B000000 		.4byte	0x6b
+ 351 00ba 07       		.uleb128 0x7
+ 352 00bb 27010000 		.4byte	.LASF17
+ 353 00bf 01       		.byte	0x1
+ 354 00c0 25       		.byte	0x25
+ 355 00c1 00000000 		.4byte	.LFB0
+ 356 00c5 08000000 		.4byte	.LFE0-.LFB0
+ 357 00c9 01       		.uleb128 0x1
+ 358 00ca 9C       		.byte	0x9c
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 11
+
+
+ 359 00cb D9000000 		.4byte	0xd9
+ 360 00cf 08       		.uleb128 0x8
+ 361 00d0 06000000 		.4byte	.LVL0
+ 362 00d4 88020000 		.4byte	0x288
+ 363 00d8 00       		.byte	0
+ 364 00d9 07       		.uleb128 0x7
+ 365 00da AA020000 		.4byte	.LASF18
+ 366 00de 01       		.byte	0x1
+ 367 00df 39       		.byte	0x39
+ 368 00e0 00000000 		.4byte	.LFB1
+ 369 00e4 08000000 		.4byte	.LFE1-.LFB1
+ 370 00e8 01       		.uleb128 0x1
+ 371 00e9 9C       		.byte	0x9c
+ 372 00ea F8000000 		.4byte	0xf8
+ 373 00ee 08       		.uleb128 0x8
+ 374 00ef 06000000 		.4byte	.LVL1
+ 375 00f3 8F020000 		.4byte	0x28f
+ 376 00f7 00       		.byte	0
+ 377 00f8 07       		.uleb128 0x7
+ 378 00f9 D2000000 		.4byte	.LASF19
+ 379 00fd 01       		.byte	0x1
+ 380 00fe 4D       		.byte	0x4d
+ 381 00ff 00000000 		.4byte	.LFB2
+ 382 0103 0C000000 		.4byte	.LFE2-.LFB2
+ 383 0107 01       		.uleb128 0x1
+ 384 0108 9C       		.byte	0x9c
+ 385 0109 20010000 		.4byte	0x120
+ 386 010d 08       		.uleb128 0x8
+ 387 010e 06000000 		.4byte	.LVL2
+ 388 0112 96020000 		.4byte	0x296
+ 389 0116 08       		.uleb128 0x8
+ 390 0117 0A000000 		.4byte	.LVL3
+ 391 011b 9E020000 		.4byte	0x29e
+ 392 011f 00       		.byte	0
+ 393 0120 09       		.uleb128 0x9
+ 394 0121 91020000 		.4byte	.LASF27
+ 395 0125 01       		.byte	0x1
+ 396 0126 6D       		.byte	0x6d
+ 397 0127 A1000000 		.4byte	0xa1
+ 398 012b 00000000 		.4byte	.LFB3
+ 399 012f 64000000 		.4byte	.LFE3-.LFB3
+ 400 0133 01       		.uleb128 0x1
+ 401 0134 9C       		.byte	0x9c
+ 402 0135 FB010000 		.4byte	0x1fb
+ 403 0139 0A       		.uleb128 0xa
+ 404 013a C1000000 		.4byte	.LASF20
+ 405 013e 01       		.byte	0x1
+ 406 013f 6D       		.byte	0x6d
+ 407 0140 B4000000 		.4byte	0xb4
+ 408 0144 00000000 		.4byte	.LLST0
+ 409 0148 0A       		.uleb128 0xa
+ 410 0149 CD000000 		.4byte	.LASF21
+ 411 014d 01       		.byte	0x1
+ 412 014e 6D       		.byte	0x6d
+ 413 014f 76000000 		.4byte	0x76
+ 414 0153 2C000000 		.4byte	.LLST1
+ 415 0157 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 12
+
+
+ 416 0158 A1000000 		.4byte	.LASF22
+ 417 015c 01       		.byte	0x1
+ 418 015d 6D       		.byte	0x6d
+ 419 015e FB010000 		.4byte	0x1fb
+ 420 0162 4D000000 		.4byte	.LLST2
+ 421 0166 0A       		.uleb128 0xa
+ 422 0167 C3010000 		.4byte	.LASF23
+ 423 016b 01       		.byte	0x1
+ 424 016c 6D       		.byte	0x6d
+ 425 016d 6B000000 		.4byte	0x6b
+ 426 0171 79000000 		.4byte	.LLST3
+ 427 0175 0B       		.uleb128 0xb
+ 428 0176 BA000000 		.4byte	.LASF24
+ 429 017a 01       		.byte	0x1
+ 430 017b 6F       		.byte	0x6f
+ 431 017c A1000000 		.4byte	0xa1
+ 432 0180 9A000000 		.4byte	.LLST4
+ 433 0184 0B       		.uleb128 0xb
+ 434 0185 0F010000 		.4byte	.LASF25
+ 435 0189 01       		.byte	0x1
+ 436 018a 70       		.byte	0x70
+ 437 018b 81000000 		.4byte	0x81
+ 438 018f E8000000 		.4byte	.LLST5
+ 439 0193 0B       		.uleb128 0xb
+ 440 0194 00000000 		.4byte	.LASF26
+ 441 0198 01       		.byte	0x1
+ 442 0199 71       		.byte	0x71
+ 443 019a 81000000 		.4byte	0x81
+ 444 019e 34010000 		.4byte	.LLST6
+ 445 01a2 0C       		.uleb128 0xc
+ 446 01a3 6900     		.ascii	"i\000"
+ 447 01a5 01       		.byte	0x1
+ 448 01a6 72       		.byte	0x72
+ 449 01a7 81000000 		.4byte	0x81
+ 450 01ab 6A010000 		.4byte	.LLST7
+ 451 01af 08       		.uleb128 0x8
+ 452 01b0 1A000000 		.4byte	.LVL7
+ 453 01b4 A6020000 		.4byte	0x2a6
+ 454 01b8 08       		.uleb128 0x8
+ 455 01b9 22000000 		.4byte	.LVL9
+ 456 01bd A6020000 		.4byte	0x2a6
+ 457 01c1 0D       		.uleb128 0xd
+ 458 01c2 2A000000 		.4byte	.LVL12
+ 459 01c6 B2020000 		.4byte	0x2b2
+ 460 01ca D5010000 		.4byte	0x1d5
+ 461 01ce 0E       		.uleb128 0xe
+ 462 01cf 01       		.uleb128 0x1
+ 463 01d0 50       		.byte	0x50
+ 464 01d1 02       		.uleb128 0x2
+ 465 01d2 08       		.byte	0x8
+ 466 01d3 AD       		.byte	0xad
+ 467 01d4 00       		.byte	0
+ 468 01d5 08       		.uleb128 0x8
+ 469 01d6 2E000000 		.4byte	.LVL13
+ 470 01da A6020000 		.4byte	0x2a6
+ 471 01de 0D       		.uleb128 0xd
+ 472 01df 48000000 		.4byte	.LVL18
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 13
+
+
+ 473 01e3 C3020000 		.4byte	0x2c3
+ 474 01e7 F1010000 		.4byte	0x1f1
+ 475 01eb 0E       		.uleb128 0xe
+ 476 01ec 01       		.uleb128 0x1
+ 477 01ed 50       		.byte	0x50
+ 478 01ee 01       		.uleb128 0x1
+ 479 01ef 31       		.byte	0x31
+ 480 01f0 00       		.byte	0
+ 481 01f1 08       		.uleb128 0x8
+ 482 01f2 5A000000 		.4byte	.LVL21
+ 483 01f6 D4020000 		.4byte	0x2d4
+ 484 01fa 00       		.byte	0
+ 485 01fb 06       		.uleb128 0x6
+ 486 01fc 04       		.byte	0x4
+ 487 01fd 76000000 		.4byte	0x76
+ 488 0201 09       		.uleb128 0x9
+ 489 0202 A9010000 		.4byte	.LASF28
+ 490 0206 01       		.byte	0x1
+ 491 0207 BA       		.byte	0xba
+ 492 0208 A1000000 		.4byte	0xa1
+ 493 020c 00000000 		.4byte	.LFB4
+ 494 0210 1C000000 		.4byte	.LFE4-.LFB4
+ 495 0214 01       		.uleb128 0x1
+ 496 0215 9C       		.byte	0x9c
+ 497 0216 7D020000 		.4byte	0x27d
+ 498 021a 0A       		.uleb128 0xa
+ 499 021b C1000000 		.4byte	.LASF20
+ 500 021f 01       		.byte	0x1
+ 501 0220 BA       		.byte	0xba
+ 502 0221 7D020000 		.4byte	0x27d
+ 503 0225 B3010000 		.4byte	.LLST8
+ 504 0229 0A       		.uleb128 0xa
+ 505 022a CD000000 		.4byte	.LASF21
+ 506 022e 01       		.byte	0x1
+ 507 022f BA       		.byte	0xba
+ 508 0230 76000000 		.4byte	0x76
+ 509 0234 D4010000 		.4byte	.LLST9
+ 510 0238 0A       		.uleb128 0xa
+ 511 0239 A1000000 		.4byte	.LASF22
+ 512 023d 01       		.byte	0x1
+ 513 023e BA       		.byte	0xba
+ 514 023f FB010000 		.4byte	0x1fb
+ 515 0243 F5010000 		.4byte	.LLST10
+ 516 0247 0A       		.uleb128 0xa
+ 517 0248 C3010000 		.4byte	.LASF23
+ 518 024c 01       		.byte	0x1
+ 519 024d BA       		.byte	0xba
+ 520 024e 6B000000 		.4byte	0x6b
+ 521 0252 21020000 		.4byte	.LLST11
+ 522 0256 0B       		.uleb128 0xb
+ 523 0257 BA000000 		.4byte	.LASF24
+ 524 025b 01       		.byte	0x1
+ 525 025c BC       		.byte	0xbc
+ 526 025d A1000000 		.4byte	0xa1
+ 527 0261 42020000 		.4byte	.LLST12
+ 528 0265 0F       		.uleb128 0xf
+ 529 0266 14000000 		.4byte	.LVL28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 14
+
+
+ 530 026a E0020000 		.4byte	0x2e0
+ 531 026e 0E       		.uleb128 0xe
+ 532 026f 01       		.uleb128 0x1
+ 533 0270 51       		.byte	0x51
+ 534 0271 02       		.uleb128 0x2
+ 535 0272 74       		.byte	0x74
+ 536 0273 00       		.sleb128 0
+ 537 0274 0E       		.uleb128 0xe
+ 538 0275 01       		.uleb128 0x1
+ 539 0276 50       		.byte	0x50
+ 540 0277 03       		.uleb128 0x3
+ 541 0278 F3       		.byte	0xf3
+ 542 0279 01       		.uleb128 0x1
+ 543 027a 50       		.byte	0x50
+ 544 027b 00       		.byte	0
+ 545 027c 00       		.byte	0
+ 546 027d 06       		.uleb128 0x6
+ 547 027e 04       		.byte	0x4
+ 548 027f 83020000 		.4byte	0x283
+ 549 0283 10       		.uleb128 0x10
+ 550 0284 6B000000 		.4byte	0x6b
+ 551 0288 11       		.uleb128 0x11
+ 552 0289 04010000 		.4byte	.LASF29
+ 553 028d 03       		.byte	0x3
+ 554 028e 68       		.byte	0x68
+ 555 028f 11       		.uleb128 0x11
+ 556 0290 87020000 		.4byte	.LASF30
+ 557 0294 03       		.byte	0x3
+ 558 0295 69       		.byte	0x69
+ 559 0296 12       		.uleb128 0x12
+ 560 0297 E3020000 		.4byte	.LASF31
+ 561 029b 04       		.byte	0x4
+ 562 029c 8701     		.2byte	0x187
+ 563 029e 12       		.uleb128 0x12
+ 564 029f 56010000 		.4byte	.LASF32
+ 565 02a3 04       		.byte	0x4
+ 566 02a4 8F01     		.2byte	0x18f
+ 567 02a6 13       		.uleb128 0x13
+ 568 02a7 09030000 		.4byte	.LASF35
+ 569 02ab 04       		.byte	0x4
+ 570 02ac 8601     		.2byte	0x186
+ 571 02ae 81000000 		.4byte	0x81
+ 572 02b2 14       		.uleb128 0x14
+ 573 02b3 E2010000 		.4byte	.LASF33
+ 574 02b7 05       		.byte	0x5
+ 575 02b8 58       		.byte	0x58
+ 576 02b9 C3020000 		.4byte	0x2c3
+ 577 02bd 15       		.uleb128 0x15
+ 578 02be 76000000 		.4byte	0x76
+ 579 02c2 00       		.byte	0
+ 580 02c3 14       		.uleb128 0x14
+ 581 02c4 25030000 		.4byte	.LASF34
+ 582 02c8 05       		.byte	0x5
+ 583 02c9 57       		.byte	0x57
+ 584 02ca D4020000 		.4byte	0x2d4
+ 585 02ce 15       		.uleb128 0x15
+ 586 02cf 81000000 		.4byte	0x81
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 15
+
+
+ 587 02d3 00       		.byte	0
+ 588 02d4 13       		.uleb128 0x13
+ 589 02d5 C3020000 		.4byte	.LASF36
+ 590 02d9 04       		.byte	0x4
+ 591 02da 8501     		.2byte	0x185
+ 592 02dc 81000000 		.4byte	0x81
+ 593 02e0 16       		.uleb128 0x16
+ 594 02e1 70010000 		.4byte	.LASF40
+ 595 02e5 04       		.byte	0x4
+ 596 02e6 8D01     		.2byte	0x18d
+ 597 02e8 15       		.uleb128 0x15
+ 598 02e9 7D020000 		.4byte	0x27d
+ 599 02ed 15       		.uleb128 0x15
+ 600 02ee 81000000 		.4byte	0x81
+ 601 02f2 00       		.byte	0
+ 602 02f3 00       		.byte	0
+ 603              		.section	.debug_abbrev,"",%progbits
+ 604              	.Ldebug_abbrev0:
+ 605 0000 01       		.uleb128 0x1
+ 606 0001 11       		.uleb128 0x11
+ 607 0002 01       		.byte	0x1
+ 608 0003 25       		.uleb128 0x25
+ 609 0004 0E       		.uleb128 0xe
+ 610 0005 13       		.uleb128 0x13
+ 611 0006 0B       		.uleb128 0xb
+ 612 0007 03       		.uleb128 0x3
+ 613 0008 0E       		.uleb128 0xe
+ 614 0009 1B       		.uleb128 0x1b
+ 615 000a 0E       		.uleb128 0xe
+ 616 000b 55       		.uleb128 0x55
+ 617 000c 17       		.uleb128 0x17
+ 618 000d 11       		.uleb128 0x11
+ 619 000e 01       		.uleb128 0x1
+ 620 000f 10       		.uleb128 0x10
+ 621 0010 17       		.uleb128 0x17
+ 622 0011 00       		.byte	0
+ 623 0012 00       		.byte	0
+ 624 0013 02       		.uleb128 0x2
+ 625 0014 24       		.uleb128 0x24
+ 626 0015 00       		.byte	0
+ 627 0016 0B       		.uleb128 0xb
+ 628 0017 0B       		.uleb128 0xb
+ 629 0018 3E       		.uleb128 0x3e
+ 630 0019 0B       		.uleb128 0xb
+ 631 001a 03       		.uleb128 0x3
+ 632 001b 0E       		.uleb128 0xe
+ 633 001c 00       		.byte	0
+ 634 001d 00       		.byte	0
+ 635 001e 03       		.uleb128 0x3
+ 636 001f 24       		.uleb128 0x24
+ 637 0020 00       		.byte	0
+ 638 0021 0B       		.uleb128 0xb
+ 639 0022 0B       		.uleb128 0xb
+ 640 0023 3E       		.uleb128 0x3e
+ 641 0024 0B       		.uleb128 0xb
+ 642 0025 03       		.uleb128 0x3
+ 643 0026 08       		.uleb128 0x8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 16
+
+
+ 644 0027 00       		.byte	0
+ 645 0028 00       		.byte	0
+ 646 0029 04       		.uleb128 0x4
+ 647 002a 16       		.uleb128 0x16
+ 648 002b 00       		.byte	0
+ 649 002c 03       		.uleb128 0x3
+ 650 002d 0E       		.uleb128 0xe
+ 651 002e 3A       		.uleb128 0x3a
+ 652 002f 0B       		.uleb128 0xb
+ 653 0030 3B       		.uleb128 0x3b
+ 654 0031 0B       		.uleb128 0xb
+ 655 0032 49       		.uleb128 0x49
+ 656 0033 13       		.uleb128 0x13
+ 657 0034 00       		.byte	0
+ 658 0035 00       		.byte	0
+ 659 0036 05       		.uleb128 0x5
+ 660 0037 16       		.uleb128 0x16
+ 661 0038 00       		.byte	0
+ 662 0039 03       		.uleb128 0x3
+ 663 003a 0E       		.uleb128 0xe
+ 664 003b 3A       		.uleb128 0x3a
+ 665 003c 0B       		.uleb128 0xb
+ 666 003d 3B       		.uleb128 0x3b
+ 667 003e 05       		.uleb128 0x5
+ 668 003f 49       		.uleb128 0x49
+ 669 0040 13       		.uleb128 0x13
+ 670 0041 00       		.byte	0
+ 671 0042 00       		.byte	0
+ 672 0043 06       		.uleb128 0x6
+ 673 0044 0F       		.uleb128 0xf
+ 674 0045 00       		.byte	0
+ 675 0046 0B       		.uleb128 0xb
+ 676 0047 0B       		.uleb128 0xb
+ 677 0048 49       		.uleb128 0x49
+ 678 0049 13       		.uleb128 0x13
+ 679 004a 00       		.byte	0
+ 680 004b 00       		.byte	0
+ 681 004c 07       		.uleb128 0x7
+ 682 004d 2E       		.uleb128 0x2e
+ 683 004e 01       		.byte	0x1
+ 684 004f 3F       		.uleb128 0x3f
+ 685 0050 19       		.uleb128 0x19
+ 686 0051 03       		.uleb128 0x3
+ 687 0052 0E       		.uleb128 0xe
+ 688 0053 3A       		.uleb128 0x3a
+ 689 0054 0B       		.uleb128 0xb
+ 690 0055 3B       		.uleb128 0x3b
+ 691 0056 0B       		.uleb128 0xb
+ 692 0057 27       		.uleb128 0x27
+ 693 0058 19       		.uleb128 0x19
+ 694 0059 11       		.uleb128 0x11
+ 695 005a 01       		.uleb128 0x1
+ 696 005b 12       		.uleb128 0x12
+ 697 005c 06       		.uleb128 0x6
+ 698 005d 40       		.uleb128 0x40
+ 699 005e 18       		.uleb128 0x18
+ 700 005f 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 17
+
+
+ 701 0061 19       		.uleb128 0x19
+ 702 0062 01       		.uleb128 0x1
+ 703 0063 13       		.uleb128 0x13
+ 704 0064 00       		.byte	0
+ 705 0065 00       		.byte	0
+ 706 0066 08       		.uleb128 0x8
+ 707 0067 898201   		.uleb128 0x4109
+ 708 006a 00       		.byte	0
+ 709 006b 11       		.uleb128 0x11
+ 710 006c 01       		.uleb128 0x1
+ 711 006d 31       		.uleb128 0x31
+ 712 006e 13       		.uleb128 0x13
+ 713 006f 00       		.byte	0
+ 714 0070 00       		.byte	0
+ 715 0071 09       		.uleb128 0x9
+ 716 0072 2E       		.uleb128 0x2e
+ 717 0073 01       		.byte	0x1
+ 718 0074 3F       		.uleb128 0x3f
+ 719 0075 19       		.uleb128 0x19
+ 720 0076 03       		.uleb128 0x3
+ 721 0077 0E       		.uleb128 0xe
+ 722 0078 3A       		.uleb128 0x3a
+ 723 0079 0B       		.uleb128 0xb
+ 724 007a 3B       		.uleb128 0x3b
+ 725 007b 0B       		.uleb128 0xb
+ 726 007c 27       		.uleb128 0x27
+ 727 007d 19       		.uleb128 0x19
+ 728 007e 49       		.uleb128 0x49
+ 729 007f 13       		.uleb128 0x13
+ 730 0080 11       		.uleb128 0x11
+ 731 0081 01       		.uleb128 0x1
+ 732 0082 12       		.uleb128 0x12
+ 733 0083 06       		.uleb128 0x6
+ 734 0084 40       		.uleb128 0x40
+ 735 0085 18       		.uleb128 0x18
+ 736 0086 9742     		.uleb128 0x2117
+ 737 0088 19       		.uleb128 0x19
+ 738 0089 01       		.uleb128 0x1
+ 739 008a 13       		.uleb128 0x13
+ 740 008b 00       		.byte	0
+ 741 008c 00       		.byte	0
+ 742 008d 0A       		.uleb128 0xa
+ 743 008e 05       		.uleb128 0x5
+ 744 008f 00       		.byte	0
+ 745 0090 03       		.uleb128 0x3
+ 746 0091 0E       		.uleb128 0xe
+ 747 0092 3A       		.uleb128 0x3a
+ 748 0093 0B       		.uleb128 0xb
+ 749 0094 3B       		.uleb128 0x3b
+ 750 0095 0B       		.uleb128 0xb
+ 751 0096 49       		.uleb128 0x49
+ 752 0097 13       		.uleb128 0x13
+ 753 0098 02       		.uleb128 0x2
+ 754 0099 17       		.uleb128 0x17
+ 755 009a 00       		.byte	0
+ 756 009b 00       		.byte	0
+ 757 009c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 18
+
+
+ 758 009d 34       		.uleb128 0x34
+ 759 009e 00       		.byte	0
+ 760 009f 03       		.uleb128 0x3
+ 761 00a0 0E       		.uleb128 0xe
+ 762 00a1 3A       		.uleb128 0x3a
+ 763 00a2 0B       		.uleb128 0xb
+ 764 00a3 3B       		.uleb128 0x3b
+ 765 00a4 0B       		.uleb128 0xb
+ 766 00a5 49       		.uleb128 0x49
+ 767 00a6 13       		.uleb128 0x13
+ 768 00a7 02       		.uleb128 0x2
+ 769 00a8 17       		.uleb128 0x17
+ 770 00a9 00       		.byte	0
+ 771 00aa 00       		.byte	0
+ 772 00ab 0C       		.uleb128 0xc
+ 773 00ac 34       		.uleb128 0x34
+ 774 00ad 00       		.byte	0
+ 775 00ae 03       		.uleb128 0x3
+ 776 00af 08       		.uleb128 0x8
+ 777 00b0 3A       		.uleb128 0x3a
+ 778 00b1 0B       		.uleb128 0xb
+ 779 00b2 3B       		.uleb128 0x3b
+ 780 00b3 0B       		.uleb128 0xb
+ 781 00b4 49       		.uleb128 0x49
+ 782 00b5 13       		.uleb128 0x13
+ 783 00b6 02       		.uleb128 0x2
+ 784 00b7 17       		.uleb128 0x17
+ 785 00b8 00       		.byte	0
+ 786 00b9 00       		.byte	0
+ 787 00ba 0D       		.uleb128 0xd
+ 788 00bb 898201   		.uleb128 0x4109
+ 789 00be 01       		.byte	0x1
+ 790 00bf 11       		.uleb128 0x11
+ 791 00c0 01       		.uleb128 0x1
+ 792 00c1 31       		.uleb128 0x31
+ 793 00c2 13       		.uleb128 0x13
+ 794 00c3 01       		.uleb128 0x1
+ 795 00c4 13       		.uleb128 0x13
+ 796 00c5 00       		.byte	0
+ 797 00c6 00       		.byte	0
+ 798 00c7 0E       		.uleb128 0xe
+ 799 00c8 8A8201   		.uleb128 0x410a
+ 800 00cb 00       		.byte	0
+ 801 00cc 02       		.uleb128 0x2
+ 802 00cd 18       		.uleb128 0x18
+ 803 00ce 9142     		.uleb128 0x2111
+ 804 00d0 18       		.uleb128 0x18
+ 805 00d1 00       		.byte	0
+ 806 00d2 00       		.byte	0
+ 807 00d3 0F       		.uleb128 0xf
+ 808 00d4 898201   		.uleb128 0x4109
+ 809 00d7 01       		.byte	0x1
+ 810 00d8 11       		.uleb128 0x11
+ 811 00d9 01       		.uleb128 0x1
+ 812 00da 31       		.uleb128 0x31
+ 813 00db 13       		.uleb128 0x13
+ 814 00dc 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 19
+
+
+ 815 00dd 00       		.byte	0
+ 816 00de 10       		.uleb128 0x10
+ 817 00df 26       		.uleb128 0x26
+ 818 00e0 00       		.byte	0
+ 819 00e1 49       		.uleb128 0x49
+ 820 00e2 13       		.uleb128 0x13
+ 821 00e3 00       		.byte	0
+ 822 00e4 00       		.byte	0
+ 823 00e5 11       		.uleb128 0x11
+ 824 00e6 2E       		.uleb128 0x2e
+ 825 00e7 00       		.byte	0
+ 826 00e8 3F       		.uleb128 0x3f
+ 827 00e9 19       		.uleb128 0x19
+ 828 00ea 03       		.uleb128 0x3
+ 829 00eb 0E       		.uleb128 0xe
+ 830 00ec 3A       		.uleb128 0x3a
+ 831 00ed 0B       		.uleb128 0xb
+ 832 00ee 3B       		.uleb128 0x3b
+ 833 00ef 0B       		.uleb128 0xb
+ 834 00f0 27       		.uleb128 0x27
+ 835 00f1 19       		.uleb128 0x19
+ 836 00f2 3C       		.uleb128 0x3c
+ 837 00f3 19       		.uleb128 0x19
+ 838 00f4 00       		.byte	0
+ 839 00f5 00       		.byte	0
+ 840 00f6 12       		.uleb128 0x12
+ 841 00f7 2E       		.uleb128 0x2e
+ 842 00f8 00       		.byte	0
+ 843 00f9 3F       		.uleb128 0x3f
+ 844 00fa 19       		.uleb128 0x19
+ 845 00fb 03       		.uleb128 0x3
+ 846 00fc 0E       		.uleb128 0xe
+ 847 00fd 3A       		.uleb128 0x3a
+ 848 00fe 0B       		.uleb128 0xb
+ 849 00ff 3B       		.uleb128 0x3b
+ 850 0100 05       		.uleb128 0x5
+ 851 0101 27       		.uleb128 0x27
+ 852 0102 19       		.uleb128 0x19
+ 853 0103 3C       		.uleb128 0x3c
+ 854 0104 19       		.uleb128 0x19
+ 855 0105 00       		.byte	0
+ 856 0106 00       		.byte	0
+ 857 0107 13       		.uleb128 0x13
+ 858 0108 2E       		.uleb128 0x2e
+ 859 0109 00       		.byte	0
+ 860 010a 3F       		.uleb128 0x3f
+ 861 010b 19       		.uleb128 0x19
+ 862 010c 03       		.uleb128 0x3
+ 863 010d 0E       		.uleb128 0xe
+ 864 010e 3A       		.uleb128 0x3a
+ 865 010f 0B       		.uleb128 0xb
+ 866 0110 3B       		.uleb128 0x3b
+ 867 0111 05       		.uleb128 0x5
+ 868 0112 27       		.uleb128 0x27
+ 869 0113 19       		.uleb128 0x19
+ 870 0114 49       		.uleb128 0x49
+ 871 0115 13       		.uleb128 0x13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 20
+
+
+ 872 0116 3C       		.uleb128 0x3c
+ 873 0117 19       		.uleb128 0x19
+ 874 0118 00       		.byte	0
+ 875 0119 00       		.byte	0
+ 876 011a 14       		.uleb128 0x14
+ 877 011b 2E       		.uleb128 0x2e
+ 878 011c 01       		.byte	0x1
+ 879 011d 3F       		.uleb128 0x3f
+ 880 011e 19       		.uleb128 0x19
+ 881 011f 03       		.uleb128 0x3
+ 882 0120 0E       		.uleb128 0xe
+ 883 0121 3A       		.uleb128 0x3a
+ 884 0122 0B       		.uleb128 0xb
+ 885 0123 3B       		.uleb128 0x3b
+ 886 0124 0B       		.uleb128 0xb
+ 887 0125 27       		.uleb128 0x27
+ 888 0126 19       		.uleb128 0x19
+ 889 0127 3C       		.uleb128 0x3c
+ 890 0128 19       		.uleb128 0x19
+ 891 0129 01       		.uleb128 0x1
+ 892 012a 13       		.uleb128 0x13
+ 893 012b 00       		.byte	0
+ 894 012c 00       		.byte	0
+ 895 012d 15       		.uleb128 0x15
+ 896 012e 05       		.uleb128 0x5
+ 897 012f 00       		.byte	0
+ 898 0130 49       		.uleb128 0x49
+ 899 0131 13       		.uleb128 0x13
+ 900 0132 00       		.byte	0
+ 901 0133 00       		.byte	0
+ 902 0134 16       		.uleb128 0x16
+ 903 0135 2E       		.uleb128 0x2e
+ 904 0136 01       		.byte	0x1
+ 905 0137 3F       		.uleb128 0x3f
+ 906 0138 19       		.uleb128 0x19
+ 907 0139 03       		.uleb128 0x3
+ 908 013a 0E       		.uleb128 0xe
+ 909 013b 3A       		.uleb128 0x3a
+ 910 013c 0B       		.uleb128 0xb
+ 911 013d 3B       		.uleb128 0x3b
+ 912 013e 05       		.uleb128 0x5
+ 913 013f 27       		.uleb128 0x27
+ 914 0140 19       		.uleb128 0x19
+ 915 0141 3C       		.uleb128 0x3c
+ 916 0142 19       		.uleb128 0x19
+ 917 0143 00       		.byte	0
+ 918 0144 00       		.byte	0
+ 919 0145 00       		.byte	0
+ 920              		.section	.debug_loc,"",%progbits
+ 921              	.Ldebug_loc0:
+ 922              	.LLST0:
+ 923 0000 00000000 		.4byte	.LVL4
+ 924 0004 16000000 		.4byte	.LVL6
+ 925 0008 0100     		.2byte	0x1
+ 926 000a 50       		.byte	0x50
+ 927 000b 16000000 		.4byte	.LVL6
+ 928 000f 52000000 		.4byte	.LVL20
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 21
+
+
+ 929 0013 0100     		.2byte	0x1
+ 930 0015 54       		.byte	0x54
+ 931 0016 52000000 		.4byte	.LVL20
+ 932 001a 64000000 		.4byte	.LFE3
+ 933 001e 0400     		.2byte	0x4
+ 934 0020 F3       		.byte	0xf3
+ 935 0021 01       		.uleb128 0x1
+ 936 0022 50       		.byte	0x50
+ 937 0023 9F       		.byte	0x9f
+ 938 0024 00000000 		.4byte	0
+ 939 0028 00000000 		.4byte	0
+ 940              	.LLST1:
+ 941 002c 00000000 		.4byte	.LVL4
+ 942 0030 16000000 		.4byte	.LVL6
+ 943 0034 0100     		.2byte	0x1
+ 944 0036 51       		.byte	0x51
+ 945 0037 16000000 		.4byte	.LVL6
+ 946 003b 64000000 		.4byte	.LFE3
+ 947 003f 0400     		.2byte	0x4
+ 948 0041 F3       		.byte	0xf3
+ 949 0042 01       		.uleb128 0x1
+ 950 0043 51       		.byte	0x51
+ 951 0044 9F       		.byte	0x9f
+ 952 0045 00000000 		.4byte	0
+ 953 0049 00000000 		.4byte	0
+ 954              	.LLST2:
+ 955 004d 00000000 		.4byte	.LVL4
+ 956 0051 16000000 		.4byte	.LVL6
+ 957 0055 0100     		.2byte	0x1
+ 958 0057 52       		.byte	0x52
+ 959 0058 16000000 		.4byte	.LVL6
+ 960 005c 60000000 		.4byte	.LVL24
+ 961 0060 0100     		.2byte	0x1
+ 962 0062 56       		.byte	0x56
+ 963 0063 60000000 		.4byte	.LVL24
+ 964 0067 64000000 		.4byte	.LFE3
+ 965 006b 0400     		.2byte	0x4
+ 966 006d F3       		.byte	0xf3
+ 967 006e 01       		.uleb128 0x1
+ 968 006f 52       		.byte	0x52
+ 969 0070 9F       		.byte	0x9f
+ 970 0071 00000000 		.4byte	0
+ 971 0075 00000000 		.4byte	0
+ 972              	.LLST3:
+ 973 0079 00000000 		.4byte	.LVL4
+ 974 007d 16000000 		.4byte	.LVL6
+ 975 0081 0100     		.2byte	0x1
+ 976 0083 53       		.byte	0x53
+ 977 0084 16000000 		.4byte	.LVL6
+ 978 0088 64000000 		.4byte	.LFE3
+ 979 008c 0400     		.2byte	0x4
+ 980 008e F3       		.byte	0xf3
+ 981 008f 01       		.uleb128 0x1
+ 982 0090 53       		.byte	0x53
+ 983 0091 9F       		.byte	0x9f
+ 984 0092 00000000 		.4byte	0
+ 985 0096 00000000 		.4byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 22
+
+
+ 986              	.LLST4:
+ 987 009a 00000000 		.4byte	.LVL4
+ 988 009e 12000000 		.4byte	.LVL5
+ 989 00a2 0200     		.2byte	0x2
+ 990 00a4 31       		.byte	0x31
+ 991 00a5 9F       		.byte	0x9f
+ 992 00a6 12000000 		.4byte	.LVL5
+ 993 00aa 3C000000 		.4byte	.LVL15
+ 994 00ae 0200     		.2byte	0x2
+ 995 00b0 40       		.byte	0x40
+ 996 00b1 9F       		.byte	0x9f
+ 997 00b2 3C000000 		.4byte	.LVL15
+ 998 00b6 40000000 		.4byte	.LVL16
+ 999 00ba 0200     		.2byte	0x2
+ 1000 00bc 30       		.byte	0x30
+ 1001 00bd 9F       		.byte	0x9f
+ 1002 00be 40000000 		.4byte	.LVL16
+ 1003 00c2 50000000 		.4byte	.LVL19
+ 1004 00c6 0200     		.2byte	0x2
+ 1005 00c8 40       		.byte	0x40
+ 1006 00c9 9F       		.byte	0x9f
+ 1007 00ca 50000000 		.4byte	.LVL19
+ 1008 00ce 62000000 		.4byte	.LVL25
+ 1009 00d2 0100     		.2byte	0x1
+ 1010 00d4 57       		.byte	0x57
+ 1011 00d5 62000000 		.4byte	.LVL25
+ 1012 00d9 64000000 		.4byte	.LFE3
+ 1013 00dd 0100     		.2byte	0x1
+ 1014 00df 50       		.byte	0x50
+ 1015 00e0 00000000 		.4byte	0
+ 1016 00e4 00000000 		.4byte	0
+ 1017              	.LLST5:
+ 1018 00e8 16000000 		.4byte	.LVL6
+ 1019 00ec 1E000000 		.4byte	.LVL8
+ 1020 00f0 0200     		.2byte	0x2
+ 1021 00f2 30       		.byte	0x30
+ 1022 00f3 9F       		.byte	0x9f
+ 1023 00f4 24000000 		.4byte	.LVL10
+ 1024 00f8 26000000 		.4byte	.LVL11
+ 1025 00fc 0100     		.2byte	0x1
+ 1026 00fe 50       		.byte	0x50
+ 1027 00ff 26000000 		.4byte	.LVL11
+ 1028 0103 3A000000 		.4byte	.LVL14
+ 1029 0107 0100     		.2byte	0x1
+ 1030 0109 57       		.byte	0x57
+ 1031 010a 3A000000 		.4byte	.LVL14
+ 1032 010e 40000000 		.4byte	.LVL16
+ 1033 0112 0100     		.2byte	0x1
+ 1034 0114 53       		.byte	0x53
+ 1035 0115 40000000 		.4byte	.LVL16
+ 1036 0119 50000000 		.4byte	.LVL19
+ 1037 011d 0200     		.2byte	0x2
+ 1038 011f 30       		.byte	0x30
+ 1039 0120 9F       		.byte	0x9f
+ 1040 0121 50000000 		.4byte	.LVL19
+ 1041 0125 52000000 		.4byte	.LVL20
+ 1042 0129 0100     		.2byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 23
+
+
+ 1043 012b 53       		.byte	0x53
+ 1044 012c 00000000 		.4byte	0
+ 1045 0130 00000000 		.4byte	0
+ 1046              	.LLST6:
+ 1047 0134 16000000 		.4byte	.LVL6
+ 1048 0138 1E000000 		.4byte	.LVL8
+ 1049 013c 0100     		.2byte	0x1
+ 1050 013e 57       		.byte	0x57
+ 1051 013f 40000000 		.4byte	.LVL16
+ 1052 0143 44000000 		.4byte	.LVL17
+ 1053 0147 0100     		.2byte	0x1
+ 1054 0149 57       		.byte	0x57
+ 1055 014a 44000000 		.4byte	.LVL17
+ 1056 014e 48000000 		.4byte	.LVL18
+ 1057 0152 0300     		.2byte	0x3
+ 1058 0154 77       		.byte	0x77
+ 1059 0155 01       		.sleb128 1
+ 1060 0156 9F       		.byte	0x9f
+ 1061 0157 48000000 		.4byte	.LVL18
+ 1062 015b 50000000 		.4byte	.LVL19
+ 1063 015f 0100     		.2byte	0x1
+ 1064 0161 57       		.byte	0x57
+ 1065 0162 00000000 		.4byte	0
+ 1066 0166 00000000 		.4byte	0
+ 1067              	.LLST7:
+ 1068 016a 50000000 		.4byte	.LVL19
+ 1069 016e 52000000 		.4byte	.LVL20
+ 1070 0172 0200     		.2byte	0x2
+ 1071 0174 30       		.byte	0x30
+ 1072 0175 9F       		.byte	0x9f
+ 1073 0176 52000000 		.4byte	.LVL20
+ 1074 017a 5C000000 		.4byte	.LVL22
+ 1075 017e 0700     		.2byte	0x7
+ 1076 0180 74       		.byte	0x74
+ 1077 0181 00       		.sleb128 0
+ 1078 0182 F3       		.byte	0xf3
+ 1079 0183 01       		.uleb128 0x1
+ 1080 0184 50       		.byte	0x50
+ 1081 0185 1C       		.byte	0x1c
+ 1082 0186 9F       		.byte	0x9f
+ 1083 0187 5C000000 		.4byte	.LVL22
+ 1084 018b 5E000000 		.4byte	.LVL23
+ 1085 018f 0900     		.2byte	0x9
+ 1086 0191 74       		.byte	0x74
+ 1087 0192 00       		.sleb128 0
+ 1088 0193 F3       		.byte	0xf3
+ 1089 0194 01       		.uleb128 0x1
+ 1090 0195 50       		.byte	0x50
+ 1091 0196 1C       		.byte	0x1c
+ 1092 0197 23       		.byte	0x23
+ 1093 0198 01       		.uleb128 0x1
+ 1094 0199 9F       		.byte	0x9f
+ 1095 019a 5E000000 		.4byte	.LVL23
+ 1096 019e 60000000 		.4byte	.LVL24
+ 1097 01a2 0700     		.2byte	0x7
+ 1098 01a4 74       		.byte	0x74
+ 1099 01a5 00       		.sleb128 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 24
+
+
+ 1100 01a6 F3       		.byte	0xf3
+ 1101 01a7 01       		.uleb128 0x1
+ 1102 01a8 50       		.byte	0x50
+ 1103 01a9 1C       		.byte	0x1c
+ 1104 01aa 9F       		.byte	0x9f
+ 1105 01ab 00000000 		.4byte	0
+ 1106 01af 00000000 		.4byte	0
+ 1107              	.LLST8:
+ 1108 01b3 00000000 		.4byte	.LVL26
+ 1109 01b7 13000000 		.4byte	.LVL28-1
+ 1110 01bb 0100     		.2byte	0x1
+ 1111 01bd 50       		.byte	0x50
+ 1112 01be 13000000 		.4byte	.LVL28-1
+ 1113 01c2 1C000000 		.4byte	.LFE4
+ 1114 01c6 0400     		.2byte	0x4
+ 1115 01c8 F3       		.byte	0xf3
+ 1116 01c9 01       		.uleb128 0x1
+ 1117 01ca 50       		.byte	0x50
+ 1118 01cb 9F       		.byte	0x9f
+ 1119 01cc 00000000 		.4byte	0
+ 1120 01d0 00000000 		.4byte	0
+ 1121              	.LLST9:
+ 1122 01d4 00000000 		.4byte	.LVL26
+ 1123 01d8 13000000 		.4byte	.LVL28-1
+ 1124 01dc 0100     		.2byte	0x1
+ 1125 01de 51       		.byte	0x51
+ 1126 01df 13000000 		.4byte	.LVL28-1
+ 1127 01e3 1C000000 		.4byte	.LFE4
+ 1128 01e7 0400     		.2byte	0x4
+ 1129 01e9 F3       		.byte	0xf3
+ 1130 01ea 01       		.uleb128 0x1
+ 1131 01eb 51       		.byte	0x51
+ 1132 01ec 9F       		.byte	0x9f
+ 1133 01ed 00000000 		.4byte	0
+ 1134 01f1 00000000 		.4byte	0
+ 1135              	.LLST10:
+ 1136 01f5 00000000 		.4byte	.LVL26
+ 1137 01f9 13000000 		.4byte	.LVL28-1
+ 1138 01fd 0100     		.2byte	0x1
+ 1139 01ff 52       		.byte	0x52
+ 1140 0200 13000000 		.4byte	.LVL28-1
+ 1141 0204 1A000000 		.4byte	.LVL30
+ 1142 0208 0100     		.2byte	0x1
+ 1143 020a 55       		.byte	0x55
+ 1144 020b 1A000000 		.4byte	.LVL30
+ 1145 020f 1C000000 		.4byte	.LFE4
+ 1146 0213 0400     		.2byte	0x4
+ 1147 0215 F3       		.byte	0xf3
+ 1148 0216 01       		.uleb128 0x1
+ 1149 0217 52       		.byte	0x52
+ 1150 0218 9F       		.byte	0x9f
+ 1151 0219 00000000 		.4byte	0
+ 1152 021d 00000000 		.4byte	0
+ 1153              	.LLST11:
+ 1154 0221 00000000 		.4byte	.LVL26
+ 1155 0225 08000000 		.4byte	.LVL27
+ 1156 0229 0100     		.2byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 25
+
+
+ 1157 022b 53       		.byte	0x53
+ 1158 022c 08000000 		.4byte	.LVL27
+ 1159 0230 1C000000 		.4byte	.LFE4
+ 1160 0234 0400     		.2byte	0x4
+ 1161 0236 F3       		.byte	0xf3
+ 1162 0237 01       		.uleb128 0x1
+ 1163 0238 53       		.byte	0x53
+ 1164 0239 9F       		.byte	0x9f
+ 1165 023a 00000000 		.4byte	0
+ 1166 023e 00000000 		.4byte	0
+ 1167              	.LLST12:
+ 1168 0242 00000000 		.4byte	.LVL26
+ 1169 0246 18000000 		.4byte	.LVL29
+ 1170 024a 0200     		.2byte	0x2
+ 1171 024c 31       		.byte	0x31
+ 1172 024d 9F       		.byte	0x9f
+ 1173 024e 18000000 		.4byte	.LVL29
+ 1174 0252 1C000000 		.4byte	.LFE4
+ 1175 0256 0100     		.2byte	0x1
+ 1176 0258 53       		.byte	0x53
+ 1177 0259 00000000 		.4byte	0
+ 1178 025d 00000000 		.4byte	0
+ 1179              		.section	.debug_aranges,"",%progbits
+ 1180 0000 3C000000 		.4byte	0x3c
+ 1181 0004 0200     		.2byte	0x2
+ 1182 0006 00000000 		.4byte	.Ldebug_info0
+ 1183 000a 04       		.byte	0x4
+ 1184 000b 00       		.byte	0
+ 1185 000c 0000     		.2byte	0
+ 1186 000e 0000     		.2byte	0
+ 1187 0010 00000000 		.4byte	.LFB0
+ 1188 0014 08000000 		.4byte	.LFE0-.LFB0
+ 1189 0018 00000000 		.4byte	.LFB1
+ 1190 001c 08000000 		.4byte	.LFE1-.LFB1
+ 1191 0020 00000000 		.4byte	.LFB2
+ 1192 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 1193 0028 00000000 		.4byte	.LFB3
+ 1194 002c 64000000 		.4byte	.LFE3-.LFB3
+ 1195 0030 00000000 		.4byte	.LFB4
+ 1196 0034 1C000000 		.4byte	.LFE4-.LFB4
+ 1197 0038 00000000 		.4byte	0
+ 1198 003c 00000000 		.4byte	0
+ 1199              		.section	.debug_ranges,"",%progbits
+ 1200              	.Ldebug_ranges0:
+ 1201 0000 00000000 		.4byte	.LFB0
+ 1202 0004 08000000 		.4byte	.LFE0
+ 1203 0008 00000000 		.4byte	.LFB1
+ 1204 000c 08000000 		.4byte	.LFE1
+ 1205 0010 00000000 		.4byte	.LFB2
+ 1206 0014 0C000000 		.4byte	.LFE2
+ 1207 0018 00000000 		.4byte	.LFB3
+ 1208 001c 64000000 		.4byte	.LFE3
+ 1209 0020 00000000 		.4byte	.LFB4
+ 1210 0024 1C000000 		.4byte	.LFE4
+ 1211 0028 00000000 		.4byte	0
+ 1212 002c 00000000 		.4byte	0
+ 1213              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 26
+
+
+ 1214              	.Ldebug_line0:
+ 1215 0000 2B010000 		.section	.debug_str,"MS",%progbits,1
+ 1215      02008C00 
+ 1215      00000201 
+ 1215      FB0E0D00 
+ 1215      01010101 
+ 1216              	.LASF26:
+ 1217 0000 74696D65 		.ascii	"timeoutMs\000"
+ 1217      6F75744D 
+ 1217      7300
+ 1218              	.LASF15:
+ 1219 000a 63797374 		.ascii	"cystatus\000"
+ 1219      61747573 
+ 1219      00
+ 1220              	.LASF37:
+ 1221 0013 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1221      4320342E 
+ 1221      392E3320 
+ 1221      32303135 
+ 1221      30333033 
+ 1222 0046 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1222      20726576 
+ 1222      6973696F 
+ 1222      6E203232 
+ 1222      31323230 
+ 1223 0079 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1223      66756E63 
+ 1223      74696F6E 
+ 1223      2D736563 
+ 1223      74696F6E 
+ 1224              	.LASF22:
+ 1225 00a1 636F756E 		.ascii	"count\000"
+ 1225      7400
+ 1226              	.LASF3:
+ 1227 00a7 73686F72 		.ascii	"short unsigned int\000"
+ 1227      7420756E 
+ 1227      7369676E 
+ 1227      65642069 
+ 1227      6E7400
+ 1228              	.LASF24:
+ 1229 00ba 73746174 		.ascii	"status\000"
+ 1229      757300
+ 1230              	.LASF20:
+ 1231 00c1 70446174 		.ascii	"pData\000"
+ 1231      6100
+ 1232              	.LASF12:
+ 1233 00c7 666C6F61 		.ascii	"float\000"
+ 1233      7400
+ 1234              	.LASF21:
+ 1235 00cd 73697A65 		.ascii	"size\000"
+ 1235      00
+ 1236              	.LASF19:
+ 1237 00d2 55415254 		.ascii	"UART_UartCyBtldrCommReset\000"
+ 1237      5F556172 
+ 1237      74437942 
+ 1237      746C6472 
+ 1237      436F6D6D 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 27
+
+
+ 1238              	.LASF5:
+ 1239 00ec 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1239      20756E73 
+ 1239      69676E65 
+ 1239      6420696E 
+ 1239      7400
+ 1240              	.LASF9:
+ 1241 00fe 75696E74 		.ascii	"uint8\000"
+ 1241      3800
+ 1242              	.LASF29:
+ 1243 0104 55415254 		.ascii	"UART_Start\000"
+ 1243      5F537461 
+ 1243      727400
+ 1244              	.LASF25:
+ 1245 010f 62797465 		.ascii	"byteCount\000"
+ 1245      436F756E 
+ 1245      7400
+ 1246              	.LASF1:
+ 1247 0119 756E7369 		.ascii	"unsigned char\000"
+ 1247      676E6564 
+ 1247      20636861 
+ 1247      7200
+ 1248              	.LASF17:
+ 1249 0127 55415254 		.ascii	"UART_UartCyBtldrCommStart\000"
+ 1249      5F556172 
+ 1249      74437942 
+ 1249      746C6472 
+ 1249      436F6D6D 
+ 1250              	.LASF13:
+ 1251 0141 646F7562 		.ascii	"double\000"
+ 1251      6C6500
+ 1252              	.LASF10:
+ 1253 0148 75696E74 		.ascii	"uint16\000"
+ 1253      313600
+ 1254              	.LASF11:
+ 1255 014f 75696E74 		.ascii	"uint32\000"
+ 1255      333200
+ 1256              	.LASF32:
+ 1257 0156 55415254 		.ascii	"UART_SpiUartClearTxBuffer\000"
+ 1257      5F537069 
+ 1257      55617274 
+ 1257      436C6561 
+ 1257      72547842 
+ 1258              	.LASF40:
+ 1259 0170 55415254 		.ascii	"UART_SpiUartPutArray\000"
+ 1259      5F537069 
+ 1259      55617274 
+ 1259      50757441 
+ 1259      72726179 
+ 1260              	.LASF8:
+ 1261 0185 756E7369 		.ascii	"unsigned int\000"
+ 1261      676E6564 
+ 1261      20696E74 
+ 1261      00
+ 1262              	.LASF7:
+ 1263 0192 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1263      206C6F6E 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 28
+
+
+ 1263      6720756E 
+ 1263      7369676E 
+ 1263      65642069 
+ 1264              	.LASF28:
+ 1265 01a9 55415254 		.ascii	"UART_UartCyBtldrCommWrite\000"
+ 1265      5F556172 
+ 1265      74437942 
+ 1265      746C6472 
+ 1265      436F6D6D 
+ 1266              	.LASF23:
+ 1267 01c3 74696D65 		.ascii	"timeOut\000"
+ 1267      4F757400 
+ 1268              	.LASF16:
+ 1269 01cb 73697A65 		.ascii	"sizetype\000"
+ 1269      74797065 
+ 1269      00
+ 1270              	.LASF6:
+ 1271 01d4 6C6F6E67 		.ascii	"long long int\000"
+ 1271      206C6F6E 
+ 1271      6720696E 
+ 1271      7400
+ 1272              	.LASF33:
+ 1273 01e2 43794465 		.ascii	"CyDelayUs\000"
+ 1273      6C617955 
+ 1273      7300
+ 1274              	.LASF14:
+ 1275 01ec 63686172 		.ascii	"char\000"
+ 1275      00
+ 1276              	.LASF38:
+ 1277 01f1 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\UART_UART_BOOT.c\000"
+ 1277      6E657261 
+ 1277      7465645F 
+ 1277      536F7572 
+ 1277      63655C50 
+ 1278              	.LASF39:
+ 1279 021b 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 1279      73657273 
+ 1279      5C566974 
+ 1279      616C695C 
+ 1279      446F6375 
+ 1280 0249 6E74726F 		.ascii	"ntroller_Workspace\\Bootloader_PSoC4_Example01.cyds"
+ 1280      6C6C6572 
+ 1280      5F576F72 
+ 1280      6B737061 
+ 1280      63655C42 
+ 1281 027b 6E00     		.ascii	"n\000"
+ 1282              	.LASF2:
+ 1283 027d 73686F72 		.ascii	"short int\000"
+ 1283      7420696E 
+ 1283      7400
+ 1284              	.LASF30:
+ 1285 0287 55415254 		.ascii	"UART_Stop\000"
+ 1285      5F53746F 
+ 1285      7000
+ 1286              	.LASF27:
+ 1287 0291 55415254 		.ascii	"UART_UartCyBtldrCommRead\000"
+ 1287      5F556172 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc1aa80U.s 			page 29
+
+
+ 1287      74437942 
+ 1287      746C6472 
+ 1287      436F6D6D 
+ 1288              	.LASF18:
+ 1289 02aa 55415254 		.ascii	"UART_UartCyBtldrCommStop\000"
+ 1289      5F556172 
+ 1289      74437942 
+ 1289      746C6472 
+ 1289      436F6D6D 
+ 1290              	.LASF36:
+ 1291 02c3 55415254 		.ascii	"UART_SpiUartReadRxData\000"
+ 1291      5F537069 
+ 1291      55617274 
+ 1291      52656164 
+ 1291      52784461 
+ 1292              	.LASF4:
+ 1293 02da 6C6F6E67 		.ascii	"long int\000"
+ 1293      20696E74 
+ 1293      00
+ 1294              	.LASF31:
+ 1295 02e3 55415254 		.ascii	"UART_SpiUartClearRxBuffer\000"
+ 1295      5F537069 
+ 1295      55617274 
+ 1295      436C6561 
+ 1295      72527842 
+ 1296              	.LASF0:
+ 1297 02fd 7369676E 		.ascii	"signed char\000"
+ 1297      65642063 
+ 1297      68617200 
+ 1298              	.LASF35:
+ 1299 0309 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
+ 1299      5F537069 
+ 1299      55617274 
+ 1299      47657452 
+ 1299      78427566 
+ 1300              	.LASF34:
+ 1301 0325 43794465 		.ascii	"CyDelay\000"
+ 1301      6C617900 
+ 1302              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

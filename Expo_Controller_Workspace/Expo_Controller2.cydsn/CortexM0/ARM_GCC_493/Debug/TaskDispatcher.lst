@@ -1,0 +1,1956 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"TaskDispatcher.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Idle,"ax",%progbits
+  18              		.align	1
+  19              		.global	Idle
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	Idle, %function
+  23              	Idle:
+  24              	.LFB64:
+  25              		.file 1 ".\\TaskDispatcher.c"
+   1:.\TaskDispatcher.c **** /* ========================================
+   2:.\TaskDispatcher.c ****  *
+   3:.\TaskDispatcher.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\TaskDispatcher.c ****  * All Rights Reserved
+   5:.\TaskDispatcher.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\TaskDispatcher.c ****  *
+   7:.\TaskDispatcher.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\TaskDispatcher.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\TaskDispatcher.c ****  *
+  10:.\TaskDispatcher.c ****  * ========================================
+  11:.\TaskDispatcher.c **** */
+  12:.\TaskDispatcher.c **** 
+  13:.\TaskDispatcher.c **** #include "TaskDispatcher.h"
+  14:.\TaskDispatcher.c **** 
+  15:.\TaskDispatcher.c **** inline void TaskManager(void) //Диспетчер задач
+  16:.\TaskDispatcher.c **** {
+  17:.\TaskDispatcher.c ****     uint8      index=0;
+  18:.\TaskDispatcher.c ****     TPTR   GoToTask = Idle;      // Инициализируем переменные
+  19:.\TaskDispatcher.c ****  
+  20:.\TaskDispatcher.c ****         // Как видишь, тут есть указатель Idle - ведущий на пр�
+  21:.\TaskDispatcher.c ****         // На нее можно повесить что нибудь совсем фоновое,
+  22:.\TaskDispatcher.c ****         // И локальная переменная-указатель GoToTask куда мы б�
+  23:.\TaskDispatcher.c ****  
+  24:.\TaskDispatcher.c ****     CyGlobalIntDisable;
+  25:.\TaskDispatcher.c ****         // Запрещаем прерывания!!! Это макрос. Поэтому без ; 
+  26:.\TaskDispatcher.c ****         // Почему не CLI()? Это команда AVR, а я хотел сделать ма
+  27:.\TaskDispatcher.c ****         // платформонезависимый диспетчер. Прерывания над
+  28:.\TaskDispatcher.c ****         // Идет обращение к глобальной очереди диспетчера.
+  29:.\TaskDispatcher.c ****         // Поэтому заботимся об атомарности операции. 
+  30:.\TaskDispatcher.c ****  
+  31:.\TaskDispatcher.c ****     GoToTask = TaskQueue[0];	// Хватаем первое значение из очереди
+  32:.\TaskDispatcher.c ****  
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 2
+
+
+  33:.\TaskDispatcher.c ****     if (GoToTask==Idle)		// Если там пусто
+  34:.\TaskDispatcher.c **** 	{
+  35:.\TaskDispatcher.c **** 	    CyGlobalIntEnable;		// Разрешаем прерывания
+  36:.\TaskDispatcher.c **** 	    (Idle)();			// Переходим на обработку пустого цикла
+  37:.\TaskDispatcher.c ****     }
+  38:.\TaskDispatcher.c ****     else
+  39:.\TaskDispatcher.c ****    	{
+  40:.\TaskDispatcher.c ****        	for(index=0;index!=TaskQueueSize;index++)	// В противном случае сдвиг�
+  41:.\TaskDispatcher.c ****   		{
+  42:.\TaskDispatcher.c ****     		TaskQueue[index]=TaskQueue[index+1];
+  43:.\TaskDispatcher.c **** 		}
+  44:.\TaskDispatcher.c ****         TaskQueue[TaskQueueSize]= Idle;	// В последнюю запись пихаем заты
+  45:.\TaskDispatcher.c ****      
+  46:.\TaskDispatcher.c ****     	CyGlobalIntEnable;		// Разрешаем прерывания
+  47:.\TaskDispatcher.c ****     	(GoToTask)();		// Переходим к задаче
+  48:.\TaskDispatcher.c ****        	}
+  49:.\TaskDispatcher.c **** }
+  50:.\TaskDispatcher.c **** 
+  51:.\TaskDispatcher.c **** 
+  52:.\TaskDispatcher.c **** void SetTask(TPTR TS)
+  53:.\TaskDispatcher.c **** {
+  54:.\TaskDispatcher.c ****     uint8		index = 0;
+  55:.\TaskDispatcher.c ****     uint8   	nointerrupted = 0;
+  56:.\TaskDispatcher.c **** 
+  57:.\TaskDispatcher.c ****     	CyGlobalIntDisable;
+  58:.\TaskDispatcher.c ****     	nointerrupted = 1;					// И ставим флаг, что мы не в прерывании. 
+  59:.\TaskDispatcher.c ****     	
+  60:.\TaskDispatcher.c **** 
+  61:.\TaskDispatcher.c ****     while(TaskQueue[index]!=Idle) 			// Прочесываем очередь задач на пр�
+  62:.\TaskDispatcher.c ****     	{									// с значением Idle - конец очереди.
+  63:.\TaskDispatcher.c ****     	index++;
+  64:.\TaskDispatcher.c ****     	if (index==TaskQueueSize+1) 		// Если очередь переполнена то выхо�
+  65:.\TaskDispatcher.c ****     		{
+  66:.\TaskDispatcher.c ****     		if (nointerrupted)	CyGlobalIntEnable; 	// Если мы не в прерывании, то р
+  67:.\TaskDispatcher.c ****     		return;									// Раньше функция возвращала код ошибки - о�
+  68:.\TaskDispatcher.c ****     		}
+  69:.\TaskDispatcher.c ****     	}
+  70:.\TaskDispatcher.c ****     												// Если нашли свободное место, то
+  71:.\TaskDispatcher.c ****     TaskQueue[index] = TS;							// Записываем в очередь задачу
+  72:.\TaskDispatcher.c ****     if (nointerrupted) CyGlobalIntEnable;			// И включаем прерывания если н
+  73:.\TaskDispatcher.c **** }
+  74:.\TaskDispatcher.c **** 
+  75:.\TaskDispatcher.c **** //Функция установки задачи по таймеру. Передаваемые па
+  76:.\TaskDispatcher.c **** // Время выдержки в тиках системного таймера. Возвраще�
+  77:.\TaskDispatcher.c **** void SetTimerTask(TPTR TS, uint32 NewTime)
+  78:.\TaskDispatcher.c **** {
+  79:.\TaskDispatcher.c ****     uint8		index=0;
+  80:.\TaskDispatcher.c ****     uint8		nointerrupted = 0;
+  81:.\TaskDispatcher.c **** 
+  82:.\TaskDispatcher.c **** 	CyGlobalIntDisable;
+  83:.\TaskDispatcher.c **** 	nointerrupted = 1;
+  84:.\TaskDispatcher.c **** 	
+  85:.\TaskDispatcher.c ****     for(index=0;index!=MainTimerQueueSize+1;++index)	//Прочесываем очередь тай
+  86:.\TaskDispatcher.c ****     	{
+  87:.\TaskDispatcher.c ****     	    if(MainTimer[index].GoToTask == TS)				// Если уже есть запись с так�
+  88:.\TaskDispatcher.c ****     	    {
+  89:.\TaskDispatcher.c **** 		        MainTimer[index].Time = NewTime;			// Перезаписываем ей выдержку
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 3
+
+
+  90:.\TaskDispatcher.c **** 		        if (nointerrupted) 	CyGlobalIntEnable;		// Разрешаем прерывания есл
+  91:.\TaskDispatcher.c **** 		        return;										// Выходим. Раньше был код успешной опер�
+  92:.\TaskDispatcher.c ****             }
+  93:.\TaskDispatcher.c ****         }
+  94:.\TaskDispatcher.c **** 	
+  95:.\TaskDispatcher.c **** 
+  96:.\TaskDispatcher.c ****     for(index=0;index!=MainTimerQueueSize+1;++index)	// Если не находим похожий
+  97:.\TaskDispatcher.c **** 	{
+  98:.\TaskDispatcher.c ****     	if (MainTimer[index].GoToTask == Idle)		
+  99:.\TaskDispatcher.c ****     	{
+ 100:.\TaskDispatcher.c ****     		MainTimer[index].GoToTask = TS;			// Заполняем поле перехода задач�
+ 101:.\TaskDispatcher.c ****     		MainTimer[index].Time = NewTime;		// И поле выдержки времени
+ 102:.\TaskDispatcher.c ****     		if (nointerrupted) 	CyGlobalIntEnable;	// Разрешаем прерывания
+ 103:.\TaskDispatcher.c ****     		return;									// Выход. 
+ 104:.\TaskDispatcher.c ****     	}
+ 105:.\TaskDispatcher.c **** 		
+ 106:.\TaskDispatcher.c **** 	}												// тут можно сделать return c кодом ошибки - нет сво�
+ 107:.\TaskDispatcher.c **** }
+ 108:.\TaskDispatcher.c **** 
+ 109:.\TaskDispatcher.c **** 
+ 110:.\TaskDispatcher.c **** inline void InitRTOS(void)
+ 111:.\TaskDispatcher.c **** {
+ 112:.\TaskDispatcher.c ****     uint8	index;
+ 113:.\TaskDispatcher.c **** 
+ 114:.\TaskDispatcher.c ****     for(index=0;index!=TaskQueueSize+1;index++)	// Во все позиции записываем 
+ 115:.\TaskDispatcher.c ****     	{
+ 116:.\TaskDispatcher.c ****     	TaskQueue[index] = Idle;
+ 117:.\TaskDispatcher.c ****     	}
+ 118:.\TaskDispatcher.c **** 
+ 119:.\TaskDispatcher.c **** 
+ 120:.\TaskDispatcher.c ****     for(index=0;index!=MainTimerQueueSize+1;index++) // Обнуляем все таймеры.
+ 121:.\TaskDispatcher.c ****     	{
+ 122:.\TaskDispatcher.c ****     	MainTimer[index].GoToTask = Idle;
+ 123:.\TaskDispatcher.c ****     	MainTimer[index].Time = 0;
+ 124:.\TaskDispatcher.c ****     	}
+ 125:.\TaskDispatcher.c **** }
+ 126:.\TaskDispatcher.c **** 
+ 127:.\TaskDispatcher.c **** inline void RTOS_Start()
+ 128:.\TaskDispatcher.c **** {
+ 129:.\TaskDispatcher.c ****     InitRTOS();
+ 130:.\TaskDispatcher.c ****     Timer_RTOS_ISR_StartEx(TaskDispatcher_ISR);
+ 131:.\TaskDispatcher.c **** }
+ 132:.\TaskDispatcher.c **** 
+ 133:.\TaskDispatcher.c **** inline void  Idle(void)
+ 134:.\TaskDispatcher.c **** {
+  26              		.loc 1 134 0
+  27              		.cfi_startproc
+ 135:.\TaskDispatcher.c ****     
+ 136:.\TaskDispatcher.c **** }
+  28              		.loc 1 136 0
+  29              		@ sp needed
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE64:
+  33              		.size	Idle, .-Idle
+  34              		.section	.text.TaskManager,"ax",%progbits
+  35              		.align	1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 4
+
+
+  36              		.global	TaskManager
+  37              		.code	16
+  38              		.thumb_func
+  39              		.type	TaskManager, %function
+  40              	TaskManager:
+  41              	.LFB59:
+  16:.\TaskDispatcher.c ****     uint8      index=0;
+  42              		.loc 1 16 0
+  43              		.cfi_startproc
+  44              	.LVL0:
+  45 0000 38B5     		push	{r3, r4, r5, lr}
+  46              		.cfi_def_cfa_offset 16
+  47              		.cfi_offset 3, -16
+  48              		.cfi_offset 4, -12
+  49              		.cfi_offset 5, -8
+  50              		.cfi_offset 14, -4
+  24:.\TaskDispatcher.c ****         // Запрещаем прерывания!!! Это макрос. Поэтому без ; 
+  51              		.loc 1 24 0
+  52              	@ 24 ".\TaskDispatcher.c" 1
+  53 0002 72B6     		CPSID   i
+  54              	@ 0 "" 2
+  31:.\TaskDispatcher.c ****  
+  55              		.loc 1 31 0
+  56              		.code	16
+  57 0004 094B     		ldr	r3, .L7
+  58 0006 0A4C     		ldr	r4, .L7+4
+  59 0008 1868     		ldr	r0, [r3]
+  60              	.LVL1:
+  61 000a 0022     		mov	r2, #0
+  33:.\TaskDispatcher.c **** 	{
+  62              		.loc 1 33 0
+  63 000c A042     		cmp	r0, r4
+  64 000e 01D1     		bne	.L3
+  35:.\TaskDispatcher.c **** 	    (Idle)();			// Переходим на обработку пустого цикла
+  65              		.loc 1 35 0
+  66              	@ 35 ".\TaskDispatcher.c" 1
+  67 0010 62B6     		CPSIE   i
+  68              	@ 0 "" 2
+  69              		.code	16
+  70 0012 0AE0     		b	.L2
+  71              	.LVL2:
+  72              	.L3:
+  42:.\TaskDispatcher.c **** 		}
+  73              		.loc 1 42 0 discriminator 3
+  74 0014 111C     		mov	r1, r2
+  75 0016 0132     		add	r2, r2, #1
+  76              	.LVL3:
+  77 0018 9500     		lsl	r5, r2, #2
+  78 001a 5D59     		ldr	r5, [r3, r5]
+  79 001c 8900     		lsl	r1, r1, #2
+  80 001e 5D50     		str	r5, [r3, r1]
+  81              	.LVL4:
+  40:.\TaskDispatcher.c ****   		{
+  82              		.loc 1 40 0 discriminator 3
+  83 0020 0A2A     		cmp	r2, #10
+  84 0022 F7D1     		bne	.L3
+  44:.\TaskDispatcher.c ****      
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 5
+
+
+  85              		.loc 1 44 0
+  86 0024 9C62     		str	r4, [r3, #40]
+  46:.\TaskDispatcher.c ****     	(GoToTask)();		// Переходим к задаче
+  87              		.loc 1 46 0
+  88              	@ 46 ".\TaskDispatcher.c" 1
+  89 0026 62B6     		CPSIE   i
+  90              	@ 0 "" 2
+  47:.\TaskDispatcher.c ****        	}
+  91              		.loc 1 47 0
+  92              		.code	16
+  93 0028 8047     		blx	r0
+  94              	.LVL5:
+  95              	.L2:
+  49:.\TaskDispatcher.c **** 
+  96              		.loc 1 49 0
+  97              		@ sp needed
+  98 002a 38BD     		pop	{r3, r4, r5, pc}
+  99              	.L8:
+ 100              		.align	2
+ 101              	.L7:
+ 102 002c 00000000 		.word	.LANCHOR0
+ 103 0030 00000000 		.word	Idle
+ 104              		.cfi_endproc
+ 105              	.LFE59:
+ 106              		.size	TaskManager, .-TaskManager
+ 107              		.section	.text.SetTask,"ax",%progbits
+ 108              		.align	1
+ 109              		.global	SetTask
+ 110              		.code	16
+ 111              		.thumb_func
+ 112              		.type	SetTask, %function
+ 113              	SetTask:
+ 114              	.LFB60:
+  53:.\TaskDispatcher.c ****     uint8		index = 0;
+ 115              		.loc 1 53 0
+ 116              		.cfi_startproc
+ 117              	.LVL6:
+ 118 0000 30B5     		push	{r4, r5, lr}
+ 119              		.cfi_def_cfa_offset 12
+ 120              		.cfi_offset 4, -12
+ 121              		.cfi_offset 5, -8
+ 122              		.cfi_offset 14, -4
+  57:.\TaskDispatcher.c ****     	nointerrupted = 1;					// И ставим флаг, что мы не в прерывании. 
+ 123              		.loc 1 57 0
+ 124              	@ 57 ".\TaskDispatcher.c" 1
+ 125 0002 72B6     		CPSID   i
+ 126              	@ 0 "" 2
+ 127              	.LVL7:
+  61:.\TaskDispatcher.c ****     	{									// с значением Idle - конец очереди.
+ 128              		.loc 1 61 0
+ 129              		.code	16
+ 130 0004 0023     		mov	r3, #0
+ 131              	.LVL8:
+ 132              	.L10:
+ 133 0006 064A     		ldr	r2, .L15
+ 134 0008 9900     		lsl	r1, r3, #2
+ 135 000a 8D58     		ldr	r5, [r1, r2]
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 6
+
+
+ 136 000c 054C     		ldr	r4, .L15+4
+ 137 000e A542     		cmp	r5, r4
+ 138 0010 03D0     		beq	.L14
+ 139              	.LVL9:
+ 140 0012 0133     		add	r3, r3, #1
+ 141              	.LVL10:
+  64:.\TaskDispatcher.c ****     		{
+ 142              		.loc 1 64 0
+ 143 0014 0B2B     		cmp	r3, #11
+ 144 0016 F6D1     		bne	.L10
+ 145 0018 00E0     		b	.L13
+ 146              	.LVL11:
+ 147              	.L14:
+  71:.\TaskDispatcher.c ****     if (nointerrupted) CyGlobalIntEnable;			// И включаем прерывания если н
+ 148              		.loc 1 71 0
+ 149 001a 8850     		str	r0, [r1, r2]
+ 150              	.LVL12:
+ 151              	.L13:
+  72:.\TaskDispatcher.c **** }
+ 152              		.loc 1 72 0
+ 153              	@ 72 ".\TaskDispatcher.c" 1
+ 154 001c 62B6     		CPSIE   i
+ 155              	@ 0 "" 2
+  73:.\TaskDispatcher.c **** 
+ 156              		.loc 1 73 0
+ 157              		.code	16
+ 158              		@ sp needed
+ 159 001e 30BD     		pop	{r4, r5, pc}
+ 160              	.L16:
+ 161              		.align	2
+ 162              	.L15:
+ 163 0020 00000000 		.word	.LANCHOR0
+ 164 0024 00000000 		.word	Idle
+ 165              		.cfi_endproc
+ 166              	.LFE60:
+ 167              		.size	SetTask, .-SetTask
+ 168              		.section	.text.SetTimerTask,"ax",%progbits
+ 169              		.align	1
+ 170              		.global	SetTimerTask
+ 171              		.code	16
+ 172              		.thumb_func
+ 173              		.type	SetTimerTask, %function
+ 174              	SetTimerTask:
+ 175              	.LFB61:
+  78:.\TaskDispatcher.c ****     uint8		index=0;
+ 176              		.loc 1 78 0
+ 177              		.cfi_startproc
+ 178              	.LVL13:
+ 179 0000 70B5     		push	{r4, r5, r6, lr}
+ 180              		.cfi_def_cfa_offset 16
+ 181              		.cfi_offset 4, -16
+ 182              		.cfi_offset 5, -12
+ 183              		.cfi_offset 6, -8
+ 184              		.cfi_offset 14, -4
+  82:.\TaskDispatcher.c **** 	nointerrupted = 1;
+ 185              		.loc 1 82 0
+ 186              	@ 82 ".\TaskDispatcher.c" 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 7
+
+
+ 187 0002 72B6     		CPSID   i
+ 188              	@ 0 "" 2
+ 189              	.LVL14:
+ 190              		.code	16
+ 191 0004 0023     		mov	r3, #0
+ 192              	.LVL15:
+ 193              	.L20:
+  87:.\TaskDispatcher.c ****     	    {
+ 194              		.loc 1 87 0
+ 195 0006 0F4C     		ldr	r4, .L24
+ 196 0008 DA00     		lsl	r2, r3, #3
+ 197 000a A218     		add	r2, r4, r2
+ 198 000c 161C     		mov	r6, r2
+ 199 000e D26A     		ldr	r2, [r2, #44]
+ 200 0010 2C36     		add	r6, r6, #44
+ 201 0012 251C     		mov	r5, r4
+ 202 0014 8242     		cmp	r2, r0
+ 203 0016 01D1     		bne	.L18
+  89:.\TaskDispatcher.c **** 		        if (nointerrupted) 	CyGlobalIntEnable;		// Разрешаем прерывания есл
+ 204              		.loc 1 89 0
+ 205 0018 7160     		str	r1, [r6, #4]
+ 206 001a 0DE0     		b	.L23
+ 207              	.L18:
+ 208              	.LVL16:
+ 209 001c 0133     		add	r3, r3, #1
+ 210              	.LVL17:
+  85:.\TaskDispatcher.c ****     	{
+ 211              		.loc 1 85 0 discriminator 2
+ 212 001e 152B     		cmp	r3, #21
+ 213 0020 F1D1     		bne	.L20
+ 214 0022 0023     		mov	r3, #0
+ 215              	.L22:
+ 216              	.LVL18:
+  98:.\TaskDispatcher.c ****     	{
+ 217              		.loc 1 98 0
+ 218 0024 DA00     		lsl	r2, r3, #3
+ 219 0026 AA18     		add	r2, r5, r2
+ 220 0028 141C     		mov	r4, r2
+ 221 002a D66A     		ldr	r6, [r2, #44]
+ 222 002c 064A     		ldr	r2, .L24+4
+ 223 002e 2C34     		add	r4, r4, #44
+ 224 0030 9642     		cmp	r6, r2
+ 225 0032 03D1     		bne	.L21
+ 100:.\TaskDispatcher.c ****     		MainTimer[index].Time = NewTime;		// И поле выдержки времени
+ 226              		.loc 1 100 0
+ 227 0034 2060     		str	r0, [r4]
+ 101:.\TaskDispatcher.c ****     		if (nointerrupted) 	CyGlobalIntEnable;	// Разрешаем прерывания
+ 228              		.loc 1 101 0
+ 229 0036 6160     		str	r1, [r4, #4]
+ 230              	.L23:
+ 102:.\TaskDispatcher.c ****     		return;									// Выход. 
+ 231              		.loc 1 102 0
+ 232              	@ 102 ".\TaskDispatcher.c" 1
+ 233 0038 62B6     		CPSIE   i
+ 234              	@ 0 "" 2
+ 235              		.code	16
+ 236 003a 02E0     		b	.L17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 8
+
+
+ 237              	.L21:
+ 238              	.LVL19:
+ 239 003c 0133     		add	r3, r3, #1
+ 240              	.LVL20:
+  96:.\TaskDispatcher.c **** 	{
+ 241              		.loc 1 96 0 discriminator 2
+ 242 003e 152B     		cmp	r3, #21
+ 243 0040 F0D1     		bne	.L22
+ 244              	.L17:
+ 107:.\TaskDispatcher.c **** 
+ 245              		.loc 1 107 0
+ 246              		@ sp needed
+ 247 0042 70BD     		pop	{r4, r5, r6, pc}
+ 248              	.L25:
+ 249              		.align	2
+ 250              	.L24:
+ 251 0044 00000000 		.word	.LANCHOR0
+ 252 0048 00000000 		.word	Idle
+ 253              		.cfi_endproc
+ 254              	.LFE61:
+ 255              		.size	SetTimerTask, .-SetTimerTask
+ 256              		.section	.text.InitRTOS,"ax",%progbits
+ 257              		.align	1
+ 258              		.global	InitRTOS
+ 259              		.code	16
+ 260              		.thumb_func
+ 261              		.type	InitRTOS, %function
+ 262              	InitRTOS:
+ 263              	.LFB62:
+ 111:.\TaskDispatcher.c ****     uint8	index;
+ 264              		.loc 1 111 0
+ 265              		.cfi_startproc
+ 266              	.LVL21:
+ 267 0000 10B5     		push	{r4, lr}
+ 268              		.cfi_def_cfa_offset 8
+ 269              		.cfi_offset 4, -8
+ 270              		.cfi_offset 14, -4
+ 111:.\TaskDispatcher.c ****     uint8	index;
+ 271              		.loc 1 111 0
+ 272 0002 0024     		mov	r4, #0
+ 273              	.LVL22:
+ 274              	.L27:
+ 116:.\TaskDispatcher.c ****     	}
+ 275              		.loc 1 116 0 discriminator 3
+ 276 0004 094A     		ldr	r2, .L29
+ 277 0006 0A4B     		ldr	r3, .L29+4
+ 278 0008 A100     		lsl	r1, r4, #2
+ 279 000a 0134     		add	r4, r4, #1
+ 280              	.LVL23:
+ 281 000c 8B50     		str	r3, [r1, r2]
+ 282 000e 101C     		mov	r0, r2
+ 283 0010 191C     		mov	r1, r3
+ 114:.\TaskDispatcher.c ****     	{
+ 284              		.loc 1 114 0 discriminator 3
+ 285 0012 0B2C     		cmp	r4, #11
+ 286 0014 F6D1     		bne	.L27
+ 287 0016 0023     		mov	r3, #0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 9
+
+
+ 288              	.L28:
+ 289              	.LVL24:
+ 122:.\TaskDispatcher.c ****     	MainTimer[index].Time = 0;
+ 290              		.loc 1 122 0 discriminator 3
+ 291 0018 DA00     		lsl	r2, r3, #3
+ 292 001a 8218     		add	r2, r0, r2
+ 293 001c 141C     		mov	r4, r2
+ 294 001e D162     		str	r1, [r2, #44]
+ 123:.\TaskDispatcher.c ****     	}
+ 295              		.loc 1 123 0 discriminator 3
+ 296 0020 0022     		mov	r2, #0
+ 297 0022 0133     		add	r3, r3, #1
+ 298              	.LVL25:
+ 299 0024 2263     		str	r2, [r4, #48]
+ 120:.\TaskDispatcher.c ****     	{
+ 300              		.loc 1 120 0 discriminator 3
+ 301 0026 152B     		cmp	r3, #21
+ 302 0028 F6D1     		bne	.L28
+ 125:.\TaskDispatcher.c **** 
+ 303              		.loc 1 125 0
+ 304              		@ sp needed
+ 305 002a 10BD     		pop	{r4, pc}
+ 306              	.L30:
+ 307              		.align	2
+ 308              	.L29:
+ 309 002c 00000000 		.word	.LANCHOR0
+ 310 0030 00000000 		.word	Idle
+ 311              		.cfi_endproc
+ 312              	.LFE62:
+ 313              		.size	InitRTOS, .-InitRTOS
+ 314              		.section	.text.RTOS_Start,"ax",%progbits
+ 315              		.align	1
+ 316              		.global	RTOS_Start
+ 317              		.code	16
+ 318              		.thumb_func
+ 319              		.type	RTOS_Start, %function
+ 320              	RTOS_Start:
+ 321              	.LFB63:
+ 128:.\TaskDispatcher.c ****     InitRTOS();
+ 322              		.loc 1 128 0
+ 323              		.cfi_startproc
+ 324 0000 08B5     		push	{r3, lr}
+ 325              		.cfi_def_cfa_offset 8
+ 326              		.cfi_offset 3, -8
+ 327              		.cfi_offset 14, -4
+ 129:.\TaskDispatcher.c ****     Timer_RTOS_ISR_StartEx(TaskDispatcher_ISR);
+ 328              		.loc 1 129 0
+ 329 0002 FFF7FEFF 		bl	InitRTOS
+ 330              	.LVL26:
+ 130:.\TaskDispatcher.c **** }
+ 331              		.loc 1 130 0
+ 332 0006 0248     		ldr	r0, .L32
+ 333 0008 FFF7FEFF 		bl	Timer_RTOS_ISR_StartEx
+ 334              	.LVL27:
+ 131:.\TaskDispatcher.c **** 
+ 335              		.loc 1 131 0
+ 336              		@ sp needed
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 10
+
+
+ 337 000c 08BD     		pop	{r3, pc}
+ 338              	.L33:
+ 339 000e C046     		.align	2
+ 340              	.L32:
+ 341 0010 00000000 		.word	TaskDispatcher_ISR
+ 342              		.cfi_endproc
+ 343              	.LFE63:
+ 344              		.size	RTOS_Start, .-RTOS_Start
+ 345              		.section	.text.TimerService,"ax",%progbits
+ 346              		.align	1
+ 347              		.global	TimerService
+ 348              		.code	16
+ 349              		.thumb_func
+ 350              		.type	TimerService, %function
+ 351              	TimerService:
+ 352              	.LFB65:
+ 137:.\TaskDispatcher.c **** 
+ 138:.\TaskDispatcher.c **** /*
+ 139:.\TaskDispatcher.c **** Служба таймеров ядра. Должна вызываться из прерывания
+ 140:.\TaskDispatcher.c **** 
+ 141:.\TaskDispatcher.c **** To DO: Привести к возможности загружать произвольную оч�
+ 142:.\TaskDispatcher.c **** А также использовать эту функцию произвольным образо�
+ 143:.\TaskDispatcher.c **** В этом случае не забыть добавить проверку прерывания. 
+ 144:.\TaskDispatcher.c **** */
+ 145:.\TaskDispatcher.c **** inline void TimerService(void)
+ 146:.\TaskDispatcher.c **** {
+ 353              		.loc 1 146 0
+ 354              		.cfi_startproc
+ 355              	.LVL28:
+ 356 0000 70B5     		push	{r4, r5, r6, lr}
+ 357              		.cfi_def_cfa_offset 16
+ 358              		.cfi_offset 4, -16
+ 359              		.cfi_offset 5, -12
+ 360              		.cfi_offset 6, -8
+ 361              		.cfi_offset 14, -4
+ 362              		.loc 1 146 0
+ 363 0002 0025     		mov	r5, #0
+ 364              	.LVL29:
+ 365              	.L37:
+ 147:.\TaskDispatcher.c ****     uint8 index;
+ 148:.\TaskDispatcher.c **** 
+ 149:.\TaskDispatcher.c ****     for(index=0;index!=MainTimerQueueSize+1;index++)		// Прочесываем очередь та
+ 150:.\TaskDispatcher.c ****     	{
+ 151:.\TaskDispatcher.c ****     	if(MainTimer[index].GoToTask == Idle) continue;		// Если нашли пустышку - щ�
+ 366              		.loc 1 151 0
+ 367 0004 0B4C     		ldr	r4, .L38
+ 368 0006 EB00     		lsl	r3, r5, #3
+ 369 0008 E418     		add	r4, r4, r3
+ 370 000a 231C     		mov	r3, r4
+ 371 000c E26A     		ldr	r2, [r4, #44]
+ 372 000e 0A4E     		ldr	r6, .L38+4
+ 373 0010 2C33     		add	r3, r3, #44
+ 374 0012 B242     		cmp	r2, r6
+ 375 0014 0AD0     		beq	.L35
+ 152:.\TaskDispatcher.c **** 
+ 153:.\TaskDispatcher.c ****     	if(MainTimer[index].Time !=1)						// Если таймер не выщелкал, то щел
+ 376              		.loc 1 153 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 11
+
+
+ 377 0016 5A68     		ldr	r2, [r3, #4]
+ 378 0018 012A     		cmp	r2, #1
+ 379 001a 03D0     		beq	.L36
+ 154:.\TaskDispatcher.c ****     		{												// To Do: Вычислить по тактам, что лучше !=1 или !=0
+ 155:.\TaskDispatcher.c ****     		MainTimer[index].Time --;						// Уменьшаем число в ячейке если не
+ 380              		.loc 1 155 0
+ 381 001c 5A68     		ldr	r2, [r3, #4]
+ 382 001e 013A     		sub	r2, r2, #1
+ 383 0020 5A60     		str	r2, [r3, #4]
+ 384 0022 03E0     		b	.L35
+ 385              	.L36:
+ 156:.\TaskDispatcher.c ****     		}
+ 157:.\TaskDispatcher.c ****     	else
+ 158:.\TaskDispatcher.c ****     		{
+ 159:.\TaskDispatcher.c ****     		SetTask(MainTimer[index].GoToTask);				// Дощелкали до нуля? Пихаем в �
+ 386              		.loc 1 159 0
+ 387 0024 E06A     		ldr	r0, [r4, #44]
+ 388 0026 FFF7FEFF 		bl	SetTask
+ 389              	.LVL30:
+ 160:.\TaskDispatcher.c ****     		MainTimer[index].GoToTask = Idle;				// А в ячейку пишем затычку
+ 390              		.loc 1 160 0
+ 391 002a E662     		str	r6, [r4, #44]
+ 392              	.L35:
+ 393              	.LVL31:
+ 394 002c 0135     		add	r5, r5, #1
+ 395              	.LVL32:
+ 149:.\TaskDispatcher.c ****     	{
+ 396              		.loc 1 149 0 discriminator 2
+ 397 002e 152D     		cmp	r5, #21
+ 398 0030 E8D1     		bne	.L37
+ 161:.\TaskDispatcher.c ****     		}
+ 162:.\TaskDispatcher.c ****     	}
+ 163:.\TaskDispatcher.c **** }
+ 399              		.loc 1 163 0
+ 400              		@ sp needed
+ 401 0032 70BD     		pop	{r4, r5, r6, pc}
+ 402              	.L39:
+ 403              		.align	2
+ 404              	.L38:
+ 405 0034 00000000 		.word	.LANCHOR0
+ 406 0038 00000000 		.word	Idle
+ 407              		.cfi_endproc
+ 408              	.LFE65:
+ 409              		.size	TimerService, .-TimerService
+ 410              		.section	.text.TaskDispatcher_ISR,"ax",%progbits
+ 411              		.align	1
+ 412              		.global	TaskDispatcher_ISR
+ 413              		.code	16
+ 414              		.thumb_func
+ 415              		.type	TaskDispatcher_ISR, %function
+ 416              	TaskDispatcher_ISR:
+ 417              	.LFB66:
+ 164:.\TaskDispatcher.c **** 
+ 165:.\TaskDispatcher.c **** 
+ 166:.\TaskDispatcher.c **** 
+ 167:.\TaskDispatcher.c **** CY_ISR(TaskDispatcher_ISR)
+ 168:.\TaskDispatcher.c **** {
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 12
+
+
+ 418              		.loc 1 168 0
+ 419              		.cfi_startproc
+ 420 0000 08B5     		push	{r3, lr}
+ 421              		.cfi_def_cfa_offset 8
+ 422              		.cfi_offset 3, -8
+ 423              		.cfi_offset 14, -4
+ 169:.\TaskDispatcher.c ****     TimerService();
+ 424              		.loc 1 169 0
+ 425 0002 FFF7FEFF 		bl	TimerService
+ 426              	.LVL33:
+ 170:.\TaskDispatcher.c ****     RTC_Update();
+ 171:.\TaskDispatcher.c **** }
+ 427              		.loc 1 171 0
+ 428              		@ sp needed
+ 170:.\TaskDispatcher.c ****     RTC_Update();
+ 429              		.loc 1 170 0
+ 430 0006 FFF7FEFF 		bl	RTC_Update
+ 431              	.LVL34:
+ 432              		.loc 1 171 0
+ 433 000a 08BD     		pop	{r3, pc}
+ 434              		.cfi_endproc
+ 435              	.LFE66:
+ 436              		.size	TaskDispatcher_ISR, .-TaskDispatcher_ISR
+ 437              		.comm	System_Timer,40,4
+ 438              		.comm	System_Timer_Flag,5,1
+ 439              		.bss
+ 440              		.align	2
+ 441              		.set	.LANCHOR0,. + 0
+ 442              		.type	TaskQueue, %object
+ 443              		.size	TaskQueue, 44
+ 444              	TaskQueue:
+ 445 0000 00000000 		.space	44
+ 445      00000000 
+ 445      00000000 
+ 445      00000000 
+ 445      00000000 
+ 446              		.type	MainTimer, %object
+ 447              		.size	MainTimer, 168
+ 448              	MainTimer:
+ 449 002c 00000000 		.space	168
+ 449      00000000 
+ 449      00000000 
+ 449      00000000 
+ 449      00000000 
+ 450              		.text
+ 451              	.Letext0:
+ 452              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 453              		.file 3 ".\\SysClock.h"
+ 454              		.file 4 ".\\TaskDispatcher.h"
+ 455              		.file 5 "Generated_Source\\PSoC4/RTC.h"
+ 456              		.file 6 "Generated_Source\\PSoC4/Timer_RTOS_ISR.h"
+ 457              		.section	.debug_info,"",%progbits
+ 458              	.Ldebug_info0:
+ 459 0000 4F030000 		.4byte	0x34f
+ 460 0004 0400     		.2byte	0x4
+ 461 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 462 000a 04       		.byte	0x4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 13
+
+
+ 463 000b 01       		.uleb128 0x1
+ 464 000c 23000000 		.4byte	.LASF36
+ 465 0010 01       		.byte	0x1
+ 466 0011 B1000000 		.4byte	.LASF37
+ 467 0015 02010000 		.4byte	.LASF38
+ 468 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 469 001d 00000000 		.4byte	0
+ 470 0021 00000000 		.4byte	.Ldebug_line0
+ 471 0025 02       		.uleb128 0x2
+ 472 0026 01       		.byte	0x1
+ 473 0027 06       		.byte	0x6
+ 474 0028 78020000 		.4byte	.LASF0
+ 475 002c 02       		.uleb128 0x2
+ 476 002d 01       		.byte	0x1
+ 477 002e 08       		.byte	0x8
+ 478 002f 71010000 		.4byte	.LASF1
+ 479 0033 02       		.uleb128 0x2
+ 480 0034 02       		.byte	0x2
+ 481 0035 05       		.byte	0x5
+ 482 0036 48020000 		.4byte	.LASF2
+ 483 003a 02       		.uleb128 0x2
+ 484 003b 02       		.byte	0x2
+ 485 003c 07       		.byte	0x7
+ 486 003d DC000000 		.4byte	.LASF3
+ 487 0041 02       		.uleb128 0x2
+ 488 0042 04       		.byte	0x4
+ 489 0043 05       		.byte	0x5
+ 490 0044 5F020000 		.4byte	.LASF4
+ 491 0048 02       		.uleb128 0x2
+ 492 0049 04       		.byte	0x4
+ 493 004a 07       		.byte	0x7
+ 494 004b 7F010000 		.4byte	.LASF5
+ 495 004f 02       		.uleb128 0x2
+ 496 0050 08       		.byte	0x8
+ 497 0051 05       		.byte	0x5
+ 498 0052 26020000 		.4byte	.LASF6
+ 499 0056 02       		.uleb128 0x2
+ 500 0057 08       		.byte	0x8
+ 501 0058 07       		.byte	0x7
+ 502 0059 E6010000 		.4byte	.LASF7
+ 503 005d 03       		.uleb128 0x3
+ 504 005e 04       		.byte	0x4
+ 505 005f 05       		.byte	0x5
+ 506 0060 696E7400 		.ascii	"int\000"
+ 507 0064 02       		.uleb128 0x2
+ 508 0065 04       		.byte	0x4
+ 509 0066 07       		.byte	0x7
+ 510 0067 D2010000 		.4byte	.LASF8
+ 511 006b 04       		.uleb128 0x4
+ 512 006c 91010000 		.4byte	.LASF9
+ 513 0070 02       		.byte	0x2
+ 514 0071 C2       		.byte	0xc2
+ 515 0072 2C000000 		.4byte	0x2c
+ 516 0076 04       		.uleb128 0x4
+ 517 0077 CB010000 		.4byte	.LASF10
+ 518 007b 02       		.byte	0x2
+ 519 007c C4       		.byte	0xc4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 14
+
+
+ 520 007d 48000000 		.4byte	0x48
+ 521 0081 02       		.uleb128 0x2
+ 522 0082 04       		.byte	0x4
+ 523 0083 04       		.byte	0x4
+ 524 0084 FC000000 		.4byte	.LASF11
+ 525 0088 02       		.uleb128 0x2
+ 526 0089 08       		.byte	0x8
+ 527 008a 04       		.byte	0x4
+ 528 008b A1010000 		.4byte	.LASF12
+ 529 008f 02       		.uleb128 0x2
+ 530 0090 01       		.byte	0x1
+ 531 0091 08       		.byte	0x8
+ 532 0092 68020000 		.4byte	.LASF13
+ 533 0096 05       		.uleb128 0x5
+ 534 0097 6B000000 		.4byte	0x6b
+ 535 009b 05       		.uleb128 0x5
+ 536 009c 76000000 		.4byte	0x76
+ 537 00a0 06       		.uleb128 0x6
+ 538 00a1 FD010000 		.4byte	.LASF14
+ 539 00a5 02       		.byte	0x2
+ 540 00a6 7E01     		.2byte	0x17e
+ 541 00a8 AC000000 		.4byte	0xac
+ 542 00ac 07       		.uleb128 0x7
+ 543 00ad 04       		.byte	0x4
+ 544 00ae B2000000 		.4byte	0xb2
+ 545 00b2 08       		.uleb128 0x8
+ 546 00b3 02       		.uleb128 0x2
+ 547 00b4 04       		.byte	0x4
+ 548 00b5 07       		.byte	0x7
+ 549 00b6 0A020000 		.4byte	.LASF15
+ 550 00ba 09       		.uleb128 0x9
+ 551 00bb 08       		.byte	0x8
+ 552 00bc 03       		.byte	0x3
+ 553 00bd 1B       		.byte	0x1b
+ 554 00be DB000000 		.4byte	0xdb
+ 555 00c2 0A       		.uleb128 0xa
+ 556 00c3 DF010000 		.4byte	.LASF16
+ 557 00c7 03       		.byte	0x3
+ 558 00c8 1D       		.byte	0x1d
+ 559 00c9 96000000 		.4byte	0x96
+ 560 00cd 00       		.byte	0
+ 561 00ce 0A       		.uleb128 0xa
+ 562 00cf 84020000 		.4byte	.LASF17
+ 563 00d3 03       		.byte	0x3
+ 564 00d4 1E       		.byte	0x1e
+ 565 00d5 9B000000 		.4byte	0x9b
+ 566 00d9 04       		.byte	0x4
+ 567 00da 00       		.byte	0
+ 568 00db 0B       		.uleb128 0xb
+ 569 00dc BA000000 		.4byte	0xba
+ 570 00e0 EB000000 		.4byte	0xeb
+ 571 00e4 0C       		.uleb128 0xc
+ 572 00e5 B3000000 		.4byte	0xb3
+ 573 00e9 04       		.byte	0x4
+ 574 00ea 00       		.byte	0
+ 575 00eb 09       		.uleb128 0x9
+ 576 00ec 01       		.byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 15
+
+
+ 577 00ed 03       		.byte	0x3
+ 578 00ee 20       		.byte	0x20
+ 579 00ef 00010000 		.4byte	0x100
+ 580 00f3 0A       		.uleb128 0xa
+ 581 00f4 34020000 		.4byte	.LASF18
+ 582 00f8 03       		.byte	0x3
+ 583 00f9 22       		.byte	0x22
+ 584 00fa 6B000000 		.4byte	0x6b
+ 585 00fe 00       		.byte	0
+ 586 00ff 00       		.byte	0
+ 587 0100 0B       		.uleb128 0xb
+ 588 0101 EB000000 		.4byte	0xeb
+ 589 0105 10010000 		.4byte	0x110
+ 590 0109 0C       		.uleb128 0xc
+ 591 010a B3000000 		.4byte	0xb3
+ 592 010e 04       		.byte	0x4
+ 593 010f 00       		.byte	0
+ 594 0110 04       		.uleb128 0x4
+ 595 0111 9C010000 		.4byte	.LASF19
+ 596 0115 04       		.byte	0x4
+ 597 0116 12       		.byte	0x12
+ 598 0117 AC000000 		.4byte	0xac
+ 599 011b 09       		.uleb128 0x9
+ 600 011c 08       		.byte	0x8
+ 601 011d 04       		.byte	0x4
+ 602 011e 16       		.byte	0x16
+ 603 011f 3C010000 		.4byte	0x13c
+ 604 0123 0A       		.uleb128 0xa
+ 605 0124 BA010000 		.4byte	.LASF20
+ 606 0128 04       		.byte	0x4
+ 607 0129 18       		.byte	0x18
+ 608 012a 10010000 		.4byte	0x110
+ 609 012e 00       		.byte	0
+ 610 012f 0A       		.uleb128 0xa
+ 611 0130 84020000 		.4byte	.LASF17
+ 612 0134 04       		.byte	0x4
+ 613 0135 19       		.byte	0x19
+ 614 0136 76000000 		.4byte	0x76
+ 615 013a 04       		.byte	0x4
+ 616 013b 00       		.byte	0
+ 617 013c 0D       		.uleb128 0xd
+ 618 013d 97010000 		.4byte	.LASF34
+ 619 0141 01       		.byte	0x1
+ 620 0142 85       		.byte	0x85
+ 621 0143 03       		.byte	0x3
+ 622 0144 0E       		.uleb128 0xe
+ 623 0145 3C010000 		.4byte	0x13c
+ 624 0149 00000000 		.4byte	.LFB64
+ 625 014d 02000000 		.4byte	.LFE64-.LFB64
+ 626 0151 01       		.uleb128 0x1
+ 627 0152 9C       		.byte	0x9c
+ 628 0153 0F       		.uleb128 0xf
+ 629 0154 00000000 		.4byte	.LASF22
+ 630 0158 01       		.byte	0x1
+ 631 0159 0F       		.byte	0xf
+ 632 015a 00000000 		.4byte	.LFB59
+ 633 015e 34000000 		.4byte	.LFE59-.LFB59
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 16
+
+
+ 634 0162 01       		.uleb128 0x1
+ 635 0163 9C       		.byte	0x9c
+ 636 0164 87010000 		.4byte	0x187
+ 637 0168 10       		.uleb128 0x10
+ 638 0169 42020000 		.4byte	.LASF21
+ 639 016d 01       		.byte	0x1
+ 640 016e 11       		.byte	0x11
+ 641 016f 6B000000 		.4byte	0x6b
+ 642 0173 00000000 		.4byte	.LLST0
+ 643 0177 10       		.uleb128 0x10
+ 644 0178 BA010000 		.4byte	.LASF20
+ 645 017c 01       		.byte	0x1
+ 646 017d 12       		.byte	0x12
+ 647 017e 10010000 		.4byte	0x110
+ 648 0182 2C000000 		.4byte	.LLST1
+ 649 0186 00       		.byte	0
+ 650 0187 11       		.uleb128 0x11
+ 651 0188 13020000 		.4byte	.LASF23
+ 652 018c 01       		.byte	0x1
+ 653 018d 34       		.byte	0x34
+ 654 018e 00000000 		.4byte	.LFB60
+ 655 0192 28000000 		.4byte	.LFE60-.LFB60
+ 656 0196 01       		.uleb128 0x1
+ 657 0197 9C       		.byte	0x9c
+ 658 0198 C7010000 		.4byte	0x1c7
+ 659 019c 12       		.uleb128 0x12
+ 660 019d 545300   		.ascii	"TS\000"
+ 661 01a0 01       		.byte	0x1
+ 662 01a1 34       		.byte	0x34
+ 663 01a2 10010000 		.4byte	0x110
+ 664 01a6 01       		.uleb128 0x1
+ 665 01a7 50       		.byte	0x50
+ 666 01a8 10       		.uleb128 0x10
+ 667 01a9 42020000 		.4byte	.LASF21
+ 668 01ad 01       		.byte	0x1
+ 669 01ae 36       		.byte	0x36
+ 670 01af 6B000000 		.4byte	0x6b
+ 671 01b3 4F000000 		.4byte	.LLST2
+ 672 01b7 10       		.uleb128 0x10
+ 673 01b8 CE000000 		.4byte	.LASF24
+ 674 01bc 01       		.byte	0x1
+ 675 01bd 37       		.byte	0x37
+ 676 01be 6B000000 		.4byte	0x6b
+ 677 01c2 86000000 		.4byte	.LLST3
+ 678 01c6 00       		.byte	0
+ 679 01c7 11       		.uleb128 0x11
+ 680 01c8 EF000000 		.4byte	.LASF25
+ 681 01cc 01       		.byte	0x1
+ 682 01cd 4D       		.byte	0x4d
+ 683 01ce 00000000 		.4byte	.LFB61
+ 684 01d2 4C000000 		.4byte	.LFE61-.LFB61
+ 685 01d6 01       		.uleb128 0x1
+ 686 01d7 9C       		.byte	0x9c
+ 687 01d8 14020000 		.4byte	0x214
+ 688 01dc 12       		.uleb128 0x12
+ 689 01dd 545300   		.ascii	"TS\000"
+ 690 01e0 01       		.byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 17
+
+
+ 691 01e1 4D       		.byte	0x4d
+ 692 01e2 10010000 		.4byte	0x110
+ 693 01e6 01       		.uleb128 0x1
+ 694 01e7 50       		.byte	0x50
+ 695 01e8 13       		.uleb128 0x13
+ 696 01e9 C3010000 		.4byte	.LASF26
+ 697 01ed 01       		.byte	0x1
+ 698 01ee 4D       		.byte	0x4d
+ 699 01ef 76000000 		.4byte	0x76
+ 700 01f3 01       		.uleb128 0x1
+ 701 01f4 51       		.byte	0x51
+ 702 01f5 10       		.uleb128 0x10
+ 703 01f6 42020000 		.4byte	.LASF21
+ 704 01fa 01       		.byte	0x1
+ 705 01fb 4F       		.byte	0x4f
+ 706 01fc 6B000000 		.4byte	0x6b
+ 707 0200 A6000000 		.4byte	.LLST4
+ 708 0204 10       		.uleb128 0x10
+ 709 0205 CE000000 		.4byte	.LASF24
+ 710 0209 01       		.byte	0x1
+ 711 020a 50       		.byte	0x50
+ 712 020b 6B000000 		.4byte	0x6b
+ 713 020f EA000000 		.4byte	.LLST5
+ 714 0213 00       		.byte	0
+ 715 0214 11       		.uleb128 0x11
+ 716 0215 39020000 		.4byte	.LASF27
+ 717 0219 01       		.byte	0x1
+ 718 021a 6E       		.byte	0x6e
+ 719 021b 00000000 		.4byte	.LFB62
+ 720 021f 34000000 		.4byte	.LFE62-.LFB62
+ 721 0223 01       		.uleb128 0x1
+ 722 0224 9C       		.byte	0x9c
+ 723 0225 39020000 		.4byte	0x239
+ 724 0229 10       		.uleb128 0x10
+ 725 022a 42020000 		.4byte	.LASF21
+ 726 022e 01       		.byte	0x1
+ 727 022f 70       		.byte	0x70
+ 728 0230 6B000000 		.4byte	0x6b
+ 729 0234 0A010000 		.4byte	.LLST6
+ 730 0238 00       		.byte	0
+ 731 0239 14       		.uleb128 0x14
+ 732 023a 1B020000 		.4byte	.LASF39
+ 733 023e 01       		.byte	0x1
+ 734 023f 7F       		.byte	0x7f
+ 735 0240 00000000 		.4byte	.LFB63
+ 736 0244 14000000 		.4byte	.LFE63-.LFB63
+ 737 0248 01       		.uleb128 0x1
+ 738 0249 9C       		.byte	0x9c
+ 739 024a 6B020000 		.4byte	0x26b
+ 740 024e 15       		.uleb128 0x15
+ 741 024f 06000000 		.4byte	.LVL26
+ 742 0253 14020000 		.4byte	0x214
+ 743 0257 16       		.uleb128 0x16
+ 744 0258 0C000000 		.4byte	.LVL27
+ 745 025c 39030000 		.4byte	0x339
+ 746 0260 17       		.uleb128 0x17
+ 747 0261 01       		.uleb128 0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 18
+
+
+ 748 0262 50       		.byte	0x50
+ 749 0263 05       		.uleb128 0x5
+ 750 0264 03       		.byte	0x3
+ 751 0265 00000000 		.4byte	TaskDispatcher_ISR
+ 752 0269 00       		.byte	0
+ 753 026a 00       		.byte	0
+ 754 026b 11       		.uleb128 0x11
+ 755 026c 52020000 		.4byte	.LASF28
+ 756 0270 01       		.byte	0x1
+ 757 0271 91       		.byte	0x91
+ 758 0272 00000000 		.4byte	.LFB65
+ 759 0276 3C000000 		.4byte	.LFE65-.LFB65
+ 760 027a 01       		.uleb128 0x1
+ 761 027b 9C       		.byte	0x9c
+ 762 027c 99020000 		.4byte	0x299
+ 763 0280 10       		.uleb128 0x10
+ 764 0281 42020000 		.4byte	.LASF21
+ 765 0285 01       		.byte	0x1
+ 766 0286 93       		.byte	0x93
+ 767 0287 6B000000 		.4byte	0x6b
+ 768 028b 34010000 		.4byte	.LLST7
+ 769 028f 15       		.uleb128 0x15
+ 770 0290 2A000000 		.4byte	.LVL30
+ 771 0294 87010000 		.4byte	0x187
+ 772 0298 00       		.byte	0
+ 773 0299 11       		.uleb128 0x11
+ 774 029a 89020000 		.4byte	.LASF29
+ 775 029e 01       		.byte	0x1
+ 776 029f A7       		.byte	0xa7
+ 777 02a0 00000000 		.4byte	.LFB66
+ 778 02a4 0C000000 		.4byte	.LFE66-.LFB66
+ 779 02a8 01       		.uleb128 0x1
+ 780 02a9 9C       		.byte	0x9c
+ 781 02aa C1020000 		.4byte	0x2c1
+ 782 02ae 15       		.uleb128 0x15
+ 783 02af 06000000 		.4byte	.LVL33
+ 784 02b3 6B020000 		.4byte	0x26b
+ 785 02b7 15       		.uleb128 0x15
+ 786 02b8 0A000000 		.4byte	.LVL34
+ 787 02bc 4A030000 		.4byte	0x34a
+ 788 02c0 00       		.byte	0
+ 789 02c1 0B       		.uleb128 0xb
+ 790 02c2 10010000 		.4byte	0x110
+ 791 02c6 D1020000 		.4byte	0x2d1
+ 792 02ca 0C       		.uleb128 0xc
+ 793 02cb B3000000 		.4byte	0xb3
+ 794 02cf 0A       		.byte	0xa
+ 795 02d0 00       		.byte	0
+ 796 02d1 18       		.uleb128 0x18
+ 797 02d2 19000000 		.4byte	.LASF30
+ 798 02d6 04       		.byte	0x4
+ 799 02d7 14       		.byte	0x14
+ 800 02d8 E2020000 		.4byte	0x2e2
+ 801 02dc 05       		.uleb128 0x5
+ 802 02dd 03       		.byte	0x3
+ 803 02de 00000000 		.4byte	TaskQueue
+ 804 02e2 05       		.uleb128 0x5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 19
+
+
+ 805 02e3 C1020000 		.4byte	0x2c1
+ 806 02e7 0B       		.uleb128 0xb
+ 807 02e8 1B010000 		.4byte	0x11b
+ 808 02ec F7020000 		.4byte	0x2f7
+ 809 02f0 0C       		.uleb128 0xc
+ 810 02f1 B3000000 		.4byte	0xb3
+ 811 02f5 14       		.byte	0x14
+ 812 02f6 00       		.byte	0
+ 813 02f7 18       		.uleb128 0x18
+ 814 02f8 C4000000 		.4byte	.LASF31
+ 815 02fc 04       		.byte	0x4
+ 816 02fd 1B       		.byte	0x1b
+ 817 02fe 08030000 		.4byte	0x308
+ 818 0302 05       		.uleb128 0x5
+ 819 0303 03       		.byte	0x3
+ 820 0304 2C000000 		.4byte	MainTimer
+ 821 0308 05       		.uleb128 0x5
+ 822 0309 E7020000 		.4byte	0x2e7
+ 823 030d 19       		.uleb128 0x19
+ 824 030e A8010000 		.4byte	.LASF32
+ 825 0312 03       		.byte	0x3
+ 826 0313 25       		.byte	0x25
+ 827 0314 1E030000 		.4byte	0x31e
+ 828 0318 05       		.uleb128 0x5
+ 829 0319 03       		.byte	0x3
+ 830 031a 00000000 		.4byte	System_Timer_Flag
+ 831 031e 05       		.uleb128 0x5
+ 832 031f 00010000 		.4byte	0x100
+ 833 0323 19       		.uleb128 0x19
+ 834 0324 0C000000 		.4byte	.LASF33
+ 835 0328 03       		.byte	0x3
+ 836 0329 26       		.byte	0x26
+ 837 032a 34030000 		.4byte	0x334
+ 838 032e 05       		.uleb128 0x5
+ 839 032f 03       		.byte	0x3
+ 840 0330 00000000 		.4byte	System_Timer
+ 841 0334 05       		.uleb128 0x5
+ 842 0335 DB000000 		.4byte	0xdb
+ 843 0339 1A       		.uleb128 0x1a
+ 844 033a 5A010000 		.4byte	.LASF40
+ 845 033e 06       		.byte	0x6
+ 846 033f 18       		.byte	0x18
+ 847 0340 4A030000 		.4byte	0x34a
+ 848 0344 1B       		.uleb128 0x1b
+ 849 0345 A0000000 		.4byte	0xa0
+ 850 0349 00       		.byte	0
+ 851 034a 1C       		.uleb128 0x1c
+ 852 034b 6D020000 		.4byte	.LASF35
+ 853 034f 05       		.byte	0x5
+ 854 0350 5501     		.2byte	0x155
+ 855 0352 00       		.byte	0
+ 856              		.section	.debug_abbrev,"",%progbits
+ 857              	.Ldebug_abbrev0:
+ 858 0000 01       		.uleb128 0x1
+ 859 0001 11       		.uleb128 0x11
+ 860 0002 01       		.byte	0x1
+ 861 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 20
+
+
+ 862 0004 0E       		.uleb128 0xe
+ 863 0005 13       		.uleb128 0x13
+ 864 0006 0B       		.uleb128 0xb
+ 865 0007 03       		.uleb128 0x3
+ 866 0008 0E       		.uleb128 0xe
+ 867 0009 1B       		.uleb128 0x1b
+ 868 000a 0E       		.uleb128 0xe
+ 869 000b 55       		.uleb128 0x55
+ 870 000c 17       		.uleb128 0x17
+ 871 000d 11       		.uleb128 0x11
+ 872 000e 01       		.uleb128 0x1
+ 873 000f 10       		.uleb128 0x10
+ 874 0010 17       		.uleb128 0x17
+ 875 0011 00       		.byte	0
+ 876 0012 00       		.byte	0
+ 877 0013 02       		.uleb128 0x2
+ 878 0014 24       		.uleb128 0x24
+ 879 0015 00       		.byte	0
+ 880 0016 0B       		.uleb128 0xb
+ 881 0017 0B       		.uleb128 0xb
+ 882 0018 3E       		.uleb128 0x3e
+ 883 0019 0B       		.uleb128 0xb
+ 884 001a 03       		.uleb128 0x3
+ 885 001b 0E       		.uleb128 0xe
+ 886 001c 00       		.byte	0
+ 887 001d 00       		.byte	0
+ 888 001e 03       		.uleb128 0x3
+ 889 001f 24       		.uleb128 0x24
+ 890 0020 00       		.byte	0
+ 891 0021 0B       		.uleb128 0xb
+ 892 0022 0B       		.uleb128 0xb
+ 893 0023 3E       		.uleb128 0x3e
+ 894 0024 0B       		.uleb128 0xb
+ 895 0025 03       		.uleb128 0x3
+ 896 0026 08       		.uleb128 0x8
+ 897 0027 00       		.byte	0
+ 898 0028 00       		.byte	0
+ 899 0029 04       		.uleb128 0x4
+ 900 002a 16       		.uleb128 0x16
+ 901 002b 00       		.byte	0
+ 902 002c 03       		.uleb128 0x3
+ 903 002d 0E       		.uleb128 0xe
+ 904 002e 3A       		.uleb128 0x3a
+ 905 002f 0B       		.uleb128 0xb
+ 906 0030 3B       		.uleb128 0x3b
+ 907 0031 0B       		.uleb128 0xb
+ 908 0032 49       		.uleb128 0x49
+ 909 0033 13       		.uleb128 0x13
+ 910 0034 00       		.byte	0
+ 911 0035 00       		.byte	0
+ 912 0036 05       		.uleb128 0x5
+ 913 0037 35       		.uleb128 0x35
+ 914 0038 00       		.byte	0
+ 915 0039 49       		.uleb128 0x49
+ 916 003a 13       		.uleb128 0x13
+ 917 003b 00       		.byte	0
+ 918 003c 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 21
+
+
+ 919 003d 06       		.uleb128 0x6
+ 920 003e 16       		.uleb128 0x16
+ 921 003f 00       		.byte	0
+ 922 0040 03       		.uleb128 0x3
+ 923 0041 0E       		.uleb128 0xe
+ 924 0042 3A       		.uleb128 0x3a
+ 925 0043 0B       		.uleb128 0xb
+ 926 0044 3B       		.uleb128 0x3b
+ 927 0045 05       		.uleb128 0x5
+ 928 0046 49       		.uleb128 0x49
+ 929 0047 13       		.uleb128 0x13
+ 930 0048 00       		.byte	0
+ 931 0049 00       		.byte	0
+ 932 004a 07       		.uleb128 0x7
+ 933 004b 0F       		.uleb128 0xf
+ 934 004c 00       		.byte	0
+ 935 004d 0B       		.uleb128 0xb
+ 936 004e 0B       		.uleb128 0xb
+ 937 004f 49       		.uleb128 0x49
+ 938 0050 13       		.uleb128 0x13
+ 939 0051 00       		.byte	0
+ 940 0052 00       		.byte	0
+ 941 0053 08       		.uleb128 0x8
+ 942 0054 15       		.uleb128 0x15
+ 943 0055 00       		.byte	0
+ 944 0056 27       		.uleb128 0x27
+ 945 0057 19       		.uleb128 0x19
+ 946 0058 00       		.byte	0
+ 947 0059 00       		.byte	0
+ 948 005a 09       		.uleb128 0x9
+ 949 005b 13       		.uleb128 0x13
+ 950 005c 01       		.byte	0x1
+ 951 005d 0B       		.uleb128 0xb
+ 952 005e 0B       		.uleb128 0xb
+ 953 005f 3A       		.uleb128 0x3a
+ 954 0060 0B       		.uleb128 0xb
+ 955 0061 3B       		.uleb128 0x3b
+ 956 0062 0B       		.uleb128 0xb
+ 957 0063 01       		.uleb128 0x1
+ 958 0064 13       		.uleb128 0x13
+ 959 0065 00       		.byte	0
+ 960 0066 00       		.byte	0
+ 961 0067 0A       		.uleb128 0xa
+ 962 0068 0D       		.uleb128 0xd
+ 963 0069 00       		.byte	0
+ 964 006a 03       		.uleb128 0x3
+ 965 006b 0E       		.uleb128 0xe
+ 966 006c 3A       		.uleb128 0x3a
+ 967 006d 0B       		.uleb128 0xb
+ 968 006e 3B       		.uleb128 0x3b
+ 969 006f 0B       		.uleb128 0xb
+ 970 0070 49       		.uleb128 0x49
+ 971 0071 13       		.uleb128 0x13
+ 972 0072 38       		.uleb128 0x38
+ 973 0073 0B       		.uleb128 0xb
+ 974 0074 00       		.byte	0
+ 975 0075 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 22
+
+
+ 976 0076 0B       		.uleb128 0xb
+ 977 0077 01       		.uleb128 0x1
+ 978 0078 01       		.byte	0x1
+ 979 0079 49       		.uleb128 0x49
+ 980 007a 13       		.uleb128 0x13
+ 981 007b 01       		.uleb128 0x1
+ 982 007c 13       		.uleb128 0x13
+ 983 007d 00       		.byte	0
+ 984 007e 00       		.byte	0
+ 985 007f 0C       		.uleb128 0xc
+ 986 0080 21       		.uleb128 0x21
+ 987 0081 00       		.byte	0
+ 988 0082 49       		.uleb128 0x49
+ 989 0083 13       		.uleb128 0x13
+ 990 0084 2F       		.uleb128 0x2f
+ 991 0085 0B       		.uleb128 0xb
+ 992 0086 00       		.byte	0
+ 993 0087 00       		.byte	0
+ 994 0088 0D       		.uleb128 0xd
+ 995 0089 2E       		.uleb128 0x2e
+ 996 008a 00       		.byte	0
+ 997 008b 3F       		.uleb128 0x3f
+ 998 008c 19       		.uleb128 0x19
+ 999 008d 03       		.uleb128 0x3
+ 1000 008e 0E       		.uleb128 0xe
+ 1001 008f 3A       		.uleb128 0x3a
+ 1002 0090 0B       		.uleb128 0xb
+ 1003 0091 3B       		.uleb128 0x3b
+ 1004 0092 0B       		.uleb128 0xb
+ 1005 0093 27       		.uleb128 0x27
+ 1006 0094 19       		.uleb128 0x19
+ 1007 0095 20       		.uleb128 0x20
+ 1008 0096 0B       		.uleb128 0xb
+ 1009 0097 00       		.byte	0
+ 1010 0098 00       		.byte	0
+ 1011 0099 0E       		.uleb128 0xe
+ 1012 009a 2E       		.uleb128 0x2e
+ 1013 009b 00       		.byte	0
+ 1014 009c 31       		.uleb128 0x31
+ 1015 009d 13       		.uleb128 0x13
+ 1016 009e 11       		.uleb128 0x11
+ 1017 009f 01       		.uleb128 0x1
+ 1018 00a0 12       		.uleb128 0x12
+ 1019 00a1 06       		.uleb128 0x6
+ 1020 00a2 40       		.uleb128 0x40
+ 1021 00a3 18       		.uleb128 0x18
+ 1022 00a4 9742     		.uleb128 0x2117
+ 1023 00a6 19       		.uleb128 0x19
+ 1024 00a7 00       		.byte	0
+ 1025 00a8 00       		.byte	0
+ 1026 00a9 0F       		.uleb128 0xf
+ 1027 00aa 2E       		.uleb128 0x2e
+ 1028 00ab 01       		.byte	0x1
+ 1029 00ac 3F       		.uleb128 0x3f
+ 1030 00ad 19       		.uleb128 0x19
+ 1031 00ae 03       		.uleb128 0x3
+ 1032 00af 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 23
+
+
+ 1033 00b0 3A       		.uleb128 0x3a
+ 1034 00b1 0B       		.uleb128 0xb
+ 1035 00b2 3B       		.uleb128 0x3b
+ 1036 00b3 0B       		.uleb128 0xb
+ 1037 00b4 27       		.uleb128 0x27
+ 1038 00b5 19       		.uleb128 0x19
+ 1039 00b6 11       		.uleb128 0x11
+ 1040 00b7 01       		.uleb128 0x1
+ 1041 00b8 12       		.uleb128 0x12
+ 1042 00b9 06       		.uleb128 0x6
+ 1043 00ba 40       		.uleb128 0x40
+ 1044 00bb 18       		.uleb128 0x18
+ 1045 00bc 9642     		.uleb128 0x2116
+ 1046 00be 19       		.uleb128 0x19
+ 1047 00bf 01       		.uleb128 0x1
+ 1048 00c0 13       		.uleb128 0x13
+ 1049 00c1 00       		.byte	0
+ 1050 00c2 00       		.byte	0
+ 1051 00c3 10       		.uleb128 0x10
+ 1052 00c4 34       		.uleb128 0x34
+ 1053 00c5 00       		.byte	0
+ 1054 00c6 03       		.uleb128 0x3
+ 1055 00c7 0E       		.uleb128 0xe
+ 1056 00c8 3A       		.uleb128 0x3a
+ 1057 00c9 0B       		.uleb128 0xb
+ 1058 00ca 3B       		.uleb128 0x3b
+ 1059 00cb 0B       		.uleb128 0xb
+ 1060 00cc 49       		.uleb128 0x49
+ 1061 00cd 13       		.uleb128 0x13
+ 1062 00ce 02       		.uleb128 0x2
+ 1063 00cf 17       		.uleb128 0x17
+ 1064 00d0 00       		.byte	0
+ 1065 00d1 00       		.byte	0
+ 1066 00d2 11       		.uleb128 0x11
+ 1067 00d3 2E       		.uleb128 0x2e
+ 1068 00d4 01       		.byte	0x1
+ 1069 00d5 3F       		.uleb128 0x3f
+ 1070 00d6 19       		.uleb128 0x19
+ 1071 00d7 03       		.uleb128 0x3
+ 1072 00d8 0E       		.uleb128 0xe
+ 1073 00d9 3A       		.uleb128 0x3a
+ 1074 00da 0B       		.uleb128 0xb
+ 1075 00db 3B       		.uleb128 0x3b
+ 1076 00dc 0B       		.uleb128 0xb
+ 1077 00dd 27       		.uleb128 0x27
+ 1078 00de 19       		.uleb128 0x19
+ 1079 00df 11       		.uleb128 0x11
+ 1080 00e0 01       		.uleb128 0x1
+ 1081 00e1 12       		.uleb128 0x12
+ 1082 00e2 06       		.uleb128 0x6
+ 1083 00e3 40       		.uleb128 0x40
+ 1084 00e4 18       		.uleb128 0x18
+ 1085 00e5 9742     		.uleb128 0x2117
+ 1086 00e7 19       		.uleb128 0x19
+ 1087 00e8 01       		.uleb128 0x1
+ 1088 00e9 13       		.uleb128 0x13
+ 1089 00ea 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 24
+
+
+ 1090 00eb 00       		.byte	0
+ 1091 00ec 12       		.uleb128 0x12
+ 1092 00ed 05       		.uleb128 0x5
+ 1093 00ee 00       		.byte	0
+ 1094 00ef 03       		.uleb128 0x3
+ 1095 00f0 08       		.uleb128 0x8
+ 1096 00f1 3A       		.uleb128 0x3a
+ 1097 00f2 0B       		.uleb128 0xb
+ 1098 00f3 3B       		.uleb128 0x3b
+ 1099 00f4 0B       		.uleb128 0xb
+ 1100 00f5 49       		.uleb128 0x49
+ 1101 00f6 13       		.uleb128 0x13
+ 1102 00f7 02       		.uleb128 0x2
+ 1103 00f8 18       		.uleb128 0x18
+ 1104 00f9 00       		.byte	0
+ 1105 00fa 00       		.byte	0
+ 1106 00fb 13       		.uleb128 0x13
+ 1107 00fc 05       		.uleb128 0x5
+ 1108 00fd 00       		.byte	0
+ 1109 00fe 03       		.uleb128 0x3
+ 1110 00ff 0E       		.uleb128 0xe
+ 1111 0100 3A       		.uleb128 0x3a
+ 1112 0101 0B       		.uleb128 0xb
+ 1113 0102 3B       		.uleb128 0x3b
+ 1114 0103 0B       		.uleb128 0xb
+ 1115 0104 49       		.uleb128 0x49
+ 1116 0105 13       		.uleb128 0x13
+ 1117 0106 02       		.uleb128 0x2
+ 1118 0107 18       		.uleb128 0x18
+ 1119 0108 00       		.byte	0
+ 1120 0109 00       		.byte	0
+ 1121 010a 14       		.uleb128 0x14
+ 1122 010b 2E       		.uleb128 0x2e
+ 1123 010c 01       		.byte	0x1
+ 1124 010d 3F       		.uleb128 0x3f
+ 1125 010e 19       		.uleb128 0x19
+ 1126 010f 03       		.uleb128 0x3
+ 1127 0110 0E       		.uleb128 0xe
+ 1128 0111 3A       		.uleb128 0x3a
+ 1129 0112 0B       		.uleb128 0xb
+ 1130 0113 3B       		.uleb128 0x3b
+ 1131 0114 0B       		.uleb128 0xb
+ 1132 0115 11       		.uleb128 0x11
+ 1133 0116 01       		.uleb128 0x1
+ 1134 0117 12       		.uleb128 0x12
+ 1135 0118 06       		.uleb128 0x6
+ 1136 0119 40       		.uleb128 0x40
+ 1137 011a 18       		.uleb128 0x18
+ 1138 011b 9742     		.uleb128 0x2117
+ 1139 011d 19       		.uleb128 0x19
+ 1140 011e 01       		.uleb128 0x1
+ 1141 011f 13       		.uleb128 0x13
+ 1142 0120 00       		.byte	0
+ 1143 0121 00       		.byte	0
+ 1144 0122 15       		.uleb128 0x15
+ 1145 0123 898201   		.uleb128 0x4109
+ 1146 0126 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 25
+
+
+ 1147 0127 11       		.uleb128 0x11
+ 1148 0128 01       		.uleb128 0x1
+ 1149 0129 31       		.uleb128 0x31
+ 1150 012a 13       		.uleb128 0x13
+ 1151 012b 00       		.byte	0
+ 1152 012c 00       		.byte	0
+ 1153 012d 16       		.uleb128 0x16
+ 1154 012e 898201   		.uleb128 0x4109
+ 1155 0131 01       		.byte	0x1
+ 1156 0132 11       		.uleb128 0x11
+ 1157 0133 01       		.uleb128 0x1
+ 1158 0134 31       		.uleb128 0x31
+ 1159 0135 13       		.uleb128 0x13
+ 1160 0136 00       		.byte	0
+ 1161 0137 00       		.byte	0
+ 1162 0138 17       		.uleb128 0x17
+ 1163 0139 8A8201   		.uleb128 0x410a
+ 1164 013c 00       		.byte	0
+ 1165 013d 02       		.uleb128 0x2
+ 1166 013e 18       		.uleb128 0x18
+ 1167 013f 9142     		.uleb128 0x2111
+ 1168 0141 18       		.uleb128 0x18
+ 1169 0142 00       		.byte	0
+ 1170 0143 00       		.byte	0
+ 1171 0144 18       		.uleb128 0x18
+ 1172 0145 34       		.uleb128 0x34
+ 1173 0146 00       		.byte	0
+ 1174 0147 03       		.uleb128 0x3
+ 1175 0148 0E       		.uleb128 0xe
+ 1176 0149 3A       		.uleb128 0x3a
+ 1177 014a 0B       		.uleb128 0xb
+ 1178 014b 3B       		.uleb128 0x3b
+ 1179 014c 0B       		.uleb128 0xb
+ 1180 014d 49       		.uleb128 0x49
+ 1181 014e 13       		.uleb128 0x13
+ 1182 014f 02       		.uleb128 0x2
+ 1183 0150 18       		.uleb128 0x18
+ 1184 0151 00       		.byte	0
+ 1185 0152 00       		.byte	0
+ 1186 0153 19       		.uleb128 0x19
+ 1187 0154 34       		.uleb128 0x34
+ 1188 0155 00       		.byte	0
+ 1189 0156 03       		.uleb128 0x3
+ 1190 0157 0E       		.uleb128 0xe
+ 1191 0158 3A       		.uleb128 0x3a
+ 1192 0159 0B       		.uleb128 0xb
+ 1193 015a 3B       		.uleb128 0x3b
+ 1194 015b 0B       		.uleb128 0xb
+ 1195 015c 49       		.uleb128 0x49
+ 1196 015d 13       		.uleb128 0x13
+ 1197 015e 3F       		.uleb128 0x3f
+ 1198 015f 19       		.uleb128 0x19
+ 1199 0160 02       		.uleb128 0x2
+ 1200 0161 18       		.uleb128 0x18
+ 1201 0162 00       		.byte	0
+ 1202 0163 00       		.byte	0
+ 1203 0164 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 26
+
+
+ 1204 0165 2E       		.uleb128 0x2e
+ 1205 0166 01       		.byte	0x1
+ 1206 0167 3F       		.uleb128 0x3f
+ 1207 0168 19       		.uleb128 0x19
+ 1208 0169 03       		.uleb128 0x3
+ 1209 016a 0E       		.uleb128 0xe
+ 1210 016b 3A       		.uleb128 0x3a
+ 1211 016c 0B       		.uleb128 0xb
+ 1212 016d 3B       		.uleb128 0x3b
+ 1213 016e 0B       		.uleb128 0xb
+ 1214 016f 27       		.uleb128 0x27
+ 1215 0170 19       		.uleb128 0x19
+ 1216 0171 3C       		.uleb128 0x3c
+ 1217 0172 19       		.uleb128 0x19
+ 1218 0173 01       		.uleb128 0x1
+ 1219 0174 13       		.uleb128 0x13
+ 1220 0175 00       		.byte	0
+ 1221 0176 00       		.byte	0
+ 1222 0177 1B       		.uleb128 0x1b
+ 1223 0178 05       		.uleb128 0x5
+ 1224 0179 00       		.byte	0
+ 1225 017a 49       		.uleb128 0x49
+ 1226 017b 13       		.uleb128 0x13
+ 1227 017c 00       		.byte	0
+ 1228 017d 00       		.byte	0
+ 1229 017e 1C       		.uleb128 0x1c
+ 1230 017f 2E       		.uleb128 0x2e
+ 1231 0180 00       		.byte	0
+ 1232 0181 3F       		.uleb128 0x3f
+ 1233 0182 19       		.uleb128 0x19
+ 1234 0183 03       		.uleb128 0x3
+ 1235 0184 0E       		.uleb128 0xe
+ 1236 0185 3A       		.uleb128 0x3a
+ 1237 0186 0B       		.uleb128 0xb
+ 1238 0187 3B       		.uleb128 0x3b
+ 1239 0188 05       		.uleb128 0x5
+ 1240 0189 27       		.uleb128 0x27
+ 1241 018a 19       		.uleb128 0x19
+ 1242 018b 3C       		.uleb128 0x3c
+ 1243 018c 19       		.uleb128 0x19
+ 1244 018d 00       		.byte	0
+ 1245 018e 00       		.byte	0
+ 1246 018f 00       		.byte	0
+ 1247              		.section	.debug_loc,"",%progbits
+ 1248              	.Ldebug_loc0:
+ 1249              	.LLST0:
+ 1250 0000 00000000 		.4byte	.LVL0
+ 1251 0004 14000000 		.4byte	.LVL2
+ 1252 0008 0200     		.2byte	0x2
+ 1253 000a 30       		.byte	0x30
+ 1254 000b 9F       		.byte	0x9f
+ 1255 000c 14000000 		.4byte	.LVL2
+ 1256 0010 18000000 		.4byte	.LVL3
+ 1257 0014 0100     		.2byte	0x1
+ 1258 0016 52       		.byte	0x52
+ 1259 0017 20000000 		.4byte	.LVL4
+ 1260 001b 29000000 		.4byte	.LVL5-1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 27
+
+
+ 1261 001f 0300     		.2byte	0x3
+ 1262 0021 72       		.byte	0x72
+ 1263 0022 01       		.sleb128 1
+ 1264 0023 9F       		.byte	0x9f
+ 1265 0024 00000000 		.4byte	0
+ 1266 0028 00000000 		.4byte	0
+ 1267              	.LLST1:
+ 1268 002c 00000000 		.4byte	.LVL0
+ 1269 0030 0A000000 		.4byte	.LVL1
+ 1270 0034 0600     		.2byte	0x6
+ 1271 0036 03       		.byte	0x3
+ 1272 0037 00000000 		.4byte	Idle
+ 1273 003b 9F       		.byte	0x9f
+ 1274 003c 0A000000 		.4byte	.LVL1
+ 1275 0040 29000000 		.4byte	.LVL5-1
+ 1276 0044 0100     		.2byte	0x1
+ 1277 0046 50       		.byte	0x50
+ 1278 0047 00000000 		.4byte	0
+ 1279 004b 00000000 		.4byte	0
+ 1280              	.LLST2:
+ 1281 004f 00000000 		.4byte	.LVL6
+ 1282 0053 06000000 		.4byte	.LVL8
+ 1283 0057 0200     		.2byte	0x2
+ 1284 0059 30       		.byte	0x30
+ 1285 005a 9F       		.byte	0x9f
+ 1286 005b 06000000 		.4byte	.LVL8
+ 1287 005f 12000000 		.4byte	.LVL9
+ 1288 0063 0100     		.2byte	0x1
+ 1289 0065 53       		.byte	0x53
+ 1290 0066 12000000 		.4byte	.LVL9
+ 1291 006a 14000000 		.4byte	.LVL10
+ 1292 006e 0300     		.2byte	0x3
+ 1293 0070 73       		.byte	0x73
+ 1294 0071 01       		.sleb128 1
+ 1295 0072 9F       		.byte	0x9f
+ 1296 0073 1A000000 		.4byte	.LVL11
+ 1297 0077 1C000000 		.4byte	.LVL12
+ 1298 007b 0100     		.2byte	0x1
+ 1299 007d 53       		.byte	0x53
+ 1300 007e 00000000 		.4byte	0
+ 1301 0082 00000000 		.4byte	0
+ 1302              	.LLST3:
+ 1303 0086 00000000 		.4byte	.LVL6
+ 1304 008a 04000000 		.4byte	.LVL7
+ 1305 008e 0200     		.2byte	0x2
+ 1306 0090 30       		.byte	0x30
+ 1307 0091 9F       		.byte	0x9f
+ 1308 0092 04000000 		.4byte	.LVL7
+ 1309 0096 28000000 		.4byte	.LFE60
+ 1310 009a 0200     		.2byte	0x2
+ 1311 009c 31       		.byte	0x31
+ 1312 009d 9F       		.byte	0x9f
+ 1313 009e 00000000 		.4byte	0
+ 1314 00a2 00000000 		.4byte	0
+ 1315              	.LLST4:
+ 1316 00a6 00000000 		.4byte	.LVL13
+ 1317 00aa 06000000 		.4byte	.LVL15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 28
+
+
+ 1318 00ae 0200     		.2byte	0x2
+ 1319 00b0 30       		.byte	0x30
+ 1320 00b1 9F       		.byte	0x9f
+ 1321 00b2 06000000 		.4byte	.LVL15
+ 1322 00b6 1C000000 		.4byte	.LVL16
+ 1323 00ba 0100     		.2byte	0x1
+ 1324 00bc 53       		.byte	0x53
+ 1325 00bd 1C000000 		.4byte	.LVL16
+ 1326 00c1 1E000000 		.4byte	.LVL17
+ 1327 00c5 0300     		.2byte	0x3
+ 1328 00c7 73       		.byte	0x73
+ 1329 00c8 01       		.sleb128 1
+ 1330 00c9 9F       		.byte	0x9f
+ 1331 00ca 24000000 		.4byte	.LVL18
+ 1332 00ce 3C000000 		.4byte	.LVL19
+ 1333 00d2 0100     		.2byte	0x1
+ 1334 00d4 53       		.byte	0x53
+ 1335 00d5 3C000000 		.4byte	.LVL19
+ 1336 00d9 3E000000 		.4byte	.LVL20
+ 1337 00dd 0300     		.2byte	0x3
+ 1338 00df 73       		.byte	0x73
+ 1339 00e0 01       		.sleb128 1
+ 1340 00e1 9F       		.byte	0x9f
+ 1341 00e2 00000000 		.4byte	0
+ 1342 00e6 00000000 		.4byte	0
+ 1343              	.LLST5:
+ 1344 00ea 00000000 		.4byte	.LVL13
+ 1345 00ee 04000000 		.4byte	.LVL14
+ 1346 00f2 0200     		.2byte	0x2
+ 1347 00f4 30       		.byte	0x30
+ 1348 00f5 9F       		.byte	0x9f
+ 1349 00f6 04000000 		.4byte	.LVL14
+ 1350 00fa 4C000000 		.4byte	.LFE61
+ 1351 00fe 0200     		.2byte	0x2
+ 1352 0100 31       		.byte	0x31
+ 1353 0101 9F       		.byte	0x9f
+ 1354 0102 00000000 		.4byte	0
+ 1355 0106 00000000 		.4byte	0
+ 1356              	.LLST6:
+ 1357 010a 00000000 		.4byte	.LVL21
+ 1358 010e 04000000 		.4byte	.LVL22
+ 1359 0112 0200     		.2byte	0x2
+ 1360 0114 30       		.byte	0x30
+ 1361 0115 9F       		.byte	0x9f
+ 1362 0116 04000000 		.4byte	.LVL22
+ 1363 011a 0C000000 		.4byte	.LVL23
+ 1364 011e 0100     		.2byte	0x1
+ 1365 0120 54       		.byte	0x54
+ 1366 0121 18000000 		.4byte	.LVL24
+ 1367 0125 24000000 		.4byte	.LVL25
+ 1368 0129 0100     		.2byte	0x1
+ 1369 012b 53       		.byte	0x53
+ 1370 012c 00000000 		.4byte	0
+ 1371 0130 00000000 		.4byte	0
+ 1372              	.LLST7:
+ 1373 0134 00000000 		.4byte	.LVL28
+ 1374 0138 04000000 		.4byte	.LVL29
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 29
+
+
+ 1375 013c 0200     		.2byte	0x2
+ 1376 013e 30       		.byte	0x30
+ 1377 013f 9F       		.byte	0x9f
+ 1378 0140 04000000 		.4byte	.LVL29
+ 1379 0144 2C000000 		.4byte	.LVL31
+ 1380 0148 0100     		.2byte	0x1
+ 1381 014a 55       		.byte	0x55
+ 1382 014b 2C000000 		.4byte	.LVL31
+ 1383 014f 2E000000 		.4byte	.LVL32
+ 1384 0153 0300     		.2byte	0x3
+ 1385 0155 75       		.byte	0x75
+ 1386 0156 01       		.sleb128 1
+ 1387 0157 9F       		.byte	0x9f
+ 1388 0158 00000000 		.4byte	0
+ 1389 015c 00000000 		.4byte	0
+ 1390              		.section	.debug_aranges,"",%progbits
+ 1391 0000 54000000 		.4byte	0x54
+ 1392 0004 0200     		.2byte	0x2
+ 1393 0006 00000000 		.4byte	.Ldebug_info0
+ 1394 000a 04       		.byte	0x4
+ 1395 000b 00       		.byte	0
+ 1396 000c 0000     		.2byte	0
+ 1397 000e 0000     		.2byte	0
+ 1398 0010 00000000 		.4byte	.LFB64
+ 1399 0014 02000000 		.4byte	.LFE64-.LFB64
+ 1400 0018 00000000 		.4byte	.LFB59
+ 1401 001c 34000000 		.4byte	.LFE59-.LFB59
+ 1402 0020 00000000 		.4byte	.LFB60
+ 1403 0024 28000000 		.4byte	.LFE60-.LFB60
+ 1404 0028 00000000 		.4byte	.LFB61
+ 1405 002c 4C000000 		.4byte	.LFE61-.LFB61
+ 1406 0030 00000000 		.4byte	.LFB62
+ 1407 0034 34000000 		.4byte	.LFE62-.LFB62
+ 1408 0038 00000000 		.4byte	.LFB63
+ 1409 003c 14000000 		.4byte	.LFE63-.LFB63
+ 1410 0040 00000000 		.4byte	.LFB65
+ 1411 0044 3C000000 		.4byte	.LFE65-.LFB65
+ 1412 0048 00000000 		.4byte	.LFB66
+ 1413 004c 0C000000 		.4byte	.LFE66-.LFB66
+ 1414 0050 00000000 		.4byte	0
+ 1415 0054 00000000 		.4byte	0
+ 1416              		.section	.debug_ranges,"",%progbits
+ 1417              	.Ldebug_ranges0:
+ 1418 0000 00000000 		.4byte	.LFB64
+ 1419 0004 02000000 		.4byte	.LFE64
+ 1420 0008 00000000 		.4byte	.LFB59
+ 1421 000c 34000000 		.4byte	.LFE59
+ 1422 0010 00000000 		.4byte	.LFB60
+ 1423 0014 28000000 		.4byte	.LFE60
+ 1424 0018 00000000 		.4byte	.LFB61
+ 1425 001c 4C000000 		.4byte	.LFE61
+ 1426 0020 00000000 		.4byte	.LFB62
+ 1427 0024 34000000 		.4byte	.LFE62
+ 1428 0028 00000000 		.4byte	.LFB63
+ 1429 002c 14000000 		.4byte	.LFE63
+ 1430 0030 00000000 		.4byte	.LFB65
+ 1431 0034 3C000000 		.4byte	.LFE65
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 30
+
+
+ 1432 0038 00000000 		.4byte	.LFB66
+ 1433 003c 0C000000 		.4byte	.LFE66
+ 1434 0040 00000000 		.4byte	0
+ 1435 0044 00000000 		.4byte	0
+ 1436              		.section	.debug_line,"",%progbits
+ 1437              	.Ldebug_line0:
+ 1438 0000 77010000 		.section	.debug_str,"MS",%progbits,1
+ 1438      02009000 
+ 1438      00000201 
+ 1438      FB0E0D00 
+ 1438      01010101 
+ 1439              	.LASF22:
+ 1440 0000 5461736B 		.ascii	"TaskManager\000"
+ 1440      4D616E61 
+ 1440      67657200 
+ 1441              	.LASF33:
+ 1442 000c 53797374 		.ascii	"System_Timer\000"
+ 1442      656D5F54 
+ 1442      696D6572 
+ 1442      00
+ 1443              	.LASF30:
+ 1444 0019 5461736B 		.ascii	"TaskQueue\000"
+ 1444      51756575 
+ 1444      6500
+ 1445              	.LASF36:
+ 1446 0023 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1446      4320342E 
+ 1446      392E3320 
+ 1446      32303135 
+ 1446      30333033 
+ 1447 0056 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 1447      20726576 
+ 1447      6973696F 
+ 1447      6E203232 
+ 1447      31323230 
+ 1448 0089 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1448      66756E63 
+ 1448      74696F6E 
+ 1448      2D736563 
+ 1448      74696F6E 
+ 1449              	.LASF37:
+ 1450 00b1 2E5C5461 		.ascii	".\\TaskDispatcher.c\000"
+ 1450      736B4469 
+ 1450      73706174 
+ 1450      63686572 
+ 1450      2E6300
+ 1451              	.LASF31:
+ 1452 00c4 4D61696E 		.ascii	"MainTimer\000"
+ 1452      54696D65 
+ 1452      7200
+ 1453              	.LASF24:
+ 1454 00ce 6E6F696E 		.ascii	"nointerrupted\000"
+ 1454      74657272 
+ 1454      75707465 
+ 1454      6400
+ 1455              	.LASF3:
+ 1456 00dc 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 31
+
+
+ 1456      7420756E 
+ 1456      7369676E 
+ 1456      65642069 
+ 1456      6E7400
+ 1457              	.LASF25:
+ 1458 00ef 53657454 		.ascii	"SetTimerTask\000"
+ 1458      696D6572 
+ 1458      5461736B 
+ 1458      00
+ 1459              	.LASF11:
+ 1460 00fc 666C6F61 		.ascii	"float\000"
+ 1460      7400
+ 1461              	.LASF38:
+ 1462 0102 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 1462      73657273 
+ 1462      5C566974 
+ 1462      616C695C 
+ 1462      446F6375 
+ 1463 0130 6E74726F 		.ascii	"ntroller_Workspace\\Expo_Controller2.cydsn\000"
+ 1463      6C6C6572 
+ 1463      5F576F72 
+ 1463      6B737061 
+ 1463      63655C45 
+ 1464              	.LASF40:
+ 1465 015a 54696D65 		.ascii	"Timer_RTOS_ISR_StartEx\000"
+ 1465      725F5254 
+ 1465      4F535F49 
+ 1465      53525F53 
+ 1465      74617274 
+ 1466              	.LASF1:
+ 1467 0171 756E7369 		.ascii	"unsigned char\000"
+ 1467      676E6564 
+ 1467      20636861 
+ 1467      7200
+ 1468              	.LASF5:
+ 1469 017f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1469      20756E73 
+ 1469      69676E65 
+ 1469      6420696E 
+ 1469      7400
+ 1470              	.LASF9:
+ 1471 0191 75696E74 		.ascii	"uint8\000"
+ 1471      3800
+ 1472              	.LASF34:
+ 1473 0197 49646C65 		.ascii	"Idle\000"
+ 1473      00
+ 1474              	.LASF19:
+ 1475 019c 54505452 		.ascii	"TPTR\000"
+ 1475      00
+ 1476              	.LASF12:
+ 1477 01a1 646F7562 		.ascii	"double\000"
+ 1477      6C6500
+ 1478              	.LASF32:
+ 1479 01a8 53797374 		.ascii	"System_Timer_Flag\000"
+ 1479      656D5F54 
+ 1479      696D6572 
+ 1479      5F466C61 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 32
+
+
+ 1479      6700
+ 1480              	.LASF20:
+ 1481 01ba 476F546F 		.ascii	"GoToTask\000"
+ 1481      5461736B 
+ 1481      00
+ 1482              	.LASF26:
+ 1483 01c3 4E657754 		.ascii	"NewTime\000"
+ 1483      696D6500 
+ 1484              	.LASF10:
+ 1485 01cb 75696E74 		.ascii	"uint32\000"
+ 1485      333200
+ 1486              	.LASF8:
+ 1487 01d2 756E7369 		.ascii	"unsigned int\000"
+ 1487      676E6564 
+ 1487      20696E74 
+ 1487      00
+ 1488              	.LASF16:
+ 1489 01df 4E756D62 		.ascii	"Number\000"
+ 1489      657200
+ 1490              	.LASF7:
+ 1491 01e6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1491      206C6F6E 
+ 1491      6720756E 
+ 1491      7369676E 
+ 1491      65642069 
+ 1492              	.LASF14:
+ 1493 01fd 63796973 		.ascii	"cyisraddress\000"
+ 1493      72616464 
+ 1493      72657373 
+ 1493      00
+ 1494              	.LASF15:
+ 1495 020a 73697A65 		.ascii	"sizetype\000"
+ 1495      74797065 
+ 1495      00
+ 1496              	.LASF23:
+ 1497 0213 53657454 		.ascii	"SetTask\000"
+ 1497      61736B00 
+ 1498              	.LASF39:
+ 1499 021b 52544F53 		.ascii	"RTOS_Start\000"
+ 1499      5F537461 
+ 1499      727400
+ 1500              	.LASF6:
+ 1501 0226 6C6F6E67 		.ascii	"long long int\000"
+ 1501      206C6F6E 
+ 1501      6720696E 
+ 1501      7400
+ 1502              	.LASF18:
+ 1503 0234 466C6167 		.ascii	"Flag\000"
+ 1503      00
+ 1504              	.LASF27:
+ 1505 0239 496E6974 		.ascii	"InitRTOS\000"
+ 1505      52544F53 
+ 1505      00
+ 1506              	.LASF21:
+ 1507 0242 696E6465 		.ascii	"index\000"
+ 1507      7800
+ 1508              	.LASF2:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc84PoUe.s 			page 33
+
+
+ 1509 0248 73686F72 		.ascii	"short int\000"
+ 1509      7420696E 
+ 1509      7400
+ 1510              	.LASF28:
+ 1511 0252 54696D65 		.ascii	"TimerService\000"
+ 1511      72536572 
+ 1511      76696365 
+ 1511      00
+ 1512              	.LASF4:
+ 1513 025f 6C6F6E67 		.ascii	"long int\000"
+ 1513      20696E74 
+ 1513      00
+ 1514              	.LASF13:
+ 1515 0268 63686172 		.ascii	"char\000"
+ 1515      00
+ 1516              	.LASF35:
+ 1517 026d 5254435F 		.ascii	"RTC_Update\000"
+ 1517      55706461 
+ 1517      746500
+ 1518              	.LASF0:
+ 1519 0278 7369676E 		.ascii	"signed char\000"
+ 1519      65642063 
+ 1519      68617200 
+ 1520              	.LASF17:
+ 1521 0284 54696D65 		.ascii	"Time\000"
+ 1521      00
+ 1522              	.LASF29:
+ 1523 0289 5461736B 		.ascii	"TaskDispatcher_ISR\000"
+ 1523      44697370 
+ 1523      61746368 
+ 1523      65725F49 
+ 1523      535200
+ 1524              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

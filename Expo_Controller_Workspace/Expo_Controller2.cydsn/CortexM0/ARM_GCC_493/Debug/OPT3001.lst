@@ -1,0 +1,3169 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"OPT3001.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2C_ReadRegister,"ax",%progbits
+  18              		.align	1
+  19              		.global	I2C_ReadRegister
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2C_ReadRegister, %function
+  23              	I2C_ReadRegister:
+  24              	.LFB60:
+  25              		.file 1 ".\\OPT3001.c"
+   1:.\OPT3001.c   **** /* ========================================
+   2:.\OPT3001.c   ****  *
+   3:.\OPT3001.c   ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\OPT3001.c   ****  * All Rights Reserved
+   5:.\OPT3001.c   ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\OPT3001.c   ****  *
+   7:.\OPT3001.c   ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\OPT3001.c   ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\OPT3001.c   ****  *
+  10:.\OPT3001.c   ****  * ========================================
+  11:.\OPT3001.c   **** */
+  12:.\OPT3001.c   **** #include <OPT3001.h>
+  13:.\OPT3001.c   **** 
+  14:.\OPT3001.c   **** uint8 OPT_IsReady(void)
+  15:.\OPT3001.c   **** {
+  16:.\OPT3001.c   ****     uint16 Val;
+  17:.\OPT3001.c   ****     if(I2C_ReadRegister(OPT3001_I2C_ADDRESS, REG_CONFIGURATION, &Val))
+  18:.\OPT3001.c   ****     {
+  19:.\OPT3001.c   ****         if(Val & CONFIG_CRF)
+  20:.\OPT3001.c   ****         {
+  21:.\OPT3001.c   ****             return 1;
+  22:.\OPT3001.c   ****         }
+  23:.\OPT3001.c   ****         else
+  24:.\OPT3001.c   ****         {
+  25:.\OPT3001.c   ****             return 0;
+  26:.\OPT3001.c   ****         }
+  27:.\OPT3001.c   ****     }
+  28:.\OPT3001.c   ****     return 0;
+  29:.\OPT3001.c   **** }
+  30:.\OPT3001.c   **** void OPT_Enable(uint8 enable);
+  31:.\OPT3001.c   **** 
+  32:.\OPT3001.c   **** uint8 I2C_ReadRegister(uint8 ADR, uint8 Reg, uint16 *RetValue)
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 2
+
+
+  33:.\OPT3001.c   **** {
+  26              		.loc 1 33 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  30              		.cfi_def_cfa_offset 20
+  31              		.cfi_offset 4, -20
+  32              		.cfi_offset 5, -16
+  33              		.cfi_offset 6, -12
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 85B0     		sub	sp, sp, #20
+  37              		.cfi_def_cfa_offset 40
+  34:.\OPT3001.c   ****     /*Read 16bit Register in i2c slave adress*/
+  35:.\OPT3001.c   ****     uint8 Status;
+  36:.\OPT3001.c   ****     volatile uint8 Buf[2];
+  37:.\OPT3001.c   ****     volatile uint8 Iter = 0;
+  38              		.loc 1 37 0
+  39 0004 02AB     		add	r3, sp, #8
+  40 0006 DD1C     		add	r5, r3, #3
+  33:.\OPT3001.c   ****     /*Read 16bit Register in i2c slave adress*/
+  41              		.loc 1 33 0
+  42 0008 061C     		mov	r6, r0
+  43 000a 0F1C     		mov	r7, r1
+  44              		.loc 1 37 0
+  45 000c 0023     		mov	r3, #0
+  33:.\OPT3001.c   ****     /*Read 16bit Register in i2c slave adress*/
+  46              		.loc 1 33 0
+  47 000e 0192     		str	r2, [sp, #4]
+  48              	.LVL1:
+  49              	.L9:
+  38:.\OPT3001.c   ****     while((Status !=0) && (Iter < 10))
+  39:.\OPT3001.c   ****     {
+  40:.\OPT3001.c   ****         Status = I2C_I2CMasterSendStart(ADR, I2C_I2C_WRITE_XFER_MODE);
+  41:.\OPT3001.c   ****         Iter++;
+  50              		.loc 1 41 0
+  51 0010 2B70     		strb	r3, [r5]
+  52              	.LVL2:
+  38:.\OPT3001.c   ****     while((Status !=0) && (Iter < 10))
+  53              		.loc 1 38 0
+  54 0012 002C     		cmp	r4, #0
+  55 0014 0DD0     		beq	.L3
+  38:.\OPT3001.c   ****     while((Status !=0) && (Iter < 10))
+  56              		.loc 1 38 0 is_stmt 0 discriminator 1
+  57 0016 2B78     		ldrb	r3, [r5]
+  58 0018 092B     		cmp	r3, #9
+  59 001a 08D8     		bhi	.L7
+  40:.\OPT3001.c   ****         Iter++;
+  60              		.loc 1 40 0 is_stmt 1
+  61 001c 301C     		mov	r0, r6
+  62 001e 0021     		mov	r1, #0
+  63 0020 FFF7FEFF 		bl	I2C_I2CMasterSendStart
+  64              	.LVL3:
+  65              		.loc 1 41 0
+  66 0024 2B78     		ldrb	r3, [r5]
+  40:.\OPT3001.c   ****         Iter++;
+  67              		.loc 1 40 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 3
+
+
+  68 0026 C4B2     		uxtb	r4, r0
+  69              	.LVL4:
+  70              		.loc 1 41 0
+  71 0028 0133     		add	r3, r3, #1
+  72 002a DBB2     		uxtb	r3, r3
+  73 002c F0E7     		b	.L9
+  74              	.LVL5:
+  75              	.L7:
+  42:.\OPT3001.c   ****     }    
+  43:.\OPT3001.c   ****     if(Status == I2C_I2C_MSTR_NO_ERROR)
+  44:.\OPT3001.c   ****     {
+  45:.\OPT3001.c   ****         I2C_I2CMasterWriteByte(Reg);
+  46:.\OPT3001.c   ****         Status = I2C_I2CMasterSendRestart(ADR,I2C_I2C_READ_XFER_MODE);
+  47:.\OPT3001.c   ****         if(Status == I2C_I2C_MSTR_NO_ERROR)
+  48:.\OPT3001.c   ****             {
+  49:.\OPT3001.c   ****                 Buf[0] = I2C_I2CMasterReadByte(I2C_I2C_ACK_DATA);
+  50:.\OPT3001.c   ****                 Buf[1] = I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
+  51:.\OPT3001.c   ****                 (*RetValue) = (Buf[0]<<8) | Buf[1];
+  52:.\OPT3001.c   ****                 I2C_I2CMasterSendStop();
+  53:.\OPT3001.c   ****                 return 1;
+  54:.\OPT3001.c   ****             }
+  55:.\OPT3001.c   ****             else
+  56:.\OPT3001.c   ****             {
+  57:.\OPT3001.c   ****                 return 0;
+  58:.\OPT3001.c   ****             }
+  59:.\OPT3001.c   ****     }
+  60:.\OPT3001.c   ****     else
+  61:.\OPT3001.c   ****     {
+  62:.\OPT3001.c   ****         return 0;
+  76              		.loc 1 62 0
+  77 002e 0020     		mov	r0, #0
+  78 0030 1DE0     		b	.L8
+  79              	.LVL6:
+  80              	.L3:
+  45:.\OPT3001.c   ****         Status = I2C_I2CMasterSendRestart(ADR,I2C_I2C_READ_XFER_MODE);
+  81              		.loc 1 45 0
+  82 0032 381C     		mov	r0, r7
+  83 0034 FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+  84              	.LVL7:
+  46:.\OPT3001.c   ****         if(Status == I2C_I2C_MSTR_NO_ERROR)
+  85              		.loc 1 46 0
+  86 0038 301C     		mov	r0, r6
+  87 003a 0121     		mov	r1, #1
+  88 003c FFF7FEFF 		bl	I2C_I2CMasterSendRestart
+  89              	.LVL8:
+  47:.\OPT3001.c   ****             {
+  90              		.loc 1 47 0
+  91 0040 C0B2     		uxtb	r0, r0
+  92 0042 0028     		cmp	r0, #0
+  93 0044 F3D1     		bne	.L7
+  94              	.LVL9:
+  95              	.LBB4:
+  96              	.LBB5:
+  49:.\OPT3001.c   ****                 Buf[1] = I2C_I2CMasterReadByte(I2C_I2C_NAK_DATA);
+  97              		.loc 1 49 0
+  98 0046 201C     		mov	r0, r4
+  99              	.LVL10:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 4
+
+
+ 100 0048 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 101              	.LVL11:
+ 102 004c 03AC     		add	r4, sp, #12
+ 103 004e C0B2     		uxtb	r0, r0
+ 104 0050 2070     		strb	r0, [r4]
+  50:.\OPT3001.c   ****                 (*RetValue) = (Buf[0]<<8) | Buf[1];
+ 105              		.loc 1 50 0
+ 106 0052 0120     		mov	r0, #1
+ 107 0054 FFF7FEFF 		bl	I2C_I2CMasterReadByte
+ 108              	.LVL12:
+ 109 0058 C0B2     		uxtb	r0, r0
+ 110 005a 6070     		strb	r0, [r4, #1]
+  51:.\OPT3001.c   ****                 I2C_I2CMasterSendStop();
+ 111              		.loc 1 51 0
+ 112 005c 2378     		ldrb	r3, [r4]
+ 113 005e 6278     		ldrb	r2, [r4, #1]
+ 114 0060 1B02     		lsl	r3, r3, #8
+ 115 0062 1343     		orr	r3, r2
+ 116 0064 019A     		ldr	r2, [sp, #4]
+ 117 0066 1380     		strh	r3, [r2]
+  52:.\OPT3001.c   ****                 return 1;
+ 118              		.loc 1 52 0
+ 119 0068 FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 120              	.LVL13:
+ 121 006c 0120     		mov	r0, #1
+ 122              	.LVL14:
+ 123              	.L8:
+ 124              	.LBE5:
+ 125              	.LBE4:
+  63:.\OPT3001.c   ****     }
+  64:.\OPT3001.c   **** }
+ 126              		.loc 1 64 0
+ 127 006e 05B0     		add	sp, sp, #20
+ 128              		@ sp needed
+ 129 0070 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 130              		.cfi_endproc
+ 131              	.LFE60:
+ 132              		.size	I2C_ReadRegister, .-I2C_ReadRegister
+ 133              		.section	.text.OPT_IsReady,"ax",%progbits
+ 134              		.align	1
+ 135              		.global	OPT_IsReady
+ 136              		.code	16
+ 137              		.thumb_func
+ 138              		.type	OPT_IsReady, %function
+ 139              	OPT_IsReady:
+ 140              	.LFB59:
+  15:.\OPT3001.c   ****     uint16 Val;
+ 141              		.loc 1 15 0
+ 142              		.cfi_startproc
+ 143 0000 13B5     		push	{r0, r1, r4, lr}
+ 144              		.cfi_def_cfa_offset 16
+ 145              		.cfi_offset 0, -16
+ 146              		.cfi_offset 1, -12
+ 147              		.cfi_offset 4, -8
+ 148              		.cfi_offset 14, -4
+  17:.\OPT3001.c   ****     {
+ 149              		.loc 1 17 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 5
+
+
+ 150 0002 6B46     		mov	r3, sp
+ 151 0004 9C1D     		add	r4, r3, #6
+ 152 0006 4520     		mov	r0, #69
+ 153 0008 0121     		mov	r1, #1
+ 154 000a 221C     		mov	r2, r4
+ 155 000c FFF7FEFF 		bl	I2C_ReadRegister
+ 156              	.LVL15:
+ 157 0010 0028     		cmp	r0, #0
+ 158 0012 01D0     		beq	.L12
+  19:.\OPT3001.c   ****         {
+ 159              		.loc 1 19 0
+ 160 0014 2088     		ldrh	r0, [r4]
+  21:.\OPT3001.c   ****         }
+ 161              		.loc 1 21 0
+ 162 0016 C00B     		lsr	r0, r0, #15
+ 163              	.L12:
+  29:.\OPT3001.c   **** void OPT_Enable(uint8 enable);
+ 164              		.loc 1 29 0
+ 165              		@ sp needed
+ 166 0018 16BD     		pop	{r1, r2, r4, pc}
+ 167              		.cfi_endproc
+ 168              	.LFE59:
+ 169              		.size	OPT_IsReady, .-OPT_IsReady
+ 170              		.section	.text.I2C_WriteRegister,"ax",%progbits
+ 171              		.align	1
+ 172              		.global	I2C_WriteRegister
+ 173              		.code	16
+ 174              		.thumb_func
+ 175              		.type	I2C_WriteRegister, %function
+ 176              	I2C_WriteRegister:
+ 177              	.LFB61:
+  65:.\OPT3001.c   **** 
+  66:.\OPT3001.c   **** uint8 I2C_WriteRegister(uint8 ADR, uint8 Reg, uint16 *RetValue)
+  67:.\OPT3001.c   **** {
+ 178              		.loc 1 67 0
+ 179              		.cfi_startproc
+ 180              	.LVL16:
+ 181 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 182              		.cfi_def_cfa_offset 20
+ 183              		.cfi_offset 4, -20
+ 184              		.cfi_offset 5, -16
+ 185              		.cfi_offset 6, -12
+ 186              		.cfi_offset 7, -8
+ 187              		.cfi_offset 14, -4
+ 188 0002 85B0     		sub	sp, sp, #20
+ 189              		.cfi_def_cfa_offset 40
+  68:.\OPT3001.c   ****     /*Read 16bit Register in i2c slave adress*/
+  69:.\OPT3001.c   ****     volatile uint8 Status = 1;
+ 190              		.loc 1 69 0
+ 191 0004 02AB     		add	r3, sp, #8
+ 192 0006 9C1C     		add	r4, r3, #2
+ 193 0008 0123     		mov	r3, #1
+ 194 000a 2370     		strb	r3, [r4]
+  70:.\OPT3001.c   ****     volatile uint8 Buf[2];
+  71:.\OPT3001.c   ****     volatile uint8 Iter = 0;
+ 195              		.loc 1 71 0
+ 196 000c 02AB     		add	r3, sp, #8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 6
+
+
+ 197 000e DD1C     		add	r5, r3, #3
+  67:.\OPT3001.c   ****     /*Read 16bit Register in i2c slave adress*/
+ 198              		.loc 1 67 0
+ 199 0010 071C     		mov	r7, r0
+ 200 0012 0E1C     		mov	r6, r1
+ 201              		.loc 1 71 0
+ 202 0014 0023     		mov	r3, #0
+  67:.\OPT3001.c   ****     /*Read 16bit Register in i2c slave adress*/
+ 203              		.loc 1 67 0
+ 204 0016 0192     		str	r2, [sp, #4]
+ 205              	.LVL17:
+ 206              	.L23:
+  72:.\OPT3001.c   ****     while((Status !=0) && (Iter < 10))
+  73:.\OPT3001.c   ****     {
+  74:.\OPT3001.c   ****         Status = I2C_I2CMasterSendStart(ADR,I2C_I2C_WRITE_XFER_MODE);
+  75:.\OPT3001.c   ****         Iter++;
+ 207              		.loc 1 75 0
+ 208 0018 2B70     		strb	r3, [r5]
+  72:.\OPT3001.c   ****     while((Status !=0) && (Iter < 10))
+ 209              		.loc 1 72 0
+ 210 001a 2378     		ldrb	r3, [r4]
+ 211 001c 002B     		cmp	r3, #0
+ 212 001e 0CD0     		beq	.L18
+  72:.\OPT3001.c   ****     while((Status !=0) && (Iter < 10))
+ 213              		.loc 1 72 0 is_stmt 0 discriminator 1
+ 214 0020 2B78     		ldrb	r3, [r5]
+ 215 0022 092B     		cmp	r3, #9
+ 216 0024 09D8     		bhi	.L18
+  74:.\OPT3001.c   ****         Iter++;
+ 217              		.loc 1 74 0 is_stmt 1
+ 218 0026 381C     		mov	r0, r7
+ 219 0028 0021     		mov	r1, #0
+ 220 002a FFF7FEFF 		bl	I2C_I2CMasterSendStart
+ 221              	.LVL18:
+ 222 002e C0B2     		uxtb	r0, r0
+ 223 0030 2070     		strb	r0, [r4]
+ 224              		.loc 1 75 0
+ 225 0032 2B78     		ldrb	r3, [r5]
+ 226 0034 0133     		add	r3, r3, #1
+ 227 0036 DBB2     		uxtb	r3, r3
+ 228 0038 EEE7     		b	.L23
+ 229              	.L18:
+  76:.\OPT3001.c   ****     }    
+  77:.\OPT3001.c   **** 
+  78:.\OPT3001.c   ****     Buf[0] = ((*RetValue)>>8);
+ 230              		.loc 1 78 0
+ 231 003a 019B     		ldr	r3, [sp, #4]
+ 232 003c 03AD     		add	r5, sp, #12
+ 233 003e 1B88     		ldrh	r3, [r3]
+  79:.\OPT3001.c   ****     Buf[1] = (uint8)(*RetValue);
+  80:.\OPT3001.c   ****     I2C_I2CMasterWriteByte(Reg);
+ 234              		.loc 1 80 0
+ 235 0040 301C     		mov	r0, r6
+  78:.\OPT3001.c   ****     Buf[1] = (uint8)(*RetValue);
+ 236              		.loc 1 78 0
+ 237 0042 1A0A     		lsr	r2, r3, #8
+  79:.\OPT3001.c   ****     Buf[1] = (uint8)(*RetValue);
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 7
+
+
+ 238              		.loc 1 79 0
+ 239 0044 DBB2     		uxtb	r3, r3
+  78:.\OPT3001.c   ****     Buf[1] = (uint8)(*RetValue);
+ 240              		.loc 1 78 0
+ 241 0046 2A70     		strb	r2, [r5]
+  79:.\OPT3001.c   ****     Buf[1] = (uint8)(*RetValue);
+ 242              		.loc 1 79 0
+ 243 0048 6B70     		strb	r3, [r5, #1]
+ 244              		.loc 1 80 0
+ 245 004a FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+ 246              	.LVL19:
+  81:.\OPT3001.c   ****     I2C_I2CMasterWriteByte(Buf[0]);
+ 247              		.loc 1 81 0
+ 248 004e 2878     		ldrb	r0, [r5]
+ 249 0050 C0B2     		uxtb	r0, r0
+ 250 0052 FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+ 251              	.LVL20:
+  82:.\OPT3001.c   ****     I2C_I2CMasterWriteByte(Buf[1]);
+ 252              		.loc 1 82 0
+ 253 0056 6878     		ldrb	r0, [r5, #1]
+ 254 0058 C0B2     		uxtb	r0, r0
+ 255 005a FFF7FEFF 		bl	I2C_I2CMasterWriteByte
+ 256              	.LVL21:
+  83:.\OPT3001.c   ****     Status = I2C_I2CMasterSendStop();
+ 257              		.loc 1 83 0
+ 258 005e FFF7FEFF 		bl	I2C_I2CMasterSendStop
+ 259              	.LVL22:
+ 260 0062 C0B2     		uxtb	r0, r0
+ 261 0064 2070     		strb	r0, [r4]
+  84:.\OPT3001.c   ****     
+  85:.\OPT3001.c   ****     if(Status == 0)
+ 262              		.loc 1 85 0
+ 263 0066 2078     		ldrb	r0, [r4]
+ 264 0068 4342     		neg	r3, r0
+ 265 006a 5841     		adc	r0, r0, r3
+ 266 006c C0B2     		uxtb	r0, r0
+  86:.\OPT3001.c   ****     {
+  87:.\OPT3001.c   ****         return 1;
+  88:.\OPT3001.c   ****     }
+  89:.\OPT3001.c   ****     else
+  90:.\OPT3001.c   ****     {
+  91:.\OPT3001.c   ****         return 0;
+  92:.\OPT3001.c   ****     }
+  93:.\OPT3001.c   **** }
+ 267              		.loc 1 93 0
+ 268 006e 05B0     		add	sp, sp, #20
+ 269              		@ sp needed
+ 270 0070 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 271              		.cfi_endproc
+ 272              	.LFE61:
+ 273              		.size	I2C_WriteRegister, .-I2C_WriteRegister
+ 274              		.section	.text.OPT_ReadResult,"ax",%progbits
+ 275              		.align	1
+ 276              		.global	OPT_ReadResult
+ 277              		.code	16
+ 278              		.thumb_func
+ 279              		.type	OPT_ReadResult, %function
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 8
+
+
+ 280              	OPT_ReadResult:
+ 281              	.LFB62:
+  94:.\OPT3001.c   **** 
+  95:.\OPT3001.c   **** uint8 OPT_ReadResult(uint32 *Result)
+  96:.\OPT3001.c   **** {
+ 282              		.loc 1 96 0
+ 283              		.cfi_startproc
+ 284              	.LVL23:
+ 285 0000 73B5     		push	{r0, r1, r4, r5, r6, lr}
+ 286              		.cfi_def_cfa_offset 24
+ 287              		.cfi_offset 0, -24
+ 288              		.cfi_offset 1, -20
+ 289              		.cfi_offset 4, -16
+ 290              		.cfi_offset 5, -12
+ 291              		.cfi_offset 6, -8
+ 292              		.cfi_offset 14, -4
+ 293              		.loc 1 96 0
+ 294 0002 041C     		mov	r4, r0
+  97:.\OPT3001.c   ****   uint16_t exponent;
+  98:.\OPT3001.c   ****   uint16 raw;
+  99:.\OPT3001.c   ****   uint8 success;
+ 100:.\OPT3001.c   ****     
+ 101:.\OPT3001.c   ****   if(OPT_IsReady() != 1)
+ 295              		.loc 1 101 0
+ 296 0004 FFF7FEFF 		bl	OPT_IsReady
+ 297              	.LVL24:
+ 298 0008 051E     		sub	r5, r0, #0
+ 299 000a 012D     		cmp	r5, #1
+ 300 000c 34D1     		bne	.L42
+ 301              	.LVL25:
+ 302              	.LBB8:
+ 303              	.LBB9:
+ 102:.\OPT3001.c   ****   {
+ 103:.\OPT3001.c   ****     return 0;
+ 104:.\OPT3001.c   ****   }
+ 105:.\OPT3001.c   **** 
+ 106:.\OPT3001.c   ****   success = I2C_ReadRegister(OPT3001_I2C_ADDRESS, REG_CONFIGURATION, &raw);
+ 304              		.loc 1 106 0
+ 305 000e 6B46     		mov	r3, sp
+ 306 0010 9E1D     		add	r6, r3, #6
+ 307 0012 4520     		mov	r0, #69
+ 308 0014 291C     		mov	r1, r5
+ 309 0016 321C     		mov	r2, r6
+ 310 0018 FFF7FEFF 		bl	I2C_ReadRegister
+ 311              	.LVL26:
+ 107:.\OPT3001.c   **** 
+ 108:.\OPT3001.c   ****   if(success)
+ 312              		.loc 1 108 0
+ 313 001c 0028     		cmp	r0, #0
+ 314 001e 2BD0     		beq	.L42
+ 109:.\OPT3001.c   ****   {
+ 110:.\OPT3001.c   ****     success = I2C_ReadRegister(OPT3001_I2C_ADDRESS, REG_RESULT, &raw);
+ 315              		.loc 1 110 0
+ 316 0020 4520     		mov	r0, #69
+ 317              	.LVL27:
+ 318 0022 0021     		mov	r1, #0
+ 319 0024 321C     		mov	r2, r6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 9
+
+
+ 320 0026 FFF7FEFF 		bl	I2C_ReadRegister
+ 321              	.LVL28:
+ 111:.\OPT3001.c   ****   }
+ 112:.\OPT3001.c   **** 
+ 113:.\OPT3001.c   ****   if(success) 
+ 322              		.loc 1 113 0
+ 323 002a 0028     		cmp	r0, #0
+ 324 002c 24D0     		beq	.L42
+ 114:.\OPT3001.c   ****   {
+ 115:.\OPT3001.c   ****     /*Convert to LUX*/
+ 116:.\OPT3001.c   **** 	//extract result & exponent data from raw readings
+ 117:.\OPT3001.c   ****     (*Result) = raw&0x0FFF;
+ 325              		.loc 1 117 0
+ 326 002e 3088     		ldrh	r0, [r6]
+ 327              	.LVL29:
+ 328 0030 0305     		lsl	r3, r0, #20
+ 329 0032 1B0D     		lsr	r3, r3, #20
+ 330              	.LVL30:
+ 118:.\OPT3001.c   **** 	exponent = (raw>>12)&0x000F;
+ 119:.\OPT3001.c   ****     
+ 120:.\OPT3001.c   ****     //convert raw readings to LUX
+ 121:.\OPT3001.c   ****     switch(exponent){
+ 331              		.loc 1 121 0
+ 332 0034 000B     		lsr	r0, r0, #12
+ 333              	.LVL31:
+ 334 0036 0B28     		cmp	r0, #11
+ 335 0038 1CD8     		bhi	.L46
+ 336 003a FFF7FEFF 		bl	__gnu_thumb1_case_uqi
+ 337              	.L31:
+ 338 003e 06       		.byte	(.L30-.L31)/2
+ 339 003f 08       		.byte	(.L32-.L31)/2
+ 340 0040 0A       		.byte	(.L33-.L31)/2
+ 341 0041 0C       		.byte	(.L34-.L31)/2
+ 342 0042 0E       		.byte	(.L35-.L31)/2
+ 343 0043 10       		.byte	(.L36-.L31)/2
+ 344 0044 1B       		.byte	(.L46-.L31)/2
+ 345 0045 12       		.byte	(.L37-.L31)/2
+ 346 0046 14       		.byte	(.L38-.L31)/2
+ 347 0047 16       		.byte	(.L39-.L31)/2
+ 348 0048 18       		.byte	(.L40-.L31)/2
+ 349 0049 1A       		.byte	(.L41-.L31)/2
+ 350              		.p2align 1
+ 351              	.L30:
+ 122:.\OPT3001.c   **** 		case 0: //*0.015625
+ 123:.\OPT3001.c   **** 			(*Result) = (*Result)>>6;
+ 352              		.loc 1 123 0
+ 353 004a 9B09     		lsr	r3, r3, #6
+ 354 004c 12E0     		b	.L46
+ 355              	.L32:
+ 124:.\OPT3001.c   **** 			break;
+ 125:.\OPT3001.c   **** 		case 1: //*0.03125
+ 126:.\OPT3001.c   **** 			(*Result) = (*Result)>>5;
+ 356              		.loc 1 126 0
+ 357 004e 5B09     		lsr	r3, r3, #5
+ 358 0050 10E0     		b	.L46
+ 359              	.L33:
+ 127:.\OPT3001.c   **** 			break;
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 10
+
+
+ 128:.\OPT3001.c   **** 		case 2: //*0.0625
+ 129:.\OPT3001.c   **** 			(*Result) = (*Result)>>4;
+ 360              		.loc 1 129 0
+ 361 0052 1B09     		lsr	r3, r3, #4
+ 362 0054 0EE0     		b	.L46
+ 363              	.L34:
+ 130:.\OPT3001.c   **** 			break;
+ 131:.\OPT3001.c   **** 		case 3: //*0.125
+ 132:.\OPT3001.c   **** 			(*Result) = (*Result)>>3;
+ 364              		.loc 1 132 0
+ 365 0056 DB08     		lsr	r3, r3, #3
+ 366 0058 0CE0     		b	.L46
+ 367              	.L35:
+ 133:.\OPT3001.c   **** 			break;
+ 134:.\OPT3001.c   **** 		case 4: //*0.25
+ 135:.\OPT3001.c   **** 			(*Result) = (*Result)>>2;
+ 368              		.loc 1 135 0
+ 369 005a 9B08     		lsr	r3, r3, #2
+ 370 005c 0AE0     		b	.L46
+ 371              	.L36:
+ 136:.\OPT3001.c   **** 			break;
+ 137:.\OPT3001.c   **** 		case 5: //*0.5
+ 138:.\OPT3001.c   **** 			(*Result) = (*Result)>>1;
+ 372              		.loc 1 138 0
+ 373 005e 5B08     		lsr	r3, r3, #1
+ 374 0060 08E0     		b	.L46
+ 375              	.L37:
+ 139:.\OPT3001.c   **** 			break;
+ 140:.\OPT3001.c   **** 		case 6:
+ 141:.\OPT3001.c   **** 			(*Result) = (*Result);
+ 142:.\OPT3001.c   **** 			break;
+ 143:.\OPT3001.c   **** 		case 7: //*2
+ 144:.\OPT3001.c   **** 			(*Result) = (*Result)<<1;
+ 376              		.loc 1 144 0
+ 377 0062 5B00     		lsl	r3, r3, #1
+ 378 0064 06E0     		b	.L46
+ 379              	.L38:
+ 145:.\OPT3001.c   **** 			break;
+ 146:.\OPT3001.c   **** 		case 8: //*4
+ 147:.\OPT3001.c   **** 			(*Result) = (*Result)<<2;
+ 380              		.loc 1 147 0
+ 381 0066 9B00     		lsl	r3, r3, #2
+ 382 0068 04E0     		b	.L46
+ 383              	.L39:
+ 148:.\OPT3001.c   **** 			break;
+ 149:.\OPT3001.c   **** 		case 9: //*8
+ 150:.\OPT3001.c   **** 			(*Result) = (*Result)<<3;
+ 384              		.loc 1 150 0
+ 385 006a DB00     		lsl	r3, r3, #3
+ 386 006c 02E0     		b	.L46
+ 387              	.L40:
+ 151:.\OPT3001.c   **** 			break;
+ 152:.\OPT3001.c   **** 		case 10: //*16
+ 153:.\OPT3001.c   **** 			(*Result) = (*Result)<<4;
+ 388              		.loc 1 153 0
+ 389 006e 1B01     		lsl	r3, r3, #4
+ 390 0070 00E0     		b	.L46
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 11
+
+
+ 391              	.L41:
+ 154:.\OPT3001.c   **** 			break;
+ 155:.\OPT3001.c   **** 		case 11: //*32
+ 156:.\OPT3001.c   **** 			(*Result) = (*Result)<<5;
+ 392              		.loc 1 156 0
+ 393 0072 5B01     		lsl	r3, r3, #5
+ 394              	.L46:
+ 395 0074 2360     		str	r3, [r4]
+ 396 0076 00E0     		b	.L25
+ 397              	.LVL32:
+ 398              	.L42:
+ 399              	.LBE9:
+ 400              	.LBE8:
+ 103:.\OPT3001.c   ****   }
+ 401              		.loc 1 103 0
+ 402 0078 0025     		mov	r5, #0
+ 403              	.L25:
+ 157:.\OPT3001.c   **** 			break;
+ 158:.\OPT3001.c   **** 	}
+ 159:.\OPT3001.c   ****     return 1;
+ 160:.\OPT3001.c   ****     
+ 161:.\OPT3001.c   ****   } 
+ 162:.\OPT3001.c   ****   else 
+ 163:.\OPT3001.c   ****   {
+ 164:.\OPT3001.c   ****     return 0;
+ 165:.\OPT3001.c   ****   }
+ 166:.\OPT3001.c   **** 
+ 167:.\OPT3001.c   ****   return 0;
+ 168:.\OPT3001.c   **** }
+ 404              		.loc 1 168 0
+ 405 007a 281C     		mov	r0, r5
+ 406              		@ sp needed
+ 407              	.LVL33:
+ 408 007c 76BD     		pop	{r1, r2, r4, r5, r6, pc}
+ 409              		.cfi_endproc
+ 410              	.LFE62:
+ 411              		.size	OPT_ReadResult, .-OPT_ReadResult
+ 412              		.section	.text.OPT_StartConvert,"ax",%progbits
+ 413              		.align	1
+ 414              		.global	OPT_StartConvert
+ 415              		.code	16
+ 416              		.thumb_func
+ 417              		.type	OPT_StartConvert, %function
+ 418              	OPT_StartConvert:
+ 419              	.LFB63:
+ 169:.\OPT3001.c   **** 
+ 170:.\OPT3001.c   **** uint8 OPT_StartConvert()
+ 171:.\OPT3001.c   **** {
+ 420              		.loc 1 171 0
+ 421              		.cfi_startproc
+ 422 0000 13B5     		push	{r0, r1, r4, lr}
+ 423              		.cfi_def_cfa_offset 16
+ 424              		.cfi_offset 0, -16
+ 425              		.cfi_offset 1, -12
+ 426              		.cfi_offset 4, -8
+ 427              		.cfi_offset 14, -4
+ 172:.\OPT3001.c   ****     uint16 Buf;
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 12
+
+
+ 173:.\OPT3001.c   ****     if(I2C_ReadRegister(OPT3001_I2C_ADDRESS, REG_CONFIGURATION, &Buf))
+ 428              		.loc 1 173 0
+ 429 0002 6B46     		mov	r3, sp
+ 430 0004 9C1D     		add	r4, r3, #6
+ 431 0006 4520     		mov	r0, #69
+ 432 0008 0121     		mov	r1, #1
+ 433 000a 221C     		mov	r2, r4
+ 434 000c FFF7FEFF 		bl	I2C_ReadRegister
+ 435              	.LVL34:
+ 436 0010 0028     		cmp	r0, #0
+ 437 0012 0CD0     		beq	.L48
+ 174:.\OPT3001.c   ****     {
+ 175:.\OPT3001.c   ****         Buf |= (1<<9);
+ 438              		.loc 1 175 0
+ 439 0014 8022     		mov	r2, #128
+ 440 0016 2388     		ldrh	r3, [r4]
+ 441 0018 9200     		lsl	r2, r2, #2
+ 442 001a 1343     		orr	r3, r2
+ 176:.\OPT3001.c   ****         if(I2C_WriteRegister(OPT3001_I2C_ADDRESS, REG_CONFIGURATION, &Buf))
+ 443              		.loc 1 176 0
+ 444 001c 4520     		mov	r0, #69
+ 445 001e 0121     		mov	r1, #1
+ 446 0020 221C     		mov	r2, r4
+ 175:.\OPT3001.c   ****         if(I2C_WriteRegister(OPT3001_I2C_ADDRESS, REG_CONFIGURATION, &Buf))
+ 447              		.loc 1 175 0
+ 448 0022 2380     		strh	r3, [r4]
+ 449              		.loc 1 176 0
+ 450 0024 FFF7FEFF 		bl	I2C_WriteRegister
+ 451              	.LVL35:
+ 452 0028 431E     		sub	r3, r0, #1
+ 453 002a 9841     		sbc	r0, r0, r3
+ 177:.\OPT3001.c   ****         {
+ 178:.\OPT3001.c   ****             return 1;
+ 454              		.loc 1 178 0
+ 455 002c C0B2     		uxtb	r0, r0
+ 456              	.L48:
+ 179:.\OPT3001.c   ****         }
+ 180:.\OPT3001.c   ****     }
+ 181:.\OPT3001.c   ****     return 0;
+ 182:.\OPT3001.c   **** }
+ 457              		.loc 1 182 0
+ 458              		@ sp needed
+ 459 002e 16BD     		pop	{r1, r2, r4, pc}
+ 460              		.cfi_endproc
+ 461              	.LFE63:
+ 462              		.size	OPT_StartConvert, .-OPT_StartConvert
+ 463              		.section	.text.OPT_GetResultString,"ax",%progbits
+ 464              		.align	1
+ 465              		.global	OPT_GetResultString
+ 466              		.code	16
+ 467              		.thumb_func
+ 468              		.type	OPT_GetResultString, %function
+ 469              	OPT_GetResultString:
+ 470              	.LFB64:
+ 183:.\OPT3001.c   **** 
+ 184:.\OPT3001.c   **** char *OPT_GetResultString(volatile uint32 *Lux)
+ 185:.\OPT3001.c   **** {
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 13
+
+
+ 471              		.loc 1 185 0
+ 472              		.cfi_startproc
+ 473              	.LVL36:
+ 474 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 475              		.cfi_def_cfa_offset 20
+ 476              		.cfi_offset 4, -20
+ 477              		.cfi_offset 5, -16
+ 478              		.cfi_offset 6, -12
+ 479              		.cfi_offset 7, -8
+ 480              		.cfi_offset 14, -4
+ 186:.\OPT3001.c   ****     uint32 Result;
+ 187:.\OPT3001.c   ****     uint8 *St;
+ 188:.\OPT3001.c   ****     char Current;
+ 189:.\OPT3001.c   ****     volatile uint8 Scroll = 0;
+ 481              		.loc 1 189 0
+ 482 0002 0027     		mov	r7, #0
+ 185:.\OPT3001.c   ****     uint32 Result;
+ 483              		.loc 1 185 0
+ 484 0004 95B0     		sub	sp, sp, #84
+ 485              		.cfi_def_cfa_offset 104
+ 486              		.loc 1 189 0
+ 487 0006 02AB     		add	r3, sp, #8
+ 190:.\OPT3001.c   ****     volatile uint8 Buf[15];
+ 191:.\OPT3001.c   ****     Buf[14] = (char)'\0';
+ 192:.\OPT3001.c   ****     char Out_Str[25] = "Brightness: ";
+ 488              		.loc 1 192 0
+ 489 0008 0DAE     		add	r6, sp, #52
+ 189:.\OPT3001.c   ****     volatile uint8 Buf[15];
+ 490              		.loc 1 189 0
+ 491 000a DC1C     		add	r4, r3, #3
+ 185:.\OPT3001.c   ****     uint32 Result;
+ 492              		.loc 1 185 0
+ 493 000c 0190     		str	r0, [sp, #4]
+ 494              		.loc 1 192 0
+ 495 000e 3549     		ldr	r1, .L67
+ 496 0010 0D22     		mov	r2, #13
+ 191:.\OPT3001.c   ****     char Out_Str[25] = "Brightness: ";
+ 497              		.loc 1 191 0
+ 498 0012 05AD     		add	r5, sp, #20
+ 499              		.loc 1 192 0
+ 500 0014 301C     		mov	r0, r6
+ 501              	.LVL37:
+ 189:.\OPT3001.c   ****     volatile uint8 Buf[15];
+ 502              		.loc 1 189 0
+ 503 0016 2770     		strb	r7, [r4]
+ 191:.\OPT3001.c   ****     char Out_Str[25] = "Brightness: ";
+ 504              		.loc 1 191 0
+ 505 0018 AF73     		strb	r7, [r5, #14]
+ 506              		.loc 1 192 0
+ 507 001a FFF7FEFF 		bl	memcpy
+ 508              	.LVL38:
+ 509 001e 3920     		mov	r0, #57
+ 510 0020 02AB     		add	r3, sp, #8
+ 511 0022 C018     		add	r0, r0, r3
+ 512 0024 391C     		mov	r1, r7
+ 513 0026 0C22     		mov	r2, #12
+ 514 0028 FFF7FEFF 		bl	memset
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 14
+
+
+ 515              	.LVL39:
+ 193:.\OPT3001.c   ****     const char Lux_Str[3] = "Lx";
+ 194:.\OPT3001.c   ****     const char Error_Str[15] = "OPT Error Read";
+ 516              		.loc 1 194 0
+ 517 002c 09AF     		add	r7, sp, #36
+ 193:.\OPT3001.c   ****     const char Lux_Str[3] = "Lx";
+ 518              		.loc 1 193 0
+ 519 002e 2E49     		ldr	r1, .L67+4
+ 520 0030 0322     		mov	r2, #3
+ 521 0032 03A8     		add	r0, sp, #12
+ 522 0034 FFF7FEFF 		bl	memcpy
+ 523              	.LVL40:
+ 524              		.loc 1 194 0
+ 525 0038 381C     		mov	r0, r7
+ 526 003a 2C49     		ldr	r1, .L67+8
+ 527 003c 0F22     		mov	r2, #15
+ 528 003e FFF7FEFF 		bl	memcpy
+ 529              	.LVL41:
+ 195:.\OPT3001.c   ****     
+ 196:.\OPT3001.c   ****     if(OPT_ReadResult(&Result))
+ 530              		.loc 1 196 0
+ 531 0042 04A8     		add	r0, sp, #16
+ 532 0044 FFF7FEFF 		bl	OPT_ReadResult
+ 533              	.LVL42:
+ 534 0048 0028     		cmp	r0, #0
+ 535 004a 3AD0     		beq	.L53
+ 197:.\OPT3001.c   ****     {
+ 198:.\OPT3001.c   ****         (*Lux) = Result;
+ 536              		.loc 1 198 0
+ 537 004c 019B     		ldr	r3, [sp, #4]
+ 538 004e 049A     		ldr	r2, [sp, #16]
+ 539 0050 1A60     		str	r2, [r3]
+ 199:.\OPT3001.c   ****         BCD_Ulong(Result);
+ 540              		.loc 1 199 0
+ 541 0052 101C     		mov	r0, r2
+ 542 0054 FFF7FEFF 		bl	BCD_Ulong
+ 543              	.LVL43:
+ 200:.\OPT3001.c   ****         
+ 201:.\OPT3001.c   ****         St = BCD_GetPointerBuf();
+ 544              		.loc 1 201 0
+ 545 0058 FFF7FEFF 		bl	BCD_GetPointerBuf
+ 546              	.LVL44:
+ 202:.\OPT3001.c   ****         Current = *St;
+ 547              		.loc 1 202 0
+ 548 005c 0378     		ldrb	r3, [r0]
+ 549              	.LVL45:
+ 550              	.L54:
+ 203:.\OPT3001.c   ****         
+ 204:.\OPT3001.c   ****             while(Current != (char)'\0')
+ 551              		.loc 1 204 0
+ 552 005e 002B     		cmp	r3, #0
+ 553 0060 0BD0     		beq	.L64
+ 205:.\OPT3001.c   ****             {
+ 206:.\OPT3001.c   ****                 Buf[Scroll] = St[Scroll];
+ 554              		.loc 1 206 0
+ 555 0062 2378     		ldrb	r3, [r4]
+ 556              	.LVL46:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 15
+
+
+ 557 0064 2278     		ldrb	r2, [r4]
+ 558 0066 DBB2     		uxtb	r3, r3
+ 559 0068 825C     		ldrb	r2, [r0, r2]
+ 560 006a EA54     		strb	r2, [r5, r3]
+ 207:.\OPT3001.c   ****                 Scroll++;
+ 561              		.loc 1 207 0
+ 562 006c 2378     		ldrb	r3, [r4]
+ 563 006e 0133     		add	r3, r3, #1
+ 564 0070 DBB2     		uxtb	r3, r3
+ 565 0072 2370     		strb	r3, [r4]
+ 208:.\OPT3001.c   ****                 Current = St[Scroll];
+ 566              		.loc 1 208 0
+ 567 0074 2378     		ldrb	r3, [r4]
+ 568 0076 C35C     		ldrb	r3, [r0, r3]
+ 569              	.LVL47:
+ 570 0078 F1E7     		b	.L54
+ 571              	.LVL48:
+ 572              	.L64:
+ 209:.\OPT3001.c   ****             }
+ 210:.\OPT3001.c   ****         
+ 211:.\OPT3001.c   ****         Scroll = 0;
+ 212:.\OPT3001.c   ****         Current = Buf[Scroll];
+ 213:.\OPT3001.c   ****         
+ 214:.\OPT3001.c   ****             while(Current == (char)' ')
+ 215:.\OPT3001.c   ****             {
+ 216:.\OPT3001.c   ****                 Scroll++;
+ 573              		.loc 1 216 0
+ 574 007a 2370     		strb	r3, [r4]
+ 217:.\OPT3001.c   ****                 Current = Buf[Scroll];
+ 575              		.loc 1 217 0
+ 576 007c 2378     		ldrb	r3, [r4]
+ 577 007e DBB2     		uxtb	r3, r3
+ 578 0080 EB5C     		ldrb	r3, [r5, r3]
+ 579 0082 DBB2     		uxtb	r3, r3
+ 580              	.LVL49:
+ 214:.\OPT3001.c   ****             {
+ 581              		.loc 1 214 0
+ 582 0084 202B     		cmp	r3, #32
+ 583 0086 03D1     		bne	.L66
+ 216:.\OPT3001.c   ****                 Current = Buf[Scroll];
+ 584              		.loc 1 216 0
+ 585 0088 2378     		ldrb	r3, [r4]
+ 586              	.LVL50:
+ 587 008a 0133     		add	r3, r3, #1
+ 588 008c DBB2     		uxtb	r3, r3
+ 589 008e F4E7     		b	.L64
+ 590              	.LVL51:
+ 591              	.L66:
+ 218:.\OPT3001.c   ****             }
+ 219:.\OPT3001.c   ****         
+ 220:.\OPT3001.c   ****         strncat(Out_Str, &Buf[Scroll],7);
+ 592              		.loc 1 220 0
+ 593 0090 2178     		ldrb	r1, [r4]
+ 594 0092 0722     		mov	r2, #7
+ 595 0094 6918     		add	r1, r5, r1
+ 596 0096 301C     		mov	r0, r6
+ 597              	.LVL52:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 16
+
+
+ 598 0098 FFF7FEFF 		bl	strncat
+ 599              	.LVL53:
+ 221:.\OPT3001.c   ****         strncat(Out_Str, Lux_Str,3);
+ 600              		.loc 1 221 0
+ 601 009c 301C     		mov	r0, r6
+ 602 009e 03A9     		add	r1, sp, #12
+ 603 00a0 0322     		mov	r2, #3
+ 604 00a2 FFF7FEFF 		bl	strncat
+ 605              	.LVL54:
+ 222:.\OPT3001.c   ****         for(Scroll = 0;Scroll < 25;Scroll++)
+ 606              		.loc 1 222 0
+ 607 00a6 0023     		mov	r3, #0
+ 608              	.L65:
+ 609              		.loc 1 222 0 is_stmt 0 discriminator 3
+ 610 00a8 2370     		strb	r3, [r4]
+ 611 00aa 2378     		ldrb	r3, [r4]
+ 612 00ac 182B     		cmp	r3, #24
+ 613 00ae 16D8     		bhi	.L63
+ 223:.\OPT3001.c   ****         {
+ 224:.\OPT3001.c   ****             OPT_Out_String[Scroll] = Out_Str[Scroll];
+ 614              		.loc 1 224 0 is_stmt 1 discriminator 3
+ 615 00b0 2378     		ldrb	r3, [r4]
+ 616 00b2 2278     		ldrb	r2, [r4]
+ 617 00b4 B15C     		ldrb	r1, [r6, r2]
+ 618 00b6 0E4A     		ldr	r2, .L67+12
+ 619 00b8 D154     		strb	r1, [r2, r3]
+ 222:.\OPT3001.c   ****         for(Scroll = 0;Scroll < 25;Scroll++)
+ 620              		.loc 1 222 0 discriminator 3
+ 621 00ba 2378     		ldrb	r3, [r4]
+ 622 00bc 0133     		add	r3, r3, #1
+ 623 00be DBB2     		uxtb	r3, r3
+ 624 00c0 F2E7     		b	.L65
+ 625              	.L53:
+ 225:.\OPT3001.c   ****         }
+ 226:.\OPT3001.c   ****         
+ 227:.\OPT3001.c   ****     }
+ 228:.\OPT3001.c   ****     else
+ 229:.\OPT3001.c   ****     {
+ 230:.\OPT3001.c   ****         for(Scroll = 0;Scroll < 25;Scroll++)
+ 626              		.loc 1 230 0
+ 627 00c2 2070     		strb	r0, [r4]
+ 628              	.L60:
+ 629              		.loc 1 230 0 is_stmt 0 discriminator 1
+ 630 00c4 2378     		ldrb	r3, [r4]
+ 631 00c6 182B     		cmp	r3, #24
+ 632 00c8 09D8     		bhi	.L63
+ 231:.\OPT3001.c   ****         {
+ 232:.\OPT3001.c   ****             OPT_Out_String[Scroll] = Error_Str[Scroll];
+ 633              		.loc 1 232 0 is_stmt 1 discriminator 3
+ 634 00ca 2378     		ldrb	r3, [r4]
+ 635 00cc 2278     		ldrb	r2, [r4]
+ 636 00ce B95C     		ldrb	r1, [r7, r2]
+ 637 00d0 074A     		ldr	r2, .L67+12
+ 638 00d2 D154     		strb	r1, [r2, r3]
+ 230:.\OPT3001.c   ****         {
+ 639              		.loc 1 230 0 discriminator 3
+ 640 00d4 2378     		ldrb	r3, [r4]
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 17
+
+
+ 641 00d6 0133     		add	r3, r3, #1
+ 642 00d8 DBB2     		uxtb	r3, r3
+ 643 00da 2370     		strb	r3, [r4]
+ 644 00dc F2E7     		b	.L60
+ 645              	.L63:
+ 233:.\OPT3001.c   ****         }
+ 234:.\OPT3001.c   ****     }
+ 235:.\OPT3001.c   ****     return OPT_Out_String;
+ 236:.\OPT3001.c   ****     
+ 237:.\OPT3001.c   **** }
+ 646              		.loc 1 237 0
+ 647 00de 0448     		ldr	r0, .L67+12
+ 648 00e0 15B0     		add	sp, sp, #84
+ 649              		@ sp needed
+ 650 00e2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 651              	.L68:
+ 652              		.align	2
+ 653              	.L67:
+ 654 00e4 00000000 		.word	.LANCHOR0
+ 655 00e8 00000000 		.word	.LC2
+ 656 00ec 03000000 		.word	.LC4
+ 657 00f0 00000000 		.word	OPT_Out_String
+ 658              		.cfi_endproc
+ 659              	.LFE64:
+ 660              		.size	OPT_GetResultString, .-OPT_GetResultString
+ 661              		.comm	OPT_Out_String,25,1
+ 662              		.section	.rodata
+ 663              		.set	.LANCHOR0,. + 0
+ 664              	.LC0:
+ 665 0000 42726967 		.ascii	"Brightness: \000"
+ 665      68746E65 
+ 665      73733A20 
+ 665      00
+ 666 000d 00000000 		.space	12
+ 666      00000000 
+ 666      00000000 
+ 667              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 668              	.LC2:
+ 669 0000 4C7800   		.ascii	"Lx\000"
+ 670              	.LC4:
+ 671 0003 4F505420 		.ascii	"OPT Error Read\000"
+ 671      4572726F 
+ 671      72205265 
+ 671      616400
+ 672              		.text
+ 673              	.Letext0:
+ 674              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 675              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 676              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 677              		.file 5 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 678              		.file 6 "Generated_Source\\PSoC4/I2C_I2C.h"
+ 679              		.file 7 "./bcd.h"
+ 680              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 681              		.file 9 "./OPT3001.h"
+ 682              		.section	.debug_info,"",%progbits
+ 683              	.Ldebug_info0:
+ 684 0000 9E070000 		.4byte	0x79e
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 18
+
+
+ 685 0004 0400     		.2byte	0x4
+ 686 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 687 000a 04       		.byte	0x4
+ 688 000b 01       		.uleb128 0x1
+ 689 000c 30000000 		.4byte	.LASF49
+ 690 0010 01       		.byte	0x1
+ 691 0011 A7020000 		.4byte	.LASF50
+ 692 0015 0F020000 		.4byte	.LASF51
+ 693 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 694 001d 00000000 		.4byte	0
+ 695 0021 00000000 		.4byte	.Ldebug_line0
+ 696 0025 02       		.uleb128 0x2
+ 697 0026 01       		.byte	0x1
+ 698 0027 06       		.byte	0x6
+ 699 0028 1E030000 		.4byte	.LASF0
+ 700 002c 03       		.uleb128 0x3
+ 701 002d 1F000000 		.4byte	.LASF3
+ 702 0031 02       		.byte	0x2
+ 703 0032 1D       		.byte	0x1d
+ 704 0033 37000000 		.4byte	0x37
+ 705 0037 02       		.uleb128 0x2
+ 706 0038 01       		.byte	0x1
+ 707 0039 08       		.byte	0x8
+ 708 003a 16010000 		.4byte	.LASF1
+ 709 003e 02       		.uleb128 0x2
+ 710 003f 02       		.byte	0x2
+ 711 0040 05       		.byte	0x5
+ 712 0041 E7020000 		.4byte	.LASF2
+ 713 0045 03       		.uleb128 0x3
+ 714 0046 74010000 		.4byte	.LASF4
+ 715 004a 02       		.byte	0x2
+ 716 004b 2B       		.byte	0x2b
+ 717 004c 50000000 		.4byte	0x50
+ 718 0050 02       		.uleb128 0x2
+ 719 0051 02       		.byte	0x2
+ 720 0052 07       		.byte	0x7
+ 721 0053 EE000000 		.4byte	.LASF5
+ 722 0057 02       		.uleb128 0x2
+ 723 0058 04       		.byte	0x4
+ 724 0059 05       		.byte	0x5
+ 725 005a 10030000 		.4byte	.LASF6
+ 726 005e 03       		.uleb128 0x3
+ 727 005f 8E010000 		.4byte	.LASF7
+ 728 0063 02       		.byte	0x2
+ 729 0064 41       		.byte	0x41
+ 730 0065 69000000 		.4byte	0x69
+ 731 0069 02       		.uleb128 0x2
+ 732 006a 04       		.byte	0x4
+ 733 006b 07       		.byte	0x7
+ 734 006c 29010000 		.4byte	.LASF8
+ 735 0070 02       		.uleb128 0x2
+ 736 0071 08       		.byte	0x8
+ 737 0072 05       		.byte	0x5
+ 738 0073 89020000 		.4byte	.LASF9
+ 739 0077 02       		.uleb128 0x2
+ 740 0078 08       		.byte	0x8
+ 741 0079 07       		.byte	0x7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 19
+
+
+ 742 007a F0010000 		.4byte	.LASF10
+ 743 007e 04       		.uleb128 0x4
+ 744 007f 04       		.byte	0x4
+ 745 0080 05       		.byte	0x5
+ 746 0081 696E7400 		.ascii	"int\000"
+ 747 0085 02       		.uleb128 0x2
+ 748 0086 04       		.byte	0x4
+ 749 0087 07       		.byte	0x7
+ 750 0088 D1010000 		.4byte	.LASF11
+ 751 008c 03       		.uleb128 0x3
+ 752 008d 07020000 		.4byte	.LASF12
+ 753 0091 03       		.byte	0x3
+ 754 0092 15       		.byte	0x15
+ 755 0093 2C000000 		.4byte	0x2c
+ 756 0097 03       		.uleb128 0x3
+ 757 0098 F1020000 		.4byte	.LASF13
+ 758 009c 03       		.byte	0x3
+ 759 009d 21       		.byte	0x21
+ 760 009e 45000000 		.4byte	0x45
+ 761 00a2 03       		.uleb128 0x3
+ 762 00a3 2A030000 		.4byte	.LASF14
+ 763 00a7 03       		.byte	0x3
+ 764 00a8 2D       		.byte	0x2d
+ 765 00a9 5E000000 		.4byte	0x5e
+ 766 00ad 03       		.uleb128 0x3
+ 767 00ae 47010000 		.4byte	.LASF15
+ 768 00b2 04       		.byte	0x4
+ 769 00b3 C2       		.byte	0xc2
+ 770 00b4 37000000 		.4byte	0x37
+ 771 00b8 03       		.uleb128 0x3
+ 772 00b9 AA010000 		.4byte	.LASF16
+ 773 00bd 04       		.byte	0x4
+ 774 00be C3       		.byte	0xc3
+ 775 00bf 50000000 		.4byte	0x50
+ 776 00c3 03       		.uleb128 0x3
+ 777 00c4 B1010000 		.4byte	.LASF17
+ 778 00c8 04       		.byte	0x4
+ 779 00c9 C4       		.byte	0xc4
+ 780 00ca 69000000 		.4byte	0x69
+ 781 00ce 02       		.uleb128 0x2
+ 782 00cf 04       		.byte	0x4
+ 783 00d0 04       		.byte	0x4
+ 784 00d1 10010000 		.4byte	.LASF18
+ 785 00d5 02       		.uleb128 0x2
+ 786 00d6 08       		.byte	0x8
+ 787 00d7 04       		.byte	0x4
+ 788 00d8 7F010000 		.4byte	.LASF19
+ 789 00dc 02       		.uleb128 0x2
+ 790 00dd 01       		.byte	0x1
+ 791 00de 08       		.byte	0x8
+ 792 00df 19030000 		.4byte	.LASF20
+ 793 00e3 05       		.uleb128 0x5
+ 794 00e4 AD000000 		.4byte	0xad
+ 795 00e8 05       		.uleb128 0x5
+ 796 00e9 C3000000 		.4byte	0xc3
+ 797 00ed 03       		.uleb128 0x3
+ 798 00ee 29000000 		.4byte	.LASF21
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 20
+
+
+ 799 00f2 05       		.byte	0x5
+ 800 00f3 D4       		.byte	0xd4
+ 801 00f4 85000000 		.4byte	0x85
+ 802 00f8 02       		.uleb128 0x2
+ 803 00f9 04       		.byte	0x4
+ 804 00fa 07       		.byte	0x7
+ 805 00fb 80020000 		.4byte	.LASF22
+ 806 00ff 06       		.uleb128 0x6
+ 807 0100 04       		.byte	0x4
+ 808 0101 07       		.uleb128 0x7
+ 809 0102 04       		.byte	0x4
+ 810 0103 DC000000 		.4byte	0xdc
+ 811 0107 07       		.uleb128 0x7
+ 812 0108 04       		.byte	0x4
+ 813 0109 0D010000 		.4byte	0x10d
+ 814 010d 08       		.uleb128 0x8
+ 815 010e DC000000 		.4byte	0xdc
+ 816 0112 09       		.uleb128 0x9
+ 817 0113 DC000000 		.4byte	0xdc
+ 818 0117 22010000 		.4byte	0x122
+ 819 011b 0A       		.uleb128 0xa
+ 820 011c F8000000 		.4byte	0xf8
+ 821 0120 18       		.byte	0x18
+ 822 0121 00       		.byte	0
+ 823 0122 07       		.uleb128 0x7
+ 824 0123 04       		.byte	0x4
+ 825 0124 AD000000 		.4byte	0xad
+ 826 0128 0B       		.uleb128 0xb
+ 827 0129 99010000 		.4byte	.LASF26
+ 828 012d 01       		.byte	0x1
+ 829 012e 20       		.byte	0x20
+ 830 012f AD000000 		.4byte	0xad
+ 831 0133 01       		.byte	0x1
+ 832 0134 7B010000 		.4byte	0x17b
+ 833 0138 0C       		.uleb128 0xc
+ 834 0139 41445200 		.ascii	"ADR\000"
+ 835 013d 01       		.byte	0x1
+ 836 013e 20       		.byte	0x20
+ 837 013f AD000000 		.4byte	0xad
+ 838 0143 0C       		.uleb128 0xc
+ 839 0144 52656700 		.ascii	"Reg\000"
+ 840 0148 01       		.byte	0x1
+ 841 0149 20       		.byte	0x20
+ 842 014a AD000000 		.4byte	0xad
+ 843 014e 0D       		.uleb128 0xd
+ 844 014f 97020000 		.4byte	.LASF23
+ 845 0153 01       		.byte	0x1
+ 846 0154 20       		.byte	0x20
+ 847 0155 7B010000 		.4byte	0x17b
+ 848 0159 0E       		.uleb128 0xe
+ 849 015a 5E010000 		.4byte	.LASF24
+ 850 015e 01       		.byte	0x1
+ 851 015f 23       		.byte	0x23
+ 852 0160 AD000000 		.4byte	0xad
+ 853 0164 0F       		.uleb128 0xf
+ 854 0165 42756600 		.ascii	"Buf\000"
+ 855 0169 01       		.byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 21
+
+
+ 856 016a 24       		.byte	0x24
+ 857 016b 91010000 		.4byte	0x191
+ 858 016f 0E       		.uleb128 0xe
+ 859 0170 24010000 		.4byte	.LASF25
+ 860 0174 01       		.byte	0x1
+ 861 0175 25       		.byte	0x25
+ 862 0176 E3000000 		.4byte	0xe3
+ 863 017a 00       		.byte	0
+ 864 017b 07       		.uleb128 0x7
+ 865 017c 04       		.byte	0x4
+ 866 017d B8000000 		.4byte	0xb8
+ 867 0181 09       		.uleb128 0x9
+ 868 0182 AD000000 		.4byte	0xad
+ 869 0186 91010000 		.4byte	0x191
+ 870 018a 0A       		.uleb128 0xa
+ 871 018b F8000000 		.4byte	0xf8
+ 872 018f 01       		.byte	0x1
+ 873 0190 00       		.byte	0
+ 874 0191 05       		.uleb128 0x5
+ 875 0192 81010000 		.4byte	0x181
+ 876 0196 0B       		.uleb128 0xb
+ 877 0197 DF000000 		.4byte	.LASF27
+ 878 019b 01       		.byte	0x1
+ 879 019c 5F       		.byte	0x5f
+ 880 019d AD000000 		.4byte	0xad
+ 881 01a1 01       		.byte	0x1
+ 882 01a2 D3010000 		.4byte	0x1d3
+ 883 01a6 0D       		.uleb128 0xd
+ 884 01a7 B8010000 		.4byte	.LASF28
+ 885 01ab 01       		.byte	0x1
+ 886 01ac 5F       		.byte	0x5f
+ 887 01ad D3010000 		.4byte	0x1d3
+ 888 01b1 0E       		.uleb128 0xe
+ 889 01b2 DE020000 		.4byte	.LASF29
+ 890 01b6 01       		.byte	0x1
+ 891 01b7 61       		.byte	0x61
+ 892 01b8 97000000 		.4byte	0x97
+ 893 01bc 0F       		.uleb128 0xf
+ 894 01bd 72617700 		.ascii	"raw\000"
+ 895 01c1 01       		.byte	0x1
+ 896 01c2 62       		.byte	0x62
+ 897 01c3 B8000000 		.4byte	0xb8
+ 898 01c7 0E       		.uleb128 0xe
+ 899 01c8 00000000 		.4byte	.LASF30
+ 900 01cc 01       		.byte	0x1
+ 901 01cd 63       		.byte	0x63
+ 902 01ce AD000000 		.4byte	0xad
+ 903 01d2 00       		.byte	0
+ 904 01d3 07       		.uleb128 0x7
+ 905 01d4 04       		.byte	0x4
+ 906 01d5 C3000000 		.4byte	0xc3
+ 907 01d9 10       		.uleb128 0x10
+ 908 01da 28010000 		.4byte	0x128
+ 909 01de 00000000 		.4byte	.LFB60
+ 910 01e2 72000000 		.4byte	.LFE60-.LFB60
+ 911 01e6 01       		.uleb128 0x1
+ 912 01e7 9C       		.byte	0x9c
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 22
+
+
+ 913 01e8 D5020000 		.4byte	0x2d5
+ 914 01ec 11       		.uleb128 0x11
+ 915 01ed 38010000 		.4byte	0x138
+ 916 01f1 00000000 		.4byte	.LLST0
+ 917 01f5 11       		.uleb128 0x11
+ 918 01f6 43010000 		.4byte	0x143
+ 919 01fa 21000000 		.4byte	.LLST1
+ 920 01fe 11       		.uleb128 0x11
+ 921 01ff 4E010000 		.4byte	0x14e
+ 922 0203 42000000 		.4byte	.LLST2
+ 923 0207 12       		.uleb128 0x12
+ 924 0208 59010000 		.4byte	0x159
+ 925 020c 61000000 		.4byte	.LLST3
+ 926 0210 13       		.uleb128 0x13
+ 927 0211 64010000 		.4byte	0x164
+ 928 0215 14       		.uleb128 0x14
+ 929 0216 6F010000 		.4byte	0x16f
+ 930 021a 02       		.uleb128 0x2
+ 931 021b 91       		.byte	0x91
+ 932 021c 63       		.sleb128 -29
+ 933 021d 15       		.uleb128 0x15
+ 934 021e 46000000 		.4byte	.LBB4
+ 935 0222 28000000 		.4byte	.LBE4-.LBB4
+ 936 0226 92020000 		.4byte	0x292
+ 937 022a 11       		.uleb128 0x11
+ 938 022b 38010000 		.4byte	0x138
+ 939 022f 8A000000 		.4byte	.LLST4
+ 940 0233 11       		.uleb128 0x11
+ 941 0234 43010000 		.4byte	0x143
+ 942 0238 9D000000 		.4byte	.LLST5
+ 943 023c 11       		.uleb128 0x11
+ 944 023d 4E010000 		.4byte	0x14e
+ 945 0241 B0000000 		.4byte	.LLST6
+ 946 0245 16       		.uleb128 0x16
+ 947 0246 46000000 		.4byte	.LBB5
+ 948 024a 28000000 		.4byte	.LBE5-.LBB5
+ 949 024e 13       		.uleb128 0x13
+ 950 024f 59010000 		.4byte	0x159
+ 951 0253 14       		.uleb128 0x14
+ 952 0254 64010000 		.4byte	0x164
+ 953 0258 02       		.uleb128 0x2
+ 954 0259 91       		.byte	0x91
+ 955 025a 64       		.sleb128 -28
+ 956 025b 13       		.uleb128 0x13
+ 957 025c 6F010000 		.4byte	0x16f
+ 958 0260 17       		.uleb128 0x17
+ 959 0261 4C000000 		.4byte	.LVL11
+ 960 0265 BA060000 		.4byte	0x6ba
+ 961 0269 74020000 		.4byte	0x274
+ 962 026d 18       		.uleb128 0x18
+ 963 026e 01       		.uleb128 0x1
+ 964 026f 50       		.byte	0x50
+ 965 0270 02       		.uleb128 0x2
+ 966 0271 74       		.byte	0x74
+ 967 0272 00       		.sleb128 0
+ 968 0273 00       		.byte	0
+ 969 0274 17       		.uleb128 0x17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 23
+
+
+ 970 0275 58000000 		.4byte	.LVL12
+ 971 0279 BA060000 		.4byte	0x6ba
+ 972 027d 87020000 		.4byte	0x287
+ 973 0281 18       		.uleb128 0x18
+ 974 0282 01       		.uleb128 0x1
+ 975 0283 50       		.byte	0x50
+ 976 0284 01       		.uleb128 0x1
+ 977 0285 31       		.byte	0x31
+ 978 0286 00       		.byte	0
+ 979 0287 19       		.uleb128 0x19
+ 980 0288 6C000000 		.4byte	.LVL13
+ 981 028c CF060000 		.4byte	0x6cf
+ 982 0290 00       		.byte	0
+ 983 0291 00       		.byte	0
+ 984 0292 17       		.uleb128 0x17
+ 985 0293 24000000 		.4byte	.LVL3
+ 986 0297 DA060000 		.4byte	0x6da
+ 987 029b AB020000 		.4byte	0x2ab
+ 988 029f 18       		.uleb128 0x18
+ 989 02a0 01       		.uleb128 0x1
+ 990 02a1 51       		.byte	0x51
+ 991 02a2 01       		.uleb128 0x1
+ 992 02a3 30       		.byte	0x30
+ 993 02a4 18       		.uleb128 0x18
+ 994 02a5 01       		.uleb128 0x1
+ 995 02a6 50       		.byte	0x50
+ 996 02a7 02       		.uleb128 0x2
+ 997 02a8 76       		.byte	0x76
+ 998 02a9 00       		.sleb128 0
+ 999 02aa 00       		.byte	0
+ 1000 02ab 17       		.uleb128 0x17
+ 1001 02ac 38000000 		.4byte	.LVL7
+ 1002 02b0 F4060000 		.4byte	0x6f4
+ 1003 02b4 BF020000 		.4byte	0x2bf
+ 1004 02b8 18       		.uleb128 0x18
+ 1005 02b9 01       		.uleb128 0x1
+ 1006 02ba 50       		.byte	0x50
+ 1007 02bb 02       		.uleb128 0x2
+ 1008 02bc 77       		.byte	0x77
+ 1009 02bd 00       		.sleb128 0
+ 1010 02be 00       		.byte	0
+ 1011 02bf 1A       		.uleb128 0x1a
+ 1012 02c0 40000000 		.4byte	.LVL8
+ 1013 02c4 09070000 		.4byte	0x709
+ 1014 02c8 18       		.uleb128 0x18
+ 1015 02c9 01       		.uleb128 0x1
+ 1016 02ca 51       		.byte	0x51
+ 1017 02cb 01       		.uleb128 0x1
+ 1018 02cc 31       		.byte	0x31
+ 1019 02cd 18       		.uleb128 0x18
+ 1020 02ce 01       		.uleb128 0x1
+ 1021 02cf 50       		.byte	0x50
+ 1022 02d0 02       		.uleb128 0x2
+ 1023 02d1 76       		.byte	0x76
+ 1024 02d2 00       		.sleb128 0
+ 1025 02d3 00       		.byte	0
+ 1026 02d4 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 24
+
+
+ 1027 02d5 1B       		.uleb128 0x1b
+ 1028 02d6 3B010000 		.4byte	.LASF31
+ 1029 02da 01       		.byte	0x1
+ 1030 02db 0E       		.byte	0xe
+ 1031 02dc AD000000 		.4byte	0xad
+ 1032 02e0 00000000 		.4byte	.LFB59
+ 1033 02e4 1A000000 		.4byte	.LFE59-.LFB59
+ 1034 02e8 01       		.uleb128 0x1
+ 1035 02e9 9C       		.byte	0x9c
+ 1036 02ea 18030000 		.4byte	0x318
+ 1037 02ee 1C       		.uleb128 0x1c
+ 1038 02ef 56616C00 		.ascii	"Val\000"
+ 1039 02f3 01       		.byte	0x1
+ 1040 02f4 10       		.byte	0x10
+ 1041 02f5 B8000000 		.4byte	0xb8
+ 1042 02f9 02       		.uleb128 0x2
+ 1043 02fa 91       		.byte	0x91
+ 1044 02fb 76       		.sleb128 -10
+ 1045 02fc 1A       		.uleb128 0x1a
+ 1046 02fd 10000000 		.4byte	.LVL15
+ 1047 0301 28010000 		.4byte	0x128
+ 1048 0305 18       		.uleb128 0x18
+ 1049 0306 01       		.uleb128 0x1
+ 1050 0307 52       		.byte	0x52
+ 1051 0308 02       		.uleb128 0x2
+ 1052 0309 74       		.byte	0x74
+ 1053 030a 00       		.sleb128 0
+ 1054 030b 18       		.uleb128 0x18
+ 1055 030c 01       		.uleb128 0x1
+ 1056 030d 51       		.byte	0x51
+ 1057 030e 01       		.uleb128 0x1
+ 1058 030f 31       		.byte	0x31
+ 1059 0310 18       		.uleb128 0x18
+ 1060 0311 01       		.uleb128 0x1
+ 1061 0312 50       		.byte	0x50
+ 1062 0313 02       		.uleb128 0x2
+ 1063 0314 08       		.byte	0x8
+ 1064 0315 45       		.byte	0x45
+ 1065 0316 00       		.byte	0
+ 1066 0317 00       		.byte	0
+ 1067 0318 1B       		.uleb128 0x1b
+ 1068 0319 DE010000 		.4byte	.LASF32
+ 1069 031d 01       		.byte	0x1
+ 1070 031e 42       		.byte	0x42
+ 1071 031f AD000000 		.4byte	0xad
+ 1072 0323 00000000 		.4byte	.LFB61
+ 1073 0327 72000000 		.4byte	.LFE61-.LFB61
+ 1074 032b 01       		.uleb128 0x1
+ 1075 032c 9C       		.byte	0x9c
+ 1076 032d D1030000 		.4byte	0x3d1
+ 1077 0331 1D       		.uleb128 0x1d
+ 1078 0332 41445200 		.ascii	"ADR\000"
+ 1079 0336 01       		.byte	0x1
+ 1080 0337 42       		.byte	0x42
+ 1081 0338 AD000000 		.4byte	0xad
+ 1082 033c C4000000 		.4byte	.LLST7
+ 1083 0340 1D       		.uleb128 0x1d
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 25
+
+
+ 1084 0341 52656700 		.ascii	"Reg\000"
+ 1085 0345 01       		.byte	0x1
+ 1086 0346 42       		.byte	0x42
+ 1087 0347 AD000000 		.4byte	0xad
+ 1088 034b E5000000 		.4byte	.LLST8
+ 1089 034f 1E       		.uleb128 0x1e
+ 1090 0350 97020000 		.4byte	.LASF23
+ 1091 0354 01       		.byte	0x1
+ 1092 0355 42       		.byte	0x42
+ 1093 0356 7B010000 		.4byte	0x17b
+ 1094 035a 06010000 		.4byte	.LLST9
+ 1095 035e 1F       		.uleb128 0x1f
+ 1096 035f 5E010000 		.4byte	.LASF24
+ 1097 0363 01       		.byte	0x1
+ 1098 0364 45       		.byte	0x45
+ 1099 0365 E3000000 		.4byte	0xe3
+ 1100 0369 02       		.uleb128 0x2
+ 1101 036a 91       		.byte	0x91
+ 1102 036b 62       		.sleb128 -30
+ 1103 036c 1C       		.uleb128 0x1c
+ 1104 036d 42756600 		.ascii	"Buf\000"
+ 1105 0371 01       		.byte	0x1
+ 1106 0372 46       		.byte	0x46
+ 1107 0373 D1030000 		.4byte	0x3d1
+ 1108 0377 02       		.uleb128 0x2
+ 1109 0378 91       		.byte	0x91
+ 1110 0379 64       		.sleb128 -28
+ 1111 037a 1F       		.uleb128 0x1f
+ 1112 037b 24010000 		.4byte	.LASF25
+ 1113 037f 01       		.byte	0x1
+ 1114 0380 47       		.byte	0x47
+ 1115 0381 E3000000 		.4byte	0xe3
+ 1116 0385 02       		.uleb128 0x2
+ 1117 0386 91       		.byte	0x91
+ 1118 0387 63       		.sleb128 -29
+ 1119 0388 17       		.uleb128 0x17
+ 1120 0389 2E000000 		.4byte	.LVL18
+ 1121 038d DA060000 		.4byte	0x6da
+ 1122 0391 A1030000 		.4byte	0x3a1
+ 1123 0395 18       		.uleb128 0x18
+ 1124 0396 01       		.uleb128 0x1
+ 1125 0397 51       		.byte	0x51
+ 1126 0398 01       		.uleb128 0x1
+ 1127 0399 30       		.byte	0x30
+ 1128 039a 18       		.uleb128 0x18
+ 1129 039b 01       		.uleb128 0x1
+ 1130 039c 50       		.byte	0x50
+ 1131 039d 02       		.uleb128 0x2
+ 1132 039e 77       		.byte	0x77
+ 1133 039f 00       		.sleb128 0
+ 1134 03a0 00       		.byte	0
+ 1135 03a1 17       		.uleb128 0x17
+ 1136 03a2 4E000000 		.4byte	.LVL19
+ 1137 03a6 F4060000 		.4byte	0x6f4
+ 1138 03aa B5030000 		.4byte	0x3b5
+ 1139 03ae 18       		.uleb128 0x18
+ 1140 03af 01       		.uleb128 0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 26
+
+
+ 1141 03b0 50       		.byte	0x50
+ 1142 03b1 02       		.uleb128 0x2
+ 1143 03b2 76       		.byte	0x76
+ 1144 03b3 00       		.sleb128 0
+ 1145 03b4 00       		.byte	0
+ 1146 03b5 19       		.uleb128 0x19
+ 1147 03b6 56000000 		.4byte	.LVL20
+ 1148 03ba F4060000 		.4byte	0x6f4
+ 1149 03be 19       		.uleb128 0x19
+ 1150 03bf 5E000000 		.4byte	.LVL21
+ 1151 03c3 F4060000 		.4byte	0x6f4
+ 1152 03c7 19       		.uleb128 0x19
+ 1153 03c8 62000000 		.4byte	.LVL22
+ 1154 03cc CF060000 		.4byte	0x6cf
+ 1155 03d0 00       		.byte	0
+ 1156 03d1 05       		.uleb128 0x5
+ 1157 03d2 81010000 		.4byte	0x181
+ 1158 03d6 10       		.uleb128 0x10
+ 1159 03d7 96010000 		.4byte	0x196
+ 1160 03db 00000000 		.4byte	.LFB62
+ 1161 03df 7E000000 		.4byte	.LFE62-.LFB62
+ 1162 03e3 01       		.uleb128 0x1
+ 1163 03e4 9C       		.byte	0x9c
+ 1164 03e5 81040000 		.4byte	0x481
+ 1165 03e9 11       		.uleb128 0x11
+ 1166 03ea A6010000 		.4byte	0x1a6
+ 1167 03ee 25010000 		.4byte	.LLST10
+ 1168 03f2 13       		.uleb128 0x13
+ 1169 03f3 B1010000 		.4byte	0x1b1
+ 1170 03f7 13       		.uleb128 0x13
+ 1171 03f8 BC010000 		.4byte	0x1bc
+ 1172 03fc 13       		.uleb128 0x13
+ 1173 03fd C7010000 		.4byte	0x1c7
+ 1174 0401 15       		.uleb128 0x15
+ 1175 0402 0E000000 		.4byte	.LBB8
+ 1176 0406 6A000000 		.4byte	.LBE8-.LBB8
+ 1177 040a 77040000 		.4byte	0x477
+ 1178 040e 11       		.uleb128 0x11
+ 1179 040f A6010000 		.4byte	0x1a6
+ 1180 0413 51010000 		.4byte	.LLST11
+ 1181 0417 16       		.uleb128 0x16
+ 1182 0418 0E000000 		.4byte	.LBB9
+ 1183 041c 6A000000 		.4byte	.LBE9-.LBB9
+ 1184 0420 12       		.uleb128 0x12
+ 1185 0421 B1010000 		.4byte	0x1b1
+ 1186 0425 64010000 		.4byte	.LLST12
+ 1187 0429 14       		.uleb128 0x14
+ 1188 042a BC010000 		.4byte	0x1bc
+ 1189 042e 02       		.uleb128 0x2
+ 1190 042f 91       		.byte	0x91
+ 1191 0430 6E       		.sleb128 -18
+ 1192 0431 12       		.uleb128 0x12
+ 1193 0432 C7010000 		.4byte	0x1c7
+ 1194 0436 8C010000 		.4byte	.LLST13
+ 1195 043a 17       		.uleb128 0x17
+ 1196 043b 1C000000 		.4byte	.LVL26
+ 1197 043f 28010000 		.4byte	0x128
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 27
+
+
+ 1198 0443 5A040000 		.4byte	0x45a
+ 1199 0447 18       		.uleb128 0x18
+ 1200 0448 01       		.uleb128 0x1
+ 1201 0449 52       		.byte	0x52
+ 1202 044a 02       		.uleb128 0x2
+ 1203 044b 76       		.byte	0x76
+ 1204 044c 00       		.sleb128 0
+ 1205 044d 18       		.uleb128 0x18
+ 1206 044e 01       		.uleb128 0x1
+ 1207 044f 51       		.byte	0x51
+ 1208 0450 02       		.uleb128 0x2
+ 1209 0451 75       		.byte	0x75
+ 1210 0452 00       		.sleb128 0
+ 1211 0453 18       		.uleb128 0x18
+ 1212 0454 01       		.uleb128 0x1
+ 1213 0455 50       		.byte	0x50
+ 1214 0456 02       		.uleb128 0x2
+ 1215 0457 08       		.byte	0x8
+ 1216 0458 45       		.byte	0x45
+ 1217 0459 00       		.byte	0
+ 1218 045a 1A       		.uleb128 0x1a
+ 1219 045b 2A000000 		.4byte	.LVL28
+ 1220 045f 28010000 		.4byte	0x128
+ 1221 0463 18       		.uleb128 0x18
+ 1222 0464 01       		.uleb128 0x1
+ 1223 0465 52       		.byte	0x52
+ 1224 0466 02       		.uleb128 0x2
+ 1225 0467 76       		.byte	0x76
+ 1226 0468 00       		.sleb128 0
+ 1227 0469 18       		.uleb128 0x18
+ 1228 046a 01       		.uleb128 0x1
+ 1229 046b 51       		.byte	0x51
+ 1230 046c 01       		.uleb128 0x1
+ 1231 046d 30       		.byte	0x30
+ 1232 046e 18       		.uleb128 0x18
+ 1233 046f 01       		.uleb128 0x1
+ 1234 0470 50       		.byte	0x50
+ 1235 0471 02       		.uleb128 0x2
+ 1236 0472 08       		.byte	0x8
+ 1237 0473 45       		.byte	0x45
+ 1238 0474 00       		.byte	0
+ 1239 0475 00       		.byte	0
+ 1240 0476 00       		.byte	0
+ 1241 0477 19       		.uleb128 0x19
+ 1242 0478 08000000 		.4byte	.LVL24
+ 1243 047c D5020000 		.4byte	0x2d5
+ 1244 0480 00       		.byte	0
+ 1245 0481 20       		.uleb128 0x20
+ 1246 0482 4D010000 		.4byte	.LASF52
+ 1247 0486 01       		.byte	0x1
+ 1248 0487 AA       		.byte	0xaa
+ 1249 0488 AD000000 		.4byte	0xad
+ 1250 048c 00000000 		.4byte	.LFB63
+ 1251 0490 30000000 		.4byte	.LFE63-.LFB63
+ 1252 0494 01       		.uleb128 0x1
+ 1253 0495 9C       		.byte	0x9c
+ 1254 0496 E3040000 		.4byte	0x4e3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 28
+
+
+ 1255 049a 1C       		.uleb128 0x1c
+ 1256 049b 42756600 		.ascii	"Buf\000"
+ 1257 049f 01       		.byte	0x1
+ 1258 04a0 AC       		.byte	0xac
+ 1259 04a1 B8000000 		.4byte	0xb8
+ 1260 04a5 02       		.uleb128 0x2
+ 1261 04a6 91       		.byte	0x91
+ 1262 04a7 76       		.sleb128 -10
+ 1263 04a8 17       		.uleb128 0x17
+ 1264 04a9 10000000 		.4byte	.LVL34
+ 1265 04ad 28010000 		.4byte	0x128
+ 1266 04b1 C7040000 		.4byte	0x4c7
+ 1267 04b5 18       		.uleb128 0x18
+ 1268 04b6 01       		.uleb128 0x1
+ 1269 04b7 52       		.byte	0x52
+ 1270 04b8 02       		.uleb128 0x2
+ 1271 04b9 74       		.byte	0x74
+ 1272 04ba 00       		.sleb128 0
+ 1273 04bb 18       		.uleb128 0x18
+ 1274 04bc 01       		.uleb128 0x1
+ 1275 04bd 51       		.byte	0x51
+ 1276 04be 01       		.uleb128 0x1
+ 1277 04bf 31       		.byte	0x31
+ 1278 04c0 18       		.uleb128 0x18
+ 1279 04c1 01       		.uleb128 0x1
+ 1280 04c2 50       		.byte	0x50
+ 1281 04c3 02       		.uleb128 0x2
+ 1282 04c4 08       		.byte	0x8
+ 1283 04c5 45       		.byte	0x45
+ 1284 04c6 00       		.byte	0
+ 1285 04c7 1A       		.uleb128 0x1a
+ 1286 04c8 28000000 		.4byte	.LVL35
+ 1287 04cc 18030000 		.4byte	0x318
+ 1288 04d0 18       		.uleb128 0x18
+ 1289 04d1 01       		.uleb128 0x1
+ 1290 04d2 52       		.byte	0x52
+ 1291 04d3 02       		.uleb128 0x2
+ 1292 04d4 74       		.byte	0x74
+ 1293 04d5 00       		.sleb128 0
+ 1294 04d6 18       		.uleb128 0x18
+ 1295 04d7 01       		.uleb128 0x1
+ 1296 04d8 51       		.byte	0x51
+ 1297 04d9 01       		.uleb128 0x1
+ 1298 04da 31       		.byte	0x31
+ 1299 04db 18       		.uleb128 0x18
+ 1300 04dc 01       		.uleb128 0x1
+ 1301 04dd 50       		.byte	0x50
+ 1302 04de 02       		.uleb128 0x2
+ 1303 04df 08       		.byte	0x8
+ 1304 04e0 45       		.byte	0x45
+ 1305 04e1 00       		.byte	0
+ 1306 04e2 00       		.byte	0
+ 1307 04e3 1B       		.uleb128 0x1b
+ 1308 04e4 CA020000 		.4byte	.LASF33
+ 1309 04e8 01       		.byte	0x1
+ 1310 04e9 B8       		.byte	0xb8
+ 1311 04ea 01010000 		.4byte	0x101
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 29
+
+
+ 1312 04ee 00000000 		.4byte	.LFB64
+ 1313 04f2 F4000000 		.4byte	.LFE64-.LFB64
+ 1314 04f6 01       		.uleb128 0x1
+ 1315 04f7 9C       		.byte	0x9c
+ 1316 04f8 64060000 		.4byte	0x664
+ 1317 04fc 1D       		.uleb128 0x1d
+ 1318 04fd 4C757800 		.ascii	"Lux\000"
+ 1319 0501 01       		.byte	0x1
+ 1320 0502 B8       		.byte	0xb8
+ 1321 0503 64060000 		.4byte	0x664
+ 1322 0507 AA010000 		.4byte	.LLST14
+ 1323 050b 1F       		.uleb128 0x1f
+ 1324 050c B8010000 		.4byte	.LASF28
+ 1325 0510 01       		.byte	0x1
+ 1326 0511 BA       		.byte	0xba
+ 1327 0512 C3000000 		.4byte	0xc3
+ 1328 0516 03       		.uleb128 0x3
+ 1329 0517 91       		.byte	0x91
+ 1330 0518 A87F     		.sleb128 -88
+ 1331 051a 21       		.uleb128 0x21
+ 1332 051b 537400   		.ascii	"St\000"
+ 1333 051e 01       		.byte	0x1
+ 1334 051f BB       		.byte	0xbb
+ 1335 0520 22010000 		.4byte	0x122
+ 1336 0524 CA010000 		.4byte	.LLST15
+ 1337 0528 22       		.uleb128 0x22
+ 1338 0529 BE000000 		.4byte	.LASF34
+ 1339 052d 01       		.byte	0x1
+ 1340 052e BC       		.byte	0xbc
+ 1341 052f DC000000 		.4byte	0xdc
+ 1342 0533 DD010000 		.4byte	.LLST16
+ 1343 0537 1F       		.uleb128 0x1f
+ 1344 0538 C6000000 		.4byte	.LASF35
+ 1345 053c 01       		.byte	0x1
+ 1346 053d BD       		.byte	0xbd
+ 1347 053e E3000000 		.4byte	0xe3
+ 1348 0542 03       		.uleb128 0x3
+ 1349 0543 91       		.byte	0x91
+ 1350 0544 A37F     		.sleb128 -93
+ 1351 0546 1C       		.uleb128 0x1c
+ 1352 0547 42756600 		.ascii	"Buf\000"
+ 1353 054b 01       		.byte	0x1
+ 1354 054c BE       		.byte	0xbe
+ 1355 054d 7A060000 		.4byte	0x67a
+ 1356 0551 03       		.uleb128 0x3
+ 1357 0552 91       		.byte	0x91
+ 1358 0553 AC7F     		.sleb128 -84
+ 1359 0555 1F       		.uleb128 0x1f
+ 1360 0556 65010000 		.4byte	.LASF36
+ 1361 055a 01       		.byte	0x1
+ 1362 055b C0       		.byte	0xc0
+ 1363 055c 12010000 		.4byte	0x112
+ 1364 0560 02       		.uleb128 0x2
+ 1365 0561 91       		.byte	0x91
+ 1366 0562 4C       		.sleb128 -52
+ 1367 0563 1F       		.uleb128 0x1f
+ 1368 0564 D7000000 		.4byte	.LASF37
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 30
+
+
+ 1369 0568 01       		.byte	0x1
+ 1370 0569 C1       		.byte	0xc1
+ 1371 056a 8F060000 		.4byte	0x68f
+ 1372 056e 03       		.uleb128 0x3
+ 1373 056f 91       		.byte	0x91
+ 1374 0570 A47F     		.sleb128 -92
+ 1375 0572 1F       		.uleb128 0x1f
+ 1376 0573 33030000 		.4byte	.LASF38
+ 1377 0577 01       		.byte	0x1
+ 1378 0578 C2       		.byte	0xc2
+ 1379 0579 A4060000 		.4byte	0x6a4
+ 1380 057d 03       		.uleb128 0x3
+ 1381 057e 91       		.byte	0x91
+ 1382 057f BC7F     		.sleb128 -68
+ 1383 0581 17       		.uleb128 0x17
+ 1384 0582 1E000000 		.4byte	.LVL38
+ 1385 0586 23070000 		.4byte	0x723
+ 1386 058a A3050000 		.4byte	0x5a3
+ 1387 058e 18       		.uleb128 0x18
+ 1388 058f 01       		.uleb128 0x1
+ 1389 0590 52       		.byte	0x52
+ 1390 0591 01       		.uleb128 0x1
+ 1391 0592 3D       		.byte	0x3d
+ 1392 0593 18       		.uleb128 0x18
+ 1393 0594 01       		.uleb128 0x1
+ 1394 0595 51       		.byte	0x51
+ 1395 0596 05       		.uleb128 0x5
+ 1396 0597 03       		.byte	0x3
+ 1397 0598 00000000 		.4byte	.LANCHOR0
+ 1398 059c 18       		.uleb128 0x18
+ 1399 059d 01       		.uleb128 0x1
+ 1400 059e 50       		.byte	0x50
+ 1401 059f 02       		.uleb128 0x2
+ 1402 05a0 76       		.byte	0x76
+ 1403 05a1 00       		.sleb128 0
+ 1404 05a2 00       		.byte	0
+ 1405 05a3 17       		.uleb128 0x17
+ 1406 05a4 2C000000 		.4byte	.LVL39
+ 1407 05a8 47070000 		.4byte	0x747
+ 1408 05ac C2050000 		.4byte	0x5c2
+ 1409 05b0 18       		.uleb128 0x18
+ 1410 05b1 01       		.uleb128 0x1
+ 1411 05b2 52       		.byte	0x52
+ 1412 05b3 01       		.uleb128 0x1
+ 1413 05b4 3C       		.byte	0x3c
+ 1414 05b5 18       		.uleb128 0x18
+ 1415 05b6 01       		.uleb128 0x1
+ 1416 05b7 51       		.byte	0x51
+ 1417 05b8 02       		.uleb128 0x2
+ 1418 05b9 77       		.byte	0x77
+ 1419 05ba 00       		.sleb128 0
+ 1420 05bb 18       		.uleb128 0x18
+ 1421 05bc 01       		.uleb128 0x1
+ 1422 05bd 50       		.byte	0x50
+ 1423 05be 02       		.uleb128 0x2
+ 1424 05bf 74       		.byte	0x74
+ 1425 05c0 36       		.sleb128 54
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 31
+
+
+ 1426 05c1 00       		.byte	0
+ 1427 05c2 17       		.uleb128 0x17
+ 1428 05c3 38000000 		.4byte	.LVL40
+ 1429 05c7 23070000 		.4byte	0x723
+ 1430 05cb E5050000 		.4byte	0x5e5
+ 1431 05cf 18       		.uleb128 0x18
+ 1432 05d0 01       		.uleb128 0x1
+ 1433 05d1 52       		.byte	0x52
+ 1434 05d2 01       		.uleb128 0x1
+ 1435 05d3 33       		.byte	0x33
+ 1436 05d4 18       		.uleb128 0x18
+ 1437 05d5 01       		.uleb128 0x1
+ 1438 05d6 51       		.byte	0x51
+ 1439 05d7 05       		.uleb128 0x5
+ 1440 05d8 03       		.byte	0x3
+ 1441 05d9 00000000 		.4byte	.LC2
+ 1442 05dd 18       		.uleb128 0x18
+ 1443 05de 01       		.uleb128 0x1
+ 1444 05df 50       		.byte	0x50
+ 1445 05e0 03       		.uleb128 0x3
+ 1446 05e1 91       		.byte	0x91
+ 1447 05e2 A47F     		.sleb128 -92
+ 1448 05e4 00       		.byte	0
+ 1449 05e5 17       		.uleb128 0x17
+ 1450 05e6 42000000 		.4byte	.LVL41
+ 1451 05ea 23070000 		.4byte	0x723
+ 1452 05ee 07060000 		.4byte	0x607
+ 1453 05f2 18       		.uleb128 0x18
+ 1454 05f3 01       		.uleb128 0x1
+ 1455 05f4 52       		.byte	0x52
+ 1456 05f5 01       		.uleb128 0x1
+ 1457 05f6 3F       		.byte	0x3f
+ 1458 05f7 18       		.uleb128 0x18
+ 1459 05f8 01       		.uleb128 0x1
+ 1460 05f9 51       		.byte	0x51
+ 1461 05fa 05       		.uleb128 0x5
+ 1462 05fb 03       		.byte	0x3
+ 1463 05fc 03000000 		.4byte	.LC4
+ 1464 0600 18       		.uleb128 0x18
+ 1465 0601 01       		.uleb128 0x1
+ 1466 0602 50       		.byte	0x50
+ 1467 0603 02       		.uleb128 0x2
+ 1468 0604 77       		.byte	0x77
+ 1469 0605 00       		.sleb128 0
+ 1470 0606 00       		.byte	0
+ 1471 0607 17       		.uleb128 0x17
+ 1472 0608 48000000 		.4byte	.LVL42
+ 1473 060c 96010000 		.4byte	0x196
+ 1474 0610 1C060000 		.4byte	0x61c
+ 1475 0614 18       		.uleb128 0x18
+ 1476 0615 01       		.uleb128 0x1
+ 1477 0616 50       		.byte	0x50
+ 1478 0617 03       		.uleb128 0x3
+ 1479 0618 91       		.byte	0x91
+ 1480 0619 A87F     		.sleb128 -88
+ 1481 061b 00       		.byte	0
+ 1482 061c 19       		.uleb128 0x19
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 32
+
+
+ 1483 061d 58000000 		.4byte	.LVL43
+ 1484 0621 64070000 		.4byte	0x764
+ 1485 0625 19       		.uleb128 0x19
+ 1486 0626 5C000000 		.4byte	.LVL44
+ 1487 062a 75070000 		.4byte	0x775
+ 1488 062e 17       		.uleb128 0x17
+ 1489 062f 9C000000 		.4byte	.LVL53
+ 1490 0633 86070000 		.4byte	0x786
+ 1491 0637 47060000 		.4byte	0x647
+ 1492 063b 18       		.uleb128 0x18
+ 1493 063c 01       		.uleb128 0x1
+ 1494 063d 52       		.byte	0x52
+ 1495 063e 01       		.uleb128 0x1
+ 1496 063f 37       		.byte	0x37
+ 1497 0640 18       		.uleb128 0x18
+ 1498 0641 01       		.uleb128 0x1
+ 1499 0642 50       		.byte	0x50
+ 1500 0643 02       		.uleb128 0x2
+ 1501 0644 76       		.byte	0x76
+ 1502 0645 00       		.sleb128 0
+ 1503 0646 00       		.byte	0
+ 1504 0647 1A       		.uleb128 0x1a
+ 1505 0648 A6000000 		.4byte	.LVL54
+ 1506 064c 86070000 		.4byte	0x786
+ 1507 0650 18       		.uleb128 0x18
+ 1508 0651 01       		.uleb128 0x1
+ 1509 0652 52       		.byte	0x52
+ 1510 0653 01       		.uleb128 0x1
+ 1511 0654 33       		.byte	0x33
+ 1512 0655 18       		.uleb128 0x18
+ 1513 0656 01       		.uleb128 0x1
+ 1514 0657 51       		.byte	0x51
+ 1515 0658 03       		.uleb128 0x3
+ 1516 0659 91       		.byte	0x91
+ 1517 065a A47F     		.sleb128 -92
+ 1518 065c 18       		.uleb128 0x18
+ 1519 065d 01       		.uleb128 0x1
+ 1520 065e 50       		.byte	0x50
+ 1521 065f 02       		.uleb128 0x2
+ 1522 0660 76       		.byte	0x76
+ 1523 0661 00       		.sleb128 0
+ 1524 0662 00       		.byte	0
+ 1525 0663 00       		.byte	0
+ 1526 0664 07       		.uleb128 0x7
+ 1527 0665 04       		.byte	0x4
+ 1528 0666 E8000000 		.4byte	0xe8
+ 1529 066a 09       		.uleb128 0x9
+ 1530 066b AD000000 		.4byte	0xad
+ 1531 066f 7A060000 		.4byte	0x67a
+ 1532 0673 0A       		.uleb128 0xa
+ 1533 0674 F8000000 		.4byte	0xf8
+ 1534 0678 0E       		.byte	0xe
+ 1535 0679 00       		.byte	0
+ 1536 067a 05       		.uleb128 0x5
+ 1537 067b 6A060000 		.4byte	0x66a
+ 1538 067f 09       		.uleb128 0x9
+ 1539 0680 DC000000 		.4byte	0xdc
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 33
+
+
+ 1540 0684 8F060000 		.4byte	0x68f
+ 1541 0688 0A       		.uleb128 0xa
+ 1542 0689 F8000000 		.4byte	0xf8
+ 1543 068d 02       		.byte	0x2
+ 1544 068e 00       		.byte	0
+ 1545 068f 08       		.uleb128 0x8
+ 1546 0690 7F060000 		.4byte	0x67f
+ 1547 0694 09       		.uleb128 0x9
+ 1548 0695 DC000000 		.4byte	0xdc
+ 1549 0699 A4060000 		.4byte	0x6a4
+ 1550 069d 0A       		.uleb128 0xa
+ 1551 069e F8000000 		.4byte	0xf8
+ 1552 06a2 0E       		.byte	0xe
+ 1553 06a3 00       		.byte	0
+ 1554 06a4 08       		.uleb128 0x8
+ 1555 06a5 94060000 		.4byte	0x694
+ 1556 06a9 23       		.uleb128 0x23
+ 1557 06aa 01010000 		.4byte	.LASF53
+ 1558 06ae 09       		.byte	0x9
+ 1559 06af 51       		.byte	0x51
+ 1560 06b0 12010000 		.4byte	0x112
+ 1561 06b4 05       		.uleb128 0x5
+ 1562 06b5 03       		.byte	0x3
+ 1563 06b6 00000000 		.4byte	OPT_Out_String
+ 1564 06ba 24       		.uleb128 0x24
+ 1565 06bb FA020000 		.4byte	.LASF39
+ 1566 06bf 06       		.byte	0x6
+ 1567 06c0 D0       		.byte	0xd0
+ 1568 06c1 C3000000 		.4byte	0xc3
+ 1569 06c5 CF060000 		.4byte	0x6cf
+ 1570 06c9 25       		.uleb128 0x25
+ 1571 06ca C3000000 		.4byte	0xc3
+ 1572 06ce 00       		.byte	0
+ 1573 06cf 26       		.uleb128 0x26
+ 1574 06d0 3D030000 		.4byte	.LASF46
+ 1575 06d4 06       		.byte	0x6
+ 1576 06d5 CE       		.byte	0xce
+ 1577 06d6 C3000000 		.4byte	0xc3
+ 1578 06da 24       		.uleb128 0x24
+ 1579 06db 08000000 		.4byte	.LASF40
+ 1580 06df 06       		.byte	0x6
+ 1581 06e0 CC       		.byte	0xcc
+ 1582 06e1 C3000000 		.4byte	0xc3
+ 1583 06e5 F4060000 		.4byte	0x6f4
+ 1584 06e9 25       		.uleb128 0x25
+ 1585 06ea C3000000 		.4byte	0xc3
+ 1586 06ee 25       		.uleb128 0x25
+ 1587 06ef C3000000 		.4byte	0xc3
+ 1588 06f3 00       		.byte	0
+ 1589 06f4 24       		.uleb128 0x24
+ 1590 06f5 B3020000 		.4byte	.LASF41
+ 1591 06f9 06       		.byte	0x6
+ 1592 06fa CF       		.byte	0xcf
+ 1593 06fb C3000000 		.4byte	0xc3
+ 1594 06ff 09070000 		.4byte	0x709
+ 1595 0703 25       		.uleb128 0x25
+ 1596 0704 C3000000 		.4byte	0xc3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 34
+
+
+ 1597 0708 00       		.byte	0
+ 1598 0709 24       		.uleb128 0x24
+ 1599 070a 67020000 		.4byte	.LASF42
+ 1600 070e 06       		.byte	0x6
+ 1601 070f CD       		.byte	0xcd
+ 1602 0710 C3000000 		.4byte	0xc3
+ 1603 0714 23070000 		.4byte	0x723
+ 1604 0718 25       		.uleb128 0x25
+ 1605 0719 C3000000 		.4byte	0xc3
+ 1606 071d 25       		.uleb128 0x25
+ 1607 071e C3000000 		.4byte	0xc3
+ 1608 0722 00       		.byte	0
+ 1609 0723 27       		.uleb128 0x27
+ 1610 0724 A0020000 		.4byte	.LASF43
+ 1611 0728 FF000000 		.4byte	0xff
+ 1612 072c 40070000 		.4byte	0x740
+ 1613 0730 25       		.uleb128 0x25
+ 1614 0731 FF000000 		.4byte	0xff
+ 1615 0735 25       		.uleb128 0x25
+ 1616 0736 40070000 		.4byte	0x740
+ 1617 073a 25       		.uleb128 0x25
+ 1618 073b F8000000 		.4byte	0xf8
+ 1619 073f 00       		.byte	0
+ 1620 0740 07       		.uleb128 0x7
+ 1621 0741 04       		.byte	0x4
+ 1622 0742 46070000 		.4byte	0x746
+ 1623 0746 28       		.uleb128 0x28
+ 1624 0747 27       		.uleb128 0x27
+ 1625 0748 6D010000 		.4byte	.LASF44
+ 1626 074c FF000000 		.4byte	0xff
+ 1627 0750 64070000 		.4byte	0x764
+ 1628 0754 25       		.uleb128 0x25
+ 1629 0755 FF000000 		.4byte	0xff
+ 1630 0759 25       		.uleb128 0x25
+ 1631 075a 7E000000 		.4byte	0x7e
+ 1632 075e 25       		.uleb128 0x25
+ 1633 075f F8000000 		.4byte	0xf8
+ 1634 0763 00       		.byte	0
+ 1635 0764 29       		.uleb128 0x29
+ 1636 0765 CD000000 		.4byte	.LASF45
+ 1637 0769 07       		.byte	0x7
+ 1638 076a 52       		.byte	0x52
+ 1639 076b 75070000 		.4byte	0x775
+ 1640 076f 25       		.uleb128 0x25
+ 1641 0770 A2000000 		.4byte	0xa2
+ 1642 0774 00       		.byte	0
+ 1643 0775 26       		.uleb128 0x26
+ 1644 0776 BF010000 		.4byte	.LASF47
+ 1645 077a 07       		.byte	0x7
+ 1646 077b 39       		.byte	0x39
+ 1647 077c 80070000 		.4byte	0x780
+ 1648 0780 07       		.uleb128 0x7
+ 1649 0781 04       		.byte	0x4
+ 1650 0782 8C000000 		.4byte	0x8c
+ 1651 0786 2A       		.uleb128 0x2a
+ 1652 0787 86010000 		.4byte	.LASF48
+ 1653 078b 08       		.byte	0x8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 35
+
+
+ 1654 078c 22       		.byte	0x22
+ 1655 078d 01010000 		.4byte	0x101
+ 1656 0791 25       		.uleb128 0x25
+ 1657 0792 01010000 		.4byte	0x101
+ 1658 0796 25       		.uleb128 0x25
+ 1659 0797 07010000 		.4byte	0x107
+ 1660 079b 25       		.uleb128 0x25
+ 1661 079c ED000000 		.4byte	0xed
+ 1662 07a0 00       		.byte	0
+ 1663 07a1 00       		.byte	0
+ 1664              		.section	.debug_abbrev,"",%progbits
+ 1665              	.Ldebug_abbrev0:
+ 1666 0000 01       		.uleb128 0x1
+ 1667 0001 11       		.uleb128 0x11
+ 1668 0002 01       		.byte	0x1
+ 1669 0003 25       		.uleb128 0x25
+ 1670 0004 0E       		.uleb128 0xe
+ 1671 0005 13       		.uleb128 0x13
+ 1672 0006 0B       		.uleb128 0xb
+ 1673 0007 03       		.uleb128 0x3
+ 1674 0008 0E       		.uleb128 0xe
+ 1675 0009 1B       		.uleb128 0x1b
+ 1676 000a 0E       		.uleb128 0xe
+ 1677 000b 55       		.uleb128 0x55
+ 1678 000c 17       		.uleb128 0x17
+ 1679 000d 11       		.uleb128 0x11
+ 1680 000e 01       		.uleb128 0x1
+ 1681 000f 10       		.uleb128 0x10
+ 1682 0010 17       		.uleb128 0x17
+ 1683 0011 00       		.byte	0
+ 1684 0012 00       		.byte	0
+ 1685 0013 02       		.uleb128 0x2
+ 1686 0014 24       		.uleb128 0x24
+ 1687 0015 00       		.byte	0
+ 1688 0016 0B       		.uleb128 0xb
+ 1689 0017 0B       		.uleb128 0xb
+ 1690 0018 3E       		.uleb128 0x3e
+ 1691 0019 0B       		.uleb128 0xb
+ 1692 001a 03       		.uleb128 0x3
+ 1693 001b 0E       		.uleb128 0xe
+ 1694 001c 00       		.byte	0
+ 1695 001d 00       		.byte	0
+ 1696 001e 03       		.uleb128 0x3
+ 1697 001f 16       		.uleb128 0x16
+ 1698 0020 00       		.byte	0
+ 1699 0021 03       		.uleb128 0x3
+ 1700 0022 0E       		.uleb128 0xe
+ 1701 0023 3A       		.uleb128 0x3a
+ 1702 0024 0B       		.uleb128 0xb
+ 1703 0025 3B       		.uleb128 0x3b
+ 1704 0026 0B       		.uleb128 0xb
+ 1705 0027 49       		.uleb128 0x49
+ 1706 0028 13       		.uleb128 0x13
+ 1707 0029 00       		.byte	0
+ 1708 002a 00       		.byte	0
+ 1709 002b 04       		.uleb128 0x4
+ 1710 002c 24       		.uleb128 0x24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 36
+
+
+ 1711 002d 00       		.byte	0
+ 1712 002e 0B       		.uleb128 0xb
+ 1713 002f 0B       		.uleb128 0xb
+ 1714 0030 3E       		.uleb128 0x3e
+ 1715 0031 0B       		.uleb128 0xb
+ 1716 0032 03       		.uleb128 0x3
+ 1717 0033 08       		.uleb128 0x8
+ 1718 0034 00       		.byte	0
+ 1719 0035 00       		.byte	0
+ 1720 0036 05       		.uleb128 0x5
+ 1721 0037 35       		.uleb128 0x35
+ 1722 0038 00       		.byte	0
+ 1723 0039 49       		.uleb128 0x49
+ 1724 003a 13       		.uleb128 0x13
+ 1725 003b 00       		.byte	0
+ 1726 003c 00       		.byte	0
+ 1727 003d 06       		.uleb128 0x6
+ 1728 003e 0F       		.uleb128 0xf
+ 1729 003f 00       		.byte	0
+ 1730 0040 0B       		.uleb128 0xb
+ 1731 0041 0B       		.uleb128 0xb
+ 1732 0042 00       		.byte	0
+ 1733 0043 00       		.byte	0
+ 1734 0044 07       		.uleb128 0x7
+ 1735 0045 0F       		.uleb128 0xf
+ 1736 0046 00       		.byte	0
+ 1737 0047 0B       		.uleb128 0xb
+ 1738 0048 0B       		.uleb128 0xb
+ 1739 0049 49       		.uleb128 0x49
+ 1740 004a 13       		.uleb128 0x13
+ 1741 004b 00       		.byte	0
+ 1742 004c 00       		.byte	0
+ 1743 004d 08       		.uleb128 0x8
+ 1744 004e 26       		.uleb128 0x26
+ 1745 004f 00       		.byte	0
+ 1746 0050 49       		.uleb128 0x49
+ 1747 0051 13       		.uleb128 0x13
+ 1748 0052 00       		.byte	0
+ 1749 0053 00       		.byte	0
+ 1750 0054 09       		.uleb128 0x9
+ 1751 0055 01       		.uleb128 0x1
+ 1752 0056 01       		.byte	0x1
+ 1753 0057 49       		.uleb128 0x49
+ 1754 0058 13       		.uleb128 0x13
+ 1755 0059 01       		.uleb128 0x1
+ 1756 005a 13       		.uleb128 0x13
+ 1757 005b 00       		.byte	0
+ 1758 005c 00       		.byte	0
+ 1759 005d 0A       		.uleb128 0xa
+ 1760 005e 21       		.uleb128 0x21
+ 1761 005f 00       		.byte	0
+ 1762 0060 49       		.uleb128 0x49
+ 1763 0061 13       		.uleb128 0x13
+ 1764 0062 2F       		.uleb128 0x2f
+ 1765 0063 0B       		.uleb128 0xb
+ 1766 0064 00       		.byte	0
+ 1767 0065 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 37
+
+
+ 1768 0066 0B       		.uleb128 0xb
+ 1769 0067 2E       		.uleb128 0x2e
+ 1770 0068 01       		.byte	0x1
+ 1771 0069 3F       		.uleb128 0x3f
+ 1772 006a 19       		.uleb128 0x19
+ 1773 006b 03       		.uleb128 0x3
+ 1774 006c 0E       		.uleb128 0xe
+ 1775 006d 3A       		.uleb128 0x3a
+ 1776 006e 0B       		.uleb128 0xb
+ 1777 006f 3B       		.uleb128 0x3b
+ 1778 0070 0B       		.uleb128 0xb
+ 1779 0071 27       		.uleb128 0x27
+ 1780 0072 19       		.uleb128 0x19
+ 1781 0073 49       		.uleb128 0x49
+ 1782 0074 13       		.uleb128 0x13
+ 1783 0075 20       		.uleb128 0x20
+ 1784 0076 0B       		.uleb128 0xb
+ 1785 0077 01       		.uleb128 0x1
+ 1786 0078 13       		.uleb128 0x13
+ 1787 0079 00       		.byte	0
+ 1788 007a 00       		.byte	0
+ 1789 007b 0C       		.uleb128 0xc
+ 1790 007c 05       		.uleb128 0x5
+ 1791 007d 00       		.byte	0
+ 1792 007e 03       		.uleb128 0x3
+ 1793 007f 08       		.uleb128 0x8
+ 1794 0080 3A       		.uleb128 0x3a
+ 1795 0081 0B       		.uleb128 0xb
+ 1796 0082 3B       		.uleb128 0x3b
+ 1797 0083 0B       		.uleb128 0xb
+ 1798 0084 49       		.uleb128 0x49
+ 1799 0085 13       		.uleb128 0x13
+ 1800 0086 00       		.byte	0
+ 1801 0087 00       		.byte	0
+ 1802 0088 0D       		.uleb128 0xd
+ 1803 0089 05       		.uleb128 0x5
+ 1804 008a 00       		.byte	0
+ 1805 008b 03       		.uleb128 0x3
+ 1806 008c 0E       		.uleb128 0xe
+ 1807 008d 3A       		.uleb128 0x3a
+ 1808 008e 0B       		.uleb128 0xb
+ 1809 008f 3B       		.uleb128 0x3b
+ 1810 0090 0B       		.uleb128 0xb
+ 1811 0091 49       		.uleb128 0x49
+ 1812 0092 13       		.uleb128 0x13
+ 1813 0093 00       		.byte	0
+ 1814 0094 00       		.byte	0
+ 1815 0095 0E       		.uleb128 0xe
+ 1816 0096 34       		.uleb128 0x34
+ 1817 0097 00       		.byte	0
+ 1818 0098 03       		.uleb128 0x3
+ 1819 0099 0E       		.uleb128 0xe
+ 1820 009a 3A       		.uleb128 0x3a
+ 1821 009b 0B       		.uleb128 0xb
+ 1822 009c 3B       		.uleb128 0x3b
+ 1823 009d 0B       		.uleb128 0xb
+ 1824 009e 49       		.uleb128 0x49
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 38
+
+
+ 1825 009f 13       		.uleb128 0x13
+ 1826 00a0 00       		.byte	0
+ 1827 00a1 00       		.byte	0
+ 1828 00a2 0F       		.uleb128 0xf
+ 1829 00a3 34       		.uleb128 0x34
+ 1830 00a4 00       		.byte	0
+ 1831 00a5 03       		.uleb128 0x3
+ 1832 00a6 08       		.uleb128 0x8
+ 1833 00a7 3A       		.uleb128 0x3a
+ 1834 00a8 0B       		.uleb128 0xb
+ 1835 00a9 3B       		.uleb128 0x3b
+ 1836 00aa 0B       		.uleb128 0xb
+ 1837 00ab 49       		.uleb128 0x49
+ 1838 00ac 13       		.uleb128 0x13
+ 1839 00ad 00       		.byte	0
+ 1840 00ae 00       		.byte	0
+ 1841 00af 10       		.uleb128 0x10
+ 1842 00b0 2E       		.uleb128 0x2e
+ 1843 00b1 01       		.byte	0x1
+ 1844 00b2 31       		.uleb128 0x31
+ 1845 00b3 13       		.uleb128 0x13
+ 1846 00b4 11       		.uleb128 0x11
+ 1847 00b5 01       		.uleb128 0x1
+ 1848 00b6 12       		.uleb128 0x12
+ 1849 00b7 06       		.uleb128 0x6
+ 1850 00b8 40       		.uleb128 0x40
+ 1851 00b9 18       		.uleb128 0x18
+ 1852 00ba 9742     		.uleb128 0x2117
+ 1853 00bc 19       		.uleb128 0x19
+ 1854 00bd 01       		.uleb128 0x1
+ 1855 00be 13       		.uleb128 0x13
+ 1856 00bf 00       		.byte	0
+ 1857 00c0 00       		.byte	0
+ 1858 00c1 11       		.uleb128 0x11
+ 1859 00c2 05       		.uleb128 0x5
+ 1860 00c3 00       		.byte	0
+ 1861 00c4 31       		.uleb128 0x31
+ 1862 00c5 13       		.uleb128 0x13
+ 1863 00c6 02       		.uleb128 0x2
+ 1864 00c7 17       		.uleb128 0x17
+ 1865 00c8 00       		.byte	0
+ 1866 00c9 00       		.byte	0
+ 1867 00ca 12       		.uleb128 0x12
+ 1868 00cb 34       		.uleb128 0x34
+ 1869 00cc 00       		.byte	0
+ 1870 00cd 31       		.uleb128 0x31
+ 1871 00ce 13       		.uleb128 0x13
+ 1872 00cf 02       		.uleb128 0x2
+ 1873 00d0 17       		.uleb128 0x17
+ 1874 00d1 00       		.byte	0
+ 1875 00d2 00       		.byte	0
+ 1876 00d3 13       		.uleb128 0x13
+ 1877 00d4 34       		.uleb128 0x34
+ 1878 00d5 00       		.byte	0
+ 1879 00d6 31       		.uleb128 0x31
+ 1880 00d7 13       		.uleb128 0x13
+ 1881 00d8 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 39
+
+
+ 1882 00d9 00       		.byte	0
+ 1883 00da 14       		.uleb128 0x14
+ 1884 00db 34       		.uleb128 0x34
+ 1885 00dc 00       		.byte	0
+ 1886 00dd 31       		.uleb128 0x31
+ 1887 00de 13       		.uleb128 0x13
+ 1888 00df 02       		.uleb128 0x2
+ 1889 00e0 18       		.uleb128 0x18
+ 1890 00e1 00       		.byte	0
+ 1891 00e2 00       		.byte	0
+ 1892 00e3 15       		.uleb128 0x15
+ 1893 00e4 0B       		.uleb128 0xb
+ 1894 00e5 01       		.byte	0x1
+ 1895 00e6 11       		.uleb128 0x11
+ 1896 00e7 01       		.uleb128 0x1
+ 1897 00e8 12       		.uleb128 0x12
+ 1898 00e9 06       		.uleb128 0x6
+ 1899 00ea 01       		.uleb128 0x1
+ 1900 00eb 13       		.uleb128 0x13
+ 1901 00ec 00       		.byte	0
+ 1902 00ed 00       		.byte	0
+ 1903 00ee 16       		.uleb128 0x16
+ 1904 00ef 0B       		.uleb128 0xb
+ 1905 00f0 01       		.byte	0x1
+ 1906 00f1 11       		.uleb128 0x11
+ 1907 00f2 01       		.uleb128 0x1
+ 1908 00f3 12       		.uleb128 0x12
+ 1909 00f4 06       		.uleb128 0x6
+ 1910 00f5 00       		.byte	0
+ 1911 00f6 00       		.byte	0
+ 1912 00f7 17       		.uleb128 0x17
+ 1913 00f8 898201   		.uleb128 0x4109
+ 1914 00fb 01       		.byte	0x1
+ 1915 00fc 11       		.uleb128 0x11
+ 1916 00fd 01       		.uleb128 0x1
+ 1917 00fe 31       		.uleb128 0x31
+ 1918 00ff 13       		.uleb128 0x13
+ 1919 0100 01       		.uleb128 0x1
+ 1920 0101 13       		.uleb128 0x13
+ 1921 0102 00       		.byte	0
+ 1922 0103 00       		.byte	0
+ 1923 0104 18       		.uleb128 0x18
+ 1924 0105 8A8201   		.uleb128 0x410a
+ 1925 0108 00       		.byte	0
+ 1926 0109 02       		.uleb128 0x2
+ 1927 010a 18       		.uleb128 0x18
+ 1928 010b 9142     		.uleb128 0x2111
+ 1929 010d 18       		.uleb128 0x18
+ 1930 010e 00       		.byte	0
+ 1931 010f 00       		.byte	0
+ 1932 0110 19       		.uleb128 0x19
+ 1933 0111 898201   		.uleb128 0x4109
+ 1934 0114 00       		.byte	0
+ 1935 0115 11       		.uleb128 0x11
+ 1936 0116 01       		.uleb128 0x1
+ 1937 0117 31       		.uleb128 0x31
+ 1938 0118 13       		.uleb128 0x13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 40
+
+
+ 1939 0119 00       		.byte	0
+ 1940 011a 00       		.byte	0
+ 1941 011b 1A       		.uleb128 0x1a
+ 1942 011c 898201   		.uleb128 0x4109
+ 1943 011f 01       		.byte	0x1
+ 1944 0120 11       		.uleb128 0x11
+ 1945 0121 01       		.uleb128 0x1
+ 1946 0122 31       		.uleb128 0x31
+ 1947 0123 13       		.uleb128 0x13
+ 1948 0124 00       		.byte	0
+ 1949 0125 00       		.byte	0
+ 1950 0126 1B       		.uleb128 0x1b
+ 1951 0127 2E       		.uleb128 0x2e
+ 1952 0128 01       		.byte	0x1
+ 1953 0129 3F       		.uleb128 0x3f
+ 1954 012a 19       		.uleb128 0x19
+ 1955 012b 03       		.uleb128 0x3
+ 1956 012c 0E       		.uleb128 0xe
+ 1957 012d 3A       		.uleb128 0x3a
+ 1958 012e 0B       		.uleb128 0xb
+ 1959 012f 3B       		.uleb128 0x3b
+ 1960 0130 0B       		.uleb128 0xb
+ 1961 0131 27       		.uleb128 0x27
+ 1962 0132 19       		.uleb128 0x19
+ 1963 0133 49       		.uleb128 0x49
+ 1964 0134 13       		.uleb128 0x13
+ 1965 0135 11       		.uleb128 0x11
+ 1966 0136 01       		.uleb128 0x1
+ 1967 0137 12       		.uleb128 0x12
+ 1968 0138 06       		.uleb128 0x6
+ 1969 0139 40       		.uleb128 0x40
+ 1970 013a 18       		.uleb128 0x18
+ 1971 013b 9742     		.uleb128 0x2117
+ 1972 013d 19       		.uleb128 0x19
+ 1973 013e 01       		.uleb128 0x1
+ 1974 013f 13       		.uleb128 0x13
+ 1975 0140 00       		.byte	0
+ 1976 0141 00       		.byte	0
+ 1977 0142 1C       		.uleb128 0x1c
+ 1978 0143 34       		.uleb128 0x34
+ 1979 0144 00       		.byte	0
+ 1980 0145 03       		.uleb128 0x3
+ 1981 0146 08       		.uleb128 0x8
+ 1982 0147 3A       		.uleb128 0x3a
+ 1983 0148 0B       		.uleb128 0xb
+ 1984 0149 3B       		.uleb128 0x3b
+ 1985 014a 0B       		.uleb128 0xb
+ 1986 014b 49       		.uleb128 0x49
+ 1987 014c 13       		.uleb128 0x13
+ 1988 014d 02       		.uleb128 0x2
+ 1989 014e 18       		.uleb128 0x18
+ 1990 014f 00       		.byte	0
+ 1991 0150 00       		.byte	0
+ 1992 0151 1D       		.uleb128 0x1d
+ 1993 0152 05       		.uleb128 0x5
+ 1994 0153 00       		.byte	0
+ 1995 0154 03       		.uleb128 0x3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 41
+
+
+ 1996 0155 08       		.uleb128 0x8
+ 1997 0156 3A       		.uleb128 0x3a
+ 1998 0157 0B       		.uleb128 0xb
+ 1999 0158 3B       		.uleb128 0x3b
+ 2000 0159 0B       		.uleb128 0xb
+ 2001 015a 49       		.uleb128 0x49
+ 2002 015b 13       		.uleb128 0x13
+ 2003 015c 02       		.uleb128 0x2
+ 2004 015d 17       		.uleb128 0x17
+ 2005 015e 00       		.byte	0
+ 2006 015f 00       		.byte	0
+ 2007 0160 1E       		.uleb128 0x1e
+ 2008 0161 05       		.uleb128 0x5
+ 2009 0162 00       		.byte	0
+ 2010 0163 03       		.uleb128 0x3
+ 2011 0164 0E       		.uleb128 0xe
+ 2012 0165 3A       		.uleb128 0x3a
+ 2013 0166 0B       		.uleb128 0xb
+ 2014 0167 3B       		.uleb128 0x3b
+ 2015 0168 0B       		.uleb128 0xb
+ 2016 0169 49       		.uleb128 0x49
+ 2017 016a 13       		.uleb128 0x13
+ 2018 016b 02       		.uleb128 0x2
+ 2019 016c 17       		.uleb128 0x17
+ 2020 016d 00       		.byte	0
+ 2021 016e 00       		.byte	0
+ 2022 016f 1F       		.uleb128 0x1f
+ 2023 0170 34       		.uleb128 0x34
+ 2024 0171 00       		.byte	0
+ 2025 0172 03       		.uleb128 0x3
+ 2026 0173 0E       		.uleb128 0xe
+ 2027 0174 3A       		.uleb128 0x3a
+ 2028 0175 0B       		.uleb128 0xb
+ 2029 0176 3B       		.uleb128 0x3b
+ 2030 0177 0B       		.uleb128 0xb
+ 2031 0178 49       		.uleb128 0x49
+ 2032 0179 13       		.uleb128 0x13
+ 2033 017a 02       		.uleb128 0x2
+ 2034 017b 18       		.uleb128 0x18
+ 2035 017c 00       		.byte	0
+ 2036 017d 00       		.byte	0
+ 2037 017e 20       		.uleb128 0x20
+ 2038 017f 2E       		.uleb128 0x2e
+ 2039 0180 01       		.byte	0x1
+ 2040 0181 3F       		.uleb128 0x3f
+ 2041 0182 19       		.uleb128 0x19
+ 2042 0183 03       		.uleb128 0x3
+ 2043 0184 0E       		.uleb128 0xe
+ 2044 0185 3A       		.uleb128 0x3a
+ 2045 0186 0B       		.uleb128 0xb
+ 2046 0187 3B       		.uleb128 0x3b
+ 2047 0188 0B       		.uleb128 0xb
+ 2048 0189 49       		.uleb128 0x49
+ 2049 018a 13       		.uleb128 0x13
+ 2050 018b 11       		.uleb128 0x11
+ 2051 018c 01       		.uleb128 0x1
+ 2052 018d 12       		.uleb128 0x12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 42
+
+
+ 2053 018e 06       		.uleb128 0x6
+ 2054 018f 40       		.uleb128 0x40
+ 2055 0190 18       		.uleb128 0x18
+ 2056 0191 9742     		.uleb128 0x2117
+ 2057 0193 19       		.uleb128 0x19
+ 2058 0194 01       		.uleb128 0x1
+ 2059 0195 13       		.uleb128 0x13
+ 2060 0196 00       		.byte	0
+ 2061 0197 00       		.byte	0
+ 2062 0198 21       		.uleb128 0x21
+ 2063 0199 34       		.uleb128 0x34
+ 2064 019a 00       		.byte	0
+ 2065 019b 03       		.uleb128 0x3
+ 2066 019c 08       		.uleb128 0x8
+ 2067 019d 3A       		.uleb128 0x3a
+ 2068 019e 0B       		.uleb128 0xb
+ 2069 019f 3B       		.uleb128 0x3b
+ 2070 01a0 0B       		.uleb128 0xb
+ 2071 01a1 49       		.uleb128 0x49
+ 2072 01a2 13       		.uleb128 0x13
+ 2073 01a3 02       		.uleb128 0x2
+ 2074 01a4 17       		.uleb128 0x17
+ 2075 01a5 00       		.byte	0
+ 2076 01a6 00       		.byte	0
+ 2077 01a7 22       		.uleb128 0x22
+ 2078 01a8 34       		.uleb128 0x34
+ 2079 01a9 00       		.byte	0
+ 2080 01aa 03       		.uleb128 0x3
+ 2081 01ab 0E       		.uleb128 0xe
+ 2082 01ac 3A       		.uleb128 0x3a
+ 2083 01ad 0B       		.uleb128 0xb
+ 2084 01ae 3B       		.uleb128 0x3b
+ 2085 01af 0B       		.uleb128 0xb
+ 2086 01b0 49       		.uleb128 0x49
+ 2087 01b1 13       		.uleb128 0x13
+ 2088 01b2 02       		.uleb128 0x2
+ 2089 01b3 17       		.uleb128 0x17
+ 2090 01b4 00       		.byte	0
+ 2091 01b5 00       		.byte	0
+ 2092 01b6 23       		.uleb128 0x23
+ 2093 01b7 34       		.uleb128 0x34
+ 2094 01b8 00       		.byte	0
+ 2095 01b9 03       		.uleb128 0x3
+ 2096 01ba 0E       		.uleb128 0xe
+ 2097 01bb 3A       		.uleb128 0x3a
+ 2098 01bc 0B       		.uleb128 0xb
+ 2099 01bd 3B       		.uleb128 0x3b
+ 2100 01be 0B       		.uleb128 0xb
+ 2101 01bf 49       		.uleb128 0x49
+ 2102 01c0 13       		.uleb128 0x13
+ 2103 01c1 3F       		.uleb128 0x3f
+ 2104 01c2 19       		.uleb128 0x19
+ 2105 01c3 02       		.uleb128 0x2
+ 2106 01c4 18       		.uleb128 0x18
+ 2107 01c5 00       		.byte	0
+ 2108 01c6 00       		.byte	0
+ 2109 01c7 24       		.uleb128 0x24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 43
+
+
+ 2110 01c8 2E       		.uleb128 0x2e
+ 2111 01c9 01       		.byte	0x1
+ 2112 01ca 3F       		.uleb128 0x3f
+ 2113 01cb 19       		.uleb128 0x19
+ 2114 01cc 03       		.uleb128 0x3
+ 2115 01cd 0E       		.uleb128 0xe
+ 2116 01ce 3A       		.uleb128 0x3a
+ 2117 01cf 0B       		.uleb128 0xb
+ 2118 01d0 3B       		.uleb128 0x3b
+ 2119 01d1 0B       		.uleb128 0xb
+ 2120 01d2 27       		.uleb128 0x27
+ 2121 01d3 19       		.uleb128 0x19
+ 2122 01d4 49       		.uleb128 0x49
+ 2123 01d5 13       		.uleb128 0x13
+ 2124 01d6 3C       		.uleb128 0x3c
+ 2125 01d7 19       		.uleb128 0x19
+ 2126 01d8 01       		.uleb128 0x1
+ 2127 01d9 13       		.uleb128 0x13
+ 2128 01da 00       		.byte	0
+ 2129 01db 00       		.byte	0
+ 2130 01dc 25       		.uleb128 0x25
+ 2131 01dd 05       		.uleb128 0x5
+ 2132 01de 00       		.byte	0
+ 2133 01df 49       		.uleb128 0x49
+ 2134 01e0 13       		.uleb128 0x13
+ 2135 01e1 00       		.byte	0
+ 2136 01e2 00       		.byte	0
+ 2137 01e3 26       		.uleb128 0x26
+ 2138 01e4 2E       		.uleb128 0x2e
+ 2139 01e5 00       		.byte	0
+ 2140 01e6 3F       		.uleb128 0x3f
+ 2141 01e7 19       		.uleb128 0x19
+ 2142 01e8 03       		.uleb128 0x3
+ 2143 01e9 0E       		.uleb128 0xe
+ 2144 01ea 3A       		.uleb128 0x3a
+ 2145 01eb 0B       		.uleb128 0xb
+ 2146 01ec 3B       		.uleb128 0x3b
+ 2147 01ed 0B       		.uleb128 0xb
+ 2148 01ee 27       		.uleb128 0x27
+ 2149 01ef 19       		.uleb128 0x19
+ 2150 01f0 49       		.uleb128 0x49
+ 2151 01f1 13       		.uleb128 0x13
+ 2152 01f2 3C       		.uleb128 0x3c
+ 2153 01f3 19       		.uleb128 0x19
+ 2154 01f4 00       		.byte	0
+ 2155 01f5 00       		.byte	0
+ 2156 01f6 27       		.uleb128 0x27
+ 2157 01f7 2E       		.uleb128 0x2e
+ 2158 01f8 01       		.byte	0x1
+ 2159 01f9 3F       		.uleb128 0x3f
+ 2160 01fa 19       		.uleb128 0x19
+ 2161 01fb 03       		.uleb128 0x3
+ 2162 01fc 0E       		.uleb128 0xe
+ 2163 01fd 27       		.uleb128 0x27
+ 2164 01fe 19       		.uleb128 0x19
+ 2165 01ff 49       		.uleb128 0x49
+ 2166 0200 13       		.uleb128 0x13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 44
+
+
+ 2167 0201 34       		.uleb128 0x34
+ 2168 0202 19       		.uleb128 0x19
+ 2169 0203 3C       		.uleb128 0x3c
+ 2170 0204 19       		.uleb128 0x19
+ 2171 0205 01       		.uleb128 0x1
+ 2172 0206 13       		.uleb128 0x13
+ 2173 0207 00       		.byte	0
+ 2174 0208 00       		.byte	0
+ 2175 0209 28       		.uleb128 0x28
+ 2176 020a 26       		.uleb128 0x26
+ 2177 020b 00       		.byte	0
+ 2178 020c 00       		.byte	0
+ 2179 020d 00       		.byte	0
+ 2180 020e 29       		.uleb128 0x29
+ 2181 020f 2E       		.uleb128 0x2e
+ 2182 0210 01       		.byte	0x1
+ 2183 0211 3F       		.uleb128 0x3f
+ 2184 0212 19       		.uleb128 0x19
+ 2185 0213 03       		.uleb128 0x3
+ 2186 0214 0E       		.uleb128 0xe
+ 2187 0215 3A       		.uleb128 0x3a
+ 2188 0216 0B       		.uleb128 0xb
+ 2189 0217 3B       		.uleb128 0x3b
+ 2190 0218 0B       		.uleb128 0xb
+ 2191 0219 27       		.uleb128 0x27
+ 2192 021a 19       		.uleb128 0x19
+ 2193 021b 3C       		.uleb128 0x3c
+ 2194 021c 19       		.uleb128 0x19
+ 2195 021d 01       		.uleb128 0x1
+ 2196 021e 13       		.uleb128 0x13
+ 2197 021f 00       		.byte	0
+ 2198 0220 00       		.byte	0
+ 2199 0221 2A       		.uleb128 0x2a
+ 2200 0222 2E       		.uleb128 0x2e
+ 2201 0223 01       		.byte	0x1
+ 2202 0224 3F       		.uleb128 0x3f
+ 2203 0225 19       		.uleb128 0x19
+ 2204 0226 03       		.uleb128 0x3
+ 2205 0227 0E       		.uleb128 0xe
+ 2206 0228 3A       		.uleb128 0x3a
+ 2207 0229 0B       		.uleb128 0xb
+ 2208 022a 3B       		.uleb128 0x3b
+ 2209 022b 0B       		.uleb128 0xb
+ 2210 022c 27       		.uleb128 0x27
+ 2211 022d 19       		.uleb128 0x19
+ 2212 022e 49       		.uleb128 0x49
+ 2213 022f 13       		.uleb128 0x13
+ 2214 0230 3C       		.uleb128 0x3c
+ 2215 0231 19       		.uleb128 0x19
+ 2216 0232 00       		.byte	0
+ 2217 0233 00       		.byte	0
+ 2218 0234 00       		.byte	0
+ 2219              		.section	.debug_loc,"",%progbits
+ 2220              	.Ldebug_loc0:
+ 2221              	.LLST0:
+ 2222 0000 00000000 		.4byte	.LVL0
+ 2223 0004 10000000 		.4byte	.LVL1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 45
+
+
+ 2224 0008 0100     		.2byte	0x1
+ 2225 000a 50       		.byte	0x50
+ 2226 000b 10000000 		.4byte	.LVL1
+ 2227 000f 72000000 		.4byte	.LFE60
+ 2228 0013 0400     		.2byte	0x4
+ 2229 0015 F3       		.byte	0xf3
+ 2230 0016 01       		.uleb128 0x1
+ 2231 0017 50       		.byte	0x50
+ 2232 0018 9F       		.byte	0x9f
+ 2233 0019 00000000 		.4byte	0
+ 2234 001d 00000000 		.4byte	0
+ 2235              	.LLST1:
+ 2236 0021 00000000 		.4byte	.LVL0
+ 2237 0025 10000000 		.4byte	.LVL1
+ 2238 0029 0100     		.2byte	0x1
+ 2239 002b 51       		.byte	0x51
+ 2240 002c 10000000 		.4byte	.LVL1
+ 2241 0030 72000000 		.4byte	.LFE60
+ 2242 0034 0400     		.2byte	0x4
+ 2243 0036 F3       		.byte	0xf3
+ 2244 0037 01       		.uleb128 0x1
+ 2245 0038 51       		.byte	0x51
+ 2246 0039 9F       		.byte	0x9f
+ 2247 003a 00000000 		.4byte	0
+ 2248 003e 00000000 		.4byte	0
+ 2249              	.LLST2:
+ 2250 0042 00000000 		.4byte	.LVL0
+ 2251 0046 10000000 		.4byte	.LVL1
+ 2252 004a 0100     		.2byte	0x1
+ 2253 004c 52       		.byte	0x52
+ 2254 004d 10000000 		.4byte	.LVL1
+ 2255 0051 72000000 		.4byte	.LFE60
+ 2256 0055 0200     		.2byte	0x2
+ 2257 0057 91       		.byte	0x91
+ 2258 0058 5C       		.sleb128 -36
+ 2259 0059 00000000 		.4byte	0
+ 2260 005d 00000000 		.4byte	0
+ 2261              	.LLST3:
+ 2262 0061 12000000 		.4byte	.LVL2
+ 2263 0065 2E000000 		.4byte	.LVL5
+ 2264 0069 0100     		.2byte	0x1
+ 2265 006b 54       		.byte	0x54
+ 2266 006c 32000000 		.4byte	.LVL6
+ 2267 0070 40000000 		.4byte	.LVL8
+ 2268 0074 0100     		.2byte	0x1
+ 2269 0076 54       		.byte	0x54
+ 2270 0077 40000000 		.4byte	.LVL8
+ 2271 007b 48000000 		.4byte	.LVL10
+ 2272 007f 0100     		.2byte	0x1
+ 2273 0081 50       		.byte	0x50
+ 2274 0082 00000000 		.4byte	0
+ 2275 0086 00000000 		.4byte	0
+ 2276              	.LLST4:
+ 2277 008a 46000000 		.4byte	.LVL9
+ 2278 008e 6E000000 		.4byte	.LVL14
+ 2279 0092 0100     		.2byte	0x1
+ 2280 0094 56       		.byte	0x56
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 46
+
+
+ 2281 0095 00000000 		.4byte	0
+ 2282 0099 00000000 		.4byte	0
+ 2283              	.LLST5:
+ 2284 009d 46000000 		.4byte	.LVL9
+ 2285 00a1 6E000000 		.4byte	.LVL14
+ 2286 00a5 0100     		.2byte	0x1
+ 2287 00a7 57       		.byte	0x57
+ 2288 00a8 00000000 		.4byte	0
+ 2289 00ac 00000000 		.4byte	0
+ 2290              	.LLST6:
+ 2291 00b0 46000000 		.4byte	.LVL9
+ 2292 00b4 6E000000 		.4byte	.LVL14
+ 2293 00b8 0200     		.2byte	0x2
+ 2294 00ba 91       		.byte	0x91
+ 2295 00bb 5C       		.sleb128 -36
+ 2296 00bc 00000000 		.4byte	0
+ 2297 00c0 00000000 		.4byte	0
+ 2298              	.LLST7:
+ 2299 00c4 00000000 		.4byte	.LVL16
+ 2300 00c8 18000000 		.4byte	.LVL17
+ 2301 00cc 0100     		.2byte	0x1
+ 2302 00ce 50       		.byte	0x50
+ 2303 00cf 18000000 		.4byte	.LVL17
+ 2304 00d3 72000000 		.4byte	.LFE61
+ 2305 00d7 0400     		.2byte	0x4
+ 2306 00d9 F3       		.byte	0xf3
+ 2307 00da 01       		.uleb128 0x1
+ 2308 00db 50       		.byte	0x50
+ 2309 00dc 9F       		.byte	0x9f
+ 2310 00dd 00000000 		.4byte	0
+ 2311 00e1 00000000 		.4byte	0
+ 2312              	.LLST8:
+ 2313 00e5 00000000 		.4byte	.LVL16
+ 2314 00e9 18000000 		.4byte	.LVL17
+ 2315 00ed 0100     		.2byte	0x1
+ 2316 00ef 51       		.byte	0x51
+ 2317 00f0 18000000 		.4byte	.LVL17
+ 2318 00f4 72000000 		.4byte	.LFE61
+ 2319 00f8 0400     		.2byte	0x4
+ 2320 00fa F3       		.byte	0xf3
+ 2321 00fb 01       		.uleb128 0x1
+ 2322 00fc 51       		.byte	0x51
+ 2323 00fd 9F       		.byte	0x9f
+ 2324 00fe 00000000 		.4byte	0
+ 2325 0102 00000000 		.4byte	0
+ 2326              	.LLST9:
+ 2327 0106 00000000 		.4byte	.LVL16
+ 2328 010a 18000000 		.4byte	.LVL17
+ 2329 010e 0100     		.2byte	0x1
+ 2330 0110 52       		.byte	0x52
+ 2331 0111 18000000 		.4byte	.LVL17
+ 2332 0115 72000000 		.4byte	.LFE61
+ 2333 0119 0200     		.2byte	0x2
+ 2334 011b 91       		.byte	0x91
+ 2335 011c 5C       		.sleb128 -36
+ 2336 011d 00000000 		.4byte	0
+ 2337 0121 00000000 		.4byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 47
+
+
+ 2338              	.LLST10:
+ 2339 0125 00000000 		.4byte	.LVL23
+ 2340 0129 07000000 		.4byte	.LVL24-1
+ 2341 012d 0100     		.2byte	0x1
+ 2342 012f 50       		.byte	0x50
+ 2343 0130 07000000 		.4byte	.LVL24-1
+ 2344 0134 7C000000 		.4byte	.LVL33
+ 2345 0138 0100     		.2byte	0x1
+ 2346 013a 54       		.byte	0x54
+ 2347 013b 7C000000 		.4byte	.LVL33
+ 2348 013f 7E000000 		.4byte	.LFE62
+ 2349 0143 0400     		.2byte	0x4
+ 2350 0145 F3       		.byte	0xf3
+ 2351 0146 01       		.uleb128 0x1
+ 2352 0147 50       		.byte	0x50
+ 2353 0148 9F       		.byte	0x9f
+ 2354 0149 00000000 		.4byte	0
+ 2355 014d 00000000 		.4byte	0
+ 2356              	.LLST11:
+ 2357 0151 0E000000 		.4byte	.LVL25
+ 2358 0155 78000000 		.4byte	.LVL32
+ 2359 0159 0100     		.2byte	0x1
+ 2360 015b 54       		.byte	0x54
+ 2361 015c 00000000 		.4byte	0
+ 2362 0160 00000000 		.4byte	0
+ 2363              	.LLST12:
+ 2364 0164 34000000 		.4byte	.LVL30
+ 2365 0168 36000000 		.4byte	.LVL31
+ 2366 016c 0500     		.2byte	0x5
+ 2367 016e 70       		.byte	0x70
+ 2368 016f 00       		.sleb128 0
+ 2369 0170 3C       		.byte	0x3c
+ 2370 0171 25       		.byte	0x25
+ 2371 0172 9F       		.byte	0x9f
+ 2372 0173 36000000 		.4byte	.LVL31
+ 2373 0177 78000000 		.4byte	.LVL32
+ 2374 017b 0700     		.2byte	0x7
+ 2375 017d 76       		.byte	0x76
+ 2376 017e 00       		.sleb128 0
+ 2377 017f 94       		.byte	0x94
+ 2378 0180 02       		.byte	0x2
+ 2379 0181 3C       		.byte	0x3c
+ 2380 0182 25       		.byte	0x25
+ 2381 0183 9F       		.byte	0x9f
+ 2382 0184 00000000 		.4byte	0
+ 2383 0188 00000000 		.4byte	0
+ 2384              	.LLST13:
+ 2385 018c 1C000000 		.4byte	.LVL26
+ 2386 0190 22000000 		.4byte	.LVL27
+ 2387 0194 0100     		.2byte	0x1
+ 2388 0196 50       		.byte	0x50
+ 2389 0197 2A000000 		.4byte	.LVL28
+ 2390 019b 30000000 		.4byte	.LVL29
+ 2391 019f 0100     		.2byte	0x1
+ 2392 01a1 50       		.byte	0x50
+ 2393 01a2 00000000 		.4byte	0
+ 2394 01a6 00000000 		.4byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 48
+
+
+ 2395              	.LLST14:
+ 2396 01aa 00000000 		.4byte	.LVL36
+ 2397 01ae 16000000 		.4byte	.LVL37
+ 2398 01b2 0100     		.2byte	0x1
+ 2399 01b4 50       		.byte	0x50
+ 2400 01b5 16000000 		.4byte	.LVL37
+ 2401 01b9 F4000000 		.4byte	.LFE64
+ 2402 01bd 0300     		.2byte	0x3
+ 2403 01bf 91       		.byte	0x91
+ 2404 01c0 9C7F     		.sleb128 -100
+ 2405 01c2 00000000 		.4byte	0
+ 2406 01c6 00000000 		.4byte	0
+ 2407              	.LLST15:
+ 2408 01ca 5C000000 		.4byte	.LVL44
+ 2409 01ce 98000000 		.4byte	.LVL52
+ 2410 01d2 0100     		.2byte	0x1
+ 2411 01d4 50       		.byte	0x50
+ 2412 01d5 00000000 		.4byte	0
+ 2413 01d9 00000000 		.4byte	0
+ 2414              	.LLST16:
+ 2415 01dd 5E000000 		.4byte	.LVL45
+ 2416 01e1 64000000 		.4byte	.LVL46
+ 2417 01e5 0100     		.2byte	0x1
+ 2418 01e7 53       		.byte	0x53
+ 2419 01e8 78000000 		.4byte	.LVL47
+ 2420 01ec 7A000000 		.4byte	.LVL48
+ 2421 01f0 0100     		.2byte	0x1
+ 2422 01f2 53       		.byte	0x53
+ 2423 01f3 84000000 		.4byte	.LVL49
+ 2424 01f7 8A000000 		.4byte	.LVL50
+ 2425 01fb 0100     		.2byte	0x1
+ 2426 01fd 53       		.byte	0x53
+ 2427 01fe 90000000 		.4byte	.LVL51
+ 2428 0202 9B000000 		.4byte	.LVL53-1
+ 2429 0206 0100     		.2byte	0x1
+ 2430 0208 53       		.byte	0x53
+ 2431 0209 00000000 		.4byte	0
+ 2432 020d 00000000 		.4byte	0
+ 2433              		.section	.debug_aranges,"",%progbits
+ 2434 0000 44000000 		.4byte	0x44
+ 2435 0004 0200     		.2byte	0x2
+ 2436 0006 00000000 		.4byte	.Ldebug_info0
+ 2437 000a 04       		.byte	0x4
+ 2438 000b 00       		.byte	0
+ 2439 000c 0000     		.2byte	0
+ 2440 000e 0000     		.2byte	0
+ 2441 0010 00000000 		.4byte	.LFB60
+ 2442 0014 72000000 		.4byte	.LFE60-.LFB60
+ 2443 0018 00000000 		.4byte	.LFB59
+ 2444 001c 1A000000 		.4byte	.LFE59-.LFB59
+ 2445 0020 00000000 		.4byte	.LFB61
+ 2446 0024 72000000 		.4byte	.LFE61-.LFB61
+ 2447 0028 00000000 		.4byte	.LFB62
+ 2448 002c 7E000000 		.4byte	.LFE62-.LFB62
+ 2449 0030 00000000 		.4byte	.LFB63
+ 2450 0034 30000000 		.4byte	.LFE63-.LFB63
+ 2451 0038 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 49
+
+
+ 2452 003c F4000000 		.4byte	.LFE64-.LFB64
+ 2453 0040 00000000 		.4byte	0
+ 2454 0044 00000000 		.4byte	0
+ 2455              		.section	.debug_ranges,"",%progbits
+ 2456              	.Ldebug_ranges0:
+ 2457 0000 00000000 		.4byte	.LFB60
+ 2458 0004 72000000 		.4byte	.LFE60
+ 2459 0008 00000000 		.4byte	.LFB59
+ 2460 000c 1A000000 		.4byte	.LFE59
+ 2461 0010 00000000 		.4byte	.LFB61
+ 2462 0014 72000000 		.4byte	.LFE61
+ 2463 0018 00000000 		.4byte	.LFB62
+ 2464 001c 7E000000 		.4byte	.LFE62
+ 2465 0020 00000000 		.4byte	.LFB63
+ 2466 0024 30000000 		.4byte	.LFE63
+ 2467 0028 00000000 		.4byte	.LFB64
+ 2468 002c F4000000 		.4byte	.LFE64
+ 2469 0030 00000000 		.4byte	0
+ 2470 0034 00000000 		.4byte	0
+ 2471              		.section	.debug_line,"",%progbits
+ 2472              	.Ldebug_line0:
+ 2473 0000 FB020000 		.section	.debug_str,"MS",%progbits,1
+ 2473      0200F301 
+ 2473      00000201 
+ 2473      FB0E0D00 
+ 2473      01010101 
+ 2474              	.LASF30:
+ 2475 0000 73756363 		.ascii	"success\000"
+ 2475      65737300 
+ 2476              	.LASF40:
+ 2477 0008 4932435F 		.ascii	"I2C_I2CMasterSendStart\000"
+ 2477      4932434D 
+ 2477      61737465 
+ 2477      7253656E 
+ 2477      64537461 
+ 2478              	.LASF3:
+ 2479 001f 5F5F7569 		.ascii	"__uint8_t\000"
+ 2479      6E74385F 
+ 2479      7400
+ 2480              	.LASF21:
+ 2481 0029 73697A65 		.ascii	"size_t\000"
+ 2481      5F7400
+ 2482              	.LASF49:
+ 2483 0030 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2483      4320342E 
+ 2483      392E3320 
+ 2483      32303135 
+ 2483      30333033 
+ 2484 0063 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 2484      20726576 
+ 2484      6973696F 
+ 2484      6E203232 
+ 2484      31323230 
+ 2485 0096 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 2485      66756E63 
+ 2485      74696F6E 
+ 2485      2D736563 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 50
+
+
+ 2485      74696F6E 
+ 2486              	.LASF34:
+ 2487 00be 43757272 		.ascii	"Current\000"
+ 2487      656E7400 
+ 2488              	.LASF35:
+ 2489 00c6 5363726F 		.ascii	"Scroll\000"
+ 2489      6C6C00
+ 2490              	.LASF45:
+ 2491 00cd 4243445F 		.ascii	"BCD_Ulong\000"
+ 2491      556C6F6E 
+ 2491      6700
+ 2492              	.LASF37:
+ 2493 00d7 4C75785F 		.ascii	"Lux_Str\000"
+ 2493      53747200 
+ 2494              	.LASF27:
+ 2495 00df 4F50545F 		.ascii	"OPT_ReadResult\000"
+ 2495      52656164 
+ 2495      52657375 
+ 2495      6C7400
+ 2496              	.LASF5:
+ 2497 00ee 73686F72 		.ascii	"short unsigned int\000"
+ 2497      7420756E 
+ 2497      7369676E 
+ 2497      65642069 
+ 2497      6E7400
+ 2498              	.LASF53:
+ 2499 0101 4F50545F 		.ascii	"OPT_Out_String\000"
+ 2499      4F75745F 
+ 2499      53747269 
+ 2499      6E6700
+ 2500              	.LASF18:
+ 2501 0110 666C6F61 		.ascii	"float\000"
+ 2501      7400
+ 2502              	.LASF1:
+ 2503 0116 756E7369 		.ascii	"unsigned char\000"
+ 2503      676E6564 
+ 2503      20636861 
+ 2503      7200
+ 2504              	.LASF25:
+ 2505 0124 49746572 		.ascii	"Iter\000"
+ 2505      00
+ 2506              	.LASF8:
+ 2507 0129 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2507      20756E73 
+ 2507      69676E65 
+ 2507      6420696E 
+ 2507      7400
+ 2508              	.LASF31:
+ 2509 013b 4F50545F 		.ascii	"OPT_IsReady\000"
+ 2509      49735265 
+ 2509      61647900 
+ 2510              	.LASF15:
+ 2511 0147 75696E74 		.ascii	"uint8\000"
+ 2511      3800
+ 2512              	.LASF52:
+ 2513 014d 4F50545F 		.ascii	"OPT_StartConvert\000"
+ 2513      53746172 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 51
+
+
+ 2513      74436F6E 
+ 2513      76657274 
+ 2513      00
+ 2514              	.LASF24:
+ 2515 015e 53746174 		.ascii	"Status\000"
+ 2515      757300
+ 2516              	.LASF36:
+ 2517 0165 4F75745F 		.ascii	"Out_Str\000"
+ 2517      53747200 
+ 2518              	.LASF44:
+ 2519 016d 6D656D73 		.ascii	"memset\000"
+ 2519      657400
+ 2520              	.LASF4:
+ 2521 0174 5F5F7569 		.ascii	"__uint16_t\000"
+ 2521      6E743136 
+ 2521      5F7400
+ 2522              	.LASF19:
+ 2523 017f 646F7562 		.ascii	"double\000"
+ 2523      6C6500
+ 2524              	.LASF48:
+ 2525 0186 7374726E 		.ascii	"strncat\000"
+ 2525      63617400 
+ 2526              	.LASF7:
+ 2527 018e 5F5F7569 		.ascii	"__uint32_t\000"
+ 2527      6E743332 
+ 2527      5F7400
+ 2528              	.LASF26:
+ 2529 0199 4932435F 		.ascii	"I2C_ReadRegister\000"
+ 2529      52656164 
+ 2529      52656769 
+ 2529      73746572 
+ 2529      00
+ 2530              	.LASF16:
+ 2531 01aa 75696E74 		.ascii	"uint16\000"
+ 2531      313600
+ 2532              	.LASF17:
+ 2533 01b1 75696E74 		.ascii	"uint32\000"
+ 2533      333200
+ 2534              	.LASF28:
+ 2535 01b8 52657375 		.ascii	"Result\000"
+ 2535      6C7400
+ 2536              	.LASF47:
+ 2537 01bf 4243445F 		.ascii	"BCD_GetPointerBuf\000"
+ 2537      47657450 
+ 2537      6F696E74 
+ 2537      65724275 
+ 2537      6600
+ 2538              	.LASF11:
+ 2539 01d1 756E7369 		.ascii	"unsigned int\000"
+ 2539      676E6564 
+ 2539      20696E74 
+ 2539      00
+ 2540              	.LASF32:
+ 2541 01de 4932435F 		.ascii	"I2C_WriteRegister\000"
+ 2541      57726974 
+ 2541      65526567 
+ 2541      69737465 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 52
+
+
+ 2541      7200
+ 2542              	.LASF10:
+ 2543 01f0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2543      206C6F6E 
+ 2543      6720756E 
+ 2543      7369676E 
+ 2543      65642069 
+ 2544              	.LASF12:
+ 2545 0207 75696E74 		.ascii	"uint8_t\000"
+ 2545      385F7400 
+ 2546              	.LASF51:
+ 2547 020f 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 2547      73657273 
+ 2547      5C566974 
+ 2547      616C695C 
+ 2547      446F6375 
+ 2548 023d 6E74726F 		.ascii	"ntroller_Workspace\\Expo_Controller2.cydsn\000"
+ 2548      6C6C6572 
+ 2548      5F576F72 
+ 2548      6B737061 
+ 2548      63655C45 
+ 2549              	.LASF42:
+ 2550 0267 4932435F 		.ascii	"I2C_I2CMasterSendRestart\000"
+ 2550      4932434D 
+ 2550      61737465 
+ 2550      7253656E 
+ 2550      64526573 
+ 2551              	.LASF22:
+ 2552 0280 73697A65 		.ascii	"sizetype\000"
+ 2552      74797065 
+ 2552      00
+ 2553              	.LASF9:
+ 2554 0289 6C6F6E67 		.ascii	"long long int\000"
+ 2554      206C6F6E 
+ 2554      6720696E 
+ 2554      7400
+ 2555              	.LASF23:
+ 2556 0297 52657456 		.ascii	"RetValue\000"
+ 2556      616C7565 
+ 2556      00
+ 2557              	.LASF43:
+ 2558 02a0 6D656D63 		.ascii	"memcpy\000"
+ 2558      707900
+ 2559              	.LASF50:
+ 2560 02a7 2E5C4F50 		.ascii	".\\OPT3001.c\000"
+ 2560      54333030 
+ 2560      312E6300 
+ 2561              	.LASF41:
+ 2562 02b3 4932435F 		.ascii	"I2C_I2CMasterWriteByte\000"
+ 2562      4932434D 
+ 2562      61737465 
+ 2562      72577269 
+ 2562      74654279 
+ 2563              	.LASF33:
+ 2564 02ca 4F50545F 		.ascii	"OPT_GetResultString\000"
+ 2564      47657452 
+ 2564      6573756C 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc4q6fMV.s 			page 53
+
+
+ 2564      74537472 
+ 2564      696E6700 
+ 2565              	.LASF29:
+ 2566 02de 6578706F 		.ascii	"exponent\000"
+ 2566      6E656E74 
+ 2566      00
+ 2567              	.LASF2:
+ 2568 02e7 73686F72 		.ascii	"short int\000"
+ 2568      7420696E 
+ 2568      7400
+ 2569              	.LASF13:
+ 2570 02f1 75696E74 		.ascii	"uint16_t\000"
+ 2570      31365F74 
+ 2570      00
+ 2571              	.LASF39:
+ 2572 02fa 4932435F 		.ascii	"I2C_I2CMasterReadByte\000"
+ 2572      4932434D 
+ 2572      61737465 
+ 2572      72526561 
+ 2572      64427974 
+ 2573              	.LASF6:
+ 2574 0310 6C6F6E67 		.ascii	"long int\000"
+ 2574      20696E74 
+ 2574      00
+ 2575              	.LASF20:
+ 2576 0319 63686172 		.ascii	"char\000"
+ 2576      00
+ 2577              	.LASF0:
+ 2578 031e 7369676E 		.ascii	"signed char\000"
+ 2578      65642063 
+ 2578      68617200 
+ 2579              	.LASF14:
+ 2580 032a 75696E74 		.ascii	"uint32_t\000"
+ 2580      33325F74 
+ 2580      00
+ 2581              	.LASF38:
+ 2582 0333 4572726F 		.ascii	"Error_Str\000"
+ 2582      725F5374 
+ 2582      7200
+ 2583              	.LASF46:
+ 2584 033d 4932435F 		.ascii	"I2C_I2CMasterSendStop\000"
+ 2584      4932434D 
+ 2584      61737465 
+ 2584      7253656E 
+ 2584      6453746F 
+ 2585              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

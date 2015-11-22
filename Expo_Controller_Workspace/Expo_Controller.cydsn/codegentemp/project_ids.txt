@@ -1,0 +1,5 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|e36c963a-02ea-4cf5-88d7-3985e4151f12
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|ca32c2a3-0625-4ca1-828b-17164d9fa7e6
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|a0ae4d71-c17a-42f0-9605-587f313d3a89
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|b5f1f4ad-1323-442d-be5a-81b46359975e
+C:\Users\Vitali\Documents\PSoC Creator\Expo_Controller_Workspace\Expo_Controller.cydsn\Expo_Controller.cyprj|efe97cfa-0406-4d74-88ba-e1ef00b98d63

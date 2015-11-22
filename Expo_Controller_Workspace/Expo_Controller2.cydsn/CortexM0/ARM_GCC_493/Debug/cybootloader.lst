@@ -1,0 +1,4616 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"cybootloader.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	cy_meta_chipprotect
+  18              		.global	cy_meta_flashprotect
+  19              		.global	cy_metadata
+  20              		.global	cy_bootloader
+  21              		.global	cy_meta_loader
+  22              		.section	.cyloadermeta,"a",%progbits
+  23              		.type	cy_meta_loader, %object
+  24              		.size	cy_meta_loader, 64
+  25              	cy_meta_loader:
+  26 0000 00       		.byte	0
+  27 0001 00       		.byte	0
+  28 0002 00       		.byte	0
+  29 0003 00       		.byte	0
+  30 0004 00       		.byte	0
+  31 0005 00       		.byte	0
+  32 0006 00       		.byte	0
+  33 0007 00       		.byte	0
+  34 0008 00       		.byte	0
+  35 0009 00       		.byte	0
+  36 000a 00       		.byte	0
+  37 000b 00       		.byte	0
+  38 000c 00       		.byte	0
+  39 000d 00       		.byte	0
+  40 000e 00       		.byte	0
+  41 000f 00       		.byte	0
+  42 0010 00       		.byte	0
+  43 0011 00       		.byte	0
+  44 0012 00       		.byte	0
+  45 0013 00       		.byte	0
+  46 0014 01       		.byte	1
+  47 0015 00       		.byte	0
+  48 0016 00       		.byte	0
+  49 0017 00       		.byte	0
+  50 0018 00       		.byte	0
+  51 0019 00       		.byte	0
+  52 001a 00       		.byte	0
+  53 001b 00       		.byte	0
+  54 001c 00       		.byte	0
+  55 001d 00       		.byte	0
+  56 001e 00       		.byte	0
+  57 001f 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 2
+
+
+  58 0020 00       		.byte	0
+  59 0021 00       		.byte	0
+  60 0022 00       		.byte	0
+  61 0023 00       		.byte	0
+  62 0024 00       		.byte	0
+  63 0025 00       		.byte	0
+  64 0026 00       		.byte	0
+  65 0027 00       		.byte	0
+  66 0028 00       		.byte	0
+  67 0029 00       		.byte	0
+  68 002a 00       		.byte	0
+  69 002b 00       		.byte	0
+  70 002c 00       		.byte	0
+  71 002d 00       		.byte	0
+  72 002e 00       		.byte	0
+  73 002f 00       		.byte	0
+  74 0030 00       		.byte	0
+  75 0031 00       		.byte	0
+  76 0032 00       		.byte	0
+  77 0033 00       		.byte	0
+  78 0034 00       		.byte	0
+  79 0035 00       		.byte	0
+  80 0036 00       		.byte	0
+  81 0037 00       		.byte	0
+  82 0038 00       		.byte	0
+  83 0039 00       		.byte	0
+  84 003a 00       		.byte	0
+  85 003b 00       		.byte	0
+  86 003c 00       		.byte	0
+  87 003d 00       		.byte	0
+  88 003e 00       		.byte	0
+  89 003f 00       		.byte	0
+  90              		.section	.cychipprotect,"a",%progbits
+  91              		.type	cy_meta_chipprotect, %object
+  92              		.size	cy_meta_chipprotect, 1
+  93              	cy_meta_chipprotect:
+  94 0000 01       		.byte	1
+  95              		.section	.cymeta,"a",%progbits
+  96              		.type	cy_metadata, %object
+  97              		.size	cy_metadata, 12
+  98              	cy_metadata:
+  99 0000 00       		.byte	0
+ 100 0001 02       		.byte	2
+ 101 0002 04       		.byte	4
+ 102 0003 B6       		.byte	-74
+ 103 0004 11       		.byte	17
+ 104 0005 93       		.byte	-109
+ 105 0006 11       		.byte	17
+ 106 0007 01       		.byte	1
+ 107 0008 04       		.byte	4
+ 108 0009 BB       		.byte	-69
+ 109 000a 19       		.byte	25
+ 110 000b 69       		.byte	105
+ 111              		.section	.cybootloader,"a",%progbits
+ 112              		.type	cy_bootloader, %object
+ 113              		.size	cy_bootloader, 3840
+ 114              	cy_bootloader:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 3
+
+
+ 115 0000 00       		.byte	0
+ 116 0001 10       		.byte	16
+ 117 0002 00       		.byte	0
+ 118 0003 20       		.byte	32
+ 119 0004 11       		.byte	17
+ 120 0005 00       		.byte	0
+ 121 0006 00       		.byte	0
+ 122 0007 00       		.byte	0
+ 123 0008 8D       		.byte	-115
+ 124 0009 01       		.byte	1
+ 125 000a 00       		.byte	0
+ 126 000b 00       		.byte	0
+ 127 000c 8D       		.byte	-115
+ 128 000d 01       		.byte	1
+ 129 000e 00       		.byte	0
+ 130 000f 00       		.byte	0
+ 131 0010 08       		.byte	8
+ 132 0011 B5       		.byte	-75
+ 133 0012 00       		.byte	0
+ 134 0013 F0       		.byte	-16
+ 135 0014 93       		.byte	-109
+ 136 0015 F9       		.byte	-7
+ 137 0016 00       		.byte	0
+ 138 0017 F0       		.byte	-16
+ 139 0018 BB       		.byte	-69
+ 140 0019 F8       		.byte	-8
+ 141 001a 00       		.byte	0
+ 142 001b 00       		.byte	0
+ 143 001c 10       		.byte	16
+ 144 001d B5       		.byte	-75
+ 145 001e 72       		.byte	114
+ 146 001f B6       		.byte	-74
+ 147 0020 80       		.byte	-128
+ 148 0021 24       		.byte	36
+ 149 0022 E4       		.byte	-28
+ 150 0023 00       		.byte	0
+ 151 0024 22       		.byte	34
+ 152 0025 1C       		.byte	28
+ 153 0026 00       		.byte	0
+ 154 0027 21       		.byte	33
+ 155 0028 26       		.byte	38
+ 156 0029 48       		.byte	72
+ 157 002a 00       		.byte	0
+ 158 002b F0       		.byte	-16
+ 159 002c 00       		.byte	0
+ 160 002d FF       		.byte	-1
+ 161 002e 22       		.byte	34
+ 162 002f 1C       		.byte	28
+ 163 0030 00       		.byte	0
+ 164 0031 21       		.byte	33
+ 165 0032 25       		.byte	37
+ 166 0033 48       		.byte	72
+ 167 0034 00       		.byte	0
+ 168 0035 F0       		.byte	-16
+ 169 0036 FB       		.byte	-5
+ 170 0037 FE       		.byte	-2
+ 171 0038 99       		.byte	-103
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 4
+
+
+ 172 0039 23       		.byte	35
+ 173 003a EE       		.byte	-18
+ 174 003b 21       		.byte	33
+ 175 003c 23       		.byte	35
+ 176 003d 4A       		.byte	74
+ 177 003e 1B       		.byte	27
+ 178 003f 04       		.byte	4
+ 179 0040 13       		.byte	19
+ 180 0041 60       		.byte	96
+ 181 0042 23       		.byte	35
+ 182 0043 4A       		.byte	74
+ 183 0044 09       		.byte	9
+ 184 0045 02       		.byte	2
+ 185 0046 11       		.byte	17
+ 186 0047 60       		.byte	96
+ 187 0048 02       		.byte	2
+ 188 0049 21       		.byte	33
+ 189 004a 3C       		.byte	60
+ 190 004b 20       		.byte	32
+ 191 004c 21       		.byte	33
+ 192 004d 4A       		.byte	74
+ 193 004e 22       		.byte	34
+ 194 004f 4C       		.byte	76
+ 195 0050 13       		.byte	19
+ 196 0051 60       		.byte	96
+ 197 0052 22       		.byte	34
+ 198 0053 4A       		.byte	74
+ 199 0054 13       		.byte	19
+ 200 0055 60       		.byte	96
+ 201 0056 22       		.byte	34
+ 202 0057 4A       		.byte	74
+ 203 0058 13       		.byte	19
+ 204 0059 78       		.byte	120
+ 205 005a 0B       		.byte	11
+ 206 005b 43       		.byte	67
+ 207 005c 21       		.byte	33
+ 208 005d 49       		.byte	73
+ 209 005e 13       		.byte	19
+ 210 005f 70       		.byte	112
+ 211 0060 0B       		.byte	11
+ 212 0061 78       		.byte	120
+ 213 0062 83       		.byte	-125
+ 214 0063 43       		.byte	67
+ 215 0064 28       		.byte	40
+ 216 0065 38       		.byte	56
+ 217 0066 03       		.byte	3
+ 218 0067 43       		.byte	67
+ 219 0068 0B       		.byte	11
+ 220 0069 70       		.byte	112
+ 221 006a 16       		.byte	22
+ 222 006b 21       		.byte	33
+ 223 006c 13       		.byte	19
+ 224 006d 78       		.byte	120
+ 225 006e 0C       		.byte	12
+ 226 006f 30       		.byte	48
+ 227 0070 0B       		.byte	11
+ 228 0071 43       		.byte	67
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 5
+
+
+ 229 0072 13       		.byte	19
+ 230 0073 70       		.byte	112
+ 231 0074 C4       		.byte	-60
+ 232 0075 22       		.byte	34
+ 233 0076 1C       		.byte	28
+ 234 0077 4B       		.byte	75
+ 235 0078 92       		.byte	-110
+ 236 0079 02       		.byte	2
+ 237 007a 18       		.byte	24
+ 238 007b 60       		.byte	96
+ 239 007c 1B       		.byte	27
+ 240 007d 4B       		.byte	75
+ 241 007e 1A       		.byte	26
+ 242 007f 60       		.byte	96
+ 243 0080 1B       		.byte	27
+ 244 0081 4B       		.byte	75
+ 245 0082 1C       		.byte	28
+ 246 0083 4A       		.byte	74
+ 247 0084 18       		.byte	24
+ 248 0085 60       		.byte	96
+ 249 0086 1C       		.byte	28
+ 250 0087 4B       		.byte	75
+ 251 0088 18       		.byte	24
+ 252 0089 60       		.byte	96
+ 253 008a 1C       		.byte	28
+ 254 008b 4B       		.byte	75
+ 255 008c 1A       		.byte	26
+ 256 008d 60       		.byte	96
+ 257 008e 80       		.byte	-128
+ 258 008f 22       		.byte	34
+ 259 0090 23       		.byte	35
+ 260 0091 68       		.byte	104
+ 261 0092 D2       		.byte	-46
+ 262 0093 02       		.byte	2
+ 263 0094 13       		.byte	19
+ 264 0095 43       		.byte	67
+ 265 0096 23       		.byte	35
+ 266 0097 60       		.byte	96
+ 267 0098 00       		.byte	0
+ 268 0099 F0       		.byte	-16
+ 269 009a 02       		.byte	2
+ 270 009b FD       		.byte	-3
+ 271 009c 18       		.byte	24
+ 272 009d 4A       		.byte	74
+ 273 009e 19       		.byte	25
+ 274 009f 4B       		.byte	75
+ 275 00a0 1A       		.byte	26
+ 276 00a1 60       		.byte	96
+ 277 00a2 10       		.byte	16
+ 278 00a3 22       		.byte	34
+ 279 00a4 18       		.byte	24
+ 280 00a5 4B       		.byte	75
+ 281 00a6 1A       		.byte	26
+ 282 00a7 60       		.byte	96
+ 283 00a8 80       		.byte	-128
+ 284 00a9 22       		.byte	34
+ 285 00aa 18       		.byte	24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 6
+
+
+ 286 00ab 4B       		.byte	75
+ 287 00ac 12       		.byte	18
+ 288 00ad 06       		.byte	6
+ 289 00ae 1A       		.byte	26
+ 290 00af 60       		.byte	96
+ 291 00b0 80       		.byte	-128
+ 292 00b1 23       		.byte	35
+ 293 00b2 1B       		.byte	27
+ 294 00b3 03       		.byte	3
+ 295 00b4 23       		.byte	35
+ 296 00b5 60       		.byte	96
+ 297 00b6 16       		.byte	22
+ 298 00b7 4A       		.byte	74
+ 299 00b8 16       		.byte	22
+ 300 00b9 4B       		.byte	75
+ 301 00ba 1A       		.byte	26
+ 302 00bb 60       		.byte	96
+ 303 00bc 00       		.byte	0
+ 304 00bd 22       		.byte	34
+ 305 00be 16       		.byte	22
+ 306 00bf 4B       		.byte	75
+ 307 00c0 1A       		.byte	26
+ 308 00c1 60       		.byte	96
+ 309 00c2 10       		.byte	16
+ 310 00c3 BD       		.byte	-67
+ 311 00c4 00       		.byte	0
+ 312 00c5 30       		.byte	48
+ 313 00c6 0F       		.byte	15
+ 314 00c7 40       		.byte	64
+ 315 00c8 00       		.byte	0
+ 316 00c9 40       		.byte	64
+ 317 00ca 0F       		.byte	15
+ 318 00cb 40       		.byte	64
+ 319 00cc 00       		.byte	0
+ 320 00cd 00       		.byte	0
+ 321 00ce 01       		.byte	1
+ 322 00cf 40       		.byte	64
+ 323 00d0 0C       		.byte	12
+ 324 00d1 00       		.byte	0
+ 325 00d2 01       		.byte	1
+ 326 00d3 40       		.byte	64
+ 327 00d4 00       		.byte	0
+ 328 00d5 50       		.byte	80
+ 329 00d6 0F       		.byte	15
+ 330 00d7 40       		.byte	64
+ 331 00d8 00       		.byte	0
+ 332 00d9 01       		.byte	1
+ 333 00da 0B       		.byte	11
+ 334 00db 40       		.byte	64
+ 335 00dc 30       		.byte	48
+ 336 00dd 50       		.byte	80
+ 337 00de 0F       		.byte	15
+ 338 00df 40       		.byte	64
+ 339 00e0 00       		.byte	0
+ 340 00e1 70       		.byte	112
+ 341 00e2 0F       		.byte	15
+ 342 00e3 40       		.byte	64
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 7
+
+
+ 343 00e4 01       		.byte	1
+ 344 00e5 70       		.byte	112
+ 345 00e6 0F       		.byte	15
+ 346 00e7 40       		.byte	64
+ 347 00e8 00       		.byte	0
+ 348 00e9 00       		.byte	0
+ 349 00ea 04       		.byte	4
+ 350 00eb 40       		.byte	64
+ 351 00ec 08       		.byte	8
+ 352 00ed 00       		.byte	0
+ 353 00ee 04       		.byte	4
+ 354 00ef 40       		.byte	64
+ 355 00f0 18       		.byte	24
+ 356 00f1 00       		.byte	0
+ 357 00f2 04       		.byte	4
+ 358 00f3 40       		.byte	64
+ 359 00f4 80       		.byte	-128
+ 360 00f5 0D       		.byte	13
+ 361 00f6 03       		.byte	3
+ 362 00f7 00       		.byte	0
+ 363 00f8 00       		.byte	0
+ 364 00f9 03       		.byte	3
+ 365 00fa 04       		.byte	4
+ 366 00fb 40       		.byte	64
+ 367 00fc 08       		.byte	8
+ 368 00fd 03       		.byte	3
+ 369 00fe 04       		.byte	4
+ 370 00ff 40       		.byte	64
+ 371 0100 06       		.byte	6
+ 372 0101 00       		.byte	0
+ 373 0102 00       		.byte	0
+ 374 0103 80       		.byte	-128
+ 375 0104 04       		.byte	4
+ 376 0105 01       		.byte	1
+ 377 0106 0B       		.byte	11
+ 378 0107 40       		.byte	64
+ 379 0108 0C       		.byte	12
+ 380 0109 02       		.byte	2
+ 381 010a 02       		.byte	2
+ 382 010b 40       		.byte	64
+ 383 010c 08       		.byte	8
+ 384 010d 01       		.byte	1
+ 385 010e 0B       		.byte	11
+ 386 010f 40       		.byte	64
+ 387 0110 16       		.byte	22
+ 388 0111 00       		.byte	0
+ 389 0112 00       		.byte	0
+ 390 0113 80       		.byte	-128
+ 391 0114 00       		.byte	0
+ 392 0115 00       		.byte	0
+ 393 0116 02       		.byte	2
+ 394 0117 40       		.byte	64
+ 395 0118 0C       		.byte	12
+ 396 0119 02       		.byte	2
+ 397 011a 0B       		.byte	11
+ 398 011b 40       		.byte	64
+ 399 011c 10       		.byte	16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 8
+
+
+ 400 011d B5       		.byte	-75
+ 401 011e 06       		.byte	6
+ 402 011f 4C       		.byte	76
+ 403 0120 23       		.byte	35
+ 404 0121 78       		.byte	120
+ 405 0122 00       		.byte	0
+ 406 0123 2B       		.byte	43
+ 407 0124 07       		.byte	7
+ 408 0125 D1       		.byte	-47
+ 409 0126 05       		.byte	5
+ 410 0127 4B       		.byte	75
+ 411 0128 00       		.byte	0
+ 412 0129 2B       		.byte	43
+ 413 012a 02       		.byte	2
+ 414 012b D0       		.byte	-48
+ 415 012c 04       		.byte	4
+ 416 012d 48       		.byte	72
+ 417 012e 00       		.byte	0
+ 418 012f E0       		.byte	-32
+ 419 0130 00       		.byte	0
+ 420 0131 BF       		.byte	-65
+ 421 0132 01       		.byte	1
+ 422 0133 23       		.byte	35
+ 423 0134 23       		.byte	35
+ 424 0135 70       		.byte	112
+ 425 0136 10       		.byte	16
+ 426 0137 BD       		.byte	-67
+ 427 0138 F0       		.byte	-16
+ 428 0139 00       		.byte	0
+ 429 013a 00       		.byte	0
+ 430 013b 20       		.byte	32
+ 431 013c 00       		.byte	0
+ 432 013d 00       		.byte	0
+ 433 013e 00       		.byte	0
+ 434 013f 00       		.byte	0
+ 435 0140 48       		.byte	72
+ 436 0141 0E       		.byte	14
+ 437 0142 00       		.byte	0
+ 438 0143 00       		.byte	0
+ 439 0144 08       		.byte	8
+ 440 0145 B5       		.byte	-75
+ 441 0146 08       		.byte	8
+ 442 0147 4B       		.byte	75
+ 443 0148 00       		.byte	0
+ 444 0149 2B       		.byte	43
+ 445 014a 03       		.byte	3
+ 446 014b D0       		.byte	-48
+ 447 014c 07       		.byte	7
+ 448 014d 48       		.byte	72
+ 449 014e 08       		.byte	8
+ 450 014f 49       		.byte	73
+ 451 0150 00       		.byte	0
+ 452 0151 E0       		.byte	-32
+ 453 0152 00       		.byte	0
+ 454 0153 BF       		.byte	-65
+ 455 0154 07       		.byte	7
+ 456 0155 48       		.byte	72
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 9
+
+
+ 457 0156 03       		.byte	3
+ 458 0157 68       		.byte	104
+ 459 0158 00       		.byte	0
+ 460 0159 2B       		.byte	43
+ 461 015a 00       		.byte	0
+ 462 015b D1       		.byte	-47
+ 463 015c 08       		.byte	8
+ 464 015d BD       		.byte	-67
+ 465 015e 06       		.byte	6
+ 466 015f 4B       		.byte	75
+ 467 0160 00       		.byte	0
+ 468 0161 2B       		.byte	43
+ 469 0162 FB       		.byte	-5
+ 470 0163 D0       		.byte	-48
+ 471 0164 98       		.byte	-104
+ 472 0165 47       		.byte	71
+ 473 0166 F9       		.byte	-7
+ 474 0167 E7       		.byte	-25
+ 475 0168 00       		.byte	0
+ 476 0169 00       		.byte	0
+ 477 016a 00       		.byte	0
+ 478 016b 00       		.byte	0
+ 479 016c 48       		.byte	72
+ 480 016d 0E       		.byte	14
+ 481 016e 00       		.byte	0
+ 482 016f 00       		.byte	0
+ 483 0170 F4       		.byte	-12
+ 484 0171 00       		.byte	0
+ 485 0172 00       		.byte	0
+ 486 0173 20       		.byte	32
+ 487 0174 D0       		.byte	-48
+ 488 0175 00       		.byte	0
+ 489 0176 00       		.byte	0
+ 490 0177 20       		.byte	32
+ 491 0178 00       		.byte	0
+ 492 0179 00       		.byte	0
+ 493 017a 00       		.byte	0
+ 494 017b 00       		.byte	0
+ 495 017c 08       		.byte	8
+ 496 017d B5       		.byte	-75
+ 497 017e 62       		.byte	98
+ 498 017f B6       		.byte	-74
+ 499 0180 01       		.byte	1
+ 500 0181 20       		.byte	32
+ 501 0182 00       		.byte	0
+ 502 0183 F0       		.byte	-16
+ 503 0184 93       		.byte	-109
+ 504 0185 FB       		.byte	-5
+ 505 0186 00       		.byte	0
+ 506 0187 F0       		.byte	-16
+ 507 0188 5D       		.byte	93
+ 508 0189 FB       		.byte	-5
+ 509 018a FE       		.byte	-2
+ 510 018b E7       		.byte	-25
+ 511 018c FE       		.byte	-2
+ 512 018d E7       		.byte	-25
+ 513 018e 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 10
+
+
+ 514 018f 00       		.byte	0
+ 515 0190 70       		.byte	112
+ 516 0191 B5       		.byte	-75
+ 517 0192 10       		.byte	16
+ 518 0193 49       		.byte	73
+ 519 0194 10       		.byte	16
+ 520 0195 4B       		.byte	75
+ 521 0196 01       		.byte	1
+ 522 0197 39       		.byte	57
+ 523 0198 4A       		.byte	74
+ 524 0199 1C       		.byte	28
+ 525 019a 15       		.byte	21
+ 526 019b D0       		.byte	-48
+ 527 019c 00       		.byte	0
+ 528 019d 22       		.byte	34
+ 529 019e 1E       		.byte	30
+ 530 019f 68       		.byte	104
+ 531 01a0 5C       		.byte	92
+ 532 01a1 68       		.byte	104
+ 533 01a2 9D       		.byte	-99
+ 534 01a3 68       		.byte	104
+ 535 01a4 A0       		.byte	-96
+ 536 01a5 18       		.byte	24
+ 537 01a6 AA       		.byte	-86
+ 538 01a7 42       		.byte	66
+ 539 01a8 03       		.byte	3
+ 540 01a9 D0       		.byte	-48
+ 541 01aa B0       		.byte	-80
+ 542 01ab 58       		.byte	88
+ 543 01ac A0       		.byte	-96
+ 544 01ad 50       		.byte	80
+ 545 01ae 04       		.byte	4
+ 546 01af 32       		.byte	50
+ 547 01b0 F8       		.byte	-8
+ 548 01b1 E7       		.byte	-25
+ 549 01b2 02       		.byte	2
+ 550 01b3 1C       		.byte	28
+ 551 01b4 DC       		.byte	-36
+ 552 01b5 68       		.byte	104
+ 553 01b6 15       		.byte	21
+ 554 01b7 1A       		.byte	26
+ 555 01b8 A5       		.byte	-91
+ 556 01b9 42       		.byte	66
+ 557 01ba 02       		.byte	2
+ 558 01bb D0       		.byte	-48
+ 559 01bc 00       		.byte	0
+ 560 01bd 25       		.byte	37
+ 561 01be 20       		.byte	32
+ 562 01bf C2       		.byte	-62
+ 563 01c0 F9       		.byte	-7
+ 564 01c1 E7       		.byte	-25
+ 565 01c2 10       		.byte	16
+ 566 01c3 33       		.byte	51
+ 567 01c4 01       		.byte	1
+ 568 01c5 39       		.byte	57
+ 569 01c6 E7       		.byte	-25
+ 570 01c7 E7       		.byte	-25
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 11
+
+
+ 571 01c8 00       		.byte	0
+ 572 01c9 F0       		.byte	-16
+ 573 01ca 02       		.byte	2
+ 574 01cb FE       		.byte	-2
+ 575 01cc FF       		.byte	-1
+ 576 01cd F7       		.byte	-9
+ 577 01ce D6       		.byte	-42
+ 578 01cf FF       		.byte	-1
+ 579 01d0 FE       		.byte	-2
+ 580 01d1 E7       		.byte	-25
+ 581 01d2 C0       		.byte	-64
+ 582 01d3 46       		.byte	70
+ 583 01d4 01       		.byte	1
+ 584 01d5 00       		.byte	0
+ 585 01d6 00       		.byte	0
+ 586 01d7 00       		.byte	0
+ 587 01d8 A8       		.byte	-88
+ 588 01d9 0E       		.byte	14
+ 589 01da 00       		.byte	0
+ 590 01db 00       		.byte	0
+ 591 01dc 08       		.byte	8
+ 592 01dd B5       		.byte	-75
+ 593 01de 00       		.byte	0
+ 594 01df 23       		.byte	35
+ 595 01e0 9A       		.byte	-102
+ 596 01e1 00       		.byte	0
+ 597 01e2 0D       		.byte	13
+ 598 01e3 49       		.byte	73
+ 599 01e4 03       		.byte	3
+ 600 01e5 2B       		.byte	43
+ 601 01e6 01       		.byte	1
+ 602 01e7 D8       		.byte	-40
+ 603 01e8 0C       		.byte	12
+ 604 01e9 49       		.byte	73
+ 605 01ea 89       		.byte	-119
+ 606 01eb 58       		.byte	88
+ 607 01ec 0C       		.byte	12
+ 608 01ed 48       		.byte	72
+ 609 01ee 01       		.byte	1
+ 610 01ef 33       		.byte	51
+ 611 01f0 81       		.byte	-127
+ 612 01f1 50       		.byte	80
+ 613 01f2 30       		.byte	48
+ 614 01f3 2B       		.byte	43
+ 615 01f4 F4       		.byte	-12
+ 616 01f5 D1       		.byte	-47
+ 617 01f6 FF       		.byte	-1
+ 618 01f7 F7       		.byte	-9
+ 619 01f8 11       		.byte	17
+ 620 01f9 FF       		.byte	-1
+ 621 01fa 00       		.byte	0
+ 622 01fb 22       		.byte	34
+ 623 01fc 09       		.byte	9
+ 624 01fd 4B       		.byte	75
+ 625 01fe 1A       		.byte	26
+ 626 01ff 60       		.byte	96
+ 627 0200 09       		.byte	9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 12
+
+
+ 628 0201 4B       		.byte	75
+ 629 0202 1A       		.byte	26
+ 630 0203 68       		.byte	104
+ 631 0204 00       		.byte	0
+ 632 0205 2A       		.byte	42
+ 633 0206 00       		.byte	0
+ 634 0207 D1       		.byte	-47
+ 635 0208 1A       		.byte	26
+ 636 0209 60       		.byte	96
+ 637 020a 80       		.byte	-128
+ 638 020b 22       		.byte	34
+ 639 020c 01       		.byte	1
+ 640 020d 21       		.byte	33
+ 641 020e D2       		.byte	-46
+ 642 020f 05       		.byte	5
+ 643 0210 13       		.byte	19
+ 644 0211 68       		.byte	104
+ 645 0212 0B       		.byte	11
+ 646 0213 43       		.byte	67
+ 647 0214 13       		.byte	19
+ 648 0215 60       		.byte	96
+ 649 0216 08       		.byte	8
+ 650 0217 BD       		.byte	-67
+ 651 0218 8D       		.byte	-115
+ 652 0219 01       		.byte	1
+ 653 021a 00       		.byte	0
+ 654 021b 00       		.byte	0
+ 655 021c 00       		.byte	0
+ 656 021d 00       		.byte	0
+ 657 021e 00       		.byte	0
+ 658 021f 00       		.byte	0
+ 659 0220 00       		.byte	0
+ 660 0221 00       		.byte	0
+ 661 0222 00       		.byte	0
+ 662 0223 20       		.byte	32
+ 663 0224 C8       		.byte	-56
+ 664 0225 00       		.byte	0
+ 665 0226 00       		.byte	0
+ 666 0227 20       		.byte	32
+ 667 0228 C0       		.byte	-64
+ 668 0229 00       		.byte	0
+ 669 022a 00       		.byte	0
+ 670 022b 20       		.byte	32
+ 671 022c 00       		.byte	0
+ 672 022d 47       		.byte	71
+ 673 022e 70       		.byte	112
+ 674 022f B5       		.byte	-75
+ 675 0230 05       		.byte	5
+ 676 0231 1C       		.byte	28
+ 677 0232 0E       		.byte	14
+ 678 0233 1C       		.byte	28
+ 679 0234 14       		.byte	20
+ 680 0235 1C       		.byte	28
+ 681 0236 00       		.byte	0
+ 682 0237 28       		.byte	40
+ 683 0238 02       		.byte	2
+ 684 0239 D0       		.byte	-48
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 13
+
+
+ 685 023a 00       		.byte	0
+ 686 023b 20       		.byte	32
+ 687 023c 00       		.byte	0
+ 688 023d F0       		.byte	-16
+ 689 023e 02       		.byte	2
+ 690 023f FC       		.byte	-4
+ 691 0240 00       		.byte	0
+ 692 0241 20       		.byte	32
+ 693 0242 00       		.byte	0
+ 694 0243 2C       		.byte	44
+ 695 0244 05       		.byte	5
+ 696 0245 D0       		.byte	-48
+ 697 0246 01       		.byte	1
+ 698 0247 3C       		.byte	60
+ 699 0248 AB       		.byte	-85
+ 700 0249 19       		.byte	25
+ 701 024a 1B       		.byte	27
+ 702 024b 5D       		.byte	93
+ 703 024c C0       		.byte	-64
+ 704 024d 18       		.byte	24
+ 705 024e C0       		.byte	-64
+ 706 024f B2       		.byte	-78
+ 707 0250 F7       		.byte	-9
+ 708 0251 E7       		.byte	-25
+ 709 0252 70       		.byte	112
+ 710 0253 BD       		.byte	-67
+ 711 0254 F0       		.byte	-16
+ 712 0255 B5       		.byte	-75
+ 713 0256 7F       		.byte	127
+ 714 0257 23       		.byte	35
+ 715 0258 05       		.byte	5
+ 716 0259 1C       		.byte	28
+ 717 025a 9D       		.byte	-99
+ 718 025b 43       		.byte	67
+ 719 025c 2E       		.byte	46
+ 720 025d 1C       		.byte	28
+ 721 025e 2B       		.byte	43
+ 722 025f 1C       		.byte	28
+ 723 0260 A3       		.byte	-93
+ 724 0261 B0       		.byte	-80
+ 725 0262 01       		.byte	1
+ 726 0263 91       		.byte	-111
+ 727 0264 C4       		.byte	-60
+ 728 0265 09       		.byte	9
+ 729 0266 80       		.byte	-128
+ 730 0267 36       		.byte	54
+ 731 0268 1A       		.byte	26
+ 732 0269 78       		.byte	120
+ 733 026a 94       		.byte	-108
+ 734 026b 46       		.byte	70
+ 735 026c 61       		.byte	97
+ 736 026d 46       		.byte	70
+ 737 026e 02       		.byte	2
+ 738 026f AA       		.byte	-86
+ 739 0270 57       		.byte	87
+ 740 0271 1B       		.byte	27
+ 741 0272 F9       		.byte	-7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 14
+
+
+ 742 0273 54       		.byte	84
+ 743 0274 01       		.byte	1
+ 744 0275 33       		.byte	51
+ 745 0276 B3       		.byte	-77
+ 746 0277 42       		.byte	66
+ 747 0278 F6       		.byte	-10
+ 748 0279 D1       		.byte	-47
+ 749 027a 7F       		.byte	127
+ 750 027b 23       		.byte	35
+ 751 027c 18       		.byte	24
+ 752 027d 40       		.byte	64
+ 753 027e 6B       		.byte	107
+ 754 027f 46       		.byte	70
+ 755 0280 1B       		.byte	27
+ 756 0281 79       		.byte	121
+ 757 0282 11       		.byte	17
+ 758 0283 1C       		.byte	28
+ 759 0284 13       		.byte	19
+ 760 0285 54       		.byte	84
+ 761 0286 A0       		.byte	-96
+ 762 0287 B2       		.byte	-78
+ 763 0288 00       		.byte	0
+ 764 0289 F0       		.byte	-16
+ 765 028a 1C       		.byte	28
+ 766 028b FB       		.byte	-5
+ 767 028c 23       		.byte	35
+ 768 028d B0       		.byte	-80
+ 769 028e F0       		.byte	-16
+ 770 028f BD       		.byte	-67
+ 771 0290 01       		.byte	1
+ 772 0291 38       		.byte	56
+ 773 0292 08       		.byte	8
+ 774 0293 B5       		.byte	-75
+ 775 0294 0B       		.byte	11
+ 776 0295 28       		.byte	40
+ 777 0296 2F       		.byte	47
+ 778 0297 D8       		.byte	-40
+ 779 0298 C9       		.byte	-55
+ 780 0299 01       		.byte	1
+ 781 029a 49       		.byte	73
+ 782 029b 42       		.byte	66
+ 783 029c 00       		.byte	0
+ 784 029d F0       		.byte	-16
+ 785 029e 84       		.byte	-124
+ 786 029f FD       		.byte	-3
+ 787 02a0 06       		.byte	6
+ 788 02a1 08       		.byte	8
+ 789 02a2 0A       		.byte	10
+ 790 02a3 0C       		.byte	12
+ 791 02a4 0E       		.byte	14
+ 792 02a5 10       		.byte	16
+ 793 02a6 14       		.byte	20
+ 794 02a7 12       		.byte	18
+ 795 02a8 16       		.byte	22
+ 796 02a9 19       		.byte	25
+ 797 02aa 1B       		.byte	27
+ 798 02ab 20       		.byte	32
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 15
+
+
+ 799 02ac 17       		.byte	23
+ 800 02ad 4B       		.byte	75
+ 801 02ae 13       		.byte	19
+ 802 02af E0       		.byte	-32
+ 803 02b0 17       		.byte	23
+ 804 02b1 4B       		.byte	75
+ 805 02b2 16       		.byte	22
+ 806 02b3 E0       		.byte	-32
+ 807 02b4 17       		.byte	23
+ 808 02b5 4B       		.byte	75
+ 809 02b6 0A       		.byte	10
+ 810 02b7 E0       		.byte	-32
+ 811 02b8 17       		.byte	23
+ 812 02b9 4B       		.byte	75
+ 813 02ba 12       		.byte	18
+ 814 02bb E0       		.byte	-32
+ 815 02bc 17       		.byte	23
+ 816 02bd 4B       		.byte	75
+ 817 02be 0B       		.byte	11
+ 818 02bf E0       		.byte	-32
+ 819 02c0 17       		.byte	23
+ 820 02c1 4B       		.byte	75
+ 821 02c2 09       		.byte	9
+ 822 02c3 E0       		.byte	-32
+ 823 02c4 17       		.byte	23
+ 824 02c5 4B       		.byte	75
+ 825 02c6 02       		.byte	2
+ 826 02c7 E0       		.byte	-32
+ 827 02c8 17       		.byte	23
+ 828 02c9 4B       		.byte	75
+ 829 02ca 00       		.byte	0
+ 830 02cb E0       		.byte	-32
+ 831 02cc 17       		.byte	23
+ 832 02cd 4B       		.byte	75
+ 833 02ce C9       		.byte	-55
+ 834 02cf 18       		.byte	24
+ 835 02d0 16       		.byte	22
+ 836 02d1 E0       		.byte	-32
+ 837 02d2 17       		.byte	23
+ 838 02d3 4B       		.byte	75
+ 839 02d4 05       		.byte	5
+ 840 02d5 E0       		.byte	-32
+ 841 02d6 17       		.byte	23
+ 842 02d7 4B       		.byte	75
+ 843 02d8 C9       		.byte	-55
+ 844 02d9 18       		.byte	24
+ 845 02da 08       		.byte	8
+ 846 02db 78       		.byte	120
+ 847 02dc C0       		.byte	-64
+ 848 02dd B2       		.byte	-78
+ 849 02de 13       		.byte	19
+ 850 02df E0       		.byte	-32
+ 851 02e0 15       		.byte	21
+ 852 02e1 4B       		.byte	75
+ 853 02e2 C9       		.byte	-55
+ 854 02e3 18       		.byte	24
+ 855 02e4 0A       		.byte	10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 16
+
+
+ 856 02e5 78       		.byte	120
+ 857 02e6 48       		.byte	72
+ 858 02e7 78       		.byte	120
+ 859 02e8 8B       		.byte	-117
+ 860 02e9 78       		.byte	120
+ 861 02ea 00       		.byte	0
+ 862 02eb 02       		.byte	2
+ 863 02ec 1B       		.byte	27
+ 864 02ed 04       		.byte	4
+ 865 02ee 18       		.byte	24
+ 866 02ef 43       		.byte	67
+ 867 02f0 CB       		.byte	-53
+ 868 02f1 78       		.byte	120
+ 869 02f2 10       		.byte	16
+ 870 02f3 43       		.byte	67
+ 871 02f4 1B       		.byte	27
+ 872 02f5 06       		.byte	6
+ 873 02f6 06       		.byte	6
+ 874 02f7 E0       		.byte	-32
+ 875 02f8 00       		.byte	0
+ 876 02f9 20       		.byte	32
+ 877 02fa 00       		.byte	0
+ 878 02fb F0       		.byte	-16
+ 879 02fc A3       		.byte	-93
+ 880 02fd FB       		.byte	-5
+ 881 02fe 00       		.byte	0
+ 882 02ff 21       		.byte	33
+ 883 0300 0B       		.byte	11
+ 884 0301 78       		.byte	120
+ 885 0302 48       		.byte	72
+ 886 0303 78       		.byte	120
+ 887 0304 00       		.byte	0
+ 888 0305 02       		.byte	2
+ 889 0306 18       		.byte	24
+ 890 0307 43       		.byte	67
+ 891 0308 08       		.byte	8
+ 892 0309 BD       		.byte	-67
+ 893 030a C0       		.byte	-64
+ 894 030b 46       		.byte	70
+ 895 030c C0       		.byte	-64
+ 896 030d 7F       		.byte	127
+ 897 030e 00       		.byte	0
+ 898 030f 00       		.byte	0
+ 899 0310 C1       		.byte	-63
+ 900 0311 7F       		.byte	127
+ 901 0312 00       		.byte	0
+ 902 0313 00       		.byte	0
+ 903 0314 C5       		.byte	-59
+ 904 0315 7F       		.byte	127
+ 905 0316 00       		.byte	0
+ 906 0317 00       		.byte	0
+ 907 0318 C9       		.byte	-55
+ 908 0319 7F       		.byte	127
+ 909 031a 00       		.byte	0
+ 910 031b 00       		.byte	0
+ 911 031c D0       		.byte	-48
+ 912 031d 7F       		.byte	127
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 17
+
+
+ 913 031e 00       		.byte	0
+ 914 031f 00       		.byte	0
+ 915 0320 D1       		.byte	-47
+ 916 0321 7F       		.byte	127
+ 917 0322 00       		.byte	0
+ 918 0323 00       		.byte	0
+ 919 0324 D6       		.byte	-42
+ 920 0325 7F       		.byte	127
+ 921 0326 00       		.byte	0
+ 922 0327 00       		.byte	0
+ 923 0328 D2       		.byte	-46
+ 924 0329 7F       		.byte	127
+ 925 032a 00       		.byte	0
+ 926 032b 00       		.byte	0
+ 927 032c D4       		.byte	-44
+ 928 032d 7F       		.byte	127
+ 929 032e 00       		.byte	0
+ 930 032f 00       		.byte	0
+ 931 0330 D8       		.byte	-40
+ 932 0331 7F       		.byte	127
+ 933 0332 00       		.byte	0
+ 934 0333 00       		.byte	0
+ 935 0334 DC       		.byte	-36
+ 936 0335 7F       		.byte	127
+ 937 0336 00       		.byte	0
+ 938 0337 00       		.byte	0
+ 939 0338 E0       		.byte	-32
+ 940 0339 7F       		.byte	127
+ 941 033a 00       		.byte	0
+ 942 033b 00       		.byte	0
+ 943 033c 0C       		.byte	12
+ 944 033d 4B       		.byte	75
+ 945 033e 10       		.byte	16
+ 946 033f B5       		.byte	-75
+ 947 0340 1A       		.byte	26
+ 948 0341 68       		.byte	104
+ 949 0342 10       		.byte	16
+ 950 0343 23       		.byte	35
+ 951 0344 13       		.byte	19
+ 952 0345 40       		.byte	64
+ 953 0346 0B       		.byte	11
+ 954 0347 4A       		.byte	74
+ 955 0348 00       		.byte	0
+ 956 0349 D1       		.byte	-47
+ 957 034a 13       		.byte	19
+ 958 034b 60       		.byte	96
+ 959 034c 13       		.byte	19
+ 960 034d 68       		.byte	104
+ 961 034e 80       		.byte	-128
+ 962 034f 2B       		.byte	43
+ 963 0350 0D       		.byte	13
+ 964 0351 D1       		.byte	-47
+ 965 0352 00       		.byte	0
+ 966 0353 24       		.byte	36
+ 967 0354 02       		.byte	2
+ 968 0355 20       		.byte	32
+ 969 0356 21       		.byte	33
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 18
+
+
+ 970 0357 1C       		.byte	28
+ 971 0358 14       		.byte	20
+ 972 0359 60       		.byte	96
+ 973 035a FF       		.byte	-1
+ 974 035b F7       		.byte	-9
+ 975 035c 99       		.byte	-103
+ 976 035d FF       		.byte	-1
+ 977 035e A0       		.byte	-96
+ 978 035f 42       		.byte	66
+ 979 0360 05       		.byte	5
+ 980 0361 D0       		.byte	-48
+ 981 0362 21       		.byte	33
+ 982 0363 1C       		.byte	28
+ 983 0364 02       		.byte	2
+ 984 0365 20       		.byte	32
+ 985 0366 FF       		.byte	-1
+ 986 0367 F7       		.byte	-9
+ 987 0368 93       		.byte	-109
+ 988 0369 FF       		.byte	-1
+ 989 036a FF       		.byte	-1
+ 990 036b F7       		.byte	-9
+ 991 036c 5F       		.byte	95
+ 992 036d FF       		.byte	-1
+ 993 036e 10       		.byte	16
+ 994 036f BD       		.byte	-67
+ 995 0370 00       		.byte	0
+ 996 0371 03       		.byte	3
+ 997 0372 0B       		.byte	11
+ 998 0373 40       		.byte	64
+ 999 0374 C0       		.byte	-64
+ 1000 0375 00       		.byte	0
+ 1001 0376 00       		.byte	0
+ 1002 0377 20       		.byte	32
+ 1003 0378 F8       		.byte	-8
+ 1004 0379 B5       		.byte	-75
+ 1005 037a 04       		.byte	4
+ 1006 037b 1C       		.byte	28
+ 1007 037c 03       		.byte	3
+ 1008 037d 20       		.byte	32
+ 1009 037e 21       		.byte	33
+ 1010 037f 1C       		.byte	28
+ 1011 0380 FF       		.byte	-1
+ 1012 0381 F7       		.byte	-9
+ 1013 0382 86       		.byte	-122
+ 1014 0383 FF       		.byte	-1
+ 1015 0384 21       		.byte	33
+ 1016 0385 1C       		.byte	28
+ 1017 0386 06       		.byte	6
+ 1018 0387 1C       		.byte	28
+ 1019 0388 04       		.byte	4
+ 1020 0389 20       		.byte	32
+ 1021 038a FF       		.byte	-1
+ 1022 038b F7       		.byte	-9
+ 1023 038c 81       		.byte	-127
+ 1024 038d FF       		.byte	-1
+ 1025 038e 21       		.byte	33
+ 1026 038f 1C       		.byte	28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 19
+
+
+ 1027 0390 07       		.byte	7
+ 1028 0391 1C       		.byte	28
+ 1029 0392 06       		.byte	6
+ 1030 0393 20       		.byte	32
+ 1031 0394 FF       		.byte	-1
+ 1032 0395 F7       		.byte	-9
+ 1033 0396 7C       		.byte	124
+ 1034 0397 FF       		.byte	-1
+ 1035 0398 00       		.byte	0
+ 1036 0399 25       		.byte	37
+ 1037 039a 01       		.byte	1
+ 1038 039b 28       		.byte	40
+ 1039 039c 28       		.byte	40
+ 1040 039d D0       		.byte	-48
+ 1041 039e 03       		.byte	3
+ 1042 039f 20       		.byte	32
+ 1043 03a0 21       		.byte	33
+ 1044 03a1 1C       		.byte	28
+ 1045 03a2 FF       		.byte	-1
+ 1046 03a3 F7       		.byte	-9
+ 1047 03a4 75       		.byte	117
+ 1048 03a5 FF       		.byte	-1
+ 1049 03a6 01       		.byte	1
+ 1050 03a7 36       		.byte	54
+ 1051 03a8 F6       		.byte	-10
+ 1052 03a9 01       		.byte	1
+ 1053 03aa F7       		.byte	-9
+ 1054 03ab 19       		.byte	25
+ 1055 03ac 2E       		.byte	46
+ 1056 03ad 1C       		.byte	28
+ 1057 03ae 01       		.byte	1
+ 1058 03af 30       		.byte	48
+ 1059 03b0 C0       		.byte	-64
+ 1060 03b1 01       		.byte	1
+ 1061 03b2 B8       		.byte	-72
+ 1062 03b3 42       		.byte	66
+ 1063 03b4 09       		.byte	9
+ 1064 03b5 D2       		.byte	-46
+ 1065 03b6 03       		.byte	3
+ 1066 03b7 78       		.byte	120
+ 1067 03b8 5A       		.byte	90
+ 1068 03b9 1E       		.byte	30
+ 1069 03ba D2       		.byte	-46
+ 1070 03bb B2       		.byte	-78
+ 1071 03bc FD       		.byte	-3
+ 1072 03bd 2A       		.byte	42
+ 1073 03be 00       		.byte	0
+ 1074 03bf D8       		.byte	-40
+ 1075 03c0 01       		.byte	1
+ 1076 03c1 26       		.byte	38
+ 1077 03c2 5D       		.byte	93
+ 1078 03c3 19       		.byte	25
+ 1079 03c4 ED       		.byte	-19
+ 1080 03c5 B2       		.byte	-78
+ 1081 03c6 01       		.byte	1
+ 1082 03c7 30       		.byte	48
+ 1083 03c8 F3       		.byte	-13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 20
+
+
+ 1084 03c9 E7       		.byte	-25
+ 1085 03ca 01       		.byte	1
+ 1086 03cb 20       		.byte	32
+ 1087 03cc 21       		.byte	33
+ 1088 03cd 1C       		.byte	28
+ 1089 03ce FF       		.byte	-1
+ 1090 03cf F7       		.byte	-9
+ 1091 03d0 5F       		.byte	95
+ 1092 03d1 FF       		.byte	-1
+ 1093 03d2 6D       		.byte	109
+ 1094 03d3 42       		.byte	66
+ 1095 03d4 EB       		.byte	-21
+ 1096 03d5 B2       		.byte	-78
+ 1097 03d6 06       		.byte	6
+ 1098 03d7 25       		.byte	37
+ 1099 03d8 83       		.byte	-125
+ 1100 03d9 42       		.byte	66
+ 1101 03da 09       		.byte	9
+ 1102 03db D1       		.byte	-47
+ 1103 03dc 00       		.byte	0
+ 1104 03dd 2E       		.byte	46
+ 1105 03de 07       		.byte	7
+ 1106 03df D0       		.byte	-48
+ 1107 03e0 04       		.byte	4
+ 1108 03e1 4B       		.byte	75
+ 1109 03e2 E4       		.byte	-28
+ 1110 03e3 01       		.byte	1
+ 1111 03e4 60       		.byte	96
+ 1112 03e5 42       		.byte	66
+ 1113 03e6 C0       		.byte	-64
+ 1114 03e7 18       		.byte	24
+ 1115 03e8 01       		.byte	1
+ 1116 03e9 21       		.byte	33
+ 1117 03ea FF       		.byte	-1
+ 1118 03eb F7       		.byte	-9
+ 1119 03ec 33       		.byte	51
+ 1120 03ed FF       		.byte	-1
+ 1121 03ee 00       		.byte	0
+ 1122 03ef 25       		.byte	37
+ 1123 03f0 28       		.byte	40
+ 1124 03f1 1C       		.byte	28
+ 1125 03f2 F8       		.byte	-8
+ 1126 03f3 BD       		.byte	-67
+ 1127 03f4 D1       		.byte	-47
+ 1128 03f5 7F       		.byte	127
+ 1129 03f6 00       		.byte	0
+ 1130 03f7 00       		.byte	0
+ 1131 03f8 F0       		.byte	-16
+ 1132 03f9 B5       		.byte	-75
+ 1133 03fa C4       		.byte	-60
+ 1134 03fb 4C       		.byte	76
+ 1135 03fc A5       		.byte	-91
+ 1136 03fd 44       		.byte	68
+ 1137 03fe 02       		.byte	2
+ 1138 03ff 90       		.byte	-112
+ 1139 0400 00       		.byte	0
+ 1140 0401 F0       		.byte	-16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 21
+
+
+ 1141 0402 E2       		.byte	-30
+ 1142 0403 FB       		.byte	-5
+ 1143 0404 62       		.byte	98
+ 1144 0405 B6       		.byte	-74
+ 1145 0406 00       		.byte	0
+ 1146 0407 25       		.byte	37
+ 1147 0408 0A       		.byte	10
+ 1148 0409 23       		.byte	35
+ 1149 040a 01       		.byte	1
+ 1150 040b 95       		.byte	-107
+ 1151 040c 04       		.byte	4
+ 1152 040d 95       		.byte	-107
+ 1153 040e 03       		.byte	3
+ 1154 040f 93       		.byte	-109
+ 1155 0410 02       		.byte	2
+ 1156 0411 9A       		.byte	-102
+ 1157 0412 FF       		.byte	-1
+ 1158 0413 23       		.byte	35
+ 1159 0414 00       		.byte	0
+ 1160 0415 2A       		.byte	42
+ 1161 0416 00       		.byte	0
+ 1162 0417 D0       		.byte	-48
+ 1163 0418 13       		.byte	19
+ 1164 0419 1C       		.byte	28
+ 1165 041a 96       		.byte	-106
+ 1166 041b 21       		.byte	33
+ 1167 041c 2A       		.byte	42
+ 1168 041d AF       		.byte	-81
+ 1169 041e 07       		.byte	7
+ 1170 041f AC       		.byte	-84
+ 1171 0420 38       		.byte	56
+ 1172 0421 1C       		.byte	28
+ 1173 0422 49       		.byte	73
+ 1174 0423 00       		.byte	0
+ 1175 0424 22       		.byte	34
+ 1176 0425 1C       		.byte	28
+ 1177 0426 00       		.byte	0
+ 1178 0427 F0       		.byte	-16
+ 1179 0428 D3       		.byte	-45
+ 1180 0429 FB       		.byte	-5
+ 1181 042a 02       		.byte	2
+ 1182 042b 9B       		.byte	-101
+ 1183 042c 00       		.byte	0
+ 1184 042d 2B       		.byte	43
+ 1185 042e 03       		.byte	3
+ 1186 042f D0       		.byte	-48
+ 1187 0430 03       		.byte	3
+ 1188 0431 9B       		.byte	-101
+ 1189 0432 01       		.byte	1
+ 1190 0433 3B       		.byte	59
+ 1191 0434 DB       		.byte	-37
+ 1192 0435 B2       		.byte	-78
+ 1193 0436 03       		.byte	3
+ 1194 0437 93       		.byte	-109
+ 1195 0438 03       		.byte	3
+ 1196 0439 9B       		.byte	-101
+ 1197 043a 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 22
+
+
+ 1198 043b 2B       		.byte	43
+ 1199 043c 02       		.byte	2
+ 1200 043d D0       		.byte	-48
+ 1201 043e 00       		.byte	0
+ 1202 043f 28       		.byte	40
+ 1203 0440 E6       		.byte	-26
+ 1204 0441 D1       		.byte	-47
+ 1205 0442 02       		.byte	2
+ 1206 0443 E0       		.byte	-32
+ 1207 0444 00       		.byte	0
+ 1208 0445 28       		.byte	40
+ 1209 0446 00       		.byte	0
+ 1210 0447 D0       		.byte	-48
+ 1211 0448 8C       		.byte	-116
+ 1212 0449 E0       		.byte	-32
+ 1213 044a 21       		.byte	33
+ 1214 044b 88       		.byte	-120
+ 1215 044c 06       		.byte	6
+ 1216 044d 29       		.byte	41
+ 1217 044e 00       		.byte	0
+ 1218 044f D8       		.byte	-40
+ 1219 0450 96       		.byte	-106
+ 1220 0451 E0       		.byte	-32
+ 1221 0452 3A       		.byte	58
+ 1222 0453 78       		.byte	120
+ 1223 0454 04       		.byte	4
+ 1224 0455 23       		.byte	35
+ 1225 0456 01       		.byte	1
+ 1226 0457 2A       		.byte	42
+ 1227 0458 54       		.byte	84
+ 1228 0459 D1       		.byte	-47
+ 1229 045a FE       		.byte	-2
+ 1230 045b 78       		.byte	120
+ 1231 045c BA       		.byte	-70
+ 1232 045d 78       		.byte	120
+ 1233 045e 36       		.byte	54
+ 1234 045f 02       		.byte	2
+ 1235 0460 16       		.byte	22
+ 1236 0461 43       		.byte	67
+ 1237 0462 F2       		.byte	-14
+ 1238 0463 1D       		.byte	29
+ 1239 0464 8A       		.byte	-118
+ 1240 0465 42       		.byte	66
+ 1241 0466 00       		.byte	0
+ 1242 0467 D9       		.byte	-39
+ 1243 0468 8C       		.byte	-116
+ 1244 0469 E0       		.byte	-32
+ 1245 046a 96       		.byte	-106
+ 1246 046b 21       		.byte	33
+ 1247 046c 49       		.byte	73
+ 1248 046d 00       		.byte	0
+ 1249 046e 8A       		.byte	-118
+ 1250 046f 42       		.byte	66
+ 1251 0470 00       		.byte	0
+ 1252 0471 D9       		.byte	-39
+ 1253 0472 87       		.byte	-121
+ 1254 0473 E0       		.byte	-32
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 23
+
+
+ 1255 0474 BF       		.byte	-65
+ 1256 0475 19       		.byte	25
+ 1257 0476 B8       		.byte	-72
+ 1258 0477 79       		.byte	121
+ 1259 0478 79       		.byte	121
+ 1260 0479 79       		.byte	121
+ 1261 047a 3A       		.byte	58
+ 1262 047b 79       		.byte	121
+ 1263 047c 17       		.byte	23
+ 1264 047d 28       		.byte	40
+ 1265 047e 41       		.byte	65
+ 1266 047f D1       		.byte	-47
+ 1267 0480 00       		.byte	0
+ 1268 0481 20       		.byte	32
+ 1269 0482 F3       		.byte	-13
+ 1270 0483 18       		.byte	24
+ 1271 0484 9B       		.byte	-101
+ 1272 0485 B2       		.byte	-78
+ 1273 0486 00       		.byte	0
+ 1274 0487 2B       		.byte	43
+ 1275 0488 09       		.byte	9
+ 1276 0489 D0       		.byte	-48
+ 1277 048a C0       		.byte	-64
+ 1278 048b AC       		.byte	-84
+ 1279 048c A0       		.byte	-96
+ 1280 048d 4F       		.byte	79
+ 1281 048e E4       		.byte	-28
+ 1282 048f 18       		.byte	24
+ 1283 0490 E4       		.byte	-28
+ 1284 0491 19       		.byte	25
+ 1285 0492 24       		.byte	36
+ 1286 0493 78       		.byte	120
+ 1287 0494 01       		.byte	1
+ 1288 0495 3B       		.byte	59
+ 1289 0496 00       		.byte	0
+ 1290 0497 19       		.byte	25
+ 1291 0498 80       		.byte	-128
+ 1292 0499 B2       		.byte	-78
+ 1293 049a 9B       		.byte	-101
+ 1294 049b B2       		.byte	-78
+ 1295 049c F3       		.byte	-13
+ 1296 049d E7       		.byte	-25
+ 1297 049e 40       		.byte	64
+ 1298 049f 42       		.byte	66
+ 1299 04a0 09       		.byte	9
+ 1300 04a1 02       		.byte	2
+ 1301 04a2 80       		.byte	-128
+ 1302 04a3 B2       		.byte	-78
+ 1303 04a4 0A       		.byte	10
+ 1304 04a5 43       		.byte	67
+ 1305 04a6 08       		.byte	8
+ 1306 04a7 33       		.byte	51
+ 1307 04a8 82       		.byte	-126
+ 1308 04a9 42       		.byte	66
+ 1309 04aa 2B       		.byte	43
+ 1310 04ab D1       		.byte	-47
+ 1311 04ac 6C       		.byte	108
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 24
+
+
+ 1312 04ad E0       		.byte	-32
+ 1313 04ae 34       		.byte	52
+ 1314 04af 2B       		.byte	43
+ 1315 04b0 00       		.byte	0
+ 1316 04b1 D0       		.byte	-48
+ 1317 04b2 0A       		.byte	10
+ 1318 04b3 E1       		.byte	-31
+ 1319 04b4 01       		.byte	1
+ 1320 04b5 9B       		.byte	-101
+ 1321 04b6 01       		.byte	1
+ 1322 04b7 2B       		.byte	43
+ 1323 04b8 62       		.byte	98
+ 1324 04b9 D1       		.byte	-47
+ 1325 04ba 03       		.byte	3
+ 1326 04bb 2E       		.byte	46
+ 1327 04bc 60       		.byte	96
+ 1328 04bd D1       		.byte	-47
+ 1329 04be 75       		.byte	117
+ 1330 04bf A8       		.byte	-88
+ 1331 04c0 00       		.byte	0
+ 1332 04c1 21       		.byte	33
+ 1333 04c2 80       		.byte	-128
+ 1334 04c3 22       		.byte	34
+ 1335 04c4 00       		.byte	0
+ 1336 04c5 F0       		.byte	-16
+ 1337 04c6 B3       		.byte	-77
+ 1338 04c7 FC       		.byte	-4
+ 1339 04c8 80       		.byte	-128
+ 1340 04c9 25       		.byte	37
+ 1341 04ca 97       		.byte	-105
+ 1342 04cb 21       		.byte	33
+ 1343 04cc 75       		.byte	117
+ 1344 04cd AB       		.byte	-85
+ 1345 04ce 58       		.byte	88
+ 1346 04cf 19       		.byte	25
+ 1347 04d0 06       		.byte	6
+ 1348 04d1 AB       		.byte	-85
+ 1349 04d2 AD       		.byte	-83
+ 1350 04d3 19       		.byte	25
+ 1351 04d4 F2       		.byte	-14
+ 1352 04d5 1E       		.byte	30
+ 1353 04d6 C9       		.byte	-55
+ 1354 04d7 18       		.byte	24
+ 1355 04d8 AD       		.byte	-83
+ 1356 04d9 B2       		.byte	-78
+ 1357 04da 00       		.byte	0
+ 1358 04db F0       		.byte	-16
+ 1359 04dc 9F       		.byte	-97
+ 1360 04dd FC       		.byte	-4
+ 1361 04de 83       		.byte	-125
+ 1362 04df 2D       		.byte	45
+ 1363 04e0 00       		.byte	0
+ 1364 04e1 D0       		.byte	-48
+ 1365 04e2 6D       		.byte	109
+ 1366 04e3 E1       		.byte	-31
+ 1367 04e4 96       		.byte	-106
+ 1368 04e5 22       		.byte	34
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 25
+
+
+ 1369 04e6 06       		.byte	6
+ 1370 04e7 AB       		.byte	-85
+ 1371 04e8 9B       		.byte	-101
+ 1372 04e9 18       		.byte	24
+ 1373 04ea 1D       		.byte	29
+ 1374 04eb 78       		.byte	120
+ 1375 04ec 01       		.byte	1
+ 1376 04ed 3A       		.byte	58
+ 1377 04ee 06       		.byte	6
+ 1378 04ef AB       		.byte	-85
+ 1379 04f0 9B       		.byte	-101
+ 1380 04f1 18       		.byte	24
+ 1381 04f2 18       		.byte	24
+ 1382 04f3 78       		.byte	120
+ 1383 04f4 2D       		.byte	45
+ 1384 04f5 02       		.byte	2
+ 1385 04f6 05       		.byte	5
+ 1386 04f7 43       		.byte	67
+ 1387 04f8 FF       		.byte	-1
+ 1388 04f9 2D       		.byte	45
+ 1389 04fa 00       		.byte	0
+ 1390 04fb D8       		.byte	-40
+ 1391 04fc 65       		.byte	101
+ 1392 04fd E1       		.byte	-31
+ 1393 04fe 01       		.byte	1
+ 1394 04ff 23       		.byte	35
+ 1395 0500 01       		.byte	1
+ 1396 0501 93       		.byte	-109
+ 1397 0502 0A       		.byte	10
+ 1398 0503 23       		.byte	35
+ 1399 0504 00       		.byte	0
+ 1400 0505 24       		.byte	36
+ 1401 0506 06       		.byte	6
+ 1402 0507 AA       		.byte	-86
+ 1403 0508 D4       		.byte	-44
+ 1404 0509 80       		.byte	-128
+ 1405 050a 01       		.byte	1
+ 1406 050b 21       		.byte	33
+ 1407 050c 2A       		.byte	42
+ 1408 050d AA       		.byte	-86
+ 1409 050e 53       		.byte	83
+ 1410 050f 70       		.byte	112
+ 1411 0510 23       		.byte	35
+ 1412 0511 0A       		.byte	10
+ 1413 0512 D3       		.byte	-45
+ 1414 0513 70       		.byte	112
+ 1415 0514 00       		.byte	0
+ 1416 0515 23       		.byte	35
+ 1417 0516 11       		.byte	17
+ 1418 0517 70       		.byte	112
+ 1419 0518 94       		.byte	-108
+ 1420 0519 70       		.byte	112
+ 1421 051a 22       		.byte	34
+ 1422 051b 1D       		.byte	29
+ 1423 051c 92       		.byte	-110
+ 1424 051d B2       		.byte	-78
+ 1425 051e 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 26
+
+
+ 1426 051f 2A       		.byte	42
+ 1427 0520 09       		.byte	9
+ 1428 0521 D0       		.byte	-48
+ 1429 0522 C0       		.byte	-64
+ 1430 0523 A9       		.byte	-87
+ 1431 0524 7A       		.byte	122
+ 1432 0525 48       		.byte	72
+ 1433 0526 89       		.byte	-119
+ 1434 0527 18       		.byte	24
+ 1435 0528 09       		.byte	9
+ 1436 0529 18       		.byte	24
+ 1437 052a 09       		.byte	9
+ 1438 052b 78       		.byte	120
+ 1439 052c 01       		.byte	1
+ 1440 052d 3A       		.byte	58
+ 1441 052e 5B       		.byte	91
+ 1442 052f 18       		.byte	24
+ 1443 0530 9B       		.byte	-101
+ 1444 0531 B2       		.byte	-78
+ 1445 0532 92       		.byte	-110
+ 1446 0533 B2       		.byte	-78
+ 1447 0534 F3       		.byte	-13
+ 1448 0535 E7       		.byte	-25
+ 1449 0536 C0       		.byte	-64
+ 1450 0537 AA       		.byte	-86
+ 1451 0538 76       		.byte	118
+ 1452 0539 49       		.byte	73
+ 1453 053a 12       		.byte	18
+ 1454 053b 19       		.byte	25
+ 1455 053c 5B       		.byte	91
+ 1456 053d 42       		.byte	66
+ 1457 053e 51       		.byte	81
+ 1458 053f 18       		.byte	24
+ 1459 0540 9B       		.byte	-101
+ 1460 0541 B2       		.byte	-78
+ 1461 0542 0B       		.byte	11
+ 1462 0543 70       		.byte	112
+ 1463 0544 74       		.byte	116
+ 1464 0545 49       		.byte	73
+ 1465 0546 1B       		.byte	27
+ 1466 0547 0A       		.byte	10
+ 1467 0548 51       		.byte	81
+ 1468 0549 18       		.byte	24
+ 1469 054a 0B       		.byte	11
+ 1470 054b 70       		.byte	112
+ 1471 054c 73       		.byte	115
+ 1472 054d 4B       		.byte	75
+ 1473 054e 07       		.byte	7
+ 1474 054f 34       		.byte	52
+ 1475 0550 D2       		.byte	-46
+ 1476 0551 18       		.byte	24
+ 1477 0552 17       		.byte	23
+ 1478 0553 23       		.byte	35
+ 1479 0554 13       		.byte	19
+ 1480 0555 70       		.byte	112
+ 1481 0556 06       		.byte	6
+ 1482 0557 AB       		.byte	-85
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 27
+
+
+ 1483 0558 9A       		.byte	-102
+ 1484 0559 1D       		.byte	29
+ 1485 055a A1       		.byte	-95
+ 1486 055b B2       		.byte	-78
+ 1487 055c 2A       		.byte	42
+ 1488 055d A8       		.byte	-88
+ 1489 055e 96       		.byte	-106
+ 1490 055f 23       		.byte	35
+ 1491 0560 00       		.byte	0
+ 1492 0561 F0       		.byte	-16
+ 1493 0562 68       		.byte	104
+ 1494 0563 FB       		.byte	-5
+ 1495 0564 02       		.byte	2
+ 1496 0565 9B       		.byte	-101
+ 1497 0566 00       		.byte	0
+ 1498 0567 2B       		.byte	43
+ 1499 0568 00       		.byte	0
+ 1500 0569 D1       		.byte	-47
+ 1501 056a 51       		.byte	81
+ 1502 056b E7       		.byte	-25
+ 1503 056c 01       		.byte	1
+ 1504 056d 9B       		.byte	-101
+ 1505 056e 01       		.byte	1
+ 1506 056f 2B       		.byte	43
+ 1507 0570 00       		.byte	0
+ 1508 0571 D0       		.byte	-48
+ 1509 0572 5D       		.byte	93
+ 1510 0573 E1       		.byte	-31
+ 1511 0574 01       		.byte	1
+ 1512 0575 23       		.byte	35
+ 1513 0576 01       		.byte	1
+ 1514 0577 93       		.byte	-109
+ 1515 0578 4A       		.byte	74
+ 1516 0579 E7       		.byte	-25
+ 1517 057a 01       		.byte	1
+ 1518 057b 9B       		.byte	-101
+ 1519 057c 01       		.byte	1
+ 1520 057d 2B       		.byte	43
+ 1521 057e 50       		.byte	80
+ 1522 057f D0       		.byte	-48
+ 1523 0580 04       		.byte	4
+ 1524 0581 23       		.byte	35
+ 1525 0582 BF       		.byte	-65
+ 1526 0583 E7       		.byte	-25
+ 1527 0584 03       		.byte	3
+ 1528 0585 23       		.byte	35
+ 1529 0586 BD       		.byte	-67
+ 1530 0587 E7       		.byte	-25
+ 1531 0588 2A       		.byte	42
+ 1532 0589 AF       		.byte	-81
+ 1533 058a 7B       		.byte	123
+ 1534 058b 78       		.byte	120
+ 1535 058c 3C       		.byte	60
+ 1536 058d 79       		.byte	121
+ 1537 058e 18       		.byte	24
+ 1538 058f 1C       		.byte	28
+ 1539 0590 31       		.byte	49
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 28
+
+
+ 1540 0591 38       		.byte	56
+ 1541 0592 14       		.byte	20
+ 1542 0593 28       		.byte	40
+ 1543 0594 2E       		.byte	46
+ 1544 0595 D9       		.byte	-39
+ 1545 0596 62       		.byte	98
+ 1546 0597 4A       		.byte	74
+ 1547 0598 14       		.byte	20
+ 1548 0599 68       		.byte	104
+ 1549 059a 00       		.byte	0
+ 1550 059b 2C       		.byte	44
+ 1551 059c 26       		.byte	38
+ 1552 059d D0       		.byte	-48
+ 1553 059e 01       		.byte	1
+ 1554 059f 9A       		.byte	-102
+ 1555 05a0 01       		.byte	1
+ 1556 05a1 2A       		.byte	42
+ 1557 05a2 25       		.byte	37
+ 1558 05a3 D1       		.byte	-47
+ 1559 05a4 06       		.byte	6
+ 1560 05a5 AA       		.byte	-86
+ 1561 05a6 56       		.byte	86
+ 1562 05a7 81       		.byte	-127
+ 1563 05a8 0A       		.byte	10
+ 1564 05a9 AE       		.byte	-82
+ 1565 05aa 13       		.byte	19
+ 1566 05ab 72       		.byte	114
+ 1567 05ac 2B       		.byte	43
+ 1568 05ad AF       		.byte	-81
+ 1569 05ae 00       		.byte	0
+ 1570 05af 21       		.byte	33
+ 1571 05b0 0C       		.byte	12
+ 1572 05b1 22       		.byte	34
+ 1573 05b2 30       		.byte	48
+ 1574 05b3 1C       		.byte	28
+ 1575 05b4 09       		.byte	9
+ 1576 05b5 97       		.byte	-105
+ 1577 05b6 00       		.byte	0
+ 1578 05b7 F0       		.byte	-16
+ 1579 05b8 3A       		.byte	58
+ 1580 05b9 FC       		.byte	-4
+ 1581 05ba B7       		.byte	-73
+ 1582 05bb 60       		.byte	96
+ 1583 05bc 08       		.byte	8
+ 1584 05bd A8       		.byte	-88
+ 1585 05be 31       		.byte	49
+ 1586 05bf 1C       		.byte	28
+ 1587 05c0 A0       		.byte	-96
+ 1588 05c1 47       		.byte	71
+ 1589 05c2 26       		.byte	38
+ 1590 05c3 23       		.byte	35
+ 1591 05c4 B4       		.byte	-76
+ 1592 05c5 88       		.byte	-120
+ 1593 05c6 FF       		.byte	-1
+ 1594 05c7 33       		.byte	51
+ 1595 05c8 9C       		.byte	-100
+ 1596 05c9 42       		.byte	66
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 29
+
+
+ 1597 05ca 02       		.byte	2
+ 1598 05cb D9       		.byte	-39
+ 1599 05cc B3       		.byte	-77
+ 1600 05cd 68       		.byte	104
+ 1601 05ce BB       		.byte	-69
+ 1602 05cf 42       		.byte	66
+ 1603 05d0 07       		.byte	7
+ 1604 05d1 D0       		.byte	-48
+ 1605 05d2 B2       		.byte	-78
+ 1606 05d3 68       		.byte	104
+ 1607 05d4 00       		.byte	0
+ 1608 05d5 2A       		.byte	42
+ 1609 05d6 01       		.byte	1
+ 1610 05d7 D1       		.byte	-47
+ 1611 05d8 00       		.byte	0
+ 1612 05d9 2C       		.byte	44
+ 1613 05da 04       		.byte	4
+ 1614 05db D1       		.byte	-47
+ 1615 05dc 33       		.byte	51
+ 1616 05dd 68       		.byte	104
+ 1617 05de DB       		.byte	-37
+ 1618 05df B2       		.byte	-78
+ 1619 05e0 91       		.byte	-111
+ 1620 05e1 E7       		.byte	-25
+ 1621 05e2 0E       		.byte	14
+ 1622 05e3 23       		.byte	35
+ 1623 05e4 8E       		.byte	-114
+ 1624 05e5 E7       		.byte	-25
+ 1625 05e6 0E       		.byte	14
+ 1626 05e7 23       		.byte	35
+ 1627 05e8 14       		.byte	20
+ 1628 05e9 1C       		.byte	28
+ 1629 05ea 8C       		.byte	-116
+ 1630 05eb E7       		.byte	-25
+ 1631 05ec 05       		.byte	5
+ 1632 05ed 23       		.byte	35
+ 1633 05ee 8A       		.byte	-118
+ 1634 05ef E7       		.byte	-25
+ 1635 05f0 05       		.byte	5
+ 1636 05f1 23       		.byte	35
+ 1637 05f2 87       		.byte	-121
+ 1638 05f3 E7       		.byte	-25
+ 1639 05f4 00       		.byte	0
+ 1640 05f5 F0       		.byte	-16
+ 1641 05f6 E2       		.byte	-30
+ 1642 05f7 FB       		.byte	-5
+ 1643 05f8 C1       		.byte	-63
+ 1644 05f9 FF       		.byte	-1
+ 1645 05fa 4B       		.byte	75
+ 1646 05fb 00       		.byte	0
+ 1647 05fc CF       		.byte	-49
+ 1648 05fd FF       		.byte	-1
+ 1649 05fe 5B       		.byte	91
+ 1650 05ff FF       		.byte	-1
+ 1651 0600 71       		.byte	113
+ 1652 0601 00       		.byte	0
+ 1653 0602 CF       		.byte	-49
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 30
+
+
+ 1654 0603 FF       		.byte	-1
+ 1655 0604 76       		.byte	118
+ 1656 0605 00       		.byte	0
+ 1657 0606 98       		.byte	-104
+ 1658 0607 00       		.byte	0
+ 1659 0608 5B       		.byte	91
+ 1660 0609 FF       		.byte	-1
+ 1661 060a A9       		.byte	-87
+ 1662 060b 00       		.byte	0
+ 1663 060c D5       		.byte	-43
+ 1664 060d 00       		.byte	0
+ 1665 060e CF       		.byte	-49
+ 1666 060f FF       		.byte	-1
+ 1667 0610 CF       		.byte	-49
+ 1668 0611 FF       		.byte	-1
+ 1669 0612 CF       		.byte	-49
+ 1670 0613 FF       		.byte	-1
+ 1671 0614 CF       		.byte	-49
+ 1672 0615 FF       		.byte	-1
+ 1673 0616 CF       		.byte	-49
+ 1674 0617 FF       		.byte	-1
+ 1675 0618 CF       		.byte	-49
+ 1676 0619 FF       		.byte	-1
+ 1677 061a CF       		.byte	-49
+ 1678 061b FF       		.byte	-1
+ 1679 061c CF       		.byte	-49
+ 1680 061d FF       		.byte	-1
+ 1681 061e CF       		.byte	-49
+ 1682 061f FF       		.byte	-1
+ 1683 0620 1E       		.byte	30
+ 1684 0621 00       		.byte	0
+ 1685 0622 00       		.byte	0
+ 1686 0623 2E       		.byte	46
+ 1687 0624 AC       		.byte	-84
+ 1688 0625 D1       		.byte	-47
+ 1689 0626 30       		.byte	48
+ 1690 0627 1C       		.byte	28
+ 1691 0628 FF       		.byte	-1
+ 1692 0629 F7       		.byte	-9
+ 1693 062a A6       		.byte	-90
+ 1694 062b FE       		.byte	-2
+ 1695 062c 43       		.byte	67
+ 1696 062d 42       		.byte	66
+ 1697 062e 43       		.byte	67
+ 1698 062f 41       		.byte	65
+ 1699 0630 3B       		.byte	59
+ 1700 0631 71       		.byte	113
+ 1701 0632 B3       		.byte	-77
+ 1702 0633 E0       		.byte	-32
+ 1703 0634 01       		.byte	1
+ 1704 0635 9B       		.byte	-101
+ 1705 0636 01       		.byte	1
+ 1706 0637 2B       		.byte	43
+ 1707 0638 A2       		.byte	-94
+ 1708 0639 D1       		.byte	-47
+ 1709 063a 32       		.byte	50
+ 1710 063b 1C       		.byte	28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 31
+
+
+ 1711 063c 7F       		.byte	127
+ 1712 063d 33       		.byte	51
+ 1713 063e 9A       		.byte	-102
+ 1714 063f 43       		.byte	67
+ 1715 0640 03       		.byte	3
+ 1716 0641 2A       		.byte	42
+ 1717 0642 9D       		.byte	-99
+ 1718 0643 D1       		.byte	-47
+ 1719 0644 BB       		.byte	-69
+ 1720 0645 79       		.byte	121
+ 1721 0646 05       		.byte	5
+ 1722 0647 93       		.byte	-109
+ 1723 0648 7F       		.byte	127
+ 1724 0649 79       		.byte	121
+ 1725 064a 03       		.byte	3
+ 1726 064b 2E       		.byte	46
+ 1727 064c 06       		.byte	6
+ 1728 064d D0       		.byte	-48
+ 1729 064e 97       		.byte	-105
+ 1730 064f 21       		.byte	33
+ 1731 0650 06       		.byte	6
+ 1732 0651 AB       		.byte	-85
+ 1733 0652 F2       		.byte	-14
+ 1734 0653 1E       		.byte	30
+ 1735 0654 75       		.byte	117
+ 1736 0655 A8       		.byte	-88
+ 1737 0656 C9       		.byte	-55
+ 1738 0657 18       		.byte	24
+ 1739 0658 00       		.byte	0
+ 1740 0659 F0       		.byte	-16
+ 1741 065a E0       		.byte	-32
+ 1742 065b FB       		.byte	-5
+ 1743 065c 00       		.byte	0
+ 1744 065d 2C       		.byte	44
+ 1745 065e 00       		.byte	0
+ 1746 065f D0       		.byte	-48
+ 1747 0660 AA       		.byte	-86
+ 1748 0661 E0       		.byte	-32
+ 1749 0662 05       		.byte	5
+ 1750 0663 9B       		.byte	-101
+ 1751 0664 1B       		.byte	27
+ 1752 0665 02       		.byte	2
+ 1753 0666 1F       		.byte	31
+ 1754 0667 43       		.byte	67
+ 1755 0668 0A       		.byte	10
+ 1756 0669 23       		.byte	35
+ 1757 066a FF       		.byte	-1
+ 1758 066b 2F       		.byte	47
+ 1759 066c 00       		.byte	0
+ 1760 066d D9       		.byte	-39
+ 1761 066e 4A       		.byte	74
+ 1762 066f E7       		.byte	-25
+ 1763 0670 FF       		.byte	-1
+ 1764 0671 01       		.byte	1
+ 1765 0672 39       		.byte	57
+ 1766 0673 1C       		.byte	28
+ 1767 0674 3B       		.byte	59
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 32
+
+
+ 1768 0675 1C       		.byte	28
+ 1769 0676 80       		.byte	-128
+ 1770 0677 31       		.byte	49
+ 1771 0678 75       		.byte	117
+ 1772 0679 AA       		.byte	-86
+ 1773 067a D2       		.byte	-46
+ 1774 067b 1B       		.byte	27
+ 1775 067c 18       		.byte	24
+ 1776 067d 78       		.byte	120
+ 1777 067e D2       		.byte	-46
+ 1778 067f 5C       		.byte	92
+ 1779 0680 82       		.byte	-126
+ 1780 0681 42       		.byte	66
+ 1781 0682 00       		.byte	0
+ 1782 0683 D0       		.byte	-48
+ 1783 0684 9A       		.byte	-102
+ 1784 0685 E0       		.byte	-32
+ 1785 0686 01       		.byte	1
+ 1786 0687 33       		.byte	51
+ 1787 0688 8B       		.byte	-117
+ 1788 0689 42       		.byte	66
+ 1789 068a F5       		.byte	-11
+ 1790 068b D1       		.byte	-47
+ 1791 068c 3B       		.byte	59
+ 1792 068d E0       		.byte	-32
+ 1793 068e 01       		.byte	1
+ 1794 068f 9B       		.byte	-101
+ 1795 0690 01       		.byte	1
+ 1796 0691 2B       		.byte	43
+ 1797 0692 00       		.byte	0
+ 1798 0693 D0       		.byte	-48
+ 1799 0694 74       		.byte	116
+ 1800 0695 E7       		.byte	-25
+ 1801 0696 01       		.byte	1
+ 1802 0697 2E       		.byte	46
+ 1803 0698 00       		.byte	0
+ 1804 0699 D0       		.byte	-48
+ 1805 069a 71       		.byte	113
+ 1806 069b E7       		.byte	-25
+ 1807 069c 00       		.byte	0
+ 1808 069d 2C       		.byte	44
+ 1809 069e 00       		.byte	0
+ 1810 069f D0       		.byte	-48
+ 1811 06a0 6E       		.byte	110
+ 1812 06a1 E7       		.byte	-25
+ 1813 06a2 20       		.byte	32
+ 1814 06a3 4B       		.byte	75
+ 1815 06a4 1B       		.byte	27
+ 1816 06a5 68       		.byte	104
+ 1817 06a6 1B       		.byte	27
+ 1818 06a7 68       		.byte	104
+ 1819 06a8 DA       		.byte	-38
+ 1820 06a9 0B       		.byte	11
+ 1821 06aa D2       		.byte	-46
+ 1822 06ab B2       		.byte	-78
+ 1823 06ac DB       		.byte	-37
+ 1824 06ad 09       		.byte	9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 33
+
+
+ 1825 06ae DB       		.byte	-37
+ 1826 06af B2       		.byte	-78
+ 1827 06b0 00       		.byte	0
+ 1828 06b1 2A       		.byte	42
+ 1829 06b2 01       		.byte	1
+ 1830 06b3 D0       		.byte	-48
+ 1831 06b4 80       		.byte	-128
+ 1832 06b5 23       		.byte	35
+ 1833 06b6 5B       		.byte	91
+ 1834 06b7 00       		.byte	0
+ 1835 06b8 3B       		.byte	59
+ 1836 06b9 71       		.byte	113
+ 1837 06ba 1B       		.byte	27
+ 1838 06bb 0A       		.byte	10
+ 1839 06bc 7B       		.byte	123
+ 1840 06bd 71       		.byte	113
+ 1841 06be FF       		.byte	-1
+ 1842 06bf 23       		.byte	35
+ 1843 06c0 BB       		.byte	-69
+ 1844 06c1 71       		.byte	113
+ 1845 06c2 00       		.byte	0
+ 1846 06c3 23       		.byte	35
+ 1847 06c4 04       		.byte	4
+ 1848 06c5 24       		.byte	36
+ 1849 06c6 FB       		.byte	-5
+ 1850 06c7 71       		.byte	113
+ 1851 06c8 1D       		.byte	29
+ 1852 06c9 E7       		.byte	-25
+ 1853 06ca 01       		.byte	1
+ 1854 06cb 9B       		.byte	-101
+ 1855 06cc 01       		.byte	1
+ 1856 06cd 2B       		.byte	43
+ 1857 06ce 00       		.byte	0
+ 1858 06cf D0       		.byte	-48
+ 1859 06d0 56       		.byte	86
+ 1860 06d1 E7       		.byte	-25
+ 1861 06d2 02       		.byte	2
+ 1862 06d3 2E       		.byte	46
+ 1863 06d4 00       		.byte	0
+ 1864 06d5 D8       		.byte	-40
+ 1865 06d6 53       		.byte	83
+ 1866 06d7 E7       		.byte	-25
+ 1867 06d8 F7       		.byte	-9
+ 1868 06d9 E6       		.byte	-26
+ 1869 06da 01       		.byte	1
+ 1870 06db 9B       		.byte	-101
+ 1871 06dc 01       		.byte	1
+ 1872 06dd 2B       		.byte	43
+ 1873 06de 00       		.byte	0
+ 1874 06df D0       		.byte	-48
+ 1875 06e0 4E       		.byte	78
+ 1876 06e1 E7       		.byte	-25
+ 1877 06e2 9F       		.byte	-97
+ 1878 06e3 E0       		.byte	-32
+ 1879 06e4 01       		.byte	1
+ 1880 06e5 9B       		.byte	-101
+ 1881 06e6 01       		.byte	1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 34
+
+
+ 1882 06e7 2B       		.byte	43
+ 1883 06e8 00       		.byte	0
+ 1884 06e9 D0       		.byte	-48
+ 1885 06ea 49       		.byte	73
+ 1886 06eb E7       		.byte	-25
+ 1887 06ec 2C       		.byte	44
+ 1888 06ed 33       		.byte	51
+ 1889 06ee AF       		.byte	-81
+ 1890 06ef 19       		.byte	25
+ 1891 06f0 FF       		.byte	-1
+ 1892 06f1 33       		.byte	51
+ 1893 06f2 9F       		.byte	-97
+ 1894 06f3 42       		.byte	66
+ 1895 06f4 00       		.byte	0
+ 1896 06f5 DD       		.byte	-35
+ 1897 06f6 45       		.byte	69
+ 1898 06f7 E7       		.byte	-25
+ 1899 06f8 75       		.byte	117
+ 1900 06f9 AB       		.byte	-85
+ 1901 06fa 58       		.byte	88
+ 1902 06fb 19       		.byte	25
+ 1903 06fc 2B       		.byte	43
+ 1904 06fd A9       		.byte	-87
+ 1905 06fe 32       		.byte	50
+ 1906 06ff 1C       		.byte	28
+ 1907 0700 00       		.byte	0
+ 1908 0701 F0       		.byte	-16
+ 1909 0702 8C       		.byte	-116
+ 1910 0703 FB       		.byte	-5
+ 1911 0704 BD       		.byte	-67
+ 1912 0705 B2       		.byte	-78
+ 1913 0706 00       		.byte	0
+ 1914 0707 23       		.byte	35
+ 1915 0708 1C       		.byte	28
+ 1916 0709 1C       		.byte	28
+ 1917 070a FC       		.byte	-4
+ 1918 070b E6       		.byte	-26
+ 1919 070c FC       		.byte	-4
+ 1920 070d FC       		.byte	-4
+ 1921 070e FF       		.byte	-1
+ 1922 070f FF       		.byte	-1
+ 1923 0710 A7       		.byte	-89
+ 1924 0711 FD       		.byte	-3
+ 1925 0712 FF       		.byte	-1
+ 1926 0713 FF       		.byte	-1
+ 1927 0714 AC       		.byte	-84
+ 1928 0715 FD       		.byte	-3
+ 1929 0716 FF       		.byte	-1
+ 1930 0717 FF       		.byte	-1
+ 1931 0718 AD       		.byte	-83
+ 1932 0719 FD       		.byte	-3
+ 1933 071a FF       		.byte	-1
+ 1934 071b FF       		.byte	-1
+ 1935 071c AE       		.byte	-82
+ 1936 071d FD       		.byte	-3
+ 1937 071e FF       		.byte	-1
+ 1938 071f FF       		.byte	-1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 35
+
+
+ 1939 0720 0C       		.byte	12
+ 1940 0721 01       		.byte	1
+ 1941 0722 00       		.byte	0
+ 1942 0723 20       		.byte	32
+ 1943 0724 D4       		.byte	-44
+ 1944 0725 00       		.byte	0
+ 1945 0726 00       		.byte	0
+ 1946 0727 20       		.byte	32
+ 1947 0728 00       		.byte	0
+ 1948 0729 2E       		.byte	46
+ 1949 072a 00       		.byte	0
+ 1950 072b D0       		.byte	-48
+ 1951 072c 28       		.byte	40
+ 1952 072d E7       		.byte	-25
+ 1953 072e 0A       		.byte	10
+ 1954 072f AB       		.byte	-85
+ 1955 0730 19       		.byte	25
+ 1956 0731 1C       		.byte	28
+ 1957 0732 41       		.byte	65
+ 1958 0733 4A       		.byte	74
+ 1959 0734 35       		.byte	53
+ 1960 0735 1C       		.byte	28
+ 1961 0736 11       		.byte	17
+ 1962 0737 CA       		.byte	-54
+ 1963 0738 11       		.byte	17
+ 1964 0739 C1       		.byte	-63
+ 1965 073a 2B       		.byte	43
+ 1966 073b AA       		.byte	-86
+ 1967 073c 03       		.byte	3
+ 1968 073d CB       		.byte	-53
+ 1969 073e 03       		.byte	3
+ 1970 073f C2       		.byte	-62
+ 1971 0740 01       		.byte	1
+ 1972 0741 23       		.byte	35
+ 1973 0742 08       		.byte	8
+ 1974 0743 24       		.byte	36
+ 1975 0744 01       		.byte	1
+ 1976 0745 93       		.byte	-109
+ 1977 0746 33       		.byte	51
+ 1978 0747 1C       		.byte	28
+ 1979 0748 DD       		.byte	-35
+ 1980 0749 E6       		.byte	-26
+ 1981 074a 01       		.byte	1
+ 1982 074b 9B       		.byte	-101
+ 1983 074c 01       		.byte	1
+ 1984 074d 2B       		.byte	43
+ 1985 074e 00       		.byte	0
+ 1986 074f D0       		.byte	-48
+ 1987 0750 16       		.byte	22
+ 1988 0751 E7       		.byte	-25
+ 1989 0752 03       		.byte	3
+ 1990 0753 2E       		.byte	46
+ 1991 0754 00       		.byte	0
+ 1992 0755 D0       		.byte	-48
+ 1993 0756 13       		.byte	19
+ 1994 0757 E7       		.byte	-25
+ 1995 0758 BE       		.byte	-66
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 36
+
+
+ 1996 0759 79       		.byte	121
+ 1997 075a 7B       		.byte	123
+ 1998 075b 79       		.byte	121
+ 1999 075c 36       		.byte	54
+ 2000 075d 02       		.byte	2
+ 2001 075e 1E       		.byte	30
+ 2002 075f 43       		.byte	67
+ 2003 0760 FF       		.byte	-1
+ 2004 0761 2E       		.byte	46
+ 2005 0762 00       		.byte	0
+ 2006 0763 D9       		.byte	-39
+ 2007 0764 CD       		.byte	-51
+ 2008 0765 E6       		.byte	-26
+ 2009 0766 21       		.byte	33
+ 2010 0767 02       		.byte	2
+ 2011 0768 71       		.byte	113
+ 2012 0769 18       		.byte	24
+ 2013 076a C9       		.byte	-55
+ 2014 076b 01       		.byte	1
+ 2015 076c 00       		.byte	0
+ 2016 076d 20       		.byte	32
+ 2017 076e 80       		.byte	-128
+ 2018 076f 22       		.byte	34
+ 2019 0770 FF       		.byte	-1
+ 2020 0771 F7       		.byte	-9
+ 2021 0772 5D       		.byte	93
+ 2022 0773 FD       		.byte	-3
+ 2023 0774 07       		.byte	7
+ 2024 0775 1C       		.byte	28
+ 2025 0776 00       		.byte	0
+ 2026 0777 2C       		.byte	44
+ 2027 0778 0D       		.byte	13
+ 2028 0779 D1       		.byte	-47
+ 2029 077a FF       		.byte	-1
+ 2030 077b 2E       		.byte	46
+ 2031 077c 0B       		.byte	11
+ 2032 077d D1       		.byte	-47
+ 2033 077e 21       		.byte	33
+ 2034 077f 1C       		.byte	28
+ 2035 0780 05       		.byte	5
+ 2036 0781 20       		.byte	32
+ 2037 0782 FF       		.byte	-1
+ 2038 0783 F7       		.byte	-9
+ 2039 0784 85       		.byte	-123
+ 2040 0785 FD       		.byte	-3
+ 2041 0786 21       		.byte	33
+ 2042 0787 1C       		.byte	28
+ 2043 0788 3F       		.byte	63
+ 2044 0789 1A       		.byte	26
+ 2045 078a 06       		.byte	6
+ 2046 078b 20       		.byte	32
+ 2047 078c FF       		.byte	-1
+ 2048 078d F7       		.byte	-9
+ 2049 078e 80       		.byte	-128
+ 2050 078f FD       		.byte	-3
+ 2051 0790 FF       		.byte	-1
+ 2052 0791 B2       		.byte	-78
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 37
+
+
+ 2053 0792 3F       		.byte	63
+ 2054 0793 1A       		.byte	26
+ 2055 0794 FF       		.byte	-1
+ 2056 0795 B2       		.byte	-78
+ 2057 0796 7F       		.byte	127
+ 2058 0797 42       		.byte	66
+ 2059 0798 2A       		.byte	42
+ 2060 0799 AB       		.byte	-85
+ 2061 079a 1F       		.byte	31
+ 2062 079b 71       		.byte	113
+ 2063 079c 00       		.byte	0
+ 2064 079d 23       		.byte	35
+ 2065 079e 01       		.byte	1
+ 2066 079f 24       		.byte	36
+ 2067 07a0 B1       		.byte	-79
+ 2068 07a1 E6       		.byte	-26
+ 2069 07a2 00       		.byte	0
+ 2070 07a3 20       		.byte	32
+ 2071 07a4 FF       		.byte	-1
+ 2072 07a5 F7       		.byte	-9
+ 2073 07a6 E8       		.byte	-24
+ 2074 07a7 FD       		.byte	-3
+ 2075 07a8 00       		.byte	0
+ 2076 07a9 28       		.byte	40
+ 2077 07aa 02       		.byte	2
+ 2078 07ab D1       		.byte	-47
+ 2079 07ac 80       		.byte	-128
+ 2080 07ad 22       		.byte	34
+ 2081 07ae 23       		.byte	35
+ 2082 07af 4B       		.byte	75
+ 2083 07b0 1A       		.byte	26
+ 2084 07b1 60       		.byte	96
+ 2085 07b2 00       		.byte	0
+ 2086 07b3 F0       		.byte	-16
+ 2087 07b4 49       		.byte	73
+ 2088 07b5 F9       		.byte	-7
+ 2089 07b6 E3       		.byte	-29
+ 2090 07b7 E6       		.byte	-26
+ 2091 07b8 09       		.byte	9
+ 2092 07b9 23       		.byte	35
+ 2093 07ba A3       		.byte	-93
+ 2094 07bb E6       		.byte	-26
+ 2095 07bc 02       		.byte	2
+ 2096 07bd 23       		.byte	35
+ 2097 07be A1       		.byte	-95
+ 2098 07bf E6       		.byte	-26
+ 2099 07c0 01       		.byte	1
+ 2100 07c1 23       		.byte	35
+ 2101 07c2 00       		.byte	0
+ 2102 07c3 25       		.byte	37
+ 2103 07c4 01       		.byte	1
+ 2104 07c5 93       		.byte	-109
+ 2105 07c6 02       		.byte	2
+ 2106 07c7 33       		.byte	51
+ 2107 07c8 25       		.byte	37
+ 2108 07c9 E0       		.byte	-32
+ 2109 07ca 1D       		.byte	29
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 38
+
+
+ 2110 07cb 4B       		.byte	75
+ 2111 07cc 1B       		.byte	27
+ 2112 07cd 68       		.byte	104
+ 2113 07ce 1A       		.byte	26
+ 2114 07cf 68       		.byte	104
+ 2115 07d0 D3       		.byte	-45
+ 2116 07d1 09       		.byte	9
+ 2117 07d2 9B       		.byte	-101
+ 2118 07d3 B2       		.byte	-78
+ 2119 07d4 52       		.byte	82
+ 2120 07d5 06       		.byte	6
+ 2121 07d6 01       		.byte	1
+ 2122 07d7 D0       		.byte	-48
+ 2123 07d8 01       		.byte	1
+ 2124 07d9 33       		.byte	51
+ 2125 07da 9B       		.byte	-101
+ 2126 07db B2       		.byte	-78
+ 2127 07dc 24       		.byte	36
+ 2128 07dd 02       		.byte	2
+ 2129 07de 2D       		.byte	45
+ 2130 07df 19       		.byte	25
+ 2131 07e0 AD       		.byte	-83
+ 2132 07e1 B2       		.byte	-78
+ 2133 07e2 9D       		.byte	-99
+ 2134 07e3 42       		.byte	66
+ 2135 07e4 19       		.byte	25
+ 2136 07e5 D3       		.byte	-45
+ 2137 07e6 04       		.byte	4
+ 2138 07e7 9B       		.byte	-101
+ 2139 07e8 00       		.byte	0
+ 2140 07e9 2B       		.byte	43
+ 2141 07ea 0A       		.byte	10
+ 2142 07eb D1       		.byte	-47
+ 2143 07ec 19       		.byte	25
+ 2144 07ed 1C       		.byte	28
+ 2145 07ee 80       		.byte	-128
+ 2146 07ef 22       		.byte	34
+ 2147 07f0 0A       		.byte	10
+ 2148 07f1 A8       		.byte	-88
+ 2149 07f2 00       		.byte	0
+ 2150 07f3 F0       		.byte	-16
+ 2151 07f4 1C       		.byte	28
+ 2152 07f5 FB       		.byte	-5
+ 2153 07f6 FF       		.byte	-1
+ 2154 07f7 20       		.byte	32
+ 2155 07f8 0A       		.byte	10
+ 2156 07f9 A9       		.byte	-87
+ 2157 07fa 00       		.byte	0
+ 2158 07fb F0       		.byte	-16
+ 2159 07fc 63       		.byte	99
+ 2160 07fd F8       		.byte	-8
+ 2161 07fe 01       		.byte	1
+ 2162 07ff 23       		.byte	35
+ 2163 0800 04       		.byte	4
+ 2164 0801 93       		.byte	-109
+ 2165 0802 28       		.byte	40
+ 2166 0803 1C       		.byte	28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 39
+
+
+ 2167 0804 75       		.byte	117
+ 2168 0805 A9       		.byte	-87
+ 2169 0806 00       		.byte	0
+ 2170 0807 F0       		.byte	-16
+ 2171 0808 5D       		.byte	93
+ 2172 0809 F8       		.byte	-8
+ 2173 080a 00       		.byte	0
+ 2174 080b 28       		.byte	40
+ 2175 080c 05       		.byte	5
+ 2176 080d D1       		.byte	-47
+ 2177 080e 01       		.byte	1
+ 2178 080f 23       		.byte	35
+ 2179 0810 05       		.byte	5
+ 2180 0811 1C       		.byte	28
+ 2181 0812 01       		.byte	1
+ 2182 0813 93       		.byte	-109
+ 2183 0814 03       		.byte	3
+ 2184 0815 1C       		.byte	28
+ 2185 0816 2C       		.byte	44
+ 2186 0817 1C       		.byte	28
+ 2187 0818 75       		.byte	117
+ 2188 0819 E6       		.byte	-26
+ 2189 081a 01       		.byte	1
+ 2190 081b 23       		.byte	35
+ 2191 081c 00       		.byte	0
+ 2192 081d 25       		.byte	37
+ 2193 081e 01       		.byte	1
+ 2194 081f 93       		.byte	-109
+ 2195 0820 09       		.byte	9
+ 2196 0821 33       		.byte	51
+ 2197 0822 F8       		.byte	-8
+ 2198 0823 E7       		.byte	-25
+ 2199 0824 00       		.byte	0
+ 2200 0825 25       		.byte	37
+ 2201 0826 02       		.byte	2
+ 2202 0827 9B       		.byte	-101
+ 2203 0828 AB       		.byte	-85
+ 2204 0829 42       		.byte	66
+ 2205 082a 00       		.byte	0
+ 2206 082b D1       		.byte	-47
+ 2207 082c F0       		.byte	-16
+ 2208 082d E5       		.byte	-27
+ 2209 082e A1       		.byte	-95
+ 2210 082f E6       		.byte	-26
+ 2211 0830 C1       		.byte	-63
+ 2212 0831 23       		.byte	35
+ 2213 0832 9B       		.byte	-101
+ 2214 0833 00       		.byte	0
+ 2215 0834 9D       		.byte	-99
+ 2216 0835 44       		.byte	68
+ 2217 0836 F0       		.byte	-16
+ 2218 0837 BD       		.byte	-67
+ 2219 0838 4C       		.byte	76
+ 2220 0839 0E       		.byte	14
+ 2221 083a 00       		.byte	0
+ 2222 083b 00       		.byte	0
+ 2223 083c C0       		.byte	-64
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 40
+
+
+ 2224 083d 00       		.byte	0
+ 2225 083e 00       		.byte	0
+ 2226 083f 20       		.byte	32
+ 2227 0840 D4       		.byte	-44
+ 2228 0841 00       		.byte	0
+ 2229 0842 00       		.byte	0
+ 2230 0843 20       		.byte	32
+ 2231 0844 38       		.byte	56
+ 2232 0845 B5       		.byte	-75
+ 2233 0846 00       		.byte	0
+ 2234 0847 20       		.byte	32
+ 2235 0848 FF       		.byte	-1
+ 2236 0849 F7       		.byte	-9
+ 2237 084a 96       		.byte	-106
+ 2238 084b FD       		.byte	-3
+ 2239 084c 43       		.byte	67
+ 2240 084d 1E       		.byte	30
+ 2241 084e 98       		.byte	-104
+ 2242 084f 41       		.byte	65
+ 2243 0850 06       		.byte	6
+ 2244 0851 25       		.byte	37
+ 2245 0852 14       		.byte	20
+ 2246 0853 4C       		.byte	76
+ 2247 0854 40       		.byte	64
+ 2248 0855 42       		.byte	66
+ 2249 0856 23       		.byte	35
+ 2250 0857 68       		.byte	104
+ 2251 0858 05       		.byte	5
+ 2252 0859 40       		.byte	64
+ 2253 085a 1A       		.byte	26
+ 2254 085b 68       		.byte	104
+ 2255 085c 00       		.byte	0
+ 2256 085d 20       		.byte	32
+ 2257 085e C0       		.byte	-64
+ 2258 085f 3A       		.byte	58
+ 2259 0860 C0       		.byte	-64
+ 2260 0861 21       		.byte	33
+ 2261 0862 FF       		.byte	-1
+ 2262 0863 F7       		.byte	-9
+ 2263 0864 E4       		.byte	-28
+ 2264 0865 FC       		.byte	-4
+ 2265 0866 63       		.byte	99
+ 2266 0867 68       		.byte	104
+ 2267 0868 1B       		.byte	27
+ 2268 0869 78       		.byte	120
+ 2269 086a 18       		.byte	24
+ 2270 086b 1A       		.byte	26
+ 2271 086c C0       		.byte	-64
+ 2272 086d B2       		.byte	-78
+ 2273 086e 98       		.byte	-104
+ 2274 086f 42       		.byte	66
+ 2275 0870 03       		.byte	3
+ 2276 0871 D1       		.byte	-47
+ 2277 0872 23       		.byte	35
+ 2278 0873 68       		.byte	104
+ 2279 0874 1B       		.byte	27
+ 2280 0875 68       		.byte	104
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 41
+
+
+ 2281 0876 00       		.byte	0
+ 2282 0877 2B       		.byte	43
+ 2283 0878 02       		.byte	2
+ 2284 0879 D1       		.byte	-47
+ 2285 087a 00       		.byte	0
+ 2286 087b 20       		.byte	32
+ 2287 087c 00       		.byte	0
+ 2288 087d F0       		.byte	-16
+ 2289 087e E2       		.byte	-30
+ 2290 087f F8       		.byte	-8
+ 2291 0880 09       		.byte	9
+ 2292 0881 4C       		.byte	76
+ 2293 0882 23       		.byte	35
+ 2294 0883 68       		.byte	104
+ 2295 0884 40       		.byte	64
+ 2296 0885 2B       		.byte	43
+ 2297 0886 01       		.byte	1
+ 2298 0887 D0       		.byte	-48
+ 2299 0888 00       		.byte	0
+ 2300 0889 2D       		.byte	45
+ 2301 088a 03       		.byte	3
+ 2302 088b D0       		.byte	-48
+ 2303 088c 00       		.byte	0
+ 2304 088d 20       		.byte	32
+ 2305 088e 20       		.byte	32
+ 2306 088f 60       		.byte	96
+ 2307 0890 FF       		.byte	-1
+ 2308 0891 F7       		.byte	-9
+ 2309 0892 B2       		.byte	-78
+ 2310 0893 FD       		.byte	-3
+ 2311 0894 14       		.byte	20
+ 2312 0895 20       		.byte	32
+ 2313 0896 FF       		.byte	-1
+ 2314 0897 F7       		.byte	-9
+ 2315 0898 AF       		.byte	-81
+ 2316 0899 FD       		.byte	-3
+ 2317 089a 80       		.byte	-128
+ 2318 089b 23       		.byte	35
+ 2319 089c 23       		.byte	35
+ 2320 089d 60       		.byte	96
+ 2321 089e 00       		.byte	0
+ 2322 089f F0       		.byte	-16
+ 2323 08a0 D3       		.byte	-45
+ 2324 08a1 F8       		.byte	-8
+ 2325 08a2 38       		.byte	56
+ 2326 08a3 BD       		.byte	-67
+ 2327 08a4 D4       		.byte	-44
+ 2328 08a5 00       		.byte	0
+ 2329 08a6 00       		.byte	0
+ 2330 08a7 20       		.byte	32
+ 2331 08a8 C0       		.byte	-64
+ 2332 08a9 00       		.byte	0
+ 2333 08aa 00       		.byte	0
+ 2334 08ab 20       		.byte	32
+ 2335 08ac 20       		.byte	32
+ 2336 08ad 23       		.byte	35
+ 2337 08ae 04       		.byte	4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 42
+
+
+ 2338 08af 49       		.byte	73
+ 2339 08b0 40       		.byte	64
+ 2340 08b1 01       		.byte	1
+ 2341 08b2 0A       		.byte	10
+ 2342 08b3 68       		.byte	104
+ 2343 08b4 9A       		.byte	-102
+ 2344 08b5 43       		.byte	67
+ 2345 08b6 D2       		.byte	-46
+ 2346 08b7 B2       		.byte	-78
+ 2347 08b8 03       		.byte	3
+ 2348 08b9 40       		.byte	64
+ 2349 08ba 13       		.byte	19
+ 2350 08bb 43       		.byte	67
+ 2351 08bc 0B       		.byte	11
+ 2352 08bd 60       		.byte	96
+ 2353 08be 70       		.byte	112
+ 2354 08bf 47       		.byte	71
+ 2355 08c0 00       		.byte	0
+ 2356 08c1 03       		.byte	3
+ 2357 08c2 04       		.byte	4
+ 2358 08c3 40       		.byte	64
+ 2359 08c4 F0       		.byte	-16
+ 2360 08c5 B5       		.byte	-75
+ 2361 08c6 00       		.byte	0
+ 2362 08c7 24       		.byte	36
+ 2363 08c8 AD       		.byte	-83
+ 2364 08c9 B0       		.byte	-80
+ 2365 08ca 08       		.byte	8
+ 2366 08cb 94       		.byte	-108
+ 2367 08cc 09       		.byte	9
+ 2368 08cd 94       		.byte	-108
+ 2369 08ce FF       		.byte	-1
+ 2370 08cf 28       		.byte	40
+ 2371 08d0 00       		.byte	0
+ 2372 08d1 D9       		.byte	-39
+ 2373 08d2 95       		.byte	-107
+ 2374 08d3 E0       		.byte	-32
+ 2375 08d4 A1       		.byte	-95
+ 2376 08d5 42       		.byte	66
+ 2377 08d6 00       		.byte	0
+ 2378 08d7 D1       		.byte	-47
+ 2379 08d8 92       		.byte	-110
+ 2380 08d9 E0       		.byte	-32
+ 2381 08da 04       		.byte	4
+ 2382 08db 90       		.byte	-112
+ 2383 08dc 80       		.byte	-128
+ 2384 08dd 22       		.byte	34
+ 2385 08de 0C       		.byte	12
+ 2386 08df A8       		.byte	-88
+ 2387 08e0 00       		.byte	0
+ 2388 08e1 F0       		.byte	-16
+ 2389 08e2 9C       		.byte	-100
+ 2390 08e3 FA       		.byte	-6
+ 2391 08e4 02       		.byte	2
+ 2392 08e5 22       		.byte	34
+ 2393 08e6 23       		.byte	35
+ 2394 08e7 1C       		.byte	28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 43
+
+
+ 2395 08e8 21       		.byte	33
+ 2396 08e9 1C       		.byte	28
+ 2397 08ea 01       		.byte	1
+ 2398 08eb 94       		.byte	-108
+ 2399 08ec 0A       		.byte	10
+ 2400 08ed AD       		.byte	-83
+ 2401 08ee 90       		.byte	-112
+ 2402 08ef 00       		.byte	0
+ 2403 08f0 40       		.byte	64
+ 2404 08f1 59       		.byte	89
+ 2405 08f2 00       		.byte	0
+ 2406 08f3 28       		.byte	40
+ 2407 08f4 02       		.byte	2
+ 2408 08f5 D0       		.byte	-48
+ 2409 08f6 09       		.byte	9
+ 2410 08f7 18       		.byte	24
+ 2411 08f8 03       		.byte	3
+ 2412 08f9 43       		.byte	67
+ 2413 08fa 01       		.byte	1
+ 2414 08fb 92       		.byte	-110
+ 2415 08fc 01       		.byte	1
+ 2416 08fd 32       		.byte	50
+ 2417 08fe 22       		.byte	34
+ 2418 08ff 2A       		.byte	42
+ 2419 0900 F4       		.byte	-12
+ 2420 0901 D1       		.byte	-47
+ 2421 0902 00       		.byte	0
+ 2422 0903 29       		.byte	41
+ 2423 0904 01       		.byte	1
+ 2424 0905 D1       		.byte	-47
+ 2425 0906 00       		.byte	0
+ 2426 0907 2B       		.byte	43
+ 2427 0908 7D       		.byte	125
+ 2428 0909 D1       		.byte	-47
+ 2429 090a 00       		.byte	0
+ 2430 090b 27       		.byte	39
+ 2431 090c 02       		.byte	2
+ 2432 090d 97       		.byte	-105
+ 2433 090e 7F       		.byte	127
+ 2434 090f 23       		.byte	35
+ 2435 0910 42       		.byte	66
+ 2436 0911 49       		.byte	73
+ 2437 0912 43       		.byte	67
+ 2438 0913 4C       		.byte	76
+ 2439 0914 0A       		.byte	10
+ 2440 0915 91       		.byte	-111
+ 2441 0916 43       		.byte	67
+ 2442 0917 4E       		.byte	78
+ 2443 0918 6B       		.byte	107
+ 2444 0919 60       		.byte	96
+ 2445 091a 43       		.byte	67
+ 2446 091b 4B       		.byte	75
+ 2447 091c 25       		.byte	37
+ 2448 091d 60       		.byte	96
+ 2449 091e 33       		.byte	51
+ 2450 091f 60       		.byte	96
+ 2451 0920 22       		.byte	34
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 44
+
+
+ 2452 0921 68       		.byte	104
+ 2453 0922 07       		.byte	7
+ 2454 0923 93       		.byte	-109
+ 2455 0924 12       		.byte	18
+ 2456 0925 0F       		.byte	15
+ 2457 0926 06       		.byte	6
+ 2458 0927 91       		.byte	-111
+ 2459 0928 00       		.byte	0
+ 2460 0929 23       		.byte	35
+ 2461 092a 0A       		.byte	10
+ 2462 092b 2A       		.byte	42
+ 2463 092c 02       		.byte	2
+ 2464 092d D0       		.byte	-48
+ 2465 092e 22       		.byte	34
+ 2466 092f 68       		.byte	104
+ 2467 0930 0F       		.byte	15
+ 2468 0931 33       		.byte	51
+ 2469 0932 13       		.byte	19
+ 2470 0933 40       		.byte	64
+ 2471 0934 08       		.byte	8
+ 2472 0935 93       		.byte	-109
+ 2473 0936 08       		.byte	8
+ 2474 0937 9B       		.byte	-101
+ 2475 0938 03       		.byte	3
+ 2476 0939 93       		.byte	-109
+ 2477 093a 00       		.byte	0
+ 2478 093b 2B       		.byte	43
+ 2479 093c 6A       		.byte	106
+ 2480 093d D1       		.byte	-47
+ 2481 093e 00       		.byte	0
+ 2482 093f F0       		.byte	-16
+ 2483 0940 91       		.byte	-111
+ 2484 0941 F9       		.byte	-7
+ 2485 0942 3A       		.byte	58
+ 2486 0943 4A       		.byte	74
+ 2487 0944 3A       		.byte	58
+ 2488 0945 4B       		.byte	75
+ 2489 0946 11       		.byte	17
+ 2490 0947 68       		.byte	104
+ 2491 0948 05       		.byte	5
+ 2492 0949 90       		.byte	-112
+ 2493 094a 19       		.byte	25
+ 2494 094b 60       		.byte	96
+ 2495 094c 03       		.byte	3
+ 2496 094d 9B       		.byte	-101
+ 2497 094e 03       		.byte	3
+ 2498 094f 92       		.byte	-110
+ 2499 0950 09       		.byte	9
+ 2500 0951 93       		.byte	-109
+ 2501 0952 08       		.byte	8
+ 2502 0953 9B       		.byte	-101
+ 2503 0954 00       		.byte	0
+ 2504 0955 2B       		.byte	43
+ 2505 0956 12       		.byte	18
+ 2506 0957 D1       		.byte	-47
+ 2507 0958 36       		.byte	54
+ 2508 0959 4A       		.byte	74
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 45
+
+
+ 2509 095a 04       		.byte	4
+ 2510 095b 99       		.byte	-103
+ 2511 095c 0A       		.byte	10
+ 2512 095d 92       		.byte	-110
+ 2513 095e 0A       		.byte	10
+ 2514 095f 9A       		.byte	-102
+ 2515 0960 09       		.byte	9
+ 2516 0961 04       		.byte	4
+ 2517 0962 0A       		.byte	10
+ 2518 0963 43       		.byte	67
+ 2519 0964 0A       		.byte	10
+ 2520 0965 92       		.byte	-110
+ 2521 0966 34       		.byte	52
+ 2522 0967 4A       		.byte	74
+ 2523 0968 25       		.byte	37
+ 2524 0969 60       		.byte	96
+ 2525 096a 32       		.byte	50
+ 2526 096b 60       		.byte	96
+ 2527 096c 22       		.byte	34
+ 2528 096d 68       		.byte	104
+ 2529 096e 12       		.byte	18
+ 2530 096f 0F       		.byte	15
+ 2531 0970 0A       		.byte	10
+ 2532 0971 2A       		.byte	42
+ 2533 0972 03       		.byte	3
+ 2534 0973 D0       		.byte	-48
+ 2535 0974 2A       		.byte	42
+ 2536 0975 4B       		.byte	75
+ 2537 0976 1A       		.byte	26
+ 2538 0977 68       		.byte	104
+ 2539 0978 0F       		.byte	15
+ 2540 0979 23       		.byte	35
+ 2541 097a 13       		.byte	19
+ 2542 097b 40       		.byte	64
+ 2543 097c 08       		.byte	8
+ 2544 097d 93       		.byte	-109
+ 2545 097e 08       		.byte	8
+ 2546 097f 9D       		.byte	-99
+ 2547 0980 00       		.byte	0
+ 2548 0981 2D       		.byte	45
+ 2549 0982 31       		.byte	49
+ 2550 0983 D1       		.byte	-47
+ 2551 0984 00       		.byte	0
+ 2552 0985 2F       		.byte	47
+ 2553 0986 2F       		.byte	47
+ 2554 0987 D0       		.byte	-48
+ 2555 0988 80       		.byte	-128
+ 2556 0989 22       		.byte	34
+ 2557 098a 0C       		.byte	12
+ 2558 098b A8       		.byte	-88
+ 2559 098c 29       		.byte	41
+ 2560 098d 1C       		.byte	28
+ 2561 098e 00       		.byte	0
+ 2562 098f F0       		.byte	-16
+ 2563 0990 4E       		.byte	78
+ 2564 0991 FA       		.byte	-6
+ 2565 0992 01       		.byte	1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 46
+
+
+ 2566 0993 9B       		.byte	-101
+ 2567 0994 02       		.byte	2
+ 2568 0995 9A       		.byte	-102
+ 2569 0996 0A       		.byte	10
+ 2570 0997 AF       		.byte	-81
+ 2571 0998 9B       		.byte	-101
+ 2572 0999 00       		.byte	0
+ 2573 099a DA       		.byte	-38
+ 2574 099b 51       		.byte	81
+ 2575 099c 06       		.byte	6
+ 2576 099d 9B       		.byte	-101
+ 2577 099e 0A       		.byte	10
+ 2578 099f 93       		.byte	-109
+ 2579 09a0 7F       		.byte	127
+ 2580 09a1 23       		.byte	35
+ 2581 09a2 7B       		.byte	123
+ 2582 09a3 60       		.byte	96
+ 2583 09a4 07       		.byte	7
+ 2584 09a5 9B       		.byte	-101
+ 2585 09a6 27       		.byte	39
+ 2586 09a7 60       		.byte	96
+ 2587 09a8 33       		.byte	51
+ 2588 09a9 60       		.byte	96
+ 2589 09aa 23       		.byte	35
+ 2590 09ab 68       		.byte	104
+ 2591 09ac 1B       		.byte	27
+ 2592 09ad 0F       		.byte	15
+ 2593 09ae 0A       		.byte	10
+ 2594 09af 2B       		.byte	43
+ 2595 09b0 03       		.byte	3
+ 2596 09b1 D0       		.byte	-48
+ 2597 09b2 1B       		.byte	27
+ 2598 09b3 4B       		.byte	75
+ 2599 09b4 1D       		.byte	29
+ 2600 09b5 68       		.byte	104
+ 2601 09b6 0F       		.byte	15
+ 2602 09b7 23       		.byte	35
+ 2603 09b8 1D       		.byte	29
+ 2604 09b9 40       		.byte	64
+ 2605 09ba 08       		.byte	8
+ 2606 09bb 95       		.byte	-107
+ 2607 09bc 08       		.byte	8
+ 2608 09bd 9B       		.byte	-101
+ 2609 09be 00       		.byte	0
+ 2610 09bf 2B       		.byte	43
+ 2611 09c0 12       		.byte	18
+ 2612 09c1 D1       		.byte	-47
+ 2613 09c2 1E       		.byte	30
+ 2614 09c3 4A       		.byte	74
+ 2615 09c4 04       		.byte	4
+ 2616 09c5 99       		.byte	-103
+ 2617 09c6 0A       		.byte	10
+ 2618 09c7 92       		.byte	-110
+ 2619 09c8 0A       		.byte	10
+ 2620 09c9 9A       		.byte	-102
+ 2621 09ca 08       		.byte	8
+ 2622 09cb 04       		.byte	4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 47
+
+
+ 2623 09cc 10       		.byte	16
+ 2624 09cd 43       		.byte	67
+ 2625 09ce 1C       		.byte	28
+ 2626 09cf 4A       		.byte	74
+ 2627 09d0 0A       		.byte	10
+ 2628 09d1 90       		.byte	-112
+ 2629 09d2 27       		.byte	39
+ 2630 09d3 60       		.byte	96
+ 2631 09d4 32       		.byte	50
+ 2632 09d5 60       		.byte	96
+ 2633 09d6 22       		.byte	34
+ 2634 09d7 68       		.byte	104
+ 2635 09d8 12       		.byte	18
+ 2636 09d9 0F       		.byte	15
+ 2637 09da 0A       		.byte	10
+ 2638 09db 2A       		.byte	42
+ 2639 09dc 03       		.byte	3
+ 2640 09dd D0       		.byte	-48
+ 2641 09de 10       		.byte	16
+ 2642 09df 4B       		.byte	75
+ 2643 09e0 1A       		.byte	26
+ 2644 09e1 68       		.byte	104
+ 2645 09e2 0F       		.byte	15
+ 2646 09e3 23       		.byte	35
+ 2647 09e4 13       		.byte	19
+ 2648 09e5 40       		.byte	64
+ 2649 09e6 08       		.byte	8
+ 2650 09e7 93       		.byte	-109
+ 2651 09e8 09       		.byte	9
+ 2652 09e9 9B       		.byte	-101
+ 2653 09ea 00       		.byte	0
+ 2654 09eb 2B       		.byte	43
+ 2655 09ec 04       		.byte	4
+ 2656 09ed D1       		.byte	-47
+ 2657 09ee 10       		.byte	16
+ 2658 09ef 4A       		.byte	74
+ 2659 09f0 03       		.byte	3
+ 2660 09f1 99       		.byte	-103
+ 2661 09f2 12       		.byte	18
+ 2662 09f3 68       		.byte	104
+ 2663 09f4 0A       		.byte	10
+ 2664 09f5 60       		.byte	96
+ 2665 09f6 09       		.byte	9
+ 2666 09f7 93       		.byte	-109
+ 2667 09f8 05       		.byte	5
+ 2668 09f9 98       		.byte	-104
+ 2669 09fa 00       		.byte	0
+ 2670 09fb F0       		.byte	-16
+ 2671 09fc 37       		.byte	55
+ 2672 09fd F9       		.byte	-7
+ 2673 09fe 09       		.byte	9
+ 2674 09ff E0       		.byte	-32
+ 2675 0a00 04       		.byte	4
+ 2676 0a01 23       		.byte	35
+ 2677 0a02 08       		.byte	8
+ 2678 0a03 93       		.byte	-109
+ 2679 0a04 06       		.byte	6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 48
+
+
+ 2680 0a05 E0       		.byte	-32
+ 2681 0a06 01       		.byte	1
+ 2682 0a07 9B       		.byte	-101
+ 2683 0a08 01       		.byte	1
+ 2684 0a09 27       		.byte	39
+ 2685 0a0a 9B       		.byte	-101
+ 2686 0a0b 00       		.byte	0
+ 2687 0a0c EA       		.byte	-22
+ 2688 0a0d 58       		.byte	88
+ 2689 0a0e E9       		.byte	-23
+ 2690 0a0f 50       		.byte	80
+ 2691 0a10 02       		.byte	2
+ 2692 0a11 92       		.byte	-110
+ 2693 0a12 7C       		.byte	124
+ 2694 0a13 E7       		.byte	-25
+ 2695 0a14 08       		.byte	8
+ 2696 0a15 98       		.byte	-104
+ 2697 0a16 2D       		.byte	45
+ 2698 0a17 B0       		.byte	-80
+ 2699 0a18 F0       		.byte	-16
+ 2700 0a19 BD       		.byte	-67
+ 2701 0a1a C0       		.byte	-64
+ 2702 0a1b 46       		.byte	70
+ 2703 0a1c B6       		.byte	-74
+ 2704 0a1d D7       		.byte	-41
+ 2705 0a1e 00       		.byte	0
+ 2706 0a1f 00       		.byte	0
+ 2707 0a20 08       		.byte	8
+ 2708 0a21 00       		.byte	0
+ 2709 0a22 00       		.byte	0
+ 2710 0a23 40       		.byte	64
+ 2711 0a24 04       		.byte	4
+ 2712 0a25 00       		.byte	0
+ 2713 0a26 00       		.byte	0
+ 2714 0a27 40       		.byte	64
+ 2715 0a28 04       		.byte	4
+ 2716 0a29 00       		.byte	0
+ 2717 0a2a 00       		.byte	0
+ 2718 0a2b 80       		.byte	-128
+ 2719 0a2c 08       		.byte	8
+ 2720 0a2d 01       		.byte	1
+ 2721 0a2e 0B       		.byte	11
+ 2722 0a2f 40       		.byte	64
+ 2723 0a30 10       		.byte	16
+ 2724 0a31 01       		.byte	1
+ 2725 0a32 00       		.byte	0
+ 2726 0a33 20       		.byte	32
+ 2727 0a34 B6       		.byte	-74
+ 2728 0a35 D8       		.byte	-40
+ 2729 0a36 00       		.byte	0
+ 2730 0a37 00       		.byte	0
+ 2731 0a38 05       		.byte	5
+ 2732 0a39 00       		.byte	0
+ 2733 0a3a 00       		.byte	0
+ 2734 0a3b 80       		.byte	-128
+ 2735 0a3c B6       		.byte	-74
+ 2736 0a3d D9       		.byte	-39
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 49
+
+
+ 2737 0a3e 00       		.byte	0
+ 2738 0a3f 00       		.byte	0
+ 2739 0a40 06       		.byte	6
+ 2740 0a41 00       		.byte	0
+ 2741 0a42 00       		.byte	0
+ 2742 0a43 80       		.byte	-128
+ 2743 0a44 01       		.byte	1
+ 2744 0a45 BE       		.byte	-66
+ 2745 0a46 70       		.byte	112
+ 2746 0a47 47       		.byte	71
+ 2747 0a48 03       		.byte	3
+ 2748 0a49 4A       		.byte	74
+ 2749 0a4a 04       		.byte	4
+ 2750 0a4b 49       		.byte	73
+ 2751 0a4c 13       		.byte	19
+ 2752 0a4d 68       		.byte	104
+ 2753 0a4e 9B       		.byte	-101
+ 2754 0a4f B2       		.byte	-78
+ 2755 0a50 0B       		.byte	11
+ 2756 0a51 43       		.byte	67
+ 2757 0a52 13       		.byte	19
+ 2758 0a53 60       		.byte	96
+ 2759 0a54 70       		.byte	112
+ 2760 0a55 47       		.byte	71
+ 2761 0a56 C0       		.byte	-64
+ 2762 0a57 46       		.byte	70
+ 2763 0a58 0C       		.byte	12
+ 2764 0a59 ED       		.byte	-19
+ 2765 0a5a 00       		.byte	0
+ 2766 0a5b E0       		.byte	-32
+ 2767 0a5c 04       		.byte	4
+ 2768 0a5d 00       		.byte	0
+ 2769 0a5e FA       		.byte	-6
+ 2770 0a5f 05       		.byte	5
+ 2771 0a60 10       		.byte	16
+ 2772 0a61 B5       		.byte	-75
+ 2773 0a62 04       		.byte	4
+ 2774 0a63 1C       		.byte	28
+ 2775 0a64 80       		.byte	-128
+ 2776 0a65 22       		.byte	34
+ 2777 0a66 07       		.byte	7
+ 2778 0a67 4B       		.byte	75
+ 2779 0a68 12       		.byte	18
+ 2780 0a69 02       		.byte	2
+ 2781 0a6a 94       		.byte	-108
+ 2782 0a6b 42       		.byte	66
+ 2783 0a6c 05       		.byte	5
+ 2784 0a6d D9       		.byte	-39
+ 2785 0a6e 18       		.byte	24
+ 2786 0a6f 68       		.byte	104
+ 2787 0a70 00       		.byte	0
+ 2788 0a71 F0       		.byte	-16
+ 2789 0a72 EE       		.byte	-18
+ 2790 0a73 F8       		.byte	-8
+ 2791 0a74 04       		.byte	4
+ 2792 0a75 4B       		.byte	75
+ 2793 0a76 E4       		.byte	-28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 50
+
+
+ 2794 0a77 18       		.byte	24
+ 2795 0a78 F4       		.byte	-12
+ 2796 0a79 E7       		.byte	-25
+ 2797 0a7a 58       		.byte	88
+ 2798 0a7b 68       		.byte	104
+ 2799 0a7c 60       		.byte	96
+ 2800 0a7d 43       		.byte	67
+ 2801 0a7e 00       		.byte	0
+ 2802 0a7f F0       		.byte	-16
+ 2803 0a80 E7       		.byte	-25
+ 2804 0a81 F8       		.byte	-8
+ 2805 0a82 10       		.byte	16
+ 2806 0a83 BD       		.byte	-67
+ 2807 0a84 DC       		.byte	-36
+ 2808 0a85 00       		.byte	0
+ 2809 0a86 00       		.byte	0
+ 2810 0a87 20       		.byte	32
+ 2811 0a88 00       		.byte	0
+ 2812 0a89 80       		.byte	-128
+ 2813 0a8a FF       		.byte	-1
+ 2814 0a8b FF       		.byte	-1
+ 2815 0a8c 08       		.byte	8
+ 2816 0a8d B5       		.byte	-75
+ 2817 0a8e 03       		.byte	3
+ 2818 0a8f 4B       		.byte	75
+ 2819 0a90 1B       		.byte	27
+ 2820 0a91 7A       		.byte	122
+ 2821 0a92 58       		.byte	88
+ 2822 0a93 43       		.byte	67
+ 2823 0a94 00       		.byte	0
+ 2824 0a95 F0       		.byte	-16
+ 2825 0a96 DC       		.byte	-36
+ 2826 0a97 F8       		.byte	-8
+ 2827 0a98 08       		.byte	8
+ 2828 0a99 BD       		.byte	-67
+ 2829 0a9a C0       		.byte	-64
+ 2830 0a9b 46       		.byte	70
+ 2831 0a9c DC       		.byte	-36
+ 2832 0a9d 00       		.byte	0
+ 2833 0a9e 00       		.byte	0
+ 2834 0a9f 20       		.byte	32
+ 2835 0aa0 F0       		.byte	-16
+ 2836 0aa1 B5       		.byte	-75
+ 2837 0aa2 05       		.byte	5
+ 2838 0aa3 1C       		.byte	28
+ 2839 0aa4 87       		.byte	-121
+ 2840 0aa5 B0       		.byte	-80
+ 2841 0aa6 00       		.byte	0
+ 2842 0aa7 F0       		.byte	-16
+ 2843 0aa8 DD       		.byte	-35
+ 2844 0aa9 F8       		.byte	-8
+ 2845 0aaa EB       		.byte	-21
+ 2846 0aab 1E       		.byte	30
+ 2847 0aac 04       		.byte	4
+ 2848 0aad 90       		.byte	-112
+ 2849 0aae 03       		.byte	3
+ 2850 0aaf 93       		.byte	-109
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 51
+
+
+ 2851 0ab0 2D       		.byte	45
+ 2852 0ab1 2B       		.byte	43
+ 2853 0ab2 5C       		.byte	92
+ 2854 0ab3 D8       		.byte	-40
+ 2855 0ab4 31       		.byte	49
+ 2856 0ab5 4B       		.byte	75
+ 2857 0ab6 1B       		.byte	27
+ 2858 0ab7 78       		.byte	120
+ 2859 0ab8 9D       		.byte	-99
+ 2860 0ab9 42       		.byte	66
+ 2861 0aba 04       		.byte	4
+ 2862 0abb D8       		.byte	-40
+ 2863 0abc 30       		.byte	48
+ 2864 0abd 4B       		.byte	75
+ 2865 0abe 1C       		.byte	28
+ 2866 0abf 78       		.byte	120
+ 2867 0ac0 30       		.byte	48
+ 2868 0ac1 4B       		.byte	75
+ 2869 0ac2 E4       		.byte	-28
+ 2870 0ac3 B2       		.byte	-78
+ 2871 0ac4 1E       		.byte	30
+ 2872 0ac5 E0       		.byte	-32
+ 2873 0ac6 30       		.byte	48
+ 2874 0ac7 4B       		.byte	75
+ 2875 0ac8 1B       		.byte	27
+ 2876 0ac9 78       		.byte	120
+ 2877 0aca 9D       		.byte	-99
+ 2878 0acb 42       		.byte	66
+ 2879 0acc 04       		.byte	4
+ 2880 0acd D8       		.byte	-40
+ 2881 0ace 2F       		.byte	47
+ 2882 0acf 4B       		.byte	75
+ 2883 0ad0 1C       		.byte	28
+ 2884 0ad1 78       		.byte	120
+ 2885 0ad2 2F       		.byte	47
+ 2886 0ad3 4B       		.byte	75
+ 2887 0ad4 E4       		.byte	-28
+ 2888 0ad5 B2       		.byte	-78
+ 2889 0ad6 15       		.byte	21
+ 2890 0ad7 E0       		.byte	-32
+ 2891 0ad8 2E       		.byte	46
+ 2892 0ad9 4B       		.byte	75
+ 2893 0ada 1B       		.byte	27
+ 2894 0adb 78       		.byte	120
+ 2895 0adc 9D       		.byte	-99
+ 2896 0add 42       		.byte	66
+ 2897 0ade 04       		.byte	4
+ 2898 0adf D8       		.byte	-40
+ 2899 0ae0 2D       		.byte	45
+ 2900 0ae1 4B       		.byte	75
+ 2901 0ae2 1C       		.byte	28
+ 2902 0ae3 78       		.byte	120
+ 2903 0ae4 2D       		.byte	45
+ 2904 0ae5 4B       		.byte	75
+ 2905 0ae6 E4       		.byte	-28
+ 2906 0ae7 B2       		.byte	-78
+ 2907 0ae8 0C       		.byte	12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 52
+
+
+ 2908 0ae9 E0       		.byte	-32
+ 2909 0aea 2D       		.byte	45
+ 2910 0aeb 4B       		.byte	75
+ 2911 0aec 1B       		.byte	27
+ 2912 0aed 78       		.byte	120
+ 2913 0aee 9D       		.byte	-99
+ 2914 0aef 42       		.byte	66
+ 2915 0af0 04       		.byte	4
+ 2916 0af1 D8       		.byte	-40
+ 2917 0af2 2C       		.byte	44
+ 2918 0af3 4B       		.byte	75
+ 2919 0af4 1C       		.byte	28
+ 2920 0af5 78       		.byte	120
+ 2921 0af6 2C       		.byte	44
+ 2922 0af7 4B       		.byte	75
+ 2923 0af8 E4       		.byte	-28
+ 2924 0af9 B2       		.byte	-78
+ 2925 0afa 03       		.byte	3
+ 2926 0afb E0       		.byte	-32
+ 2927 0afc 2B       		.byte	43
+ 2928 0afd 4B       		.byte	75
+ 2929 0afe 1C       		.byte	28
+ 2930 0aff 78       		.byte	120
+ 2931 0b00 2B       		.byte	43
+ 2932 0b01 4B       		.byte	75
+ 2933 0b02 E4       		.byte	-28
+ 2934 0b03 B2       		.byte	-78
+ 2935 0b04 1B       		.byte	27
+ 2936 0b05 78       		.byte	120
+ 2937 0b06 03       		.byte	3
+ 2938 0b07 9A       		.byte	-102
+ 2939 0b08 DB       		.byte	-37
+ 2940 0b09 B2       		.byte	-78
+ 2941 0b0a 01       		.byte	1
+ 2942 0b0b 93       		.byte	-109
+ 2943 0b0c 29       		.byte	41
+ 2944 0b0d 4B       		.byte	75
+ 2945 0b0e 2A       		.byte	42
+ 2946 0b0f 4F       		.byte	79
+ 2947 0b10 9A       		.byte	-102
+ 2948 0b11 5C       		.byte	92
+ 2949 0b12 05       		.byte	5
+ 2950 0b13 93       		.byte	-109
+ 2951 0b14 02       		.byte	2
+ 2952 0b15 92       		.byte	-110
+ 2953 0b16 2F       		.byte	47
+ 2954 0b17 2A       		.byte	42
+ 2955 0b18 04       		.byte	4
+ 2956 0b19 D9       		.byte	-39
+ 2957 0b1a 2A       		.byte	42
+ 2958 0b1b 2D       		.byte	45
+ 2959 0b1c 02       		.byte	2
+ 2960 0b1d D9       		.byte	-39
+ 2961 0b1e 19       		.byte	25
+ 2962 0b1f 26       		.byte	38
+ 2963 0b20 3E       		.byte	62
+ 2964 0b21 60       		.byte	96
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 53
+
+
+ 2965 0b22 08       		.byte	8
+ 2966 0b23 E0       		.byte	-32
+ 2967 0b24 3F       		.byte	63
+ 2968 0b25 23       		.byte	35
+ 2969 0b26 3E       		.byte	62
+ 2970 0b27 68       		.byte	104
+ 2971 0b28 1E       		.byte	30
+ 2972 0b29 40       		.byte	64
+ 2973 0b2a 02       		.byte	2
+ 2974 0b2b 9B       		.byte	-101
+ 2975 0b2c B3       		.byte	-77
+ 2976 0b2d 42       		.byte	66
+ 2977 0b2e 05       		.byte	5
+ 2978 0b2f D2       		.byte	-46
+ 2979 0b30 21       		.byte	33
+ 2980 0b31 4B       		.byte	75
+ 2981 0b32 02       		.byte	2
+ 2982 0b33 9A       		.byte	-102
+ 2983 0b34 1A       		.byte	26
+ 2984 0b35 60       		.byte	96
+ 2985 0b36 05       		.byte	5
+ 2986 0b37 20       		.byte	32
+ 2987 0b38 00       		.byte	0
+ 2988 0b39 F0       		.byte	-16
+ 2989 0b3a 8A       		.byte	-118
+ 2990 0b3b F8       		.byte	-8
+ 2991 0b3c 1C       		.byte	28
+ 2992 0b3d 4B       		.byte	75
+ 2993 0b3e 1F       		.byte	31
+ 2994 0b3f 4A       		.byte	74
+ 2995 0b40 ED       		.byte	-19
+ 2996 0b41 18       		.byte	24
+ 2997 0b42 2B       		.byte	43
+ 2998 0b43 78       		.byte	120
+ 2999 0b44 05       		.byte	5
+ 3000 0b45 20       		.byte	32
+ 3001 0b46 DB       		.byte	-37
+ 3002 0b47 B2       		.byte	-78
+ 3003 0b48 13       		.byte	19
+ 3004 0b49 60       		.byte	96
+ 3005 0b4a 1D       		.byte	29
+ 3006 0b4b 4B       		.byte	75
+ 3007 0b4c 01       		.byte	1
+ 3008 0b4d 9A       		.byte	-102
+ 3009 0b4e 1C       		.byte	28
+ 3010 0b4f 60       		.byte	96
+ 3011 0b50 1C       		.byte	28
+ 3012 0b51 4B       		.byte	75
+ 3013 0b52 1A       		.byte	26
+ 3014 0b53 60       		.byte	96
+ 3015 0b54 FF       		.byte	-1
+ 3016 0b55 F7       		.byte	-9
+ 3017 0b56 9A       		.byte	-102
+ 3018 0b57 FF       		.byte	-1
+ 3019 0b58 02       		.byte	2
+ 3020 0b59 9B       		.byte	-101
+ 3021 0b5a B3       		.byte	-77
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 54
+
+
+ 3022 0b5b 42       		.byte	66
+ 3023 0b5c 08       		.byte	8
+ 3024 0b5d D9       		.byte	-39
+ 3025 0b5e 05       		.byte	5
+ 3026 0b5f 9B       		.byte	-101
+ 3027 0b60 03       		.byte	3
+ 3028 0b61 9A       		.byte	-102
+ 3029 0b62 05       		.byte	5
+ 3030 0b63 20       		.byte	32
+ 3031 0b64 9B       		.byte	-101
+ 3032 0b65 5C       		.byte	92
+ 3033 0b66 3B       		.byte	59
+ 3034 0b67 60       		.byte	96
+ 3035 0b68 00       		.byte	0
+ 3036 0b69 F0       		.byte	-16
+ 3037 0b6a 72       		.byte	114
+ 3038 0b6b F8       		.byte	-8
+ 3039 0b6c 00       		.byte	0
+ 3040 0b6d E0       		.byte	-32
+ 3041 0b6e 01       		.byte	1
+ 3042 0b6f BE       		.byte	-66
+ 3043 0b70 04       		.byte	4
+ 3044 0b71 98       		.byte	-104
+ 3045 0b72 00       		.byte	0
+ 3046 0b73 F0       		.byte	-16
+ 3047 0b74 7B       		.byte	123
+ 3048 0b75 F8       		.byte	-8
+ 3049 0b76 07       		.byte	7
+ 3050 0b77 B0       		.byte	-80
+ 3051 0b78 F0       		.byte	-16
+ 3052 0b79 BD       		.byte	-67
+ 3053 0b7a C0       		.byte	-64
+ 3054 0b7b 46       		.byte	70
+ 3055 0b7c C0       		.byte	-64
+ 3056 0b7d F1       		.byte	-15
+ 3057 0b7e FF       		.byte	-1
+ 3058 0b7f 0F       		.byte	15
+ 3059 0b80 C1       		.byte	-63
+ 3060 0b81 F1       		.byte	-15
+ 3061 0b82 FF       		.byte	-1
+ 3062 0b83 0F       		.byte	15
+ 3063 0b84 C2       		.byte	-62
+ 3064 0b85 F1       		.byte	-15
+ 3065 0b86 FF       		.byte	-1
+ 3066 0b87 0F       		.byte	15
+ 3067 0b88 C3       		.byte	-61
+ 3068 0b89 F1       		.byte	-15
+ 3069 0b8a FF       		.byte	-1
+ 3070 0b8b 0F       		.byte	15
+ 3071 0b8c C4       		.byte	-60
+ 3072 0b8d F1       		.byte	-15
+ 3073 0b8e FF       		.byte	-1
+ 3074 0b8f 0F       		.byte	15
+ 3075 0b90 C5       		.byte	-59
+ 3076 0b91 F1       		.byte	-15
+ 3077 0b92 FF       		.byte	-1
+ 3078 0b93 0F       		.byte	15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 55
+
+
+ 3079 0b94 C6       		.byte	-58
+ 3080 0b95 F1       		.byte	-15
+ 3081 0b96 FF       		.byte	-1
+ 3082 0b97 0F       		.byte	15
+ 3083 0b98 C7       		.byte	-57
+ 3084 0b99 F1       		.byte	-15
+ 3085 0b9a FF       		.byte	-1
+ 3086 0b9b 0F       		.byte	15
+ 3087 0b9c C8       		.byte	-56
+ 3088 0b9d F1       		.byte	-15
+ 3089 0b9e FF       		.byte	-1
+ 3090 0b9f 0F       		.byte	15
+ 3091 0ba0 C9       		.byte	-55
+ 3092 0ba1 F1       		.byte	-15
+ 3093 0ba2 FF       		.byte	-1
+ 3094 0ba3 0F       		.byte	15
+ 3095 0ba4 CA       		.byte	-54
+ 3096 0ba5 F1       		.byte	-15
+ 3097 0ba6 FF       		.byte	-1
+ 3098 0ba7 0F       		.byte	15
+ 3099 0ba8 CB       		.byte	-53
+ 3100 0ba9 F1       		.byte	-15
+ 3101 0baa FF       		.byte	-1
+ 3102 0bab 0F       		.byte	15
+ 3103 0bac CC       		.byte	-52
+ 3104 0bad F1       		.byte	-15
+ 3105 0bae FF       		.byte	-1
+ 3106 0baf 0F       		.byte	15
+ 3107 0bb0 CD       		.byte	-51
+ 3108 0bb1 F1       		.byte	-15
+ 3109 0bb2 FF       		.byte	-1
+ 3110 0bb3 0F       		.byte	15
+ 3111 0bb4 54       		.byte	84
+ 3112 0bb5 0E       		.byte	14
+ 3113 0bb6 00       		.byte	0
+ 3114 0bb7 00       		.byte	0
+ 3115 0bb8 2C       		.byte	44
+ 3116 0bb9 FF       		.byte	-1
+ 3117 0bba 0B       		.byte	11
+ 3118 0bbb 40       		.byte	64
+ 3119 0bbc 28       		.byte	40
+ 3120 0bbd FF       		.byte	-1
+ 3121 0bbe 0B       		.byte	11
+ 3122 0bbf 40       		.byte	64
+ 3123 0bc0 1C       		.byte	28
+ 3124 0bc1 FF       		.byte	-1
+ 3125 0bc2 0B       		.byte	11
+ 3126 0bc3 40       		.byte	64
+ 3127 0bc4 20       		.byte	32
+ 3128 0bc5 FF       		.byte	-1
+ 3129 0bc6 0B       		.byte	11
+ 3130 0bc7 40       		.byte	64
+ 3131 0bc8 08       		.byte	8
+ 3132 0bc9 B5       		.byte	-75
+ 3133 0bca 00       		.byte	0
+ 3134 0bcb F0       		.byte	-16
+ 3135 0bcc 61       		.byte	97
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 56
+
+
+ 3136 0bcd F8       		.byte	-8
+ 3137 0bce 08       		.byte	8
+ 3138 0bcf BD       		.byte	-67
+ 3139 0bd0 F8       		.byte	-8
+ 3140 0bd1 B5       		.byte	-75
+ 3141 0bd2 01       		.byte	1
+ 3142 0bd3 27       		.byte	39
+ 3143 0bd4 00       		.byte	0
+ 3144 0bd5 28       		.byte	40
+ 3145 0bd6 2B       		.byte	43
+ 3146 0bd7 D0       		.byte	-48
+ 3147 0bd8 00       		.byte	0
+ 3148 0bd9 29       		.byte	41
+ 3149 0bda 29       		.byte	41
+ 3150 0bdb D0       		.byte	-48
+ 3151 0bdc 16       		.byte	22
+ 3152 0bdd 1C       		.byte	28
+ 3153 0bde 0D       		.byte	13
+ 3154 0bdf 1C       		.byte	28
+ 3155 0be0 04       		.byte	4
+ 3156 0be1 1C       		.byte	28
+ 3157 0be2 09       		.byte	9
+ 3158 0be3 37       		.byte	55
+ 3159 0be4 5F       		.byte	95
+ 3160 0be5 43       		.byte	67
+ 3161 0be6 00       		.byte	0
+ 3162 0be7 F0       		.byte	-16
+ 3163 0be8 67       		.byte	103
+ 3164 0be9 F8       		.byte	-8
+ 3165 0bea 00       		.byte	0
+ 3166 0beb 28       		.byte	40
+ 3167 0bec 10       		.byte	16
+ 3168 0bed D0       		.byte	-48
+ 3169 0bee 00       		.byte	0
+ 3170 0bef F0       		.byte	-16
+ 3171 0bf0 63       		.byte	99
+ 3172 0bf1 F8       		.byte	-8
+ 3173 0bf2 07       		.byte	7
+ 3174 0bf3 1C       		.byte	28
+ 3175 0bf4 AD       		.byte	-83
+ 3176 0bf5 20       		.byte	32
+ 3177 0bf6 FF       		.byte	-1
+ 3178 0bf7 F7       		.byte	-9
+ 3179 0bf8 49       		.byte	73
+ 3180 0bf9 FF       		.byte	-1
+ 3181 0bfa 00       		.byte	0
+ 3182 0bfb F0       		.byte	-16
+ 3183 0bfc 5D       		.byte	93
+ 3184 0bfd F8       		.byte	-8
+ 3185 0bfe 87       		.byte	-121
+ 3186 0bff 42       		.byte	66
+ 3187 0c00 F5       		.byte	-11
+ 3188 0c01 D1       		.byte	-47
+ 3189 0c02 3B       		.byte	59
+ 3190 0c03 1E       		.byte	30
+ 3191 0c04 AB       		.byte	-85
+ 3192 0c05 42       		.byte	66
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 57
+
+
+ 3193 0c06 00       		.byte	0
+ 3194 0c07 D9       		.byte	-39
+ 3195 0c08 2B       		.byte	43
+ 3196 0c09 1C       		.byte	28
+ 3197 0c0a 33       		.byte	51
+ 3198 0c0b 80       		.byte	-128
+ 3199 0c0c 00       		.byte	0
+ 3200 0c0d 27       		.byte	39
+ 3201 0c0e 07       		.byte	7
+ 3202 0c0f E0       		.byte	-32
+ 3203 0c10 01       		.byte	1
+ 3204 0c11 20       		.byte	32
+ 3205 0c12 01       		.byte	1
+ 3206 0c13 3F       		.byte	63
+ 3207 0c14 FF       		.byte	-1
+ 3208 0c15 F7       		.byte	-9
+ 3209 0c16 24       		.byte	36
+ 3210 0c17 FF       		.byte	-1
+ 3211 0c18 00       		.byte	0
+ 3212 0c19 2F       		.byte	47
+ 3213 0c1a E4       		.byte	-28
+ 3214 0c1b D1       		.byte	-47
+ 3215 0c1c 3B       		.byte	59
+ 3216 0c1d 1C       		.byte	28
+ 3217 0c1e 10       		.byte	16
+ 3218 0c1f 37       		.byte	55
+ 3219 0c20 E5       		.byte	-27
+ 3220 0c21 18       		.byte	24
+ 3221 0c22 AC       		.byte	-84
+ 3222 0c23 42       		.byte	66
+ 3223 0c24 04       		.byte	4
+ 3224 0c25 D0       		.byte	-48
+ 3225 0c26 00       		.byte	0
+ 3226 0c27 F0       		.byte	-16
+ 3227 0c28 41       		.byte	65
+ 3228 0c29 F8       		.byte	-8
+ 3229 0c2a 20       		.byte	32
+ 3230 0c2b 70       		.byte	112
+ 3231 0c2c 01       		.byte	1
+ 3232 0c2d 34       		.byte	52
+ 3233 0c2e F8       		.byte	-8
+ 3234 0c2f E7       		.byte	-25
+ 3235 0c30 38       		.byte	56
+ 3236 0c31 1C       		.byte	28
+ 3237 0c32 F8       		.byte	-8
+ 3238 0c33 BD       		.byte	-67
+ 3239 0c34 38       		.byte	56
+ 3240 0c35 B5       		.byte	-75
+ 3241 0c36 0C       		.byte	12
+ 3242 0c37 1C       		.byte	28
+ 3243 0c38 15       		.byte	21
+ 3244 0c39 1C       		.byte	28
+ 3245 0c3a 01       		.byte	1
+ 3246 0c3b 23       		.byte	35
+ 3247 0c3c 00       		.byte	0
+ 3248 0c3d 28       		.byte	40
+ 3249 0c3e 05       		.byte	5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 58
+
+
+ 3250 0c3f D0       		.byte	-48
+ 3251 0c40 00       		.byte	0
+ 3252 0c41 29       		.byte	41
+ 3253 0c42 03       		.byte	3
+ 3254 0c43 D0       		.byte	-48
+ 3255 0c44 00       		.byte	0
+ 3256 0c45 F0       		.byte	-16
+ 3257 0c46 4E       		.byte	78
+ 3258 0c47 F8       		.byte	-8
+ 3259 0c48 00       		.byte	0
+ 3260 0c49 23       		.byte	35
+ 3261 0c4a 2C       		.byte	44
+ 3262 0c4b 80       		.byte	-128
+ 3263 0c4c 18       		.byte	24
+ 3264 0c4d 1C       		.byte	28
+ 3265 0c4e 38       		.byte	56
+ 3266 0c4f BD       		.byte	-67
+ 3267 0c50 02       		.byte	2
+ 3268 0c51 30       		.byte	48
+ 3269 0c52 80       		.byte	-128
+ 3270 0c53 08       		.byte	8
+ 3271 0c54 04       		.byte	4
+ 3272 0c55 D0       		.byte	-48
+ 3273 0c56 C0       		.byte	-64
+ 3274 0c57 46       		.byte	70
+ 3275 0c58 01       		.byte	1
+ 3276 0c59 38       		.byte	56
+ 3277 0c5a FD       		.byte	-3
+ 3278 0c5b D1       		.byte	-47
+ 3279 0c5c C0       		.byte	-64
+ 3280 0c5d 46       		.byte	70
+ 3281 0c5e C0       		.byte	-64
+ 3282 0c5f 46       		.byte	70
+ 3283 0c60 C0       		.byte	-64
+ 3284 0c61 46       		.byte	70
+ 3285 0c62 70       		.byte	112
+ 3286 0c63 47       		.byte	71
+ 3287 0c64 EF       		.byte	-17
+ 3288 0c65 F3       		.byte	-13
+ 3289 0c66 10       		.byte	16
+ 3290 0c67 80       		.byte	-128
+ 3291 0c68 72       		.byte	114
+ 3292 0c69 B6       		.byte	-74
+ 3293 0c6a 70       		.byte	112
+ 3294 0c6b 47       		.byte	71
+ 3295 0c6c 80       		.byte	-128
+ 3296 0c6d F3       		.byte	-13
+ 3297 0c6e 10       		.byte	16
+ 3298 0c6f 88       		.byte	-120
+ 3299 0c70 70       		.byte	112
+ 3300 0c71 47       		.byte	71
+ 3301 0c72 C0       		.byte	-64
+ 3302 0c73 46       		.byte	70
+ 3303 0c74 C0       		.byte	-64
+ 3304 0c75 46       		.byte	70
+ 3305 0c76 C0       		.byte	-64
+ 3306 0c77 46       		.byte	70
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 59
+
+
+ 3307 0c78 80       		.byte	-128
+ 3308 0c79 21       		.byte	33
+ 3309 0c7a 04       		.byte	4
+ 3310 0c7b 4A       		.byte	74
+ 3311 0c7c 08       		.byte	8
+ 3312 0c7d B5       		.byte	-75
+ 3313 0c7e 13       		.byte	19
+ 3314 0c7f 68       		.byte	104
+ 3315 0c80 09       		.byte	9
+ 3316 0c81 06       		.byte	6
+ 3317 0c82 0B       		.byte	11
+ 3318 0c83 43       		.byte	67
+ 3319 0c84 13       		.byte	19
+ 3320 0c85 60       		.byte	96
+ 3321 0c86 00       		.byte	0
+ 3322 0c87 F0       		.byte	-16
+ 3323 0c88 81       		.byte	-127
+ 3324 0c89 F8       		.byte	-8
+ 3325 0c8a 08       		.byte	8
+ 3326 0c8b BD       		.byte	-67
+ 3327 0c8c 00       		.byte	0
+ 3328 0c8d 00       		.byte	0
+ 3329 0c8e 07       		.byte	7
+ 3330 0c8f 40       		.byte	64
+ 3331 0c90 10       		.byte	16
+ 3332 0c91 B5       		.byte	-75
+ 3333 0c92 05       		.byte	5
+ 3334 0c93 4C       		.byte	76
+ 3335 0c94 23       		.byte	35
+ 3336 0c95 78       		.byte	120
+ 3337 0c96 00       		.byte	0
+ 3338 0c97 2B       		.byte	43
+ 3339 0c98 03       		.byte	3
+ 3340 0c99 D1       		.byte	-47
+ 3341 0c9a 00       		.byte	0
+ 3342 0c9b F0       		.byte	-16
+ 3343 0c9c 2F       		.byte	47
+ 3344 0c9d F8       		.byte	-8
+ 3345 0c9e 01       		.byte	1
+ 3346 0c9f 23       		.byte	35
+ 3347 0ca0 23       		.byte	35
+ 3348 0ca1 70       		.byte	112
+ 3349 0ca2 FF       		.byte	-1
+ 3350 0ca3 F7       		.byte	-9
+ 3351 0ca4 E9       		.byte	-23
+ 3352 0ca5 FF       		.byte	-1
+ 3353 0ca6 10       		.byte	16
+ 3354 0ca7 BD       		.byte	-67
+ 3355 0ca8 14       		.byte	20
+ 3356 0ca9 01       		.byte	1
+ 3357 0caa 00       		.byte	0
+ 3358 0cab 20       		.byte	32
+ 3359 0cac 01       		.byte	1
+ 3360 0cad 4B       		.byte	75
+ 3361 0cae 18       		.byte	24
+ 3362 0caf 68       		.byte	104
+ 3363 0cb0 70       		.byte	112
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 60
+
+
+ 3364 0cb1 47       		.byte	71
+ 3365 0cb2 C0       		.byte	-64
+ 3366 0cb3 46       		.byte	70
+ 3367 0cb4 40       		.byte	64
+ 3368 0cb5 03       		.byte	3
+ 3369 0cb6 07       		.byte	7
+ 3370 0cb7 40       		.byte	64
+ 3371 0cb8 02       		.byte	2
+ 3372 0cb9 4B       		.byte	75
+ 3373 0cba 18       		.byte	24
+ 3374 0cbb 68       		.byte	104
+ 3375 0cbc 0F       		.byte	15
+ 3376 0cbd 23       		.byte	35
+ 3377 0cbe 18       		.byte	24
+ 3378 0cbf 40       		.byte	64
+ 3379 0cc0 70       		.byte	112
+ 3380 0cc1 47       		.byte	71
+ 3381 0cc2 C0       		.byte	-64
+ 3382 0cc3 46       		.byte	70
+ 3383 0cc4 08       		.byte	8
+ 3384 0cc5 03       		.byte	3
+ 3385 0cc6 07       		.byte	7
+ 3386 0cc7 40       		.byte	64
+ 3387 0cc8 04       		.byte	4
+ 3388 0cc9 4B       		.byte	75
+ 3389 0cca 1A       		.byte	26
+ 3390 0ccb 68       		.byte	104
+ 3391 0ccc 0F       		.byte	15
+ 3392 0ccd 23       		.byte	35
+ 3393 0cce 13       		.byte	19
+ 3394 0ccf 40       		.byte	64
+ 3395 0cd0 08       		.byte	8
+ 3396 0cd1 2B       		.byte	43
+ 3397 0cd2 F9       		.byte	-7
+ 3398 0cd3 D0       		.byte	-48
+ 3399 0cd4 02       		.byte	2
+ 3400 0cd5 4B       		.byte	75
+ 3401 0cd6 18       		.byte	24
+ 3402 0cd7 60       		.byte	96
+ 3403 0cd8 70       		.byte	112
+ 3404 0cd9 47       		.byte	71
+ 3405 0cda C0       		.byte	-64
+ 3406 0cdb 46       		.byte	70
+ 3407 0cdc 08       		.byte	8
+ 3408 0cdd 02       		.byte	2
+ 3409 0cde 07       		.byte	7
+ 3410 0cdf 40       		.byte	64
+ 3411 0ce0 40       		.byte	64
+ 3412 0ce1 02       		.byte	2
+ 3413 0ce2 07       		.byte	7
+ 3414 0ce3 40       		.byte	64
+ 3415 0ce4 38       		.byte	56
+ 3416 0ce5 B5       		.byte	-75
+ 3417 0ce6 04       		.byte	4
+ 3418 0ce7 1C       		.byte	28
+ 3419 0ce8 45       		.byte	69
+ 3420 0ce9 18       		.byte	24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 61
+
+
+ 3421 0cea AC       		.byte	-84
+ 3422 0ceb 42       		.byte	66
+ 3423 0cec 04       		.byte	4
+ 3424 0ced D0       		.byte	-48
+ 3425 0cee 20       		.byte	32
+ 3426 0cef 78       		.byte	120
+ 3427 0cf0 FF       		.byte	-1
+ 3428 0cf1 F7       		.byte	-9
+ 3429 0cf2 EA       		.byte	-22
+ 3430 0cf3 FF       		.byte	-1
+ 3431 0cf4 01       		.byte	1
+ 3432 0cf5 34       		.byte	52
+ 3433 0cf6 F8       		.byte	-8
+ 3434 0cf7 E7       		.byte	-25
+ 3435 0cf8 38       		.byte	56
+ 3436 0cf9 BD       		.byte	-67
+ 3437 0cfa 00       		.byte	0
+ 3438 0cfb 00       		.byte	0
+ 3439 0cfc 12       		.byte	18
+ 3440 0cfd 4A       		.byte	74
+ 3441 0cfe 13       		.byte	19
+ 3442 0cff 4B       		.byte	75
+ 3443 0d00 10       		.byte	16
+ 3444 0d01 B5       		.byte	-75
+ 3445 0d02 1A       		.byte	26
+ 3446 0d03 60       		.byte	96
+ 3447 0d04 00       		.byte	0
+ 3448 0d05 23       		.byte	35
+ 3449 0d06 01       		.byte	1
+ 3450 0d07 21       		.byte	33
+ 3451 0d08 07       		.byte	7
+ 3452 0d09 24       		.byte	36
+ 3453 0d0a 11       		.byte	17
+ 3454 0d0b 4A       		.byte	74
+ 3455 0d0c 11       		.byte	17
+ 3456 0d0d 48       		.byte	72
+ 3457 0d0e 13       		.byte	19
+ 3458 0d0f 60       		.byte	96
+ 3459 0d10 11       		.byte	17
+ 3460 0d11 4A       		.byte	74
+ 3461 0d12 11       		.byte	17
+ 3462 0d13 60       		.byte	96
+ 3463 0d14 11       		.byte	17
+ 3464 0d15 4A       		.byte	74
+ 3465 0d16 02       		.byte	2
+ 3466 0d17 60       		.byte	96
+ 3467 0d18 11       		.byte	17
+ 3468 0d19 48       		.byte	72
+ 3469 0d1a 04       		.byte	4
+ 3470 0d1b 60       		.byte	96
+ 3471 0d1c 11       		.byte	17
+ 3472 0d1d 48       		.byte	72
+ 3473 0d1e 03       		.byte	3
+ 3474 0d1f 60       		.byte	96
+ 3475 0d20 11       		.byte	17
+ 3476 0d21 48       		.byte	72
+ 3477 0d22 01       		.byte	1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 62
+
+
+ 3478 0d23 60       		.byte	96
+ 3479 0d24 11       		.byte	17
+ 3480 0d25 49       		.byte	73
+ 3481 0d26 0A       		.byte	10
+ 3482 0d27 60       		.byte	96
+ 3483 0d28 11       		.byte	17
+ 3484 0d29 4A       		.byte	74
+ 3485 0d2a 13       		.byte	19
+ 3486 0d2b 60       		.byte	96
+ 3487 0d2c 11       		.byte	17
+ 3488 0d2d 4A       		.byte	74
+ 3489 0d2e 13       		.byte	19
+ 3490 0d2f 60       		.byte	96
+ 3491 0d30 11       		.byte	17
+ 3492 0d31 4A       		.byte	74
+ 3493 0d32 13       		.byte	19
+ 3494 0d33 60       		.byte	96
+ 3495 0d34 11       		.byte	17
+ 3496 0d35 4A       		.byte	74
+ 3497 0d36 13       		.byte	19
+ 3498 0d37 60       		.byte	96
+ 3499 0d38 11       		.byte	17
+ 3500 0d39 4A       		.byte	74
+ 3501 0d3a 13       		.byte	19
+ 3502 0d3b 60       		.byte	96
+ 3503 0d3c 11       		.byte	17
+ 3504 0d3d 4A       		.byte	74
+ 3505 0d3e 13       		.byte	19
+ 3506 0d3f 60       		.byte	96
+ 3507 0d40 11       		.byte	17
+ 3508 0d41 4A       		.byte	74
+ 3509 0d42 13       		.byte	19
+ 3510 0d43 60       		.byte	96
+ 3511 0d44 10       		.byte	16
+ 3512 0d45 BD       		.byte	-67
+ 3513 0d46 C0       		.byte	-64
+ 3514 0d47 46       		.byte	70
+ 3515 0d48 0B       		.byte	11
+ 3516 0d49 00       		.byte	0
+ 3517 0d4a 00       		.byte	0
+ 3518 0d4b 02       		.byte	2
+ 3519 0d4c 00       		.byte	0
+ 3520 0d4d 00       		.byte	0
+ 3521 0d4e 07       		.byte	7
+ 3522 0d4f 40       		.byte	64
+ 3523 0d50 40       		.byte	64
+ 3524 0d51 00       		.byte	0
+ 3525 0d52 07       		.byte	7
+ 3526 0d53 40       		.byte	64
+ 3527 0d54 00       		.byte	0
+ 3528 0d55 03       		.byte	3
+ 3529 0d56 07       		.byte	7
+ 3530 0d57 40       		.byte	64
+ 3531 0d58 48       		.byte	72
+ 3532 0d59 00       		.byte	0
+ 3533 0d5a 07       		.byte	7
+ 3534 0d5b 40       		.byte	64
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 63
+
+
+ 3535 0d5c 07       		.byte	7
+ 3536 0d5d 00       		.byte	0
+ 3537 0d5e 00       		.byte	0
+ 3538 0d5f 80       		.byte	-128
+ 3539 0d60 04       		.byte	4
+ 3540 0d61 03       		.byte	3
+ 3541 0d62 07       		.byte	7
+ 3542 0d63 40       		.byte	64
+ 3543 0d64 10       		.byte	16
+ 3544 0d65 03       		.byte	3
+ 3545 0d66 07       		.byte	7
+ 3546 0d67 40       		.byte	64
+ 3547 0d68 44       		.byte	68
+ 3548 0d69 00       		.byte	0
+ 3549 0d6a 07       		.byte	7
+ 3550 0d6b 40       		.byte	64
+ 3551 0d6c 00       		.byte	0
+ 3552 0d6d 02       		.byte	2
+ 3553 0d6e 07       		.byte	7
+ 3554 0d6f 40       		.byte	64
+ 3555 0d70 04       		.byte	4
+ 3556 0d71 02       		.byte	2
+ 3557 0d72 07       		.byte	7
+ 3558 0d73 40       		.byte	64
+ 3559 0d74 88       		.byte	-120
+ 3560 0d75 0E       		.byte	14
+ 3561 0d76 07       		.byte	7
+ 3562 0d77 40       		.byte	64
+ 3563 0d78 C8       		.byte	-56
+ 3564 0d79 0E       		.byte	14
+ 3565 0d7a 07       		.byte	7
+ 3566 0d7b 40       		.byte	64
+ 3567 0d7c 48       		.byte	72
+ 3568 0d7d 0F       		.byte	15
+ 3569 0d7e 07       		.byte	7
+ 3570 0d7f 40       		.byte	64
+ 3571 0d80 08       		.byte	8
+ 3572 0d81 0F       		.byte	15
+ 3573 0d82 07       		.byte	7
+ 3574 0d83 40       		.byte	64
+ 3575 0d84 C8       		.byte	-56
+ 3576 0d85 0F       		.byte	15
+ 3577 0d86 07       		.byte	7
+ 3578 0d87 40       		.byte	64
+ 3579 0d88 88       		.byte	-120
+ 3580 0d89 0F       		.byte	15
+ 3581 0d8a 07       		.byte	7
+ 3582 0d8b 40       		.byte	64
+ 3583 0d8c 04       		.byte	4
+ 3584 0d8d 4A       		.byte	74
+ 3585 0d8e 05       		.byte	5
+ 3586 0d8f 4B       		.byte	75
+ 3587 0d90 11       		.byte	17
+ 3588 0d91 68       		.byte	104
+ 3589 0d92 0B       		.byte	11
+ 3590 0d93 40       		.byte	64
+ 3591 0d94 90       		.byte	-112
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 64
+
+
+ 3592 0d95 21       		.byte	33
+ 3593 0d96 09       		.byte	9
+ 3594 0d97 04       		.byte	4
+ 3595 0d98 0B       		.byte	11
+ 3596 0d99 43       		.byte	67
+ 3597 0d9a 13       		.byte	19
+ 3598 0d9b 60       		.byte	96
+ 3599 0d9c 70       		.byte	112
+ 3600 0d9d 47       		.byte	71
+ 3601 0d9e C0       		.byte	-64
+ 3602 0d9f 46       		.byte	70
+ 3603 0da0 00       		.byte	0
+ 3604 0da1 00       		.byte	0
+ 3605 0da2 01       		.byte	1
+ 3606 0da3 40       		.byte	64
+ 3607 0da4 FF       		.byte	-1
+ 3608 0da5 FF       		.byte	-1
+ 3609 0da6 0F       		.byte	15
+ 3610 0da7 FF       		.byte	-1
+ 3611 0da8 02       		.byte	2
+ 3612 0da9 B4       		.byte	-76
+ 3613 0daa 71       		.byte	113
+ 3614 0dab 46       		.byte	70
+ 3615 0dac 49       		.byte	73
+ 3616 0dad 08       		.byte	8
+ 3617 0dae 49       		.byte	73
+ 3618 0daf 00       		.byte	0
+ 3619 0db0 09       		.byte	9
+ 3620 0db1 5C       		.byte	92
+ 3621 0db2 49       		.byte	73
+ 3622 0db3 00       		.byte	0
+ 3623 0db4 8E       		.byte	-114
+ 3624 0db5 44       		.byte	68
+ 3625 0db6 02       		.byte	2
+ 3626 0db7 BC       		.byte	-68
+ 3627 0db8 70       		.byte	112
+ 3628 0db9 47       		.byte	71
+ 3629 0dba C0       		.byte	-64
+ 3630 0dbb 46       		.byte	70
+ 3631 0dbc 03       		.byte	3
+ 3632 0dbd B4       		.byte	-76
+ 3633 0dbe 71       		.byte	113
+ 3634 0dbf 46       		.byte	70
+ 3635 0dc0 49       		.byte	73
+ 3636 0dc1 08       		.byte	8
+ 3637 0dc2 40       		.byte	64
+ 3638 0dc3 00       		.byte	0
+ 3639 0dc4 49       		.byte	73
+ 3640 0dc5 00       		.byte	0
+ 3641 0dc6 09       		.byte	9
+ 3642 0dc7 5E       		.byte	94
+ 3643 0dc8 49       		.byte	73
+ 3644 0dc9 00       		.byte	0
+ 3645 0dca 8E       		.byte	-114
+ 3646 0dcb 44       		.byte	68
+ 3647 0dcc 03       		.byte	3
+ 3648 0dcd BC       		.byte	-68
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 65
+
+
+ 3649 0dce 70       		.byte	112
+ 3650 0dcf 47       		.byte	71
+ 3651 0dd0 0E       		.byte	14
+ 3652 0dd1 4B       		.byte	75
+ 3653 0dd2 70       		.byte	112
+ 3654 0dd3 B5       		.byte	-75
+ 3655 0dd4 00       		.byte	0
+ 3656 0dd5 25       		.byte	37
+ 3657 0dd6 1E       		.byte	30
+ 3658 0dd7 1C       		.byte	28
+ 3659 0dd8 0D       		.byte	13
+ 3660 0dd9 4C       		.byte	76
+ 3661 0dda E4       		.byte	-28
+ 3662 0ddb 1A       		.byte	26
+ 3663 0ddc A4       		.byte	-92
+ 3664 0ddd 10       		.byte	16
+ 3665 0dde A5       		.byte	-91
+ 3666 0ddf 42       		.byte	66
+ 3667 0de0 04       		.byte	4
+ 3668 0de1 D0       		.byte	-48
+ 3669 0de2 AB       		.byte	-85
+ 3670 0de3 00       		.byte	0
+ 3671 0de4 F3       		.byte	-13
+ 3672 0de5 58       		.byte	88
+ 3673 0de6 98       		.byte	-104
+ 3674 0de7 47       		.byte	71
+ 3675 0de8 01       		.byte	1
+ 3676 0de9 35       		.byte	53
+ 3677 0dea F8       		.byte	-8
+ 3678 0deb E7       		.byte	-25
+ 3679 0dec 00       		.byte	0
+ 3680 0ded F0       		.byte	-16
+ 3681 0dee 4A       		.byte	74
+ 3682 0def F8       		.byte	-8
+ 3683 0df0 08       		.byte	8
+ 3684 0df1 4B       		.byte	75
+ 3685 0df2 00       		.byte	0
+ 3686 0df3 25       		.byte	37
+ 3687 0df4 1E       		.byte	30
+ 3688 0df5 1C       		.byte	28
+ 3689 0df6 08       		.byte	8
+ 3690 0df7 4C       		.byte	76
+ 3691 0df8 E4       		.byte	-28
+ 3692 0df9 1A       		.byte	26
+ 3693 0dfa A4       		.byte	-92
+ 3694 0dfb 10       		.byte	16
+ 3695 0dfc A5       		.byte	-91
+ 3696 0dfd 42       		.byte	66
+ 3697 0dfe 04       		.byte	4
+ 3698 0dff D0       		.byte	-48
+ 3699 0e00 AB       		.byte	-85
+ 3700 0e01 00       		.byte	0
+ 3701 0e02 F3       		.byte	-13
+ 3702 0e03 58       		.byte	88
+ 3703 0e04 98       		.byte	-104
+ 3704 0e05 47       		.byte	71
+ 3705 0e06 01       		.byte	1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 66
+
+
+ 3706 0e07 35       		.byte	53
+ 3707 0e08 F8       		.byte	-8
+ 3708 0e09 E7       		.byte	-25
+ 3709 0e0a 70       		.byte	112
+ 3710 0e0b BD       		.byte	-67
+ 3711 0e0c 90       		.byte	-112
+ 3712 0e0d 0E       		.byte	14
+ 3713 0e0e 00       		.byte	0
+ 3714 0e0f 00       		.byte	0
+ 3715 0e10 90       		.byte	-112
+ 3716 0e11 0E       		.byte	14
+ 3717 0e12 00       		.byte	0
+ 3718 0e13 00       		.byte	0
+ 3719 0e14 90       		.byte	-112
+ 3720 0e15 0E       		.byte	14
+ 3721 0e16 00       		.byte	0
+ 3722 0e17 00       		.byte	0
+ 3723 0e18 98       		.byte	-104
+ 3724 0e19 0E       		.byte	14
+ 3725 0e1a 00       		.byte	0
+ 3726 0e1b 00       		.byte	0
+ 3727 0e1c 00       		.byte	0
+ 3728 0e1d 23       		.byte	35
+ 3729 0e1e 10       		.byte	16
+ 3730 0e1f B5       		.byte	-75
+ 3731 0e20 93       		.byte	-109
+ 3732 0e21 42       		.byte	66
+ 3733 0e22 03       		.byte	3
+ 3734 0e23 D0       		.byte	-48
+ 3735 0e24 CC       		.byte	-52
+ 3736 0e25 5C       		.byte	92
+ 3737 0e26 C4       		.byte	-60
+ 3738 0e27 54       		.byte	84
+ 3739 0e28 01       		.byte	1
+ 3740 0e29 33       		.byte	51
+ 3741 0e2a F9       		.byte	-7
+ 3742 0e2b E7       		.byte	-25
+ 3743 0e2c 10       		.byte	16
+ 3744 0e2d BD       		.byte	-67
+ 3745 0e2e 03       		.byte	3
+ 3746 0e2f 1C       		.byte	28
+ 3747 0e30 82       		.byte	-126
+ 3748 0e31 18       		.byte	24
+ 3749 0e32 93       		.byte	-109
+ 3750 0e33 42       		.byte	66
+ 3751 0e34 02       		.byte	2
+ 3752 0e35 D0       		.byte	-48
+ 3753 0e36 19       		.byte	25
+ 3754 0e37 70       		.byte	112
+ 3755 0e38 01       		.byte	1
+ 3756 0e39 33       		.byte	51
+ 3757 0e3a FA       		.byte	-6
+ 3758 0e3b E7       		.byte	-25
+ 3759 0e3c 70       		.byte	112
+ 3760 0e3d 47       		.byte	71
+ 3761 0e3e 00       		.byte	0
+ 3762 0e3f 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 67
+
+
+ 3763 0e40 00       		.byte	0
+ 3764 0e41 0F       		.byte	15
+ 3765 0e42 00       		.byte	0
+ 3766 0e43 00       		.byte	0
+ 3767 0e44 04       		.byte	4
+ 3768 0e45 00       		.byte	0
+ 3769 0e46 00       		.byte	0
+ 3770 0e47 00       		.byte	0
+ 3771 0e48 00       		.byte	0
+ 3772 0e49 00       		.byte	0
+ 3773 0e4a 00       		.byte	0
+ 3774 0e4b 00       		.byte	0
+ 3775 0e4c 93       		.byte	-109
+ 3776 0e4d 11       		.byte	17
+ 3777 0e4e B6       		.byte	-74
+ 3778 0e4f 04       		.byte	4
+ 3779 0e50 11       		.byte	17
+ 3780 0e51 28       		.byte	40
+ 3781 0e52 01       		.byte	1
+ 3782 0e53 01       		.byte	1
+ 3783 0e54 03       		.byte	3
+ 3784 0e55 04       		.byte	4
+ 3785 0e56 05       		.byte	5
+ 3786 0e57 06       		.byte	6
+ 3787 0e58 07       		.byte	7
+ 3788 0e59 08       		.byte	8
+ 3789 0e5a 09       		.byte	9
+ 3790 0e5b 0A       		.byte	10
+ 3791 0e5c 0B       		.byte	11
+ 3792 0e5d 0C       		.byte	12
+ 3793 0e5e 0E       		.byte	14
+ 3794 0e5f 0F       		.byte	15
+ 3795 0e60 10       		.byte	16
+ 3796 0e61 11       		.byte	17
+ 3797 0e62 12       		.byte	18
+ 3798 0e63 13       		.byte	19
+ 3799 0e64 14       		.byte	20
+ 3800 0e65 15       		.byte	21
+ 3801 0e66 16       		.byte	22
+ 3802 0e67 17       		.byte	23
+ 3803 0e68 18       		.byte	24
+ 3804 0e69 19       		.byte	25
+ 3805 0e6a 1B       		.byte	27
+ 3806 0e6b 1C       		.byte	28
+ 3807 0e6c 1D       		.byte	29
+ 3808 0e6d 1E       		.byte	30
+ 3809 0e6e 1F       		.byte	31
+ 3810 0e6f 20       		.byte	32
+ 3811 0e70 21       		.byte	33
+ 3812 0e71 22       		.byte	34
+ 3813 0e72 23       		.byte	35
+ 3814 0e73 25       		.byte	37
+ 3815 0e74 26       		.byte	38
+ 3816 0e75 27       		.byte	39
+ 3817 0e76 28       		.byte	40
+ 3818 0e77 29       		.byte	41
+ 3819 0e78 2A       		.byte	42
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 68
+
+
+ 3820 0e79 2B       		.byte	43
+ 3821 0e7a 2E       		.byte	46
+ 3822 0e7b 2F       		.byte	47
+ 3823 0e7c 30       		.byte	48
+ 3824 0e7d 31       		.byte	49
+ 3825 0e7e 32       		.byte	50
+ 3826 0e7f 33       		.byte	51
+ 3827 0e80 34       		.byte	52
+ 3828 0e81 35       		.byte	53
+ 3829 0e82 00       		.byte	0
+ 3830 0e83 00       		.byte	0
+ 3831 0e84 F8       		.byte	-8
+ 3832 0e85 B5       		.byte	-75
+ 3833 0e86 C0       		.byte	-64
+ 3834 0e87 46       		.byte	70
+ 3835 0e88 F8       		.byte	-8
+ 3836 0e89 BC       		.byte	-68
+ 3837 0e8a 08       		.byte	8
+ 3838 0e8b BC       		.byte	-68
+ 3839 0e8c 9E       		.byte	-98
+ 3840 0e8d 46       		.byte	70
+ 3841 0e8e 70       		.byte	112
+ 3842 0e8f 47       		.byte	71
+ 3843 0e90 45       		.byte	69
+ 3844 0e91 01       		.byte	1
+ 3845 0e92 00       		.byte	0
+ 3846 0e93 00       		.byte	0
+ 3847 0e94 DD       		.byte	-35
+ 3848 0e95 01       		.byte	1
+ 3849 0e96 00       		.byte	0
+ 3850 0e97 00       		.byte	0
+ 3851 0e98 F8       		.byte	-8
+ 3852 0e99 B5       		.byte	-75
+ 3853 0e9a C0       		.byte	-64
+ 3854 0e9b 46       		.byte	70
+ 3855 0e9c F8       		.byte	-8
+ 3856 0e9d BC       		.byte	-68
+ 3857 0e9e 08       		.byte	8
+ 3858 0e9f BC       		.byte	-68
+ 3859 0ea0 9E       		.byte	-98
+ 3860 0ea1 46       		.byte	70
+ 3861 0ea2 70       		.byte	112
+ 3862 0ea3 47       		.byte	71
+ 3863 0ea4 1D       		.byte	29
+ 3864 0ea5 01       		.byte	1
+ 3865 0ea6 00       		.byte	0
+ 3866 0ea7 00       		.byte	0
+ 3867 0ea8 B8       		.byte	-72
+ 3868 0ea9 0E       		.byte	14
+ 3869 0eaa 00       		.byte	0
+ 3870 0eab 00       		.byte	0
+ 3871 0eac D0       		.byte	-48
+ 3872 0ead 00       		.byte	0
+ 3873 0eae 00       		.byte	0
+ 3874 0eaf 20       		.byte	32
+ 3875 0eb0 20       		.byte	32
+ 3876 0eb1 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 69
+
+
+ 3877 0eb2 00       		.byte	0
+ 3878 0eb3 00       		.byte	0
+ 3879 0eb4 28       		.byte	40
+ 3880 0eb5 00       		.byte	0
+ 3881 0eb6 00       		.byte	0
+ 3882 0eb7 00       		.byte	0
+ 3883 0eb8 00       		.byte	0
+ 3884 0eb9 00       		.byte	0
+ 3885 0eba 00       		.byte	0
+ 3886 0ebb 00       		.byte	0
+ 3887 0ebc 40       		.byte	64
+ 3888 0ebd 0E       		.byte	14
+ 3889 0ebe 00       		.byte	0
+ 3890 0ebf 00       		.byte	0
+ 3891 0ec0 44       		.byte	68
+ 3892 0ec1 0E       		.byte	14
+ 3893 0ec2 00       		.byte	0
+ 3894 0ec3 00       		.byte	0
+ 3895 0ec4 00       		.byte	0
+ 3896 0ec5 00       		.byte	0
+ 3897 0ec6 40       		.byte	64
+ 3898 0ec7 1F       		.byte	31
+ 3899 0ec8 80       		.byte	-128
+ 3900 0ec9 3E       		.byte	62
+ 3901 0eca 00       		.byte	0
+ 3902 0ecb 00       		.byte	0
+ 3903 0ecc 10       		.byte	16
+ 3904 0ecd 00       		.byte	0
+ 3905 0ece 00       		.byte	0
+ 3906 0ecf 00       		.byte	0
+ 3907 0ed0 00       		.byte	0
+ 3908 0ed1 24       		.byte	36
+ 3909 0ed2 F4       		.byte	-12
+ 3910 0ed3 00       		.byte	0
+ 3911 0ed4 00       		.byte	0
+ 3912 0ed5 00       		.byte	0
+ 3913 0ed6 00       		.byte	0
+ 3914 0ed7 00       		.byte	0
+ 3915 0ed8 00       		.byte	0
+ 3916 0ed9 00       		.byte	0
+ 3917 0eda 00       		.byte	0
+ 3918 0edb 00       		.byte	0
+ 3919 0edc 00       		.byte	0
+ 3920 0edd 00       		.byte	0
+ 3921 0ede 00       		.byte	0
+ 3922 0edf 00       		.byte	0
+ 3923 0ee0 00       		.byte	0
+ 3924 0ee1 00       		.byte	0
+ 3925 0ee2 00       		.byte	0
+ 3926 0ee3 00       		.byte	0
+ 3927 0ee4 00       		.byte	0
+ 3928 0ee5 00       		.byte	0
+ 3929 0ee6 00       		.byte	0
+ 3930 0ee7 00       		.byte	0
+ 3931 0ee8 00       		.byte	0
+ 3932 0ee9 00       		.byte	0
+ 3933 0eea 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 70
+
+
+ 3934 0eeb 00       		.byte	0
+ 3935 0eec 00       		.byte	0
+ 3936 0eed 00       		.byte	0
+ 3937 0eee 00       		.byte	0
+ 3938 0eef 00       		.byte	0
+ 3939 0ef0 00       		.byte	0
+ 3940 0ef1 00       		.byte	0
+ 3941 0ef2 00       		.byte	0
+ 3942 0ef3 00       		.byte	0
+ 3943 0ef4 00       		.byte	0
+ 3944 0ef5 00       		.byte	0
+ 3945 0ef6 00       		.byte	0
+ 3946 0ef7 00       		.byte	0
+ 3947 0ef8 00       		.byte	0
+ 3948 0ef9 00       		.byte	0
+ 3949 0efa 00       		.byte	0
+ 3950 0efb 00       		.byte	0
+ 3951 0efc 00       		.byte	0
+ 3952 0efd 00       		.byte	0
+ 3953 0efe 00       		.byte	0
+ 3954 0eff 00       		.byte	0
+ 3955              		.section	.cyflashprotect,"a",%progbits
+ 3956              		.type	cy_meta_flashprotect, %object
+ 3957              		.size	cy_meta_flashprotect, 32
+ 3958              	cy_meta_flashprotect:
+ 3959 0000 00000000 		.space	32
+ 3959      00000000 
+ 3959      00000000 
+ 3959      00000000 
+ 3959      00000000 
+ 3960              		.text
+ 3961              	.Letext0:
+ 3962              		.file 1 ".\\Generated_Source\\PSoC4\\cybootloader.c"
+ 3963              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 3964              		.section	.debug_info,"",%progbits
+ 3965              	.Ldebug_info0:
+ 3966 0000 49010000 		.4byte	0x149
+ 3967 0004 0400     		.2byte	0x4
+ 3968 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 3969 000a 04       		.byte	0x4
+ 3970 000b 01       		.uleb128 0x1
+ 3971 000c 14000000 		.4byte	.LASF18
+ 3972 0010 01       		.byte	0x1
+ 3973 0011 18010000 		.4byte	.LASF19
+ 3974 0015 57010000 		.4byte	.LASF20
+ 3975 0019 00000000 		.4byte	.Ldebug_line0
+ 3976 001d 02       		.uleb128 0x2
+ 3977 001e 01       		.byte	0x1
+ 3978 001f 06       		.byte	0x6
+ 3979 0020 F9010000 		.4byte	.LASF0
+ 3980 0024 02       		.uleb128 0x2
+ 3981 0025 01       		.byte	0x1
+ 3982 0026 08       		.byte	0x8
+ 3983 0027 D1000000 		.4byte	.LASF1
+ 3984 002b 02       		.uleb128 0x2
+ 3985 002c 02       		.byte	0x2
+ 3986 002d 05       		.byte	0x5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 71
+
+
+ 3987 002e E0010000 		.4byte	.LASF2
+ 3988 0032 02       		.uleb128 0x2
+ 3989 0033 02       		.byte	0x2
+ 3990 0034 07       		.byte	0x7
+ 3991 0035 F1000000 		.4byte	.LASF3
+ 3992 0039 02       		.uleb128 0x2
+ 3993 003a 04       		.byte	0x4
+ 3994 003b 05       		.byte	0x5
+ 3995 003c F0010000 		.4byte	.LASF4
+ 3996 0040 02       		.uleb128 0x2
+ 3997 0041 04       		.byte	0x4
+ 3998 0042 07       		.byte	0x7
+ 3999 0043 DF000000 		.4byte	.LASF5
+ 4000 0047 02       		.uleb128 0x2
+ 4001 0048 08       		.byte	0x8
+ 4002 0049 05       		.byte	0x5
+ 4003 004a CD010000 		.4byte	.LASF6
+ 4004 004e 02       		.uleb128 0x2
+ 4005 004f 08       		.byte	0x8
+ 4006 0050 07       		.byte	0x7
+ 4007 0051 40010000 		.4byte	.LASF7
+ 4008 0055 03       		.uleb128 0x3
+ 4009 0056 04       		.byte	0x4
+ 4010 0057 05       		.byte	0x5
+ 4011 0058 696E7400 		.ascii	"int\000"
+ 4012 005c 02       		.uleb128 0x2
+ 4013 005d 04       		.byte	0x4
+ 4014 005e 07       		.byte	0x7
+ 4015 005f 0B010000 		.4byte	.LASF8
+ 4016 0063 04       		.uleb128 0x4
+ 4017 0064 EA010000 		.4byte	.LASF21
+ 4018 0068 02       		.byte	0x2
+ 4019 0069 C2       		.byte	0xc2
+ 4020 006a 24000000 		.4byte	0x24
+ 4021 006e 02       		.uleb128 0x2
+ 4022 006f 04       		.byte	0x4
+ 4023 0070 04       		.byte	0x4
+ 4024 0071 CB000000 		.4byte	.LASF9
+ 4025 0075 02       		.uleb128 0x2
+ 4026 0076 08       		.byte	0x8
+ 4027 0077 04       		.byte	0x4
+ 4028 0078 04010000 		.4byte	.LASF10
+ 4029 007c 02       		.uleb128 0x2
+ 4030 007d 01       		.byte	0x1
+ 4031 007e 08       		.byte	0x8
+ 4032 007f DB010000 		.4byte	.LASF11
+ 4033 0083 05       		.uleb128 0x5
+ 4034 0084 63000000 		.4byte	0x63
+ 4035 0088 93000000 		.4byte	0x93
+ 4036 008c 06       		.uleb128 0x6
+ 4037 008d 93000000 		.4byte	0x93
+ 4038 0091 3F       		.byte	0x3f
+ 4039 0092 00       		.byte	0
+ 4040 0093 02       		.uleb128 0x2
+ 4041 0094 04       		.byte	0x4
+ 4042 0095 07       		.byte	0x7
+ 4043 0096 C4010000 		.4byte	.LASF12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 72
+
+
+ 4044 009a 07       		.uleb128 0x7
+ 4045 009b B0000000 		.4byte	.LASF13
+ 4046 009f 01       		.byte	0x1
+ 4047 00a0 0E       		.byte	0xe
+ 4048 00a1 AB000000 		.4byte	0xab
+ 4049 00a5 05       		.uleb128 0x5
+ 4050 00a6 03       		.byte	0x3
+ 4051 00a7 00000000 		.4byte	cy_meta_loader
+ 4052 00ab 08       		.uleb128 0x8
+ 4053 00ac 83000000 		.4byte	0x83
+ 4054 00b0 05       		.uleb128 0x5
+ 4055 00b1 63000000 		.4byte	0x63
+ 4056 00b5 C1000000 		.4byte	0xc1
+ 4057 00b9 09       		.uleb128 0x9
+ 4058 00ba 93000000 		.4byte	0x93
+ 4059 00be FF0E     		.2byte	0xeff
+ 4060 00c0 00       		.byte	0
+ 4061 00c1 07       		.uleb128 0x7
+ 4062 00c2 A2000000 		.4byte	.LASF14
+ 4063 00c6 01       		.byte	0x1
+ 4064 00c7 21       		.byte	0x21
+ 4065 00c8 D2000000 		.4byte	0xd2
+ 4066 00cc 05       		.uleb128 0x5
+ 4067 00cd 03       		.byte	0x3
+ 4068 00ce 00000000 		.4byte	cy_bootloader
+ 4069 00d2 08       		.uleb128 0x8
+ 4070 00d3 B0000000 		.4byte	0xb0
+ 4071 00d7 05       		.uleb128 0x5
+ 4072 00d8 63000000 		.4byte	0x63
+ 4073 00dc E7000000 		.4byte	0xe7
+ 4074 00e0 06       		.uleb128 0x6
+ 4075 00e1 93000000 		.4byte	0x93
+ 4076 00e5 0B       		.byte	0xb
+ 4077 00e6 00       		.byte	0
+ 4078 00e7 0A       		.uleb128 0xa
+ 4079 00e8 BF000000 		.4byte	.LASF15
+ 4080 00ec 01       		.byte	0x1
+ 4081 00ed 0A02     		.2byte	0x20a
+ 4082 00ef F9000000 		.4byte	0xf9
+ 4083 00f3 05       		.uleb128 0x5
+ 4084 00f4 03       		.byte	0x3
+ 4085 00f5 00000000 		.4byte	cy_metadata
+ 4086 00f9 08       		.uleb128 0x8
+ 4087 00fa D7000000 		.4byte	0xd7
+ 4088 00fe 05       		.uleb128 0x5
+ 4089 00ff 63000000 		.4byte	0x63
+ 4090 0103 0E010000 		.4byte	0x10e
+ 4091 0107 06       		.uleb128 0x6
+ 4092 0108 93000000 		.4byte	0x93
+ 4093 010c 1F       		.byte	0x1f
+ 4094 010d 00       		.byte	0
+ 4095 010e 0A       		.uleb128 0xa
+ 4096 010f AF010000 		.4byte	.LASF16
+ 4097 0113 01       		.byte	0x1
+ 4098 0114 1502     		.2byte	0x215
+ 4099 0116 20010000 		.4byte	0x120
+ 4100 011a 05       		.uleb128 0x5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 73
+
+
+ 4101 011b 03       		.byte	0x3
+ 4102 011c 00000000 		.4byte	cy_meta_flashprotect
+ 4103 0120 08       		.uleb128 0x8
+ 4104 0121 FE000000 		.4byte	0xfe
+ 4105 0125 05       		.uleb128 0x5
+ 4106 0126 63000000 		.4byte	0x63
+ 4107 012a 35010000 		.4byte	0x135
+ 4108 012e 06       		.uleb128 0x6
+ 4109 012f 93000000 		.4byte	0x93
+ 4110 0133 00       		.byte	0
+ 4111 0134 00       		.byte	0
+ 4112 0135 0A       		.uleb128 0xa
+ 4113 0136 00000000 		.4byte	.LASF17
+ 4114 013a 01       		.byte	0x1
+ 4115 013b 2202     		.2byte	0x222
+ 4116 013d 47010000 		.4byte	0x147
+ 4117 0141 05       		.uleb128 0x5
+ 4118 0142 03       		.byte	0x3
+ 4119 0143 00000000 		.4byte	cy_meta_chipprotect
+ 4120 0147 08       		.uleb128 0x8
+ 4121 0148 25010000 		.4byte	0x125
+ 4122 014c 00       		.byte	0
+ 4123              		.section	.debug_abbrev,"",%progbits
+ 4124              	.Ldebug_abbrev0:
+ 4125 0000 01       		.uleb128 0x1
+ 4126 0001 11       		.uleb128 0x11
+ 4127 0002 01       		.byte	0x1
+ 4128 0003 25       		.uleb128 0x25
+ 4129 0004 0E       		.uleb128 0xe
+ 4130 0005 13       		.uleb128 0x13
+ 4131 0006 0B       		.uleb128 0xb
+ 4132 0007 03       		.uleb128 0x3
+ 4133 0008 0E       		.uleb128 0xe
+ 4134 0009 1B       		.uleb128 0x1b
+ 4135 000a 0E       		.uleb128 0xe
+ 4136 000b 10       		.uleb128 0x10
+ 4137 000c 17       		.uleb128 0x17
+ 4138 000d 00       		.byte	0
+ 4139 000e 00       		.byte	0
+ 4140 000f 02       		.uleb128 0x2
+ 4141 0010 24       		.uleb128 0x24
+ 4142 0011 00       		.byte	0
+ 4143 0012 0B       		.uleb128 0xb
+ 4144 0013 0B       		.uleb128 0xb
+ 4145 0014 3E       		.uleb128 0x3e
+ 4146 0015 0B       		.uleb128 0xb
+ 4147 0016 03       		.uleb128 0x3
+ 4148 0017 0E       		.uleb128 0xe
+ 4149 0018 00       		.byte	0
+ 4150 0019 00       		.byte	0
+ 4151 001a 03       		.uleb128 0x3
+ 4152 001b 24       		.uleb128 0x24
+ 4153 001c 00       		.byte	0
+ 4154 001d 0B       		.uleb128 0xb
+ 4155 001e 0B       		.uleb128 0xb
+ 4156 001f 3E       		.uleb128 0x3e
+ 4157 0020 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 74
+
+
+ 4158 0021 03       		.uleb128 0x3
+ 4159 0022 08       		.uleb128 0x8
+ 4160 0023 00       		.byte	0
+ 4161 0024 00       		.byte	0
+ 4162 0025 04       		.uleb128 0x4
+ 4163 0026 16       		.uleb128 0x16
+ 4164 0027 00       		.byte	0
+ 4165 0028 03       		.uleb128 0x3
+ 4166 0029 0E       		.uleb128 0xe
+ 4167 002a 3A       		.uleb128 0x3a
+ 4168 002b 0B       		.uleb128 0xb
+ 4169 002c 3B       		.uleb128 0x3b
+ 4170 002d 0B       		.uleb128 0xb
+ 4171 002e 49       		.uleb128 0x49
+ 4172 002f 13       		.uleb128 0x13
+ 4173 0030 00       		.byte	0
+ 4174 0031 00       		.byte	0
+ 4175 0032 05       		.uleb128 0x5
+ 4176 0033 01       		.uleb128 0x1
+ 4177 0034 01       		.byte	0x1
+ 4178 0035 49       		.uleb128 0x49
+ 4179 0036 13       		.uleb128 0x13
+ 4180 0037 01       		.uleb128 0x1
+ 4181 0038 13       		.uleb128 0x13
+ 4182 0039 00       		.byte	0
+ 4183 003a 00       		.byte	0
+ 4184 003b 06       		.uleb128 0x6
+ 4185 003c 21       		.uleb128 0x21
+ 4186 003d 00       		.byte	0
+ 4187 003e 49       		.uleb128 0x49
+ 4188 003f 13       		.uleb128 0x13
+ 4189 0040 2F       		.uleb128 0x2f
+ 4190 0041 0B       		.uleb128 0xb
+ 4191 0042 00       		.byte	0
+ 4192 0043 00       		.byte	0
+ 4193 0044 07       		.uleb128 0x7
+ 4194 0045 34       		.uleb128 0x34
+ 4195 0046 00       		.byte	0
+ 4196 0047 03       		.uleb128 0x3
+ 4197 0048 0E       		.uleb128 0xe
+ 4198 0049 3A       		.uleb128 0x3a
+ 4199 004a 0B       		.uleb128 0xb
+ 4200 004b 3B       		.uleb128 0x3b
+ 4201 004c 0B       		.uleb128 0xb
+ 4202 004d 49       		.uleb128 0x49
+ 4203 004e 13       		.uleb128 0x13
+ 4204 004f 3F       		.uleb128 0x3f
+ 4205 0050 19       		.uleb128 0x19
+ 4206 0051 02       		.uleb128 0x2
+ 4207 0052 18       		.uleb128 0x18
+ 4208 0053 00       		.byte	0
+ 4209 0054 00       		.byte	0
+ 4210 0055 08       		.uleb128 0x8
+ 4211 0056 26       		.uleb128 0x26
+ 4212 0057 00       		.byte	0
+ 4213 0058 49       		.uleb128 0x49
+ 4214 0059 13       		.uleb128 0x13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 75
+
+
+ 4215 005a 00       		.byte	0
+ 4216 005b 00       		.byte	0
+ 4217 005c 09       		.uleb128 0x9
+ 4218 005d 21       		.uleb128 0x21
+ 4219 005e 00       		.byte	0
+ 4220 005f 49       		.uleb128 0x49
+ 4221 0060 13       		.uleb128 0x13
+ 4222 0061 2F       		.uleb128 0x2f
+ 4223 0062 05       		.uleb128 0x5
+ 4224 0063 00       		.byte	0
+ 4225 0064 00       		.byte	0
+ 4226 0065 0A       		.uleb128 0xa
+ 4227 0066 34       		.uleb128 0x34
+ 4228 0067 00       		.byte	0
+ 4229 0068 03       		.uleb128 0x3
+ 4230 0069 0E       		.uleb128 0xe
+ 4231 006a 3A       		.uleb128 0x3a
+ 4232 006b 0B       		.uleb128 0xb
+ 4233 006c 3B       		.uleb128 0x3b
+ 4234 006d 05       		.uleb128 0x5
+ 4235 006e 49       		.uleb128 0x49
+ 4236 006f 13       		.uleb128 0x13
+ 4237 0070 3F       		.uleb128 0x3f
+ 4238 0071 19       		.uleb128 0x19
+ 4239 0072 02       		.uleb128 0x2
+ 4240 0073 18       		.uleb128 0x18
+ 4241 0074 00       		.byte	0
+ 4242 0075 00       		.byte	0
+ 4243 0076 00       		.byte	0
+ 4244              		.section	.debug_aranges,"",%progbits
+ 4245 0000 14000000 		.4byte	0x14
+ 4246 0004 0200     		.2byte	0x2
+ 4247 0006 00000000 		.4byte	.Ldebug_info0
+ 4248 000a 04       		.byte	0x4
+ 4249 000b 00       		.byte	0
+ 4250 000c 0000     		.2byte	0
+ 4251 000e 0000     		.2byte	0
+ 4252 0010 00000000 		.4byte	0
+ 4253 0014 00000000 		.4byte	0
+ 4254              		.section	.debug_line,"",%progbits
+ 4255              	.Ldebug_line0:
+ 4256 0000 51000000 		.section	.debug_str,"MS",%progbits,1
+ 4256      02004B00 
+ 4256      00000201 
+ 4256      FB0E0D00 
+ 4256      01010101 
+ 4257              	.LASF17:
+ 4258 0000 63795F6D 		.ascii	"cy_meta_chipprotect\000"
+ 4258      6574615F 
+ 4258      63686970 
+ 4258      70726F74 
+ 4258      65637400 
+ 4259              	.LASF18:
+ 4260 0014 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 4260      4320342E 
+ 4260      392E3320 
+ 4260      32303135 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 76
+
+
+ 4260      30333033 
+ 4261 0047 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 4261      20726576 
+ 4261      6973696F 
+ 4261      6E203232 
+ 4261      31323230 
+ 4262 007a 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 4262      66756E63 
+ 4262      74696F6E 
+ 4262      2D736563 
+ 4262      74696F6E 
+ 4263              	.LASF14:
+ 4264 00a2 63795F62 		.ascii	"cy_bootloader\000"
+ 4264      6F6F746C 
+ 4264      6F616465 
+ 4264      7200
+ 4265              	.LASF13:
+ 4266 00b0 63795F6D 		.ascii	"cy_meta_loader\000"
+ 4266      6574615F 
+ 4266      6C6F6164 
+ 4266      657200
+ 4267              	.LASF15:
+ 4268 00bf 63795F6D 		.ascii	"cy_metadata\000"
+ 4268      65746164 
+ 4268      61746100 
+ 4269              	.LASF9:
+ 4270 00cb 666C6F61 		.ascii	"float\000"
+ 4270      7400
+ 4271              	.LASF1:
+ 4272 00d1 756E7369 		.ascii	"unsigned char\000"
+ 4272      676E6564 
+ 4272      20636861 
+ 4272      7200
+ 4273              	.LASF5:
+ 4274 00df 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4274      20756E73 
+ 4274      69676E65 
+ 4274      6420696E 
+ 4274      7400
+ 4275              	.LASF3:
+ 4276 00f1 73686F72 		.ascii	"short unsigned int\000"
+ 4276      7420756E 
+ 4276      7369676E 
+ 4276      65642069 
+ 4276      6E7400
+ 4277              	.LASF10:
+ 4278 0104 646F7562 		.ascii	"double\000"
+ 4278      6C6500
+ 4279              	.LASF8:
+ 4280 010b 756E7369 		.ascii	"unsigned int\000"
+ 4280      676E6564 
+ 4280      20696E74 
+ 4280      00
+ 4281              	.LASF19:
+ 4282 0118 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\cybootloader.c\000"
+ 4282      6E657261 
+ 4282      7465645F 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccgJ8Vri.s 			page 77
+
+
+ 4282      536F7572 
+ 4282      63655C50 
+ 4283              	.LASF7:
+ 4284 0140 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 4284      206C6F6E 
+ 4284      6720756E 
+ 4284      7369676E 
+ 4284      65642069 
+ 4285              	.LASF20:
+ 4286 0157 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 4286      73657273 
+ 4286      5C566974 
+ 4286      616C695C 
+ 4286      446F6375 
+ 4287 0185 6E74726F 		.ascii	"ntroller_Workspace\\Expo_Controller2.cydsn\000"
+ 4287      6C6C6572 
+ 4287      5F576F72 
+ 4287      6B737061 
+ 4287      63655C45 
+ 4288              	.LASF16:
+ 4289 01af 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 4289      6574615F 
+ 4289      666C6173 
+ 4289      6870726F 
+ 4289      74656374 
+ 4290              	.LASF12:
+ 4291 01c4 73697A65 		.ascii	"sizetype\000"
+ 4291      74797065 
+ 4291      00
+ 4292              	.LASF6:
+ 4293 01cd 6C6F6E67 		.ascii	"long long int\000"
+ 4293      206C6F6E 
+ 4293      6720696E 
+ 4293      7400
+ 4294              	.LASF11:
+ 4295 01db 63686172 		.ascii	"char\000"
+ 4295      00
+ 4296              	.LASF2:
+ 4297 01e0 73686F72 		.ascii	"short int\000"
+ 4297      7420696E 
+ 4297      7400
+ 4298              	.LASF21:
+ 4299 01ea 75696E74 		.ascii	"uint8\000"
+ 4299      3800
+ 4300              	.LASF4:
+ 4301 01f0 6C6F6E67 		.ascii	"long int\000"
+ 4301      20696E74 
+ 4301      00
+ 4302              	.LASF0:
+ 4303 01f9 7369676E 		.ascii	"signed char\000"
+ 4303      65642063 
+ 4303      68617200 
+ 4304              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

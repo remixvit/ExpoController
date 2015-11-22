@@ -1,0 +1,3 @@
+--------------- Build Started: 11/23/2015 00:51:37 Project: Bootloader_PSoC4_Example01, Configuration: ARM MDK Generic Debug ---------------
+ERROR: Could not locate the binaries for the generic tool chain "ARM MDK Generic" in the selected path "C:\Users\Vitali\Documents\PSoC Creator". The following are the missing binaries: "armasm.exe"
+--------------- Build Failed: 11/23/2015 00:51:37 ---------------

@@ -1,0 +1,4758 @@
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.WaitPowerStab,"ax",%progbits
+  18              		.align	1
+  19              		.global	WaitPowerStab
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	WaitPowerStab, %function
+  23              	WaitPowerStab:
+  24              	.LFB62:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include "OPT3001.h"
+  14:.\main.c      **** #include "WS0010.h"
+  15:.\main.c      **** #include "TaskDispatcher.h"
+  16:.\main.c      **** #include <string.h>
+  17:.\main.c      **** #include <stdio.h>
+  18:.\main.c      **** 
+  19:.\main.c      **** typedef struct
+  20:.\main.c      **** {
+  21:.\main.c      ****     uint8 DisplayCursor;
+  22:.\main.c      ****     uint32 Lux;
+  23:.\main.c      ****     uint8 OPT_Status;
+  24:.\main.c      ****     uint16 Max_Bright;
+  25:.\main.c      ****     uint16 Min_Bright;
+  26:.\main.c      **** }MyStruct;
+  27:.\main.c      **** volatile MyStruct GlobalStruct;
+  28:.\main.c      **** 
+  29:.\main.c      **** typedef struct
+  30:.\main.c      **** {
+  31:.\main.c      ****     uint32 Time;
+  32:.\main.c      ****     uint32 Alarm;
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 2
+
+
+  33:.\main.c      **** }TimeType;
+  34:.\main.c      **** volatile TimeType TimeStruct;
+  35:.\main.c      **** //volatile char Main_Display_Buf[4][21];
+  36:.\main.c      **** 
+  37:.\main.c      **** 
+  38:.\main.c      **** 
+  39:.\main.c      **** 
+  40:.\main.c      **** void Check_Boot()
+  41:.\main.c      **** {
+  42:.\main.c      ****     if(Bootloader_En_Read() == 0)
+  43:.\main.c      ****     {
+  44:.\main.c      ****         Bootloadable_Load();
+  45:.\main.c      ****     }
+  46:.\main.c      **** }
+  47:.\main.c      **** 
+  48:.\main.c      **** void Check_OPT()
+  49:.\main.c      **** {
+  50:.\main.c      ****     uint16 Manufacturer, Device;
+  51:.\main.c      ****     uint8 Status;
+  52:.\main.c      ****     
+  53:.\main.c      ****     Status = I2C_ReadRegister(OPT3001_I2C_ADDRESS, REG_DEVICE_ID, &Device);
+  54:.\main.c      ****     
+  55:.\main.c      ****     if(Status == 0)
+  56:.\main.c      ****     {
+  57:.\main.c      ****         Add_To_DDR("Optic Error");
+  58:.\main.c      ****         return;
+  59:.\main.c      ****         I2C_I2C_MSTR_ERR_LB_NAK;
+  60:.\main.c      ****         I2C_I2C_MSTR_ERR_ARB_LOST;
+  61:.\main.c      ****     }
+  62:.\main.c      ****     
+  63:.\main.c      ****     Status = I2C_ReadRegister(OPT3001_I2C_ADDRESS, REG_MANUFACTURER_ID, &Manufacturer);
+  64:.\main.c      ****     
+  65:.\main.c      ****     if(Status == 0)
+  66:.\main.c      ****     {
+  67:.\main.c      ****         Add_To_DDR("Optic Error");
+  68:.\main.c      ****         return;
+  69:.\main.c      ****     }
+  70:.\main.c      ****     
+  71:.\main.c      ****     if((Manufacturer == 0x5449) && (Device == 0x3001))
+  72:.\main.c      ****     {
+  73:.\main.c      ****         Add_To_DDR("Optic OK");
+  74:.\main.c      ****         Add_To_DDR("Device OPT3001 EN");
+  75:.\main.c      ****         Print_DDR();
+  76:.\main.c      ****         return;
+  77:.\main.c      ****     }              
+  78:.\main.c      ****     return;
+  79:.\main.c      **** }
+  80:.\main.c      **** 
+  81:.\main.c      **** 
+  82:.\main.c      **** void Start_Display()
+  83:.\main.c      **** {
+  84:.\main.c      ****     SetTimerTask(Check_OPT, 10);
+  85:.\main.c      ****     LCD_WS0010Start();
+  86:.\main.c      ****     Add_To_DDR("OS Start");
+  87:.\main.c      ****     Print_DDR();
+  88:.\main.c      **** }
+  89:.\main.c      **** void WaitPowerStab()
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 3
+
+
+  90:.\main.c      **** {
+  26              		.loc 1 90 0
+  27              		.cfi_startproc
+  91:.\main.c      ****    SetTimerTask(Start_Display, 1000);
+  28              		.loc 1 91 0
+  29 0000 FA21     		mov	r1, #250
+  90:.\main.c      ****    SetTimerTask(Start_Display, 1000);
+  30              		.loc 1 90 0
+  31 0002 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  35              		.loc 1 91 0
+  36 0004 0248     		ldr	r0, .L2
+  37 0006 8900     		lsl	r1, r1, #2
+  38 0008 FFF7FEFF 		bl	SetTimerTask
+  39              	.LVL0:
+  92:.\main.c      **** }
+  40              		.loc 1 92 0
+  41              		@ sp needed
+  42 000c 08BD     		pop	{r3, pc}
+  43              	.L3:
+  44 000e C046     		.align	2
+  45              	.L2:
+  46 0010 00000000 		.word	Start_Display
+  47              		.cfi_endproc
+  48              	.LFE62:
+  49              		.size	WaitPowerStab, .-WaitPowerStab
+  50              		.section	.text.Start_Display,"ax",%progbits
+  51              		.align	1
+  52              		.global	Start_Display
+  53              		.code	16
+  54              		.thumb_func
+  55              		.type	Start_Display, %function
+  56              	Start_Display:
+  57              	.LFB61:
+  83:.\main.c      ****     SetTimerTask(Check_OPT, 10);
+  58              		.loc 1 83 0
+  59              		.cfi_startproc
+  60 0000 08B5     		push	{r3, lr}
+  61              		.cfi_def_cfa_offset 8
+  62              		.cfi_offset 3, -8
+  63              		.cfi_offset 14, -4
+  84:.\main.c      ****     LCD_WS0010Start();
+  64              		.loc 1 84 0
+  65 0002 0A21     		mov	r1, #10
+  66 0004 0548     		ldr	r0, .L5
+  67 0006 FFF7FEFF 		bl	SetTimerTask
+  68              	.LVL1:
+  85:.\main.c      ****     Add_To_DDR("OS Start");
+  69              		.loc 1 85 0
+  70 000a FFF7FEFF 		bl	LCD_WS0010Start
+  71              	.LVL2:
+  86:.\main.c      ****     Print_DDR();
+  72              		.loc 1 86 0
+  73 000e 0448     		ldr	r0, .L5+4
+  74 0010 FFF7FEFF 		bl	Add_To_DDR
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 4
+
+
+  75              	.LVL3:
+  88:.\main.c      **** void WaitPowerStab()
+  76              		.loc 1 88 0
+  77              		@ sp needed
+  87:.\main.c      **** }
+  78              		.loc 1 87 0
+  79 0014 FFF7FEFF 		bl	Print_DDR
+  80              	.LVL4:
+  88:.\main.c      **** void WaitPowerStab()
+  81              		.loc 1 88 0
+  82 0018 08BD     		pop	{r3, pc}
+  83              	.L6:
+  84 001a C046     		.align	2
+  85              	.L5:
+  86 001c 00000000 		.word	Check_OPT
+  87 0020 00000000 		.word	.LC2
+  88              		.cfi_endproc
+  89              	.LFE61:
+  90              		.size	Start_Display, .-Start_Display
+  91              		.section	.text.Main_Display_Print,"ax",%progbits
+  92              		.align	1
+  93              		.global	Main_Display_Print
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	Main_Display_Print, %function
+  97              	Main_Display_Print:
+  98              	.LFB64:
+  93:.\main.c      **** 
+  94:.\main.c      **** void OPT_Get_Result()
+  95:.\main.c      **** {
+  96:.\main.c      ****     if(GlobalStruct.OPT_Status == 0)
+  97:.\main.c      ****     {
+  98:.\main.c      ****         if(OPT_StartConvert())
+  99:.\main.c      ****         {
+ 100:.\main.c      ****             SetTimerTask(OPT_Get_Result, 1000);
+ 101:.\main.c      ****             GlobalStruct.OPT_Status = 1;
+ 102:.\main.c      ****         }
+ 103:.\main.c      ****         else
+ 104:.\main.c      ****         {
+ 105:.\main.c      ****             SetTimerTask(OPT_Get_Result, 300);
+ 106:.\main.c      ****             GlobalStruct.OPT_Status = 0;
+ 107:.\main.c      ****         }
+ 108:.\main.c      ****         
+ 109:.\main.c      ****     }
+ 110:.\main.c      ****     else if(GlobalStruct.OPT_Status == 1)
+ 111:.\main.c      ****     {
+ 112:.\main.c      ****         if(OPT_IsReady())
+ 113:.\main.c      ****         {
+ 114:.\main.c      ****             OPT_GetResultString(&GlobalStruct.Lux);
+ 115:.\main.c      ****             SetTimerTask(OPT_Get_Result, 2000);
+ 116:.\main.c      ****             GlobalStruct.OPT_Status = 0;
+ 117:.\main.c      ****         }
+ 118:.\main.c      ****         else
+ 119:.\main.c      ****         {
+ 120:.\main.c      ****             SetTimerTask(OPT_Get_Result, 800);
+ 121:.\main.c      ****         }
+ 122:.\main.c      ****         
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 5
+
+
+ 123:.\main.c      ****     }
+ 124:.\main.c      **** }
+ 125:.\main.c      **** 
+ 126:.\main.c      **** void Main_Display_Print()
+ 127:.\main.c      **** {
+  99              		.loc 1 127 0
+ 100              		.cfi_startproc
+ 101 0000 70B5     		push	{r4, r5, r6, lr}
+ 102              		.cfi_def_cfa_offset 16
+ 103              		.cfi_offset 4, -16
+ 104              		.cfi_offset 5, -12
+ 105              		.cfi_offset 6, -8
+ 106              		.cfi_offset 14, -4
+ 128:.\main.c      ****     char BLE_Status[20] = "BLE_Status: ";
+ 107              		.loc 1 128 0
+ 108 0002 2D4C     		ldr	r4, .L8
+ 127:.\main.c      ****     char BLE_Status[20] = "BLE_Status: ";
+ 109              		.loc 1 127 0
+ 110 0004 94B0     		sub	sp, sp, #80
+ 111              		.cfi_def_cfa_offset 96
+ 112              		.loc 1 128 0
+ 113 0006 211C     		mov	r1, r4
+ 114 0008 05A8     		add	r0, sp, #20
+ 115 000a 0D22     		mov	r2, #13
+ 116 000c FFF7FEFF 		bl	memcpy
+ 117              	.LVL5:
+ 118 0010 2120     		mov	r0, #33
+ 119 0012 0021     		mov	r1, #0
+ 120 0014 6844     		add	r0, r0, sp
+ 121 0016 0722     		mov	r2, #7
+ 122 0018 FFF7FEFF 		bl	memset
+ 123              	.LVL6:
+ 129:.\main.c      ****     char Lamp_Status[20] = "UV Lamp: ";
+ 124              		.loc 1 129 0
+ 125 001c 0A25     		mov	r5, #10
+ 126 001e 211C     		mov	r1, r4
+ 127 0020 2A1C     		mov	r2, r5
+ 128 0022 1431     		add	r1, r1, #20
+ 129 0024 0AA8     		add	r0, sp, #40
+ 130 0026 FFF7FEFF 		bl	memcpy
+ 131              	.LVL7:
+ 132 002a 3220     		mov	r0, #50
+ 133 002c 2A1C     		mov	r2, r5
+ 134 002e 6844     		add	r0, r0, sp
+ 135 0030 0021     		mov	r1, #0
+ 136 0032 FFF7FEFF 		bl	memset
+ 137              	.LVL8:
+ 130:.\main.c      ****     char timeBuffer[20];
+ 131:.\main.c      ****     const char ON[3] = "ON";
+ 138              		.loc 1 131 0
+ 139 0036 2149     		ldr	r1, .L8+4
+ 140 0038 0322     		mov	r2, #3
+ 141 003a 03A8     		add	r0, sp, #12
+ 142 003c FFF7FEFF 		bl	memcpy
+ 143              	.LVL9:
+ 132:.\main.c      ****     const char OFF[4] = "OFF";
+ 144              		.loc 1 132 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 6
+
+
+ 145 0040 1F4B     		ldr	r3, .L8+8
+ 146 0042 0493     		str	r3, [sp, #16]
+ 133:.\main.c      ****     const char Conected[9] = "Conected";
+ 134:.\main.c      ****     const char Error[6] = "Error";
+ 135:.\main.c      ****     TimeStruct.Time = RTC_GetTime();
+ 147              		.loc 1 135 0
+ 148 0044 FFF7FEFF 		bl	RTC_GetTime
+ 149              	.LVL10:
+ 150 0048 1E4C     		ldr	r4, .L8+12
+ 151 004a 2060     		str	r0, [r4]
+ 136:.\main.c      ****     sprintf(timeBuffer, "            %02lu:%02lu:%02lu", RTC_GetHours(TimeStruct.Time), RTC_GetMinu
+ 152              		.loc 1 136 0
+ 153 004c 2068     		ldr	r0, [r4]
+ 154              	.LVL11:
+ 155 004e 2168     		ldr	r1, [r4]
+ 156 0050 2668     		ldr	r6, [r4]
+ 157              	.LBB8:
+ 158              	.LBB9:
+ 159              		.file 2 "Generated_Source\\PSoC4/RTC.h"
+   1:Generated_Source\PSoC4/RTC.h **** /*******************************************************************************
+   2:Generated_Source\PSoC4/RTC.h **** * File Name: RTC.h
+   3:Generated_Source\PSoC4/RTC.h **** * Version 1.0
+   4:Generated_Source\PSoC4/RTC.h **** *
+   5:Generated_Source\PSoC4/RTC.h **** * Description:
+   6:Generated_Source\PSoC4/RTC.h **** *  This file provides constants and parameter values for the RTC_P4 Component.
+   7:Generated_Source\PSoC4/RTC.h **** *
+   8:Generated_Source\PSoC4/RTC.h **** ********************************************************************************
+   9:Generated_Source\PSoC4/RTC.h **** * Copyright 2015, Cypress Semiconductor Corporation.  All rights reserved.
+  10:Generated_Source\PSoC4/RTC.h **** * You may use this file only in accordance with the license, terms, conditions,
+  11:Generated_Source\PSoC4/RTC.h **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:Generated_Source\PSoC4/RTC.h **** * the software package with which this file was provided.
+  13:Generated_Source\PSoC4/RTC.h **** *******************************************************************************/
+  14:Generated_Source\PSoC4/RTC.h **** 
+  15:Generated_Source\PSoC4/RTC.h **** #if !defined(CY_RTC_P4_RTC_H)
+  16:Generated_Source\PSoC4/RTC.h **** #define CY_RTC_P4_RTC_H
+  17:Generated_Source\PSoC4/RTC.h **** 
+  18:Generated_Source\PSoC4/RTC.h **** #include <cytypes.h>
+  19:Generated_Source\PSoC4/RTC.h **** #include <CyLib.h>
+  20:Generated_Source\PSoC4/RTC.h **** 
+  21:Generated_Source\PSoC4/RTC.h **** 
+  22:Generated_Source\PSoC4/RTC.h **** /***************************************
+  23:Generated_Source\PSoC4/RTC.h **** *    Data types definition.
+  24:Generated_Source\PSoC4/RTC.h **** ***************************************/
+  25:Generated_Source\PSoC4/RTC.h **** typedef enum
+  26:Generated_Source\PSoC4/RTC.h **** {
+  27:Generated_Source\PSoC4/RTC.h ****     RTC_DST_DATE_RELATIVE = 0u,
+  28:Generated_Source\PSoC4/RTC.h ****     RTC_DST_DATE_FIXED = 1u
+  29:Generated_Source\PSoC4/RTC.h **** }RTC_DST_DATETYPE_ENUM;
+  30:Generated_Source\PSoC4/RTC.h **** 
+  31:Generated_Source\PSoC4/RTC.h **** typedef struct
+  32:Generated_Source\PSoC4/RTC.h **** {
+  33:Generated_Source\PSoC4/RTC.h ****     uint32 time;
+  34:Generated_Source\PSoC4/RTC.h ****     uint32 date;
+  35:Generated_Source\PSoC4/RTC.h ****     uint32 dayOfWeek;
+  36:Generated_Source\PSoC4/RTC.h ****     uint32 status;
+  37:Generated_Source\PSoC4/RTC.h **** }RTC_DATE_TIME;
+  38:Generated_Source\PSoC4/RTC.h **** 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 7
+
+
+  39:Generated_Source\PSoC4/RTC.h **** typedef struct
+  40:Generated_Source\PSoC4/RTC.h **** {
+  41:Generated_Source\PSoC4/RTC.h ****     uint32 hour;
+  42:Generated_Source\PSoC4/RTC.h ****     uint32 dayOfWeek;
+  43:Generated_Source\PSoC4/RTC.h ****     uint32 dayOfMonth;
+  44:Generated_Source\PSoC4/RTC.h ****     uint32 weekOfMonth;
+  45:Generated_Source\PSoC4/RTC.h ****     uint32 month;
+  46:Generated_Source\PSoC4/RTC.h ****     uint8  timeFormat;
+  47:Generated_Source\PSoC4/RTC.h **** }RTC_DST_TIME;
+  48:Generated_Source\PSoC4/RTC.h **** 
+  49:Generated_Source\PSoC4/RTC.h **** 
+  50:Generated_Source\PSoC4/RTC.h **** /**************************************
+  51:Generated_Source\PSoC4/RTC.h **** *    Enumerated Types and Parameters
+  52:Generated_Source\PSoC4/RTC.h **** **************************************/
+  53:Generated_Source\PSoC4/RTC.h **** /* Time Format setting constants */
+  54:Generated_Source\PSoC4/RTC.h **** #define RTC__HOUR_12 1
+  55:Generated_Source\PSoC4/RTC.h **** #define RTC__HOUR_24 0
+  56:Generated_Source\PSoC4/RTC.h **** 
+  57:Generated_Source\PSoC4/RTC.h **** /*  Date Format setting constants */
+  58:Generated_Source\PSoC4/RTC.h **** #define RTC__MM_DD_YYYY 0
+  59:Generated_Source\PSoC4/RTC.h **** #define RTC__DD_MM_YYYY 1
+  60:Generated_Source\PSoC4/RTC.h **** #define RTC__YYYY_MM_DD 2
+  61:Generated_Source\PSoC4/RTC.h **** 
+  62:Generated_Source\PSoC4/RTC.h **** /* Date Type setting constants */
+  63:Generated_Source\PSoC4/RTC.h **** #define RTC__RELATIVE 0
+  64:Generated_Source\PSoC4/RTC.h **** #define RTC__FIXED 1
+  65:Generated_Source\PSoC4/RTC.h **** 
+  66:Generated_Source\PSoC4/RTC.h **** /* DST Hour setting constants */
+  67:Generated_Source\PSoC4/RTC.h **** #define RTC__H0000 0
+  68:Generated_Source\PSoC4/RTC.h **** #define RTC__H0100 1
+  69:Generated_Source\PSoC4/RTC.h **** #define RTC__H0200 2
+  70:Generated_Source\PSoC4/RTC.h **** #define RTC__H0300 3
+  71:Generated_Source\PSoC4/RTC.h **** #define RTC__H0400 4
+  72:Generated_Source\PSoC4/RTC.h **** #define RTC__H0500 5
+  73:Generated_Source\PSoC4/RTC.h **** #define RTC__H0600 6
+  74:Generated_Source\PSoC4/RTC.h **** #define RTC__H0700 7
+  75:Generated_Source\PSoC4/RTC.h **** #define RTC__H0800 8
+  76:Generated_Source\PSoC4/RTC.h **** #define RTC__H0900 9
+  77:Generated_Source\PSoC4/RTC.h **** #define RTC__H1000 10
+  78:Generated_Source\PSoC4/RTC.h **** #define RTC__H1100 11
+  79:Generated_Source\PSoC4/RTC.h **** #define RTC__H1200 12
+  80:Generated_Source\PSoC4/RTC.h **** #define RTC__H1300 13
+  81:Generated_Source\PSoC4/RTC.h **** #define RTC__H1400 14
+  82:Generated_Source\PSoC4/RTC.h **** #define RTC__H1500 15
+  83:Generated_Source\PSoC4/RTC.h **** #define RTC__H1600 16
+  84:Generated_Source\PSoC4/RTC.h **** #define RTC__H1700 17
+  85:Generated_Source\PSoC4/RTC.h **** #define RTC__H1800 18
+  86:Generated_Source\PSoC4/RTC.h **** #define RTC__H1900 19
+  87:Generated_Source\PSoC4/RTC.h **** #define RTC__H2000 20
+  88:Generated_Source\PSoC4/RTC.h **** #define RTC__H2100 21
+  89:Generated_Source\PSoC4/RTC.h **** #define RTC__H2200 22
+  90:Generated_Source\PSoC4/RTC.h **** #define RTC__H2300 23
+  91:Generated_Source\PSoC4/RTC.h **** 
+  92:Generated_Source\PSoC4/RTC.h **** /* DST DayOfWeek setting constants */
+  93:Generated_Source\PSoC4/RTC.h **** #define RTC__SUNDAY 1
+  94:Generated_Source\PSoC4/RTC.h **** #define RTC__MONDAY 2
+  95:Generated_Source\PSoC4/RTC.h **** #define RTC__TUESDAY 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 8
+
+
+  96:Generated_Source\PSoC4/RTC.h **** #define RTC__WEDNESDAY 4
+  97:Generated_Source\PSoC4/RTC.h **** #define RTC__THURSDAY 5
+  98:Generated_Source\PSoC4/RTC.h **** #define RTC__FRIDAY 6
+  99:Generated_Source\PSoC4/RTC.h **** #define RTC__SATURDAY 7
+ 100:Generated_Source\PSoC4/RTC.h **** 
+ 101:Generated_Source\PSoC4/RTC.h **** /* DST Month setting constants */
+ 102:Generated_Source\PSoC4/RTC.h **** #define RTC__JAN 1
+ 103:Generated_Source\PSoC4/RTC.h **** #define RTC__FEB 2
+ 104:Generated_Source\PSoC4/RTC.h **** #define RTC__MAR 3
+ 105:Generated_Source\PSoC4/RTC.h **** #define RTC__APR 4
+ 106:Generated_Source\PSoC4/RTC.h **** #define RTC__MAY 5
+ 107:Generated_Source\PSoC4/RTC.h **** #define RTC__JUN 6
+ 108:Generated_Source\PSoC4/RTC.h **** #define RTC__JUL 7
+ 109:Generated_Source\PSoC4/RTC.h **** #define RTC__AUG 8
+ 110:Generated_Source\PSoC4/RTC.h **** #define RTC__SEP 9
+ 111:Generated_Source\PSoC4/RTC.h **** #define RTC__OCT 10
+ 112:Generated_Source\PSoC4/RTC.h **** #define RTC__NOV 11
+ 113:Generated_Source\PSoC4/RTC.h **** #define RTC__DEC 12
+ 114:Generated_Source\PSoC4/RTC.h **** 
+ 115:Generated_Source\PSoC4/RTC.h **** /* DST WeekOfMonth setting constants */
+ 116:Generated_Source\PSoC4/RTC.h **** #define RTC__FIRST 1
+ 117:Generated_Source\PSoC4/RTC.h **** #define RTC__SECOND 2
+ 118:Generated_Source\PSoC4/RTC.h **** #define RTC__THIRD 3
+ 119:Generated_Source\PSoC4/RTC.h **** #define RTC__FOURTH 4
+ 120:Generated_Source\PSoC4/RTC.h **** #define RTC__FIFTH 5
+ 121:Generated_Source\PSoC4/RTC.h **** #define RTC__LAST 6
+ 122:Generated_Source\PSoC4/RTC.h **** 
+ 123:Generated_Source\PSoC4/RTC.h **** 
+ 124:Generated_Source\PSoC4/RTC.h **** 
+ 125:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DATA_FORMAT     (0u)
+ 126:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_TIME_FORMAT     (0u)
+ 127:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_UPDATE_MODE     (0u)
+ 128:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_SECOND          (27u)
+ 129:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_MINUTE          (49u)
+ 130:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_HOUR            (23u)
+ 131:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DAY             (22u)
+ 132:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_MONTH           (11u)
+ 133:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_YEAR            (2015u)
+ 134:Generated_Source\PSoC4/RTC.h **** 
+ 135:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_ALARM_STATUS    (1u)
+ 136:Generated_Source\PSoC4/RTC.h **** 
+ 137:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_STATUS      (0u)
+ 138:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_DATE_TYPE   (0u)
+ 139:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_START_MONTH (3uL)
+ 140:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_START_WOM   (6uL)
+ 141:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_START_DOM   (22uL)
+ 142:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_START_DOW   (1uL)
+ 143:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_START_HRS   (0uL)
+ 144:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_STOP_MONTH  (10uL)
+ 145:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_STOP_DOM    (22uL)
+ 146:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_STOP_DOW    (1uL)
+ 147:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_STOP_WOM    (6uL)
+ 148:Generated_Source\PSoC4/RTC.h **** #define RTC_INITIAL_DST_STOP_HRS    (0uL)
+ 149:Generated_Source\PSoC4/RTC.h **** 
+ 150:Generated_Source\PSoC4/RTC.h **** 
+ 151:Generated_Source\PSoC4/RTC.h **** /* Day of week definitions */
+ 152:Generated_Source\PSoC4/RTC.h **** #define RTC_SUNDAY     (RTC__SUNDAY)
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 9
+
+
+ 153:Generated_Source\PSoC4/RTC.h **** #define RTC_MONDAY     (RTC__MONDAY)
+ 154:Generated_Source\PSoC4/RTC.h **** #define RTC_TUESDAY    (RTC__TUESDAY)
+ 155:Generated_Source\PSoC4/RTC.h **** #define RTC_WEDNESDAY  (RTC__WEDNESDAY)
+ 156:Generated_Source\PSoC4/RTC.h **** #define RTC_THURSDAY   (RTC__THURSDAY)
+ 157:Generated_Source\PSoC4/RTC.h **** #define RTC_FRIDAY     (RTC__FRIDAY)
+ 158:Generated_Source\PSoC4/RTC.h **** #define RTC_SATURDAY   (RTC__SATURDAY)
+ 159:Generated_Source\PSoC4/RTC.h **** 
+ 160:Generated_Source\PSoC4/RTC.h **** /* DST WeekOfMonth setting constants definitions */
+ 161:Generated_Source\PSoC4/RTC.h **** #define RTC_FIRST      (RTC__FIRST)
+ 162:Generated_Source\PSoC4/RTC.h **** #define RTC_SECOND     (RTC__SECOND)
+ 163:Generated_Source\PSoC4/RTC.h **** #define RTC_THIRD      (RTC__THIRD)
+ 164:Generated_Source\PSoC4/RTC.h **** #define RTC_FOURTH     (RTC__FOURTH)
+ 165:Generated_Source\PSoC4/RTC.h **** #define RTC_FIFTH      (RTC__FIFTH)
+ 166:Generated_Source\PSoC4/RTC.h **** #define RTC_LAST       (RTC__LAST)
+ 167:Generated_Source\PSoC4/RTC.h **** 
+ 168:Generated_Source\PSoC4/RTC.h **** /* Month definitions */
+ 169:Generated_Source\PSoC4/RTC.h **** #define RTC_JANUARY    (RTC__JAN)
+ 170:Generated_Source\PSoC4/RTC.h **** #define RTC_FEBRUARY   (RTC__FEB)
+ 171:Generated_Source\PSoC4/RTC.h **** #define RTC_MARCH      (RTC__MAR)
+ 172:Generated_Source\PSoC4/RTC.h **** #define RTC_APRIL      (RTC__APR)
+ 173:Generated_Source\PSoC4/RTC.h **** #define RTC_MAY        (RTC__MAY)
+ 174:Generated_Source\PSoC4/RTC.h **** #define RTC_JUNE       (RTC__JUN)
+ 175:Generated_Source\PSoC4/RTC.h **** #define RTC_JULY       (RTC__JUL)
+ 176:Generated_Source\PSoC4/RTC.h **** #define RTC_AUGUST     (RTC__AUG)
+ 177:Generated_Source\PSoC4/RTC.h **** #define RTC_SEPTEMBER  (RTC__SEP)
+ 178:Generated_Source\PSoC4/RTC.h **** #define RTC_OCTOBER    (RTC__OCT)
+ 179:Generated_Source\PSoC4/RTC.h **** #define RTC_NOVEMBER   (RTC__NOV)
+ 180:Generated_Source\PSoC4/RTC.h **** #define RTC_DECEMBER   (RTC__DEC)
+ 181:Generated_Source\PSoC4/RTC.h **** 
+ 182:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_PER_WEEK       (7u)
+ 183:Generated_Source\PSoC4/RTC.h **** 
+ 184:Generated_Source\PSoC4/RTC.h **** /* Number of days in month definitions */
+ 185:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_JANUARY     (31u)
+ 186:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_FEBRUARY    (28u)
+ 187:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_MARCH       (31u)
+ 188:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_APRIL       (30u)
+ 189:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_MAY         (31u)
+ 190:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_JUNE        (30u)
+ 191:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_JULY        (31u)
+ 192:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_AUGUST      (31u)
+ 193:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_SEPTEMBER   (30u)
+ 194:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_OCTOBER     (31u)
+ 195:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_NOVEMBER    (30u)
+ 196:Generated_Source\PSoC4/RTC.h **** #define RTC_DAYS_IN_DECEMBER    (31u)
+ 197:Generated_Source\PSoC4/RTC.h **** 
+ 198:Generated_Source\PSoC4/RTC.h **** #define RTC_MONTHS_PER_YEAR     (12uL)
+ 199:Generated_Source\PSoC4/RTC.h **** 
+ 200:Generated_Source\PSoC4/RTC.h **** #define RTC_HOURS_PER_DAY       (24uL)
+ 201:Generated_Source\PSoC4/RTC.h **** #define RTC_HOURS_PER_HALF_DAY  (12uL)
+ 202:Generated_Source\PSoC4/RTC.h **** 
+ 203:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_PER_MINUTE  (60uL)
+ 204:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_PER_HOUR    (3600uL)
+ 205:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_PER_DAY     (24uL * 3600uL)
+ 206:Generated_Source\PSoC4/RTC.h **** 
+ 207:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_PER_LEAP_YEAR    (366uL * 24uL * 3600uL)
+ 208:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_PER_NONLEAP_YEAR (365uL * 24uL * 3600uL)
+ 209:Generated_Source\PSoC4/RTC.h **** 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 10
+
+
+ 210:Generated_Source\PSoC4/RTC.h **** #define RTC_UNIX_TIME_PM   ((12uL * 3600uL) + 1uL)
+ 211:Generated_Source\PSoC4/RTC.h **** 
+ 212:Generated_Source\PSoC4/RTC.h **** /* AM/PM status definitions */
+ 213:Generated_Source\PSoC4/RTC.h **** #define RTC_AM                 (0u)
+ 214:Generated_Source\PSoC4/RTC.h **** #define RTC_PM                 (1u)
+ 215:Generated_Source\PSoC4/RTC.h **** 
+ 216:Generated_Source\PSoC4/RTC.h **** /* Time format definitions */
+ 217:Generated_Source\PSoC4/RTC.h **** #define RTC_12_HOURS_FORMAT    (RTC__HOUR_12)
+ 218:Generated_Source\PSoC4/RTC.h **** #define RTC_24_HOURS_FORMAT    (RTC__HOUR_24)
+ 219:Generated_Source\PSoC4/RTC.h **** 
+ 220:Generated_Source\PSoC4/RTC.h **** /* UNIX time begins in 1970 year.  */
+ 221:Generated_Source\PSoC4/RTC.h **** #define RTC_YEAR_0             (1970u)
+ 222:Generated_Source\PSoC4/RTC.h **** 
+ 223:Generated_Source\PSoC4/RTC.h **** /* Definition of date register fields */
+ 224:Generated_Source\PSoC4/RTC.h **** #if(RTC_INITIAL_DATA_FORMAT == RTC__MM_DD_YYYY)
+ 225:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_MONTH_OFFSET   (28u)
+ 226:Generated_Source\PSoC4/RTC.h ****     #define RTC_MONTH_OFFSET      (24u)
+ 227:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_DAY_OFFSET     (20u)
+ 228:Generated_Source\PSoC4/RTC.h ****     #define RTC_DAY_OFFSET        (16u)
+ 229:Generated_Source\PSoC4/RTC.h ****     #define RTC_1000_YEAR_OFFSET  (12u)
+ 230:Generated_Source\PSoC4/RTC.h ****     #define RTC_100_YEAR_OFFSET   (8u)
+ 231:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_YEAR_OFFSET    (4u)
+ 232:Generated_Source\PSoC4/RTC.h ****     #define RTC_YEAR_OFFSET       (0u)
+ 233:Generated_Source\PSoC4/RTC.h **** #elif(RTC_INITIAL_DATA_FORMAT == RTC__DD_MM_YYYY)
+ 234:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_MONTH_OFFSET   (20u)
+ 235:Generated_Source\PSoC4/RTC.h ****     #define RTC_MONTH_OFFSET      (16u)
+ 236:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_DAY_OFFSET     (28u)
+ 237:Generated_Source\PSoC4/RTC.h ****     #define RTC_DAY_OFFSET        (24u)
+ 238:Generated_Source\PSoC4/RTC.h ****     #define RTC_1000_YEAR_OFFSET  (12u)
+ 239:Generated_Source\PSoC4/RTC.h ****     #define RTC_100_YEAR_OFFSET   (8u)
+ 240:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_YEAR_OFFSET    (4u)
+ 241:Generated_Source\PSoC4/RTC.h ****     #define RTC_YEAR_OFFSET       (0u)
+ 242:Generated_Source\PSoC4/RTC.h **** #else
+ 243:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_MONTH_OFFSET   (12u)
+ 244:Generated_Source\PSoC4/RTC.h ****     #define RTC_MONTH_OFFSET      (8u)
+ 245:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_DAY_OFFSET     (4u)
+ 246:Generated_Source\PSoC4/RTC.h ****     #define RTC_DAY_OFFSET        (0u)
+ 247:Generated_Source\PSoC4/RTC.h ****     #define RTC_1000_YEAR_OFFSET  (28u)
+ 248:Generated_Source\PSoC4/RTC.h ****     #define RTC_100_YEAR_OFFSET   (24u)
+ 249:Generated_Source\PSoC4/RTC.h ****     #define RTC_10_YEAR_OFFSET    (20u)
+ 250:Generated_Source\PSoC4/RTC.h ****     #define RTC_YEAR_OFFSET       (16u)
+ 251:Generated_Source\PSoC4/RTC.h **** #endif /* (RTC_INITIAL_DATA_FORMAT == RTC__MM_DD_YYYY) */
+ 252:Generated_Source\PSoC4/RTC.h **** 
+ 253:Generated_Source\PSoC4/RTC.h **** #define RTC_10_MONTH_MASK          (0x00000001uL << RTC_10_MONTH_OFFSET)
+ 254:Generated_Source\PSoC4/RTC.h **** #define RTC_MONTH_MASK             (0x0000000FuL << RTC_MONTH_OFFSET)
+ 255:Generated_Source\PSoC4/RTC.h **** #define RTC_10_DAY_MASK            (0x00000003uL << RTC_10_DAY_OFFSET)
+ 256:Generated_Source\PSoC4/RTC.h **** #define RTC_DAY_MASK               (0x0000000FuL << RTC_DAY_OFFSET)
+ 257:Generated_Source\PSoC4/RTC.h **** #define RTC_1000_YEAR_MASK         (0x00000003uL << RTC_1000_YEAR_OFFSET)
+ 258:Generated_Source\PSoC4/RTC.h **** #define RTC_100_YEAR_MASK          (0x0000000FuL << RTC_100_YEAR_OFFSET)
+ 259:Generated_Source\PSoC4/RTC.h **** #define RTC_10_YEAR_MASK           (0x0000000FuL << RTC_10_YEAR_OFFSET)
+ 260:Generated_Source\PSoC4/RTC.h **** #define RTC_YEAR_MASK              (0x0000000FuL << RTC_YEAR_OFFSET)
+ 261:Generated_Source\PSoC4/RTC.h **** 
+ 262:Generated_Source\PSoC4/RTC.h **** #define  RTC_MONTH_FULL_MASK       (RTC_10_MONTH_MASK  | RTC_MONTH_MASK)
+ 263:Generated_Source\PSoC4/RTC.h **** #define  RTC_DAY_FULL_MASK         (RTC_10_DAY_MASK    | RTC_DAY_MASK)
+ 264:Generated_Source\PSoC4/RTC.h **** #define  RTC_YEAR_FULL_MASK        (RTC_1000_YEAR_MASK | RTC_100_YEAR_MASK |\
+ 265:Generated_Source\PSoC4/RTC.h ****                                                  RTC_10_YEAR_MASK   | RTC_YEAR_MASK)
+ 266:Generated_Source\PSoC4/RTC.h **** 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 11
+
+
+ 267:Generated_Source\PSoC4/RTC.h **** 
+ 268:Generated_Source\PSoC4/RTC.h **** /* Definition of time register fields */
+ 269:Generated_Source\PSoC4/RTC.h **** #define RTC_TIME_FORMAT_OFFSET     (23u)
+ 270:Generated_Source\PSoC4/RTC.h **** #define RTC_PERIOD_OF_DAY_OFFSET   (22u)
+ 271:Generated_Source\PSoC4/RTC.h **** #define RTC_10_HOURS_OFFSET        (20u)
+ 272:Generated_Source\PSoC4/RTC.h **** #define RTC_HOURS_OFFSET           (16u)
+ 273:Generated_Source\PSoC4/RTC.h **** #define RTC_10_MINUTES_OFFSET      (12u)
+ 274:Generated_Source\PSoC4/RTC.h **** #define RTC_MINUTES_OFFSET         (8u)
+ 275:Generated_Source\PSoC4/RTC.h **** #define RTC_10_SECONDS_OFFSET      (4u)
+ 276:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_OFFSET         (0u)
+ 277:Generated_Source\PSoC4/RTC.h **** 
+ 278:Generated_Source\PSoC4/RTC.h **** #define RTC_TIME_FORMAT_MASK       (0x00000001uL << RTC_TIME_FORMAT_OFFSET)
+ 279:Generated_Source\PSoC4/RTC.h **** #define RTC_PERIOD_OF_DAY_MASK     (0x00000001uL << RTC_PERIOD_OF_DAY_OFFSET)
+ 280:Generated_Source\PSoC4/RTC.h **** #define RTC_10_HOURS_MASK          (0x00000003uL << RTC_10_HOURS_OFFSET)
+ 281:Generated_Source\PSoC4/RTC.h **** #define RTC_HOURS_MASK             (0x0000000FuL << RTC_HOURS_OFFSET)
+ 282:Generated_Source\PSoC4/RTC.h **** #define RTC_10_MINUTES_MASK        (0x00000007uL << RTC_10_MINUTES_OFFSET)
+ 283:Generated_Source\PSoC4/RTC.h **** #define RTC_MINUTES_MASK           (0x0000000FuL << RTC_MINUTES_OFFSET)
+ 284:Generated_Source\PSoC4/RTC.h **** #define RTC_10_SECONDS_MASK        (0x00000007uL << RTC_10_SECONDS_OFFSET)
+ 285:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_MASK           (0x0000000FuL << RTC_SECONDS_OFFSET)
+ 286:Generated_Source\PSoC4/RTC.h **** 
+ 287:Generated_Source\PSoC4/RTC.h **** #define RTC_HOURS_FULL_MASK        (RTC_10_HOURS_MASK   | RTC_HOURS_MASK)
+ 288:Generated_Source\PSoC4/RTC.h **** #define RTC_MINUTES_FULL_MASK      (RTC_10_MINUTES_MASK | RTC_MINUTES_MASK)
+ 289:Generated_Source\PSoC4/RTC.h **** #define RTC_SECONDS_FULL_MASK      (RTC_10_SECONDS_MASK | RTC_SECONDS_MASK)
+ 290:Generated_Source\PSoC4/RTC.h **** 
+ 291:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_SEC_MASK         (0x00000001uL)
+ 292:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_MIN_MASK         (0x00000002uL)
+ 293:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_HOUR_MASK        (0x00000004uL)
+ 294:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_DAYOFWEEK_MASK   (0x00000008uL)
+ 295:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_DAYOFMONTH_MASK  (0x00000010uL)
+ 296:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_MONTH_MASK       (0x00000020uL)
+ 297:Generated_Source\PSoC4/RTC.h **** #define RTC_ALARM_YEAR_MASK        (0x00000040uL)
+ 298:Generated_Source\PSoC4/RTC.h **** 
+ 299:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_DST_OFFSET      (1u)
+ 300:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_ALARM_OFFSET    (2u)
+ 301:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_LY_OFFSET       (3u)
+ 302:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_AM_PM_OFFSET    (4u)
+ 303:Generated_Source\PSoC4/RTC.h **** 
+ 304:Generated_Source\PSoC4/RTC.h **** /* Definition of the RTC status values. */
+ 305:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_DST             (1uL << RTC_STATUS_DST_OFFSET)
+ 306:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_LY              (1uL << RTC_STATUS_LY_OFFSET)
+ 307:Generated_Source\PSoC4/RTC.h **** #define RTC_STATUS_AM_PM           (1uL << RTC_STATUS_AM_PM_OFFSET)
+ 308:Generated_Source\PSoC4/RTC.h **** 
+ 309:Generated_Source\PSoC4/RTC.h **** /* Number of bits per one BCD digit. */
+ 310:Generated_Source\PSoC4/RTC.h **** #define RTC_BCD_NUMBER_SIZE        (4u)
+ 311:Generated_Source\PSoC4/RTC.h **** #define RTC_BCD_ONE_DIGIT_MASK     (0x0000000FuL)
+ 312:Generated_Source\PSoC4/RTC.h **** 
+ 313:Generated_Source\PSoC4/RTC.h **** /***************************************
+ 314:Generated_Source\PSoC4/RTC.h **** *    Function Prototypes
+ 315:Generated_Source\PSoC4/RTC.h **** ***************************************/
+ 316:Generated_Source\PSoC4/RTC.h **** void   RTC_Start(void);
+ 317:Generated_Source\PSoC4/RTC.h **** void   RTC_Stop(void);
+ 318:Generated_Source\PSoC4/RTC.h **** void   RTC_Init(void);
+ 319:Generated_Source\PSoC4/RTC.h **** void   RTC_SetUnixTime(uint64 unixTime);
+ 320:Generated_Source\PSoC4/RTC.h **** uint64 RTC_GetUnixTime(void);
+ 321:Generated_Source\PSoC4/RTC.h **** void   RTC_SetPeriod(uint32 ticks, uint32 refOneSecTicks);
+ 322:Generated_Source\PSoC4/RTC.h **** uint32 RTC_GetPeriod(void);
+ 323:Generated_Source\PSoC4/RTC.h **** uint32 RTC_GetRefOneSec(void);
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 12
+
+
+ 324:Generated_Source\PSoC4/RTC.h **** void   RTC_SetDateAndTime(uint32 inputTime, uint32 inputDate);
+ 325:Generated_Source\PSoC4/RTC.h **** void   RTC_GetDateAndTime(RTC_DATE_TIME* dateTime);
+ 326:Generated_Source\PSoC4/RTC.h **** uint32 RTC_GetTime(void);
+ 327:Generated_Source\PSoC4/RTC.h **** uint32 RTC_GetDate(void);
+ 328:Generated_Source\PSoC4/RTC.h **** void   RTC_SetAlarmDateAndTime(const RTC_DATE_TIME* alarmTime);
+ 329:Generated_Source\PSoC4/RTC.h **** void   RTC_GetAlarmDateAndTime(RTC_DATE_TIME* alarmTimeDate);
+ 330:Generated_Source\PSoC4/RTC.h **** void   RTC_SetAlarmMask(uint32 mask);
+ 331:Generated_Source\PSoC4/RTC.h **** uint32 RTC_GetAlarmMask(void);
+ 332:Generated_Source\PSoC4/RTC.h **** uint32 RTC_ReadStatus(void);
+ 333:Generated_Source\PSoC4/RTC.h **** uint32 RTC_GetAlarmStatus(void);
+ 334:Generated_Source\PSoC4/RTC.h **** void   RTC_ClearAlarmStatus(void);
+ 335:Generated_Source\PSoC4/RTC.h **** void   RTC_SetDSTStartTime(const RTC_DST_TIME* dstStartTime,
+ 336:Generated_Source\PSoC4/RTC.h ****                                               RTC_DST_DATETYPE_ENUM type);
+ 337:Generated_Source\PSoC4/RTC.h **** void   RTC_SetDSTStopTime(const RTC_DST_TIME* dstStopTime,
+ 338:Generated_Source\PSoC4/RTC.h ****                                              RTC_DST_DATETYPE_ENUM type);
+ 339:Generated_Source\PSoC4/RTC.h **** uint32 RTC_ConvertBCDToDec(uint32 bcdNum);
+ 340:Generated_Source\PSoC4/RTC.h **** uint32 RTC_ConvertDecToBCD(uint32 decNum);
+ 341:Generated_Source\PSoC4/RTC.h **** void   RTC_Update(void);
+ 342:Generated_Source\PSoC4/RTC.h **** void*  RTC_SetAlarmHandler(void (*CallbackFunction)(void));
+ 343:Generated_Source\PSoC4/RTC.h **** 
+ 344:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_ConstructDate(uint32 month, uint32 day, uint32 year);
+ 345:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_ConstructTime(uint32 timeFormat, uint32 stateAmPm, uint32 hour, uint32 min, uint3
+ 346:Generated_Source\PSoC4/RTC.h **** 
+ 347:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetTimeFormat(uint32 inputTime);
+ 348:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetTimeFormat(uint32 inputTime, uint32 timeFormat);
+ 349:Generated_Source\PSoC4/RTC.h **** 
+ 350:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_LeapYear(uint32 year);
+ 351:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_IsBitSet(uint32 var, uint32 mask);
+ 352:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetSecond(uint32 inputTime);
+ 353:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetMinutes(uint32 inputTime);
+ 354:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetHours(uint32 inputTime);
+ 355:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetAmPm(uint32 inputTime);
+ 356:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetDay(uint32 date);
+ 357:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetMonth(uint32 date);
+ 358:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetYear(uint32 date);
+ 359:Generated_Source\PSoC4/RTC.h **** 
+ 360:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetSecond(uint32 inputTime, uint32 inputSecond);
+ 361:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetMinutes(uint32 inputTime, uint32 inputMinute);
+ 362:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetHours(uint32 inputTime, uint32 inputHours);
+ 363:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetAmPm(uint32 inputTime, uint32 periodOfDay);
+ 364:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetDay(uint32 inputDate, uint32 inputDay);
+ 365:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetMonth(uint32 inputDate, uint32 inputMonth);
+ 366:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_SetYear(uint32 inputDate, uint32 inputYear);
+ 367:Generated_Source\PSoC4/RTC.h **** 
+ 368:Generated_Source\PSoC4/RTC.h **** uint64 RTC_ConstructUnixAlarmTime(const RTC_DATE_TIME* alarmTime, uint8 alarmCfgMask);
+ 369:Generated_Source\PSoC4/RTC.h **** uint64 RTC_GetDstUnixTime(const RTC_DST_TIME* dstTime);
+ 370:Generated_Source\PSoC4/RTC.h **** uint64 RTC_GetNexAlarmTime(uint64 curUnixTime, uint8 alarmCfgMask);
+ 371:Generated_Source\PSoC4/RTC.h **** 
+ 372:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetNextMinSec(uint32 curVal);
+ 373:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetNextHour(uint32 curVal);
+ 374:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetNextDay(uint32 curYear, uint32 curMonth, uint32 curDay, uint32 alarmCfgMask);
+ 375:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetNextMonth(uint32 curMonth);
+ 376:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetNextYear(uint32 curYear);
+ 377:Generated_Source\PSoC4/RTC.h **** static uint32 RTC_GetDayOfWeek(uint32 day, uint32 month, uint32 year);
+ 378:Generated_Source\PSoC4/RTC.h **** 
+ 379:Generated_Source\PSoC4/RTC.h **** uint32 RTC_DaysInMonth(uint32 month, uint32 year);
+ 380:Generated_Source\PSoC4/RTC.h **** uint32 RTC_DaysBeforeMonth(uint32 month, uint32 year);
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 13
+
+
+ 381:Generated_Source\PSoC4/RTC.h **** 
+ 382:Generated_Source\PSoC4/RTC.h **** void   RTC_UnixToDateTime(RTC_DATE_TIME* dateTime, uint64 unixTime, uint32 timeFormat);
+ 383:Generated_Source\PSoC4/RTC.h **** uint64 RTC_DateTimeToUnix(uint32 inputDate, uint32 inputTime);
+ 384:Generated_Source\PSoC4/RTC.h **** uint32 RTC_RelativeToFixed(uint32 dayOfWeek, uint32 weekOfMonth, uint32 month, uint32 year);
+ 385:Generated_Source\PSoC4/RTC.h **** 
+ 386:Generated_Source\PSoC4/RTC.h **** #if defined(CYDEV_RTC_SOURCE_WDT)
+ 387:Generated_Source\PSoC4/RTC.h ****     #if((0u != CYDEV_WDT_GENERATE_ISR) && (0u == RTC_INITIAL_UPDATE_MODE))
+ 388:Generated_Source\PSoC4/RTC.h ****         static void RTC_CySysRtcSetCallback(uint32 wdtNumber);
+ 389:Generated_Source\PSoC4/RTC.h ****         static void RTC_CySysRtcResetCallback(uint32 wdtNumber);
+ 390:Generated_Source\PSoC4/RTC.h ****     #endif /* ((0u != CYDEV_WDT_GENERATE_ISR) && (0u == RTC_INITIAL_UPDATE_MODE)) */
+ 391:Generated_Source\PSoC4/RTC.h **** #endif /* (CYDEV_RTC_SOURCE_WDT) */
+ 392:Generated_Source\PSoC4/RTC.h **** 
+ 393:Generated_Source\PSoC4/RTC.h **** /*******************************************************************************
+ 394:Generated_Source\PSoC4/RTC.h **** * Function Name: RTC_IsBitSet
+ 395:Generated_Source\PSoC4/RTC.h **** ********************************************************************************
+ 396:Generated_Source\PSoC4/RTC.h **** *
+ 397:Generated_Source\PSoC4/RTC.h **** * Summary:
+ 398:Generated_Source\PSoC4/RTC.h **** *  Checks the state of a bit passed through parameter.
+ 399:Generated_Source\PSoC4/RTC.h **** *
+ 400:Generated_Source\PSoC4/RTC.h **** * Parameters:
+ 401:Generated_Source\PSoC4/RTC.h **** *  var:    The variable to be checked.
+ 402:Generated_Source\PSoC4/RTC.h **** *  mask:   The mask for a bit to be checked.
+ 403:Generated_Source\PSoC4/RTC.h **** *
+ 404:Generated_Source\PSoC4/RTC.h **** * Return:
+ 405:Generated_Source\PSoC4/RTC.h **** *  0u - Bit is not set.
+ 406:Generated_Source\PSoC4/RTC.h **** *  1u - Bit is set.
+ 407:Generated_Source\PSoC4/RTC.h **** *
+ 408:Generated_Source\PSoC4/RTC.h **** *******************************************************************************/
+ 409:Generated_Source\PSoC4/RTC.h **** static CY_INLINE uint32 RTC_IsBitSet(uint32 var, uint32 mask)
+ 410:Generated_Source\PSoC4/RTC.h **** {
+ 411:Generated_Source\PSoC4/RTC.h ****     return ((mask == (var & mask)) ? 1Lu : 0Lu);
+ 412:Generated_Source\PSoC4/RTC.h **** }
+ 413:Generated_Source\PSoC4/RTC.h **** 
+ 414:Generated_Source\PSoC4/RTC.h **** 
+ 415:Generated_Source\PSoC4/RTC.h **** /*******************************************************************************
+ 416:Generated_Source\PSoC4/RTC.h **** * Function Name: RTC_LeapYear
+ 417:Generated_Source\PSoC4/RTC.h **** ********************************************************************************
+ 418:Generated_Source\PSoC4/RTC.h **** *
+ 419:Generated_Source\PSoC4/RTC.h **** * Summary:
+ 420:Generated_Source\PSoC4/RTC.h **** * Checks whether the year passed through the parameter is
+ 421:Generated_Source\PSoC4/RTC.h **** * leap or no.
+ 422:Generated_Source\PSoC4/RTC.h **** *
+ 423:Generated_Source\PSoC4/RTC.h **** * Parameters:
+ 424:Generated_Source\PSoC4/RTC.h **** *  year: The year to be checked.
+ 425:Generated_Source\PSoC4/RTC.h **** *
+ 426:Generated_Source\PSoC4/RTC.h **** *
+ 427:Generated_Source\PSoC4/RTC.h **** * Return:
+ 428:Generated_Source\PSoC4/RTC.h **** *  0u - The year is not leap.
+ 429:Generated_Source\PSoC4/RTC.h **** *  1u - The year is leap.
+ 430:Generated_Source\PSoC4/RTC.h **** *
+ 431:Generated_Source\PSoC4/RTC.h **** *******************************************************************************/
+ 432:Generated_Source\PSoC4/RTC.h **** static CY_INLINE uint32 RTC_LeapYear(uint32 year)
+ 433:Generated_Source\PSoC4/RTC.h **** {
+ 434:Generated_Source\PSoC4/RTC.h ****     uint32 retVal;
+ 435:Generated_Source\PSoC4/RTC.h **** 
+ 436:Generated_Source\PSoC4/RTC.h ****     if(((0u == (year % 4Lu)) && (0u != (year % 100Lu))) || (0u == (year % 400Lu)))
+ 437:Generated_Source\PSoC4/RTC.h ****     {
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 14
+
+
+ 438:Generated_Source\PSoC4/RTC.h ****         retVal = 1uL;
+ 439:Generated_Source\PSoC4/RTC.h ****     }
+ 440:Generated_Source\PSoC4/RTC.h ****     else
+ 441:Generated_Source\PSoC4/RTC.h ****     {
+ 442:Generated_Source\PSoC4/RTC.h ****         retVal = 0uL;
+ 443:Generated_Source\PSoC4/RTC.h ****     }
+ 444:Generated_Source\PSoC4/RTC.h **** 
+ 445:Generated_Source\PSoC4/RTC.h ****     return(retVal);
+ 446:Generated_Source\PSoC4/RTC.h **** }
+ 447:Generated_Source\PSoC4/RTC.h **** 
+ 448:Generated_Source\PSoC4/RTC.h **** 
+ 449:Generated_Source\PSoC4/RTC.h **** /*******************************************************************************
+ 450:Generated_Source\PSoC4/RTC.h **** * Function Name: RTC_GetSecond
+ 451:Generated_Source\PSoC4/RTC.h **** ********************************************************************************
+ 452:Generated_Source\PSoC4/RTC.h **** *
+ 453:Generated_Source\PSoC4/RTC.h **** * Summary:
+ 454:Generated_Source\PSoC4/RTC.h **** *  Returns the seconds value from the time value that is passed as a/the parameter.
+ 455:Generated_Source\PSoC4/RTC.h **** *
+ 456:Generated_Source\PSoC4/RTC.h **** * Parameters:
+ 457:Generated_Source\PSoC4/RTC.h **** *  time: The time value.
+ 458:Generated_Source\PSoC4/RTC.h **** *
+ 459:Generated_Source\PSoC4/RTC.h **** * Return:
+ 460:Generated_Source\PSoC4/RTC.h **** *  The seconds value.
+ 461:Generated_Source\PSoC4/RTC.h **** *
+ 462:Generated_Source\PSoC4/RTC.h **** *******************************************************************************/
+ 463:Generated_Source\PSoC4/RTC.h **** static CY_INLINE uint32 RTC_GetSecond(uint32 inputTime)
+ 464:Generated_Source\PSoC4/RTC.h **** {
+ 465:Generated_Source\PSoC4/RTC.h ****     uint32 retVal;
+ 466:Generated_Source\PSoC4/RTC.h **** 
+ 467:Generated_Source\PSoC4/RTC.h ****     retVal  = ((inputTime & RTC_10_SECONDS_MASK) >> RTC_10_SECONDS_OFFSET) * 10u;
+ 468:Generated_Source\PSoC4/RTC.h ****     retVal += (inputTime & RTC_SECONDS_MASK) >> RTC_SECONDS_OFFSET;
+ 469:Generated_Source\PSoC4/RTC.h **** 
+ 470:Generated_Source\PSoC4/RTC.h ****     return (retVal);
+ 471:Generated_Source\PSoC4/RTC.h **** }
+ 472:Generated_Source\PSoC4/RTC.h **** 
+ 473:Generated_Source\PSoC4/RTC.h **** 
+ 474:Generated_Source\PSoC4/RTC.h **** /*******************************************************************************
+ 475:Generated_Source\PSoC4/RTC.h **** * Function Name: RTC_GetMinutes
+ 476:Generated_Source\PSoC4/RTC.h **** ********************************************************************************
+ 477:Generated_Source\PSoC4/RTC.h **** *
+ 478:Generated_Source\PSoC4/RTC.h **** * Summary:
+ 479:Generated_Source\PSoC4/RTC.h **** *  Returns the minutes value from the time value that is passed as a/the parameter.
+ 480:Generated_Source\PSoC4/RTC.h **** *
+ 481:Generated_Source\PSoC4/RTC.h **** * Parameters:
+ 482:Generated_Source\PSoC4/RTC.h **** *  time: The time value.
+ 483:Generated_Source\PSoC4/RTC.h **** *
+ 484:Generated_Source\PSoC4/RTC.h **** * Return:
+ 485:Generated_Source\PSoC4/RTC.h **** *  The minutes value.
+ 486:Generated_Source\PSoC4/RTC.h **** *
+ 487:Generated_Source\PSoC4/RTC.h **** *******************************************************************************/
+ 488:Generated_Source\PSoC4/RTC.h **** static CY_INLINE uint32 RTC_GetMinutes(uint32 inputTime)
+ 489:Generated_Source\PSoC4/RTC.h **** {
+ 490:Generated_Source\PSoC4/RTC.h ****     uint32 retVal;
+ 491:Generated_Source\PSoC4/RTC.h **** 
+ 492:Generated_Source\PSoC4/RTC.h ****     retVal  = ((inputTime & RTC_10_MINUTES_MASK) >> RTC_10_MINUTES_OFFSET) * 10u;
+ 160              		.loc 2 492 0
+ 161 0052 4B04     		lsl	r3, r1, #17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 15
+
+
+ 162 0054 5B0F     		lsr	r3, r3, #29
+ 163 0056 6B43     		mul	r3, r5
+ 493:Generated_Source\PSoC4/RTC.h ****     retVal += (inputTime & RTC_MINUTES_MASK) >> RTC_MINUTES_OFFSET;
+ 164              		.loc 2 493 0
+ 165 0058 0905     		lsl	r1, r1, #20
+ 166 005a 090F     		lsr	r1, r1, #28
+ 167 005c 5B18     		add	r3, r3, r1
+ 168              	.LBE9:
+ 169              	.LBE8:
+ 170              	.LBB10:
+ 171              	.LBB11:
+ 468:Generated_Source\PSoC4/RTC.h **** 
+ 172              		.loc 2 468 0
+ 173 005e 0F21     		mov	r1, #15
+ 467:Generated_Source\PSoC4/RTC.h ****     retVal += (inputTime & RTC_SECONDS_MASK) >> RTC_SECONDS_OFFSET;
+ 174              		.loc 2 467 0
+ 175 0060 7406     		lsl	r4, r6, #25
+ 176              	.LBE11:
+ 177              	.LBE10:
+ 178              	.LBB15:
+ 179              	.LBB16:
+ 494:Generated_Source\PSoC4/RTC.h **** 
+ 495:Generated_Source\PSoC4/RTC.h ****     return (retVal);
+ 496:Generated_Source\PSoC4/RTC.h **** }
+ 497:Generated_Source\PSoC4/RTC.h **** 
+ 498:Generated_Source\PSoC4/RTC.h **** 
+ 499:Generated_Source\PSoC4/RTC.h **** /*******************************************************************************
+ 500:Generated_Source\PSoC4/RTC.h **** * Function Name: RTC_GetHours
+ 501:Generated_Source\PSoC4/RTC.h **** ********************************************************************************
+ 502:Generated_Source\PSoC4/RTC.h **** *
+ 503:Generated_Source\PSoC4/RTC.h **** * Summary:
+ 504:Generated_Source\PSoC4/RTC.h **** *  Returns the hours value from the time value that is passed as a/the parameter.
+ 505:Generated_Source\PSoC4/RTC.h **** *
+ 506:Generated_Source\PSoC4/RTC.h **** * Parameters:
+ 507:Generated_Source\PSoC4/RTC.h **** *  time: The time value.
+ 508:Generated_Source\PSoC4/RTC.h **** *
+ 509:Generated_Source\PSoC4/RTC.h **** * Return:
+ 510:Generated_Source\PSoC4/RTC.h **** *  Th ehours value.
+ 511:Generated_Source\PSoC4/RTC.h **** *
+ 512:Generated_Source\PSoC4/RTC.h **** *******************************************************************************/
+ 513:Generated_Source\PSoC4/RTC.h **** static CY_INLINE uint32 RTC_GetHours(uint32 inputTime)
+ 514:Generated_Source\PSoC4/RTC.h **** {
+ 515:Generated_Source\PSoC4/RTC.h ****     uint32 retVal;
+ 516:Generated_Source\PSoC4/RTC.h **** 
+ 517:Generated_Source\PSoC4/RTC.h ****     retVal  = ((inputTime & RTC_10_HOURS_MASK) >> RTC_10_HOURS_OFFSET) * 10u;
+ 180              		.loc 2 517 0
+ 181 0062 8202     		lsl	r2, r0, #10
+ 182              	.LBE16:
+ 183              	.LBE15:
+ 184              	.LBB20:
+ 185              	.LBB12:
+ 467:Generated_Source\PSoC4/RTC.h ****     retVal += (inputTime & RTC_SECONDS_MASK) >> RTC_SECONDS_OFFSET;
+ 186              		.loc 2 467 0
+ 187 0064 640F     		lsr	r4, r4, #29
+ 188 0066 6C43     		mul	r4, r5
+ 189              	.LBE12:
+ 190              	.LBE20:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 16
+
+
+ 191              	.LBB21:
+ 192              	.LBB17:
+ 193              		.loc 2 517 0
+ 194 0068 920F     		lsr	r2, r2, #30
+ 195 006a 6A43     		mul	r2, r5
+ 196              	.LVL12:
+ 197              	.LBE17:
+ 198              	.LBE21:
+ 199              	.LBB22:
+ 200              	.LBB13:
+ 468:Generated_Source\PSoC4/RTC.h **** 
+ 201              		.loc 2 468 0
+ 202 006c 0E40     		and	r6, r1
+ 203              	.LVL13:
+ 204              	.LBE13:
+ 205              	.LBE22:
+ 206              	.LBB23:
+ 207              	.LBB18:
+ 518:Generated_Source\PSoC4/RTC.h ****     retVal += (inputTime & RTC_HOURS_MASK) >> RTC_HOURS_OFFSET;
+ 208              		.loc 2 518 0
+ 209 006e 0003     		lsl	r0, r0, #12
+ 210              	.LVL14:
+ 211 0070 000F     		lsr	r0, r0, #28
+ 212              	.LBE18:
+ 213              	.LBE23:
+ 214              	.LBB24:
+ 215              	.LBB14:
+ 468:Generated_Source\PSoC4/RTC.h **** 
+ 216              		.loc 2 468 0
+ 217 0072 A419     		add	r4, r4, r6
+ 218              	.LVL15:
+ 219              	.LBE14:
+ 220              	.LBE24:
+ 221              	.LBB25:
+ 222              	.LBB19:
+ 223              		.loc 2 518 0
+ 224 0074 1218     		add	r2, r2, r0
+ 225              	.LBE19:
+ 226              	.LBE25:
+ 227              		.loc 1 136 0
+ 228 0076 0094     		str	r4, [sp]
+ 229 0078 0FA8     		add	r0, sp, #60
+ 230 007a 1349     		ldr	r1, .L8+16
+ 231 007c FFF7FEFF 		bl	sprintf
+ 232              	.LVL16:
+ 137:.\main.c      ****     strcat(BLE_Status, ON);
+ 233              		.loc 1 137 0
+ 234 0080 03A9     		add	r1, sp, #12
+ 235 0082 05A8     		add	r0, sp, #20
+ 236 0084 FFF7FEFF 		bl	strcat
+ 237              	.LVL17:
+ 138:.\main.c      ****     strcat(Lamp_Status, OFF);
+ 238              		.loc 1 138 0
+ 239 0088 04A9     		add	r1, sp, #16
+ 240 008a 0AA8     		add	r0, sp, #40
+ 241 008c FFF7FEFF 		bl	strcat
+ 242              	.LVL18:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 17
+
+
+ 139:.\main.c      ****     Add_To_DDR(timeBuffer);
+ 243              		.loc 1 139 0
+ 244 0090 0FA8     		add	r0, sp, #60
+ 245 0092 FFF7FEFF 		bl	Add_To_DDR
+ 246              	.LVL19:
+ 140:.\main.c      ****     Add_To_DDR(OPT_Out_String);    
+ 247              		.loc 1 140 0
+ 248 0096 0D48     		ldr	r0, .L8+20
+ 249 0098 FFF7FEFF 		bl	Add_To_DDR
+ 250              	.LVL20:
+ 141:.\main.c      ****     Add_To_DDR(BLE_Status);
+ 251              		.loc 1 141 0
+ 252 009c 05A8     		add	r0, sp, #20
+ 253 009e FFF7FEFF 		bl	Add_To_DDR
+ 254              	.LVL21:
+ 142:.\main.c      ****     Add_To_DDR(Lamp_Status);
+ 255              		.loc 1 142 0
+ 256 00a2 0AA8     		add	r0, sp, #40
+ 257 00a4 FFF7FEFF 		bl	Add_To_DDR
+ 258              	.LVL22:
+ 143:.\main.c      ****     Print_DDR();
+ 259              		.loc 1 143 0
+ 260 00a8 FFF7FEFF 		bl	Print_DDR
+ 261              	.LVL23:
+ 144:.\main.c      ****     SetTimerTask(Main_Display_Print, 200);
+ 262              		.loc 1 144 0
+ 263 00ac 0848     		ldr	r0, .L8+24
+ 264 00ae C821     		mov	r1, #200
+ 265 00b0 FFF7FEFF 		bl	SetTimerTask
+ 266              	.LVL24:
+ 145:.\main.c      **** }
+ 267              		.loc 1 145 0
+ 268 00b4 14B0     		add	sp, sp, #80
+ 269              		@ sp needed
+ 270              	.LVL25:
+ 271 00b6 70BD     		pop	{r4, r5, r6, pc}
+ 272              	.L9:
+ 273              		.align	2
+ 274              	.L8:
+ 275 00b8 00000000 		.word	.LANCHOR0
+ 276 00bc 27000000 		.word	.LC7
+ 277 00c0 4F464600 		.word	4605519
+ 278 00c4 00000000 		.word	TimeStruct
+ 279 00c8 09000000 		.word	.LC10
+ 280 00cc 00000000 		.word	OPT_Out_String
+ 281 00d0 00000000 		.word	Main_Display_Print
+ 282              		.cfi_endproc
+ 283              	.LFE64:
+ 284              		.size	Main_Display_Print, .-Main_Display_Print
+ 285              		.global	__aeabi_uidiv
+ 286              		.global	__aeabi_i2d
+ 287              		.global	__aeabi_dmul
+ 288              		.global	__aeabi_dsub
+ 289              		.global	__aeabi_d2uiz
+ 290              		.section	.text.Brightles_PID_Controll,"ax",%progbits
+ 291              		.align	1
+ 292              		.global	Brightles_PID_Controll
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 18
+
+
+ 293              		.code	16
+ 294              		.thumb_func
+ 295              		.type	Brightles_PID_Controll, %function
+ 296              	Brightles_PID_Controll:
+ 297              	.LFB65:
+ 146:.\main.c      **** 
+ 147:.\main.c      **** void Brightles_PID_Controll()
+ 148:.\main.c      **** {
+ 298              		.loc 1 148 0
+ 299              		.cfi_startproc
+ 300 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+ 301              		.cfi_def_cfa_offset 24
+ 302              		.cfi_offset 0, -24
+ 303              		.cfi_offset 1, -20
+ 304              		.cfi_offset 2, -16
+ 305              		.cfi_offset 4, -12
+ 306              		.cfi_offset 5, -8
+ 307              		.cfi_offset 14, -4
+ 149:.\main.c      ****     volatile uint8 Procent = 0;
+ 308              		.loc 1 149 0
+ 309 0002 6B46     		mov	r3, sp
+ 310 0004 9C1D     		add	r4, r3, #6
+ 311 0006 0023     		mov	r3, #0
+ 312 0008 6946     		mov	r1, sp
+ 313 000a 2370     		strb	r3, [r4]
+ 150:.\main.c      ****     volatile uint8 PWM;
+ 151:.\main.c      ****     if(GlobalStruct.Lux > 0)
+ 314              		.loc 1 151 0
+ 315 000c 174B     		ldr	r3, .L16
+ 316 000e CD1D     		add	r5, r1, #7
+ 317 0010 5A68     		ldr	r2, [r3, #4]
+ 318 0012 002A     		cmp	r2, #0
+ 319 0014 1DD0     		beq	.L11
+ 152:.\main.c      ****     {
+ 153:.\main.c      ****         Procent = GlobalStruct.Lux / 160;
+ 320              		.loc 1 153 0
+ 321 0016 5868     		ldr	r0, [r3, #4]
+ 322 0018 A021     		mov	r1, #160
+ 323 001a FFF7FEFF 		bl	__aeabi_uidiv
+ 324              	.LVL26:
+ 325 001e C0B2     		uxtb	r0, r0
+ 326 0020 2070     		strb	r0, [r4]
+ 154:.\main.c      ****         if(Procent > 100) Procent = 100;
+ 327              		.loc 1 154 0
+ 328 0022 2378     		ldrb	r3, [r4]
+ 329 0024 642B     		cmp	r3, #100
+ 330 0026 01D9     		bls	.L12
+ 331              		.loc 1 154 0 is_stmt 0 discriminator 1
+ 332 0028 6423     		mov	r3, #100
+ 333 002a 2370     		strb	r3, [r4]
+ 334              	.L12:
+ 155:.\main.c      ****         PWM = (uint8)(68 - (0.68 * Procent));
+ 335              		.loc 1 155 0 is_stmt 1
+ 336 002c 2078     		ldrb	r0, [r4]
+ 337 002e C0B2     		uxtb	r0, r0
+ 338 0030 FFF7FEFF 		bl	__aeabi_i2d
+ 339              	.LVL27:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 19
+
+
+ 340 0034 0E4A     		ldr	r2, .L16+4
+ 341 0036 0F4B     		ldr	r3, .L16+8
+ 342 0038 FFF7FEFF 		bl	__aeabi_dmul
+ 343              	.LVL28:
+ 344 003c 021C     		mov	r2, r0
+ 345 003e 0B1C     		mov	r3, r1
+ 346 0040 0020     		mov	r0, #0
+ 347 0042 0D49     		ldr	r1, .L16+12
+ 348 0044 FFF7FEFF 		bl	__aeabi_dsub
+ 349              	.LVL29:
+ 350 0048 FFF7FEFF 		bl	__aeabi_d2uiz
+ 351              	.LVL30:
+ 352 004c C0B2     		uxtb	r0, r0
+ 353 004e 2870     		strb	r0, [r5]
+ 354 0050 01E0     		b	.L14
+ 355              	.L11:
+ 156:.\main.c      ****         PWM_WriteCompare1(PWM);
+ 157:.\main.c      ****     }
+ 158:.\main.c      ****     else
+ 159:.\main.c      ****     {
+ 160:.\main.c      ****         PWM = 68;
+ 356              		.loc 1 160 0
+ 357 0052 4423     		mov	r3, #68
+ 358 0054 2B70     		strb	r3, [r5]
+ 359              	.L14:
+ 161:.\main.c      ****         PWM_WriteCompare1(PWM);
+ 360              		.loc 1 161 0
+ 361 0056 2878     		ldrb	r0, [r5]
+ 162:.\main.c      ****     }
+ 163:.\main.c      ****     SetTimerTask(Brightles_PID_Controll, 2000);
+ 164:.\main.c      **** }
+ 362              		.loc 1 164 0
+ 363              		@ sp needed
+ 161:.\main.c      ****         PWM_WriteCompare1(PWM);
+ 364              		.loc 1 161 0
+ 365 0058 C0B2     		uxtb	r0, r0
+ 366 005a FFF7FEFF 		bl	PWM_WriteCompare1
+ 367              	.LVL31:
+ 163:.\main.c      **** }
+ 368              		.loc 1 163 0
+ 369 005e FA21     		mov	r1, #250
+ 370 0060 0648     		ldr	r0, .L16+16
+ 371 0062 C900     		lsl	r1, r1, #3
+ 372 0064 FFF7FEFF 		bl	SetTimerTask
+ 373              	.LVL32:
+ 374              		.loc 1 164 0
+ 375 0068 37BD     		pop	{r0, r1, r2, r4, r5, pc}
+ 376              	.L17:
+ 377 006a C046     		.align	2
+ 378              	.L16:
+ 379 006c 00000000 		.word	GlobalStruct
+ 380 0070 C3F5285C 		.word	1546188227
+ 381 0074 8FC2E53F 		.word	1072022159
+ 382 0078 00005140 		.word	1079050240
+ 383 007c 00000000 		.word	Brightles_PID_Controll
+ 384              		.cfi_endproc
+ 385              	.LFE65:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 20
+
+
+ 386              		.size	Brightles_PID_Controll, .-Brightles_PID_Controll
+ 387              		.section	.text.Check_OPT,"ax",%progbits
+ 388              		.align	1
+ 389              		.global	Check_OPT
+ 390              		.code	16
+ 391              		.thumb_func
+ 392              		.type	Check_OPT, %function
+ 393              	Check_OPT:
+ 394              	.LFB60:
+  49:.\main.c      ****     uint16 Manufacturer, Device;
+ 395              		.loc 1 49 0
+ 396              		.cfi_startproc
+ 397 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+ 398              		.cfi_def_cfa_offset 24
+ 399              		.cfi_offset 0, -24
+ 400              		.cfi_offset 1, -20
+ 401              		.cfi_offset 2, -16
+ 402              		.cfi_offset 4, -12
+ 403              		.cfi_offset 5, -8
+ 404              		.cfi_offset 14, -4
+  53:.\main.c      ****     
+ 405              		.loc 1 53 0
+ 406 0002 6B46     		mov	r3, sp
+ 407 0004 9C1D     		add	r4, r3, #6
+ 408 0006 4520     		mov	r0, #69
+ 409 0008 7F21     		mov	r1, #127
+ 410 000a 221C     		mov	r2, r4
+ 411 000c FFF7FEFF 		bl	I2C_ReadRegister
+ 412              	.LVL33:
+  55:.\main.c      ****     {
+ 413              		.loc 1 55 0
+ 414 0010 0028     		cmp	r0, #0
+ 415 0012 03D1     		bne	.L19
+ 416              	.L21:
+  57:.\main.c      ****         return;
+ 417              		.loc 1 57 0
+ 418 0014 0E48     		ldr	r0, .L25
+ 419              	.LVL34:
+ 420 0016 FFF7FEFF 		bl	Add_To_DDR
+ 421              	.LVL35:
+  58:.\main.c      ****         I2C_I2C_MSTR_ERR_LB_NAK;
+ 422              		.loc 1 58 0
+ 423 001a 17E0     		b	.L18
+ 424              	.LVL36:
+ 425              	.L19:
+  63:.\main.c      ****     
+ 426              		.loc 1 63 0
+ 427 001c 01AD     		add	r5, sp, #4
+ 428 001e 4520     		mov	r0, #69
+ 429              	.LVL37:
+ 430 0020 7E21     		mov	r1, #126
+ 431 0022 2A1C     		mov	r2, r5
+ 432 0024 FFF7FEFF 		bl	I2C_ReadRegister
+ 433              	.LVL38:
+  65:.\main.c      ****     {
+ 434              		.loc 1 65 0
+ 435 0028 0028     		cmp	r0, #0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 21
+
+
+ 436 002a F3D0     		beq	.L21
+  71:.\main.c      ****     {
+ 437              		.loc 1 71 0
+ 438 002c 2A88     		ldrh	r2, [r5]
+ 439 002e 094B     		ldr	r3, .L25+4
+ 440 0030 9A42     		cmp	r2, r3
+ 441 0032 0BD1     		bne	.L18
+  71:.\main.c      ****     {
+ 442              		.loc 1 71 0 is_stmt 0 discriminator 1
+ 443 0034 2288     		ldrh	r2, [r4]
+ 444 0036 084B     		ldr	r3, .L25+8
+ 445 0038 9A42     		cmp	r2, r3
+ 446 003a 07D1     		bne	.L18
+ 447              	.LBB28:
+ 448              	.LBB29:
+  73:.\main.c      ****         Add_To_DDR("Device OPT3001 EN");
+ 449              		.loc 1 73 0 is_stmt 1
+ 450 003c 0748     		ldr	r0, .L25+12
+ 451              	.LVL39:
+ 452 003e FFF7FEFF 		bl	Add_To_DDR
+ 453              	.LVL40:
+  74:.\main.c      ****         Print_DDR();
+ 454              		.loc 1 74 0
+ 455 0042 0748     		ldr	r0, .L25+16
+ 456 0044 FFF7FEFF 		bl	Add_To_DDR
+ 457              	.LVL41:
+  75:.\main.c      ****         return;
+ 458              		.loc 1 75 0
+ 459 0048 FFF7FEFF 		bl	Print_DDR
+ 460              	.LVL42:
+ 461              	.L18:
+ 462              	.LBE29:
+ 463              	.LBE28:
+  79:.\main.c      **** 
+ 464              		.loc 1 79 0
+ 465              		@ sp needed
+ 466 004c 37BD     		pop	{r0, r1, r2, r4, r5, pc}
+ 467              	.L26:
+ 468 004e C046     		.align	2
+ 469              	.L25:
+ 470 0050 2A000000 		.word	.LC17
+ 471 0054 49540000 		.word	21577
+ 472 0058 01300000 		.word	12289
+ 473 005c 36000000 		.word	.LC19
+ 474 0060 3F000000 		.word	.LC21
+ 475              		.cfi_endproc
+ 476              	.LFE60:
+ 477              		.size	Check_OPT, .-Check_OPT
+ 478              		.section	.text.OPT_Get_Result,"ax",%progbits
+ 479              		.align	1
+ 480              		.global	OPT_Get_Result
+ 481              		.code	16
+ 482              		.thumb_func
+ 483              		.type	OPT_Get_Result, %function
+ 484              	OPT_Get_Result:
+ 485              	.LFB63:
+  95:.\main.c      ****     if(GlobalStruct.OPT_Status == 0)
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 22
+
+
+ 486              		.loc 1 95 0
+ 487              		.cfi_startproc
+ 488 0000 38B5     		push	{r3, r4, r5, lr}
+ 489              		.cfi_def_cfa_offset 16
+ 490              		.cfi_offset 3, -16
+ 491              		.cfi_offset 4, -12
+ 492              		.cfi_offset 5, -8
+ 493              		.cfi_offset 14, -4
+  96:.\main.c      ****     {
+ 494              		.loc 1 96 0
+ 495 0002 174C     		ldr	r4, .L33
+ 496 0004 237A     		ldrb	r3, [r4, #8]
+ 497 0006 002B     		cmp	r3, #0
+ 498 0008 10D1     		bne	.L28
+  98:.\main.c      ****         {
+ 499              		.loc 1 98 0
+ 500 000a FFF7FEFF 		bl	OPT_StartConvert
+ 501              	.LVL43:
+ 502 000e 051E     		sub	r5, r0, #0
+ 503 0010 1448     		ldr	r0, .L33+4
+ 504 0012 05D0     		beq	.L29
+ 100:.\main.c      ****             GlobalStruct.OPT_Status = 1;
+ 505              		.loc 1 100 0
+ 506 0014 FA21     		mov	r1, #250
+ 507 0016 8900     		lsl	r1, r1, #2
+ 508 0018 FFF7FEFF 		bl	SetTimerTask
+ 509              	.LVL44:
+ 101:.\main.c      ****         }
+ 510              		.loc 1 101 0
+ 511 001c 0123     		mov	r3, #1
+ 512 001e 16E0     		b	.L32
+ 513              	.L29:
+ 105:.\main.c      ****             GlobalStruct.OPT_Status = 0;
+ 514              		.loc 1 105 0
+ 515 0020 9621     		mov	r1, #150
+ 516 0022 4900     		lsl	r1, r1, #1
+ 517 0024 FFF7FEFF 		bl	SetTimerTask
+ 518              	.LVL45:
+ 106:.\main.c      ****         }
+ 519              		.loc 1 106 0
+ 520 0028 2572     		strb	r5, [r4, #8]
+ 521 002a 17E0     		b	.L27
+ 522              	.L28:
+ 110:.\main.c      ****     {
+ 523              		.loc 1 110 0
+ 524 002c 237A     		ldrb	r3, [r4, #8]
+ 525 002e 012B     		cmp	r3, #1
+ 526 0030 14D1     		bne	.L27
+ 112:.\main.c      ****         {
+ 527              		.loc 1 112 0
+ 528 0032 FFF7FEFF 		bl	OPT_IsReady
+ 529              	.LVL46:
+ 530 0036 0B4D     		ldr	r5, .L33+4
+ 531 0038 0028     		cmp	r0, #0
+ 532 003a 0AD0     		beq	.L31
+ 533              	.LBB32:
+ 534              	.LBB33:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 23
+
+
+ 114:.\main.c      ****             SetTimerTask(OPT_Get_Result, 2000);
+ 535              		.loc 1 114 0
+ 536 003c 0A48     		ldr	r0, .L33+8
+ 537 003e FFF7FEFF 		bl	OPT_GetResultString
+ 538              	.LVL47:
+ 115:.\main.c      ****             GlobalStruct.OPT_Status = 0;
+ 539              		.loc 1 115 0
+ 540 0042 FA21     		mov	r1, #250
+ 541 0044 281C     		mov	r0, r5
+ 542 0046 C900     		lsl	r1, r1, #3
+ 543 0048 FFF7FEFF 		bl	SetTimerTask
+ 544              	.LVL48:
+ 116:.\main.c      ****         }
+ 545              		.loc 1 116 0
+ 546 004c 0023     		mov	r3, #0
+ 547              	.L32:
+ 548 004e 2372     		strb	r3, [r4, #8]
+ 549 0050 04E0     		b	.L27
+ 550              	.L31:
+ 551              	.LBE33:
+ 552              	.LBE32:
+ 120:.\main.c      ****         }
+ 553              		.loc 1 120 0
+ 554 0052 C821     		mov	r1, #200
+ 555 0054 281C     		mov	r0, r5
+ 556 0056 8900     		lsl	r1, r1, #2
+ 557 0058 FFF7FEFF 		bl	SetTimerTask
+ 558              	.LVL49:
+ 559              	.L27:
+ 124:.\main.c      **** 
+ 560              		.loc 1 124 0
+ 561              		@ sp needed
+ 562 005c 38BD     		pop	{r3, r4, r5, pc}
+ 563              	.L34:
+ 564 005e C046     		.align	2
+ 565              	.L33:
+ 566 0060 00000000 		.word	GlobalStruct
+ 567 0064 00000000 		.word	OPT_Get_Result
+ 568 0068 04000000 		.word	GlobalStruct+4
+ 569              		.cfi_endproc
+ 570              	.LFE63:
+ 571              		.size	OPT_Get_Result, .-OPT_Get_Result
+ 572              		.section	.text.Check_Boot,"ax",%progbits
+ 573              		.align	1
+ 574              		.global	Check_Boot
+ 575              		.code	16
+ 576              		.thumb_func
+ 577              		.type	Check_Boot, %function
+ 578              	Check_Boot:
+ 579              	.LFB59:
+  41:.\main.c      ****     if(Bootloader_En_Read() == 0)
+ 580              		.loc 1 41 0
+ 581              		.cfi_startproc
+ 582 0000 08B5     		push	{r3, lr}
+ 583              		.cfi_def_cfa_offset 8
+ 584              		.cfi_offset 3, -8
+ 585              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 24
+
+
+  42:.\main.c      ****     {
+ 586              		.loc 1 42 0
+ 587 0002 FFF7FEFF 		bl	Bootloader_En_Read
+ 588              	.LVL50:
+ 589 0006 0028     		cmp	r0, #0
+ 590 0008 01D1     		bne	.L35
+  44:.\main.c      ****     }
+ 591              		.loc 1 44 0
+ 592 000a FFF7FEFF 		bl	Bootloadable_Load
+ 593              	.LVL51:
+ 594              	.L35:
+  46:.\main.c      **** 
+ 595              		.loc 1 46 0
+ 596              		@ sp needed
+ 597 000e 08BD     		pop	{r3, pc}
+ 598              		.cfi_endproc
+ 599              	.LFE59:
+ 600              		.size	Check_Boot, .-Check_Boot
+ 601              		.section	.text.BLE_Status,"ax",%progbits
+ 602              		.align	1
+ 603              		.global	BLE_Status
+ 604              		.code	16
+ 605              		.thumb_func
+ 606              		.type	BLE_Status, %function
+ 607              	BLE_Status:
+ 608              	.LFB66:
+ 165:.\main.c      **** void BLE_Status()
+ 166:.\main.c      **** {
+ 609              		.loc 1 166 0
+ 610              		.cfi_startproc
+ 611 0000 30B5     		push	{r4, r5, lr}
+ 612              		.cfi_def_cfa_offset 12
+ 613              		.cfi_offset 4, -12
+ 614              		.cfi_offset 5, -8
+ 615              		.cfi_offset 14, -4
+ 167:.\main.c      ****     char Comand[10] = "AT";
+ 616              		.loc 1 167 0
+ 617 0002 134B     		ldr	r3, .L49
+ 166:.\main.c      ****     char Comand[10] = "AT";
+ 618              		.loc 1 166 0
+ 619 0004 85B0     		sub	sp, sp, #20
+ 620              		.cfi_def_cfa_offset 32
+ 621              		.loc 1 167 0
+ 622 0006 0193     		str	r3, [sp, #4]
+ 623 0008 0023     		mov	r3, #0
+ 624 000a 01AC     		add	r4, sp, #4
+ 168:.\main.c      ****     uint16 Inc = 0;
+ 169:.\main.c      ****     UART_UartPutString(Comand);
+ 625              		.loc 1 169 0
+ 626 000c 201C     		mov	r0, r4
+ 167:.\main.c      ****     uint16 Inc = 0;
+ 627              		.loc 1 167 0
+ 628 000e 6360     		str	r3, [r4, #4]
+ 629 0010 2381     		strh	r3, [r4, #8]
+ 630              	.LVL52:
+ 631              		.loc 1 169 0
+ 632 0012 FFF7FEFF 		bl	UART_UartPutString
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 25
+
+
+ 633              	.LVL53:
+ 170:.\main.c      ****     while(UART_SpiUartGetRxBufferSize() == 0)
+ 634              		.loc 1 170 0
+ 635 0016 0F4D     		ldr	r5, .L49+4
+ 636              	.LVL54:
+ 637              	.L38:
+ 638 0018 FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 639              	.LVL55:
+ 640 001c 0028     		cmp	r0, #0
+ 641 001e 04D1     		bne	.L47
+ 642              	.LVL56:
+ 643 0020 013D     		sub	r5, r5, #1
+ 644              	.LVL57:
+ 645 0022 ADB2     		uxth	r5, r5
+ 171:.\main.c      ****     {
+ 172:.\main.c      ****         Inc++;
+ 173:.\main.c      ****         if(Inc>1000) return;
+ 646              		.loc 1 173 0
+ 647 0024 002D     		cmp	r5, #0
+ 648 0026 F7D1     		bne	.L38
+ 649 0028 0FE0     		b	.L37
+ 650              	.LVL58:
+ 651              	.L47:
+ 652 002a 0025     		mov	r5, #0
+ 653              	.LVL59:
+ 654              	.L41:
+ 174:.\main.c      ****     }
+ 175:.\main.c      ****     Inc = 0;
+ 176:.\main.c      ****     while(UART_SpiUartGetRxBufferSize() > 0)
+ 655              		.loc 1 176 0
+ 656 002c FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
+ 657              	.LVL60:
+ 658 0030 0028     		cmp	r0, #0
+ 659 0032 05D0     		beq	.L48
+ 177:.\main.c      ****     {
+ 178:.\main.c      ****         Comand[Inc] = (char)UART_SpiUartReadRxData();
+ 660              		.loc 1 178 0
+ 661 0034 FFF7FEFF 		bl	UART_SpiUartReadRxData
+ 662              	.LVL61:
+ 663 0038 6055     		strb	r0, [r4, r5]
+ 179:.\main.c      ****         Inc++;
+ 664              		.loc 1 179 0
+ 665 003a 0135     		add	r5, r5, #1
+ 666              	.LVL62:
+ 667 003c ADB2     		uxth	r5, r5
+ 668              	.LVL63:
+ 669 003e F5E7     		b	.L41
+ 670              	.L48:
+ 180:.\main.c      ****     }
+ 181:.\main.c      ****     Add_To_DDR(Comand);
+ 671              		.loc 1 181 0
+ 672 0040 201C     		mov	r0, r4
+ 673 0042 FFF7FEFF 		bl	Add_To_DDR
+ 674              	.LVL64:
+ 182:.\main.c      ****     Print_DDR();
+ 675              		.loc 1 182 0
+ 676 0046 FFF7FEFF 		bl	Print_DDR
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 26
+
+
+ 677              	.LVL65:
+ 678              	.L37:
+ 183:.\main.c      **** }
+ 679              		.loc 1 183 0
+ 680 004a 05B0     		add	sp, sp, #20
+ 681              		@ sp needed
+ 682 004c 30BD     		pop	{r4, r5, pc}
+ 683              	.L50:
+ 684 004e C046     		.align	2
+ 685              	.L49:
+ 686 0050 41540000 		.word	21569
+ 687 0054 E9030000 		.word	1001
+ 688              		.cfi_endproc
+ 689              	.LFE66:
+ 690              		.size	BLE_Status, .-BLE_Status
+ 691              		.section	.text.startup.main,"ax",%progbits
+ 692              		.align	1
+ 693              		.global	main
+ 694              		.code	16
+ 695              		.thumb_func
+ 696              		.type	main, %function
+ 697              	main:
+ 698              	.LFB67:
+ 184:.\main.c      **** 
+ 185:.\main.c      **** 
+ 186:.\main.c      **** int main()
+ 187:.\main.c      **** {
+ 699              		.loc 1 187 0
+ 700              		.cfi_startproc
+ 701 0000 08B5     		push	{r3, lr}
+ 702              		.cfi_def_cfa_offset 8
+ 703              		.cfi_offset 3, -8
+ 704              		.cfi_offset 14, -4
+ 188:.\main.c      ****     CyGlobalIntEnable;
+ 705              		.loc 1 188 0
+ 706              	@ 188 ".\main.c" 1
+ 707 0002 62B6     		CPSIE   i
+ 708              	@ 0 "" 2
+ 189:.\main.c      ****     Check_Boot();
+ 709              		.loc 1 189 0
+ 710              		.code	16
+ 711 0004 FFF7FEFF 		bl	Check_Boot
+ 712              	.LVL66:
+ 190:.\main.c      ****     Timer_RTOS_Start();
+ 713              		.loc 1 190 0
+ 714 0008 FFF7FEFF 		bl	Timer_RTOS_Start
+ 715              	.LVL67:
+ 191:.\main.c      ****     PWM_Start();
+ 716              		.loc 1 191 0
+ 717 000c FFF7FEFF 		bl	PWM_Start
+ 718              	.LVL68:
+ 192:.\main.c      ****     I2C_Start();
+ 719              		.loc 1 192 0
+ 720 0010 FFF7FEFF 		bl	I2C_Start
+ 721              	.LVL69:
+ 193:.\main.c      ****     UART_Start();
+ 722              		.loc 1 193 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 27
+
+
+ 723 0014 FFF7FEFF 		bl	UART_Start
+ 724              	.LVL70:
+ 194:.\main.c      ****     RTC_Start();
+ 725              		.loc 1 194 0
+ 726 0018 FFF7FEFF 		bl	RTC_Start
+ 727              	.LVL71:
+ 195:.\main.c      ****     RTC_SetPeriod(1,1000);
+ 728              		.loc 1 195 0
+ 729 001c FA21     		mov	r1, #250
+ 730 001e 0120     		mov	r0, #1
+ 731 0020 8900     		lsl	r1, r1, #2
+ 732 0022 FFF7FEFF 		bl	RTC_SetPeriod
+ 733              	.LVL72:
+ 196:.\main.c      ****     RTOS_Start();
+ 734              		.loc 1 196 0
+ 735 0026 FFF7FEFF 		bl	RTOS_Start
+ 736              	.LVL73:
+ 197:.\main.c      ****     SetTask(Brightles_PID_Controll);
+ 737              		.loc 1 197 0
+ 738 002a 0A48     		ldr	r0, .L53
+ 739 002c FFF7FEFF 		bl	SetTask
+ 740              	.LVL74:
+ 198:.\main.c      ****     LCD_WS0010Start();
+ 741              		.loc 1 198 0
+ 742 0030 FFF7FEFF 		bl	LCD_WS0010Start
+ 743              	.LVL75:
+ 199:.\main.c      ****     SetTask(WaitPowerStab);
+ 744              		.loc 1 199 0
+ 745 0034 0848     		ldr	r0, .L53+4
+ 746 0036 FFF7FEFF 		bl	SetTask
+ 747              	.LVL76:
+ 200:.\main.c      ****     SetTimerTask(OPT_Get_Result, 1300);
+ 748              		.loc 1 200 0
+ 749 003a 0848     		ldr	r0, .L53+8
+ 750 003c 0849     		ldr	r1, .L53+12
+ 751 003e FFF7FEFF 		bl	SetTimerTask
+ 752              	.LVL77:
+ 201:.\main.c      ****     //BLE_Status();
+ 202:.\main.c      ****     SetTimerTask(Main_Display_Print, 2000);
+ 753              		.loc 1 202 0
+ 754 0042 FA21     		mov	r1, #250
+ 755 0044 0748     		ldr	r0, .L53+16
+ 756 0046 C900     		lsl	r1, r1, #3
+ 757 0048 FFF7FEFF 		bl	SetTimerTask
+ 758              	.LVL78:
+ 759              	.L52:
+ 203:.\main.c      ****     for(;;)
+ 204:.\main.c      ****     {
+ 205:.\main.c      ****         TaskManager();
+ 760              		.loc 1 205 0 discriminator 1
+ 761 004c FFF7FEFF 		bl	TaskManager
+ 762              	.LVL79:
+ 206:.\main.c      ****     }
+ 763              		.loc 1 206 0 discriminator 1
+ 764 0050 FCE7     		b	.L52
+ 765              	.L54:
+ 766 0052 C046     		.align	2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 28
+
+
+ 767              	.L53:
+ 768 0054 00000000 		.word	Brightles_PID_Controll
+ 769 0058 00000000 		.word	WaitPowerStab
+ 770 005c 00000000 		.word	OPT_Get_Result
+ 771 0060 14050000 		.word	1300
+ 772 0064 00000000 		.word	Main_Display_Print
+ 773              		.cfi_endproc
+ 774              	.LFE67:
+ 775              		.size	main, .-main
+ 776              		.comm	TimeStruct,8,4
+ 777              		.comm	GlobalStruct,16,4
+ 778              		.comm	System_Timer,40,4
+ 779              		.comm	System_Timer_Flag,5,1
+ 780              		.comm	Frame_Tail,1,1
+ 781              		.comm	FrameDDR,80,1
+ 782              		.comm	OPT_Out_String,25,1
+ 783              		.section	.rodata
+ 784              		.set	.LANCHOR0,. + 0
+ 785              	.LC4:
+ 786 0000 424C455F 		.ascii	"BLE_Status: \000"
+ 786      53746174 
+ 786      75733A20 
+ 786      00
+ 787 000d 00000000 		.space	7
+ 787      000000
+ 788              	.LC6:
+ 789 0014 5556204C 		.ascii	"UV Lamp: \000"
+ 789      616D703A 
+ 789      2000
+ 790 001e 00000000 		.space	10
+ 790      00000000 
+ 790      0000
+ 791              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 792              	.LC2:
+ 793 0000 4F532053 		.ascii	"OS Start\000"
+ 793      74617274 
+ 793      00
+ 794              	.LC10:
+ 795 0009 20202020 		.ascii	"            %02lu:%02lu:%02lu\000"
+ 795      20202020 
+ 795      20202020 
+ 795      2530326C 
+ 795      753A2530 
+ 796              	.LC7:
+ 797 0027 4F4E00   		.ascii	"ON\000"
+ 798              	.LC17:
+ 799 002a 4F707469 		.ascii	"Optic Error\000"
+ 799      63204572 
+ 799      726F7200 
+ 800              	.LC19:
+ 801 0036 4F707469 		.ascii	"Optic OK\000"
+ 801      63204F4B 
+ 801      00
+ 802              	.LC21:
+ 803 003f 44657669 		.ascii	"Device OPT3001 EN\000"
+ 803      6365204F 
+ 803      50543330 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 29
+
+
+ 803      30312045 
+ 803      4E00
+ 804              		.bss
+ 805              		.align	2
+ 806              		.type	MainTimer, %object
+ 807              		.size	MainTimer, 168
+ 808              	MainTimer:
+ 809 0000 00000000 		.space	168
+ 809      00000000 
+ 809      00000000 
+ 809      00000000 
+ 809      00000000 
+ 810              		.type	TaskQueue, %object
+ 811              		.size	TaskQueue, 44
+ 812              	TaskQueue:
+ 813 00a8 00000000 		.space	44
+ 813      00000000 
+ 813      00000000 
+ 813      00000000 
+ 813      00000000 
+ 814              		.text
+ 815              	.Letext0:
+ 816              		.file 3 "Generated_Source\\PSoC4/cytypes.h"
+ 817              		.file 4 ".\\SysClock.h"
+ 818              		.file 5 ".\\TaskDispatcher.h"
+ 819              		.file 6 ".\\OPT3001.h"
+ 820              		.file 7 ".\\WS0010.h"
+ 821              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 822              		.file 9 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 823              		.file 10 "Generated_Source\\PSoC4/PWM.h"
+ 824              		.file 11 "Generated_Source\\PSoC4/Bootloader_En.h"
+ 825              		.file 12 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 826              		.file 13 "Generated_Source\\PSoC4/Bootloadable.h"
+ 827              		.file 14 "Generated_Source\\PSoC4/Timer_RTOS.h"
+ 828              		.file 15 "Generated_Source\\PSoC4/I2C.h"
+ 829              		.file 16 "Generated_Source\\PSoC4/UART.h"
+ 830              		.section	.debug_info,"",%progbits
+ 831              	.Ldebug_info0:
+ 832 0000 340C0000 		.4byte	0xc34
+ 833 0004 0400     		.2byte	0x4
+ 834 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 835 000a 04       		.byte	0x4
+ 836 000b 01       		.uleb128 0x1
+ 837 000c 6A000000 		.4byte	.LASF87
+ 838 0010 01       		.byte	0x1
+ 839 0011 9B040000 		.4byte	.LASF88
+ 840 0015 7D010000 		.4byte	.LASF89
+ 841 0019 50000000 		.4byte	.Ldebug_ranges0+0x50
+ 842 001d 00000000 		.4byte	0
+ 843 0021 00000000 		.4byte	.Ldebug_line0
+ 844 0025 02       		.uleb128 0x2
+ 845 0026 01       		.byte	0x1
+ 846 0027 06       		.byte	0x6
+ 847 0028 27020000 		.4byte	.LASF0
+ 848 002c 02       		.uleb128 0x2
+ 849 002d 01       		.byte	0x1
+ 850 002e 08       		.byte	0x8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 30
+
+
+ 851 002f 14030000 		.4byte	.LASF1
+ 852 0033 02       		.uleb128 0x2
+ 853 0034 02       		.byte	0x2
+ 854 0035 05       		.byte	0x5
+ 855 0036 60000000 		.4byte	.LASF2
+ 856 003a 02       		.uleb128 0x2
+ 857 003b 02       		.byte	0x2
+ 858 003c 07       		.byte	0x7
+ 859 003d D1030000 		.4byte	.LASF3
+ 860 0041 02       		.uleb128 0x2
+ 861 0042 04       		.byte	0x4
+ 862 0043 05       		.byte	0x5
+ 863 0044 7A020000 		.4byte	.LASF4
+ 864 0048 02       		.uleb128 0x2
+ 865 0049 04       		.byte	0x4
+ 866 004a 07       		.byte	0x7
+ 867 004b 9E030000 		.4byte	.LASF5
+ 868 004f 02       		.uleb128 0x2
+ 869 0050 08       		.byte	0x8
+ 870 0051 05       		.byte	0x5
+ 871 0052 44020000 		.4byte	.LASF6
+ 872 0056 02       		.uleb128 0x2
+ 873 0057 08       		.byte	0x8
+ 874 0058 07       		.byte	0x7
+ 875 0059 5E030000 		.4byte	.LASF7
+ 876 005d 03       		.uleb128 0x3
+ 877 005e 04       		.byte	0x4
+ 878 005f 05       		.byte	0x5
+ 879 0060 696E7400 		.ascii	"int\000"
+ 880 0064 02       		.uleb128 0x2
+ 881 0065 04       		.byte	0x4
+ 882 0066 07       		.byte	0x7
+ 883 0067 80030000 		.4byte	.LASF8
+ 884 006b 04       		.uleb128 0x4
+ 885 006c F3010000 		.4byte	.LASF9
+ 886 0070 03       		.byte	0x3
+ 887 0071 C2       		.byte	0xc2
+ 888 0072 2C000000 		.4byte	0x2c
+ 889 0076 04       		.uleb128 0x4
+ 890 0077 6A010000 		.4byte	.LASF10
+ 891 007b 03       		.byte	0x3
+ 892 007c C3       		.byte	0xc3
+ 893 007d 3A000000 		.4byte	0x3a
+ 894 0081 04       		.uleb128 0x4
+ 895 0082 5C040000 		.4byte	.LASF11
+ 896 0086 03       		.byte	0x3
+ 897 0087 C4       		.byte	0xc4
+ 898 0088 48000000 		.4byte	0x48
+ 899 008c 02       		.uleb128 0x2
+ 900 008d 04       		.byte	0x4
+ 901 008e 04       		.byte	0x4
+ 902 008f 33020000 		.4byte	.LASF12
+ 903 0093 02       		.uleb128 0x2
+ 904 0094 08       		.byte	0x8
+ 905 0095 04       		.byte	0x4
+ 906 0096 77040000 		.4byte	.LASF13
+ 907 009a 04       		.uleb128 0x4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 31
+
+
+ 908 009b 0F040000 		.4byte	.LASF14
+ 909 009f 03       		.byte	0x3
+ 910 00a0 D3       		.byte	0xd3
+ 911 00a1 A5000000 		.4byte	0xa5
+ 912 00a5 02       		.uleb128 0x2
+ 913 00a6 01       		.byte	0x1
+ 914 00a7 08       		.byte	0x8
+ 915 00a8 E9030000 		.4byte	.LASF15
+ 916 00ac 05       		.uleb128 0x5
+ 917 00ad 6B000000 		.4byte	0x6b
+ 918 00b1 05       		.uleb128 0x5
+ 919 00b2 81000000 		.4byte	0x81
+ 920 00b6 06       		.uleb128 0x6
+ 921 00b7 04       		.byte	0x4
+ 922 00b8 BC000000 		.4byte	0xbc
+ 923 00bc 07       		.uleb128 0x7
+ 924 00bd 02       		.uleb128 0x2
+ 925 00be 04       		.byte	0x4
+ 926 00bf 07       		.byte	0x7
+ 927 00c0 C5040000 		.4byte	.LASF16
+ 928 00c4 08       		.uleb128 0x8
+ 929 00c5 04       		.byte	0x4
+ 930 00c6 06       		.uleb128 0x6
+ 931 00c7 04       		.byte	0x4
+ 932 00c8 A5000000 		.4byte	0xa5
+ 933 00cc 06       		.uleb128 0x6
+ 934 00cd 04       		.byte	0x4
+ 935 00ce D2000000 		.4byte	0xd2
+ 936 00d2 09       		.uleb128 0x9
+ 937 00d3 A5000000 		.4byte	0xa5
+ 938 00d7 0A       		.uleb128 0xa
+ 939 00d8 A5000000 		.4byte	0xa5
+ 940 00dc E7000000 		.4byte	0xe7
+ 941 00e0 0B       		.uleb128 0xb
+ 942 00e1 BD000000 		.4byte	0xbd
+ 943 00e5 18       		.byte	0x18
+ 944 00e6 00       		.byte	0
+ 945 00e7 0C       		.uleb128 0xc
+ 946 00e8 08       		.byte	0x8
+ 947 00e9 04       		.byte	0x4
+ 948 00ea 1B       		.byte	0x1b
+ 949 00eb 08010000 		.4byte	0x108
+ 950 00ef 0D       		.uleb128 0xd
+ 951 00f0 07010000 		.4byte	.LASF17
+ 952 00f4 04       		.byte	0x4
+ 953 00f5 1D       		.byte	0x1d
+ 954 00f6 AC000000 		.4byte	0xac
+ 955 00fa 00       		.byte	0
+ 956 00fb 0D       		.uleb128 0xd
+ 957 00fc FE020000 		.4byte	.LASF18
+ 958 0100 04       		.byte	0x4
+ 959 0101 1E       		.byte	0x1e
+ 960 0102 B1000000 		.4byte	0xb1
+ 961 0106 04       		.byte	0x4
+ 962 0107 00       		.byte	0
+ 963 0108 0A       		.uleb128 0xa
+ 964 0109 E7000000 		.4byte	0xe7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 32
+
+
+ 965 010d 18010000 		.4byte	0x118
+ 966 0111 0B       		.uleb128 0xb
+ 967 0112 BD000000 		.4byte	0xbd
+ 968 0116 04       		.byte	0x4
+ 969 0117 00       		.byte	0
+ 970 0118 0C       		.uleb128 0xc
+ 971 0119 01       		.byte	0x1
+ 972 011a 04       		.byte	0x4
+ 973 011b 20       		.byte	0x20
+ 974 011c 2D010000 		.4byte	0x12d
+ 975 0120 0D       		.uleb128 0xd
+ 976 0121 E4030000 		.4byte	.LASF19
+ 977 0125 04       		.byte	0x4
+ 978 0126 22       		.byte	0x22
+ 979 0127 6B000000 		.4byte	0x6b
+ 980 012b 00       		.byte	0
+ 981 012c 00       		.byte	0
+ 982 012d 0A       		.uleb128 0xa
+ 983 012e 18010000 		.4byte	0x118
+ 984 0132 3D010000 		.4byte	0x13d
+ 985 0136 0B       		.uleb128 0xb
+ 986 0137 BD000000 		.4byte	0xbd
+ 987 013b 04       		.byte	0x4
+ 988 013c 00       		.byte	0
+ 989 013d 04       		.uleb128 0x4
+ 990 013e DE040000 		.4byte	.LASF20
+ 991 0142 05       		.byte	0x5
+ 992 0143 12       		.byte	0x12
+ 993 0144 B6000000 		.4byte	0xb6
+ 994 0148 0C       		.uleb128 0xc
+ 995 0149 08       		.byte	0x8
+ 996 014a 05       		.byte	0x5
+ 997 014b 16       		.byte	0x16
+ 998 014c 69010000 		.4byte	0x169
+ 999 0150 0D       		.uleb128 0xd
+ 1000 0151 92040000 		.4byte	.LASF21
+ 1001 0155 05       		.byte	0x5
+ 1002 0156 18       		.byte	0x18
+ 1003 0157 3D010000 		.4byte	0x13d
+ 1004 015b 00       		.byte	0
+ 1005 015c 0D       		.uleb128 0xd
+ 1006 015d FE020000 		.4byte	.LASF18
+ 1007 0161 05       		.byte	0x5
+ 1008 0162 19       		.byte	0x19
+ 1009 0163 81000000 		.4byte	0x81
+ 1010 0167 04       		.byte	0x4
+ 1011 0168 00       		.byte	0
+ 1012 0169 0C       		.uleb128 0xc
+ 1013 016a 10       		.byte	0x10
+ 1014 016b 01       		.byte	0x1
+ 1015 016c 13       		.byte	0x13
+ 1016 016d AE010000 		.4byte	0x1ae
+ 1017 0171 0D       		.uleb128 0xd
+ 1018 0172 1C000000 		.4byte	.LASF22
+ 1019 0176 01       		.byte	0x1
+ 1020 0177 15       		.byte	0x15
+ 1021 0178 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 33
+
+
+ 1022 017c 00       		.byte	0
+ 1023 017d 0E       		.uleb128 0xe
+ 1024 017e 4C757800 		.ascii	"Lux\000"
+ 1025 0182 01       		.byte	0x1
+ 1026 0183 16       		.byte	0x16
+ 1027 0184 81000000 		.4byte	0x81
+ 1028 0188 04       		.byte	0x4
+ 1029 0189 0D       		.uleb128 0xd
+ 1030 018a F9010000 		.4byte	.LASF23
+ 1031 018e 01       		.byte	0x1
+ 1032 018f 17       		.byte	0x17
+ 1033 0190 6B000000 		.4byte	0x6b
+ 1034 0194 08       		.byte	0x8
+ 1035 0195 0D       		.uleb128 0xd
+ 1036 0196 09030000 		.4byte	.LASF24
+ 1037 019a 01       		.byte	0x1
+ 1038 019b 18       		.byte	0x18
+ 1039 019c 76000000 		.4byte	0x76
+ 1040 01a0 0A       		.byte	0xa
+ 1041 01a1 0D       		.uleb128 0xd
+ 1042 01a2 39020000 		.4byte	.LASF25
+ 1043 01a6 01       		.byte	0x1
+ 1044 01a7 19       		.byte	0x19
+ 1045 01a8 76000000 		.4byte	0x76
+ 1046 01ac 0C       		.byte	0xc
+ 1047 01ad 00       		.byte	0
+ 1048 01ae 04       		.uleb128 0x4
+ 1049 01af 1E020000 		.4byte	.LASF26
+ 1050 01b3 01       		.byte	0x1
+ 1051 01b4 1A       		.byte	0x1a
+ 1052 01b5 69010000 		.4byte	0x169
+ 1053 01b9 0C       		.uleb128 0xc
+ 1054 01ba 08       		.byte	0x8
+ 1055 01bb 01       		.byte	0x1
+ 1056 01bc 1D       		.byte	0x1d
+ 1057 01bd DA010000 		.4byte	0x1da
+ 1058 01c1 0D       		.uleb128 0xd
+ 1059 01c2 FE020000 		.4byte	.LASF18
+ 1060 01c6 01       		.byte	0x1
+ 1061 01c7 1F       		.byte	0x1f
+ 1062 01c8 81000000 		.4byte	0x81
+ 1063 01cc 00       		.byte	0
+ 1064 01cd 0D       		.uleb128 0xd
+ 1065 01ce 03030000 		.4byte	.LASF27
+ 1066 01d2 01       		.byte	0x1
+ 1067 01d3 20       		.byte	0x20
+ 1068 01d4 81000000 		.4byte	0x81
+ 1069 01d8 04       		.byte	0x4
+ 1070 01d9 00       		.byte	0
+ 1071 01da 04       		.uleb128 0x4
+ 1072 01db 6E040000 		.4byte	.LASF28
+ 1073 01df 01       		.byte	0x1
+ 1074 01e0 21       		.byte	0x21
+ 1075 01e1 B9010000 		.4byte	0x1b9
+ 1076 01e5 0F       		.uleb128 0xf
+ 1077 01e6 B0030000 		.4byte	.LASF58
+ 1078 01ea 01       		.byte	0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 34
+
+
+ 1079 01eb 30       		.byte	0x30
+ 1080 01ec 01       		.byte	0x1
+ 1081 01ed 13020000 		.4byte	0x213
+ 1082 01f1 10       		.uleb128 0x10
+ 1083 01f2 26010000 		.4byte	.LASF29
+ 1084 01f6 01       		.byte	0x1
+ 1085 01f7 32       		.byte	0x32
+ 1086 01f8 76000000 		.4byte	0x76
+ 1087 01fc 10       		.uleb128 0x10
+ 1088 01fd 57030000 		.4byte	.LASF30
+ 1089 0201 01       		.byte	0x1
+ 1090 0202 32       		.byte	0x32
+ 1091 0203 76000000 		.4byte	0x76
+ 1092 0207 10       		.uleb128 0x10
+ 1093 0208 A4040000 		.4byte	.LASF31
+ 1094 020c 01       		.byte	0x1
+ 1095 020d 33       		.byte	0x33
+ 1096 020e 6B000000 		.4byte	0x6b
+ 1097 0212 00       		.byte	0
+ 1098 0213 11       		.uleb128 0x11
+ 1099 0214 F8000000 		.4byte	.LASF90
+ 1100 0218 01       		.byte	0x1
+ 1101 0219 5E       		.byte	0x5e
+ 1102 021a 01       		.byte	0x1
+ 1103 021b 12       		.uleb128 0x12
+ 1104 021c 83020000 		.4byte	.LASF32
+ 1105 0220 01       		.byte	0x1
+ 1106 0221 59       		.byte	0x59
+ 1107 0222 00000000 		.4byte	.LFB62
+ 1108 0226 14000000 		.4byte	.LFE62-.LFB62
+ 1109 022a 01       		.uleb128 0x1
+ 1110 022b 9C       		.byte	0x9c
+ 1111 022c 4B020000 		.4byte	0x24b
+ 1112 0230 13       		.uleb128 0x13
+ 1113 0231 0C000000 		.4byte	.LVL0
+ 1114 0235 590A0000 		.4byte	0xa59
+ 1115 0239 14       		.uleb128 0x14
+ 1116 023a 01       		.uleb128 0x1
+ 1117 023b 51       		.byte	0x51
+ 1118 023c 03       		.uleb128 0x3
+ 1119 023d 0A       		.byte	0xa
+ 1120 023e E803     		.2byte	0x3e8
+ 1121 0240 14       		.uleb128 0x14
+ 1122 0241 01       		.uleb128 0x1
+ 1123 0242 50       		.byte	0x50
+ 1124 0243 05       		.uleb128 0x5
+ 1125 0244 03       		.byte	0x3
+ 1126 0245 00000000 		.4byte	Start_Display
+ 1127 0249 00       		.byte	0
+ 1128 024a 00       		.byte	0
+ 1129 024b 12       		.uleb128 0x12
+ 1130 024c B7020000 		.4byte	.LASF33
+ 1131 0250 01       		.byte	0x1
+ 1132 0251 52       		.byte	0x52
+ 1133 0252 00000000 		.4byte	.LFB61
+ 1134 0256 24000000 		.4byte	.LFE61-.LFB61
+ 1135 025a 01       		.uleb128 0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 35
+
+
+ 1136 025b 9C       		.byte	0x9c
+ 1137 025c A6020000 		.4byte	0x2a6
+ 1138 0260 15       		.uleb128 0x15
+ 1139 0261 0A000000 		.4byte	.LVL1
+ 1140 0265 590A0000 		.4byte	0xa59
+ 1141 0269 7C020000 		.4byte	0x27c
+ 1142 026d 14       		.uleb128 0x14
+ 1143 026e 01       		.uleb128 0x1
+ 1144 026f 51       		.byte	0x51
+ 1145 0270 01       		.uleb128 0x1
+ 1146 0271 3A       		.byte	0x3a
+ 1147 0272 14       		.uleb128 0x14
+ 1148 0273 01       		.uleb128 0x1
+ 1149 0274 50       		.byte	0x50
+ 1150 0275 05       		.uleb128 0x5
+ 1151 0276 03       		.byte	0x3
+ 1152 0277 00000000 		.4byte	Check_OPT
+ 1153 027b 00       		.byte	0
+ 1154 027c 16       		.uleb128 0x16
+ 1155 027d 0E000000 		.4byte	.LVL2
+ 1156 0281 6F0A0000 		.4byte	0xa6f
+ 1157 0285 15       		.uleb128 0x15
+ 1158 0286 14000000 		.4byte	.LVL3
+ 1159 028a 7C0A0000 		.4byte	0xa7c
+ 1160 028e 9C020000 		.4byte	0x29c
+ 1161 0292 14       		.uleb128 0x14
+ 1162 0293 01       		.uleb128 0x1
+ 1163 0294 50       		.byte	0x50
+ 1164 0295 05       		.uleb128 0x5
+ 1165 0296 03       		.byte	0x3
+ 1166 0297 00000000 		.4byte	.LC2
+ 1167 029b 00       		.byte	0
+ 1168 029c 16       		.uleb128 0x16
+ 1169 029d 18000000 		.4byte	.LVL4
+ 1170 02a1 930A0000 		.4byte	0xa93
+ 1171 02a5 00       		.byte	0
+ 1172 02a6 17       		.uleb128 0x17
+ 1173 02a7 53000000 		.4byte	.LASF35
+ 1174 02ab 02       		.byte	0x2
+ 1175 02ac 0102     		.2byte	0x201
+ 1176 02ae 81000000 		.4byte	0x81
+ 1177 02b2 03       		.byte	0x3
+ 1178 02b3 D0020000 		.4byte	0x2d0
+ 1179 02b7 18       		.uleb128 0x18
+ 1180 02b8 F4020000 		.4byte	.LASF37
+ 1181 02bc 02       		.byte	0x2
+ 1182 02bd 0102     		.2byte	0x201
+ 1183 02bf 81000000 		.4byte	0x81
+ 1184 02c3 19       		.uleb128 0x19
+ 1185 02c4 CE040000 		.4byte	.LASF34
+ 1186 02c8 02       		.byte	0x2
+ 1187 02c9 0302     		.2byte	0x203
+ 1188 02cb 81000000 		.4byte	0x81
+ 1189 02cf 00       		.byte	0
+ 1190 02d0 17       		.uleb128 0x17
+ 1191 02d1 00040000 		.4byte	.LASF36
+ 1192 02d5 02       		.byte	0x2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 36
+
+
+ 1193 02d6 E801     		.2byte	0x1e8
+ 1194 02d8 81000000 		.4byte	0x81
+ 1195 02dc 03       		.byte	0x3
+ 1196 02dd FA020000 		.4byte	0x2fa
+ 1197 02e1 18       		.uleb128 0x18
+ 1198 02e2 F4020000 		.4byte	.LASF37
+ 1199 02e6 02       		.byte	0x2
+ 1200 02e7 E801     		.2byte	0x1e8
+ 1201 02e9 81000000 		.4byte	0x81
+ 1202 02ed 19       		.uleb128 0x19
+ 1203 02ee CE040000 		.4byte	.LASF34
+ 1204 02f2 02       		.byte	0x2
+ 1205 02f3 EA01     		.2byte	0x1ea
+ 1206 02f5 81000000 		.4byte	0x81
+ 1207 02f9 00       		.byte	0
+ 1208 02fa 17       		.uleb128 0x17
+ 1209 02fb 5C010000 		.4byte	.LASF38
+ 1210 02ff 02       		.byte	0x2
+ 1211 0300 CF01     		.2byte	0x1cf
+ 1212 0302 81000000 		.4byte	0x81
+ 1213 0306 03       		.byte	0x3
+ 1214 0307 24030000 		.4byte	0x324
+ 1215 030b 18       		.uleb128 0x18
+ 1216 030c F4020000 		.4byte	.LASF37
+ 1217 0310 02       		.byte	0x2
+ 1218 0311 CF01     		.2byte	0x1cf
+ 1219 0313 81000000 		.4byte	0x81
+ 1220 0317 19       		.uleb128 0x19
+ 1221 0318 CE040000 		.4byte	.LASF34
+ 1222 031c 02       		.byte	0x2
+ 1223 031d D101     		.2byte	0x1d1
+ 1224 031f 81000000 		.4byte	0x81
+ 1225 0323 00       		.byte	0
+ 1226 0324 12       		.uleb128 0x12
+ 1227 0325 22030000 		.4byte	.LASF39
+ 1228 0329 01       		.byte	0x1
+ 1229 032a 7E       		.byte	0x7e
+ 1230 032b 00000000 		.4byte	.LFB64
+ 1231 032f D4000000 		.4byte	.LFE64-.LFB64
+ 1232 0333 01       		.uleb128 0x1
+ 1233 0334 9C       		.byte	0x9c
+ 1234 0335 92050000 		.4byte	0x592
+ 1235 0339 1A       		.uleb128 0x1a
+ 1236 033a 63040000 		.4byte	.LASF40
+ 1237 033e 01       		.byte	0x1
+ 1238 033f 80       		.byte	0x80
+ 1239 0340 92050000 		.4byte	0x592
+ 1240 0344 03       		.uleb128 0x3
+ 1241 0345 91       		.byte	0x91
+ 1242 0346 B47F     		.sleb128 -76
+ 1243 0348 1A       		.uleb128 0x1a
+ 1244 0349 71010000 		.4byte	.LASF41
+ 1245 034d 01       		.byte	0x1
+ 1246 034e 81       		.byte	0x81
+ 1247 034f 92050000 		.4byte	0x592
+ 1248 0353 02       		.uleb128 0x2
+ 1249 0354 91       		.byte	0x91
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 37
+
+
+ 1250 0355 48       		.sleb128 -56
+ 1251 0356 1A       		.uleb128 0x1a
+ 1252 0357 F7040000 		.4byte	.LASF42
+ 1253 035b 01       		.byte	0x1
+ 1254 035c 82       		.byte	0x82
+ 1255 035d 92050000 		.4byte	0x592
+ 1256 0361 02       		.uleb128 0x2
+ 1257 0362 91       		.byte	0x91
+ 1258 0363 5C       		.sleb128 -36
+ 1259 0364 1B       		.uleb128 0x1b
+ 1260 0365 4F4E00   		.ascii	"ON\000"
+ 1261 0368 01       		.byte	0x1
+ 1262 0369 83       		.byte	0x83
+ 1263 036a B2050000 		.4byte	0x5b2
+ 1264 036e 03       		.uleb128 0x3
+ 1265 036f 91       		.byte	0x91
+ 1266 0370 AC7F     		.sleb128 -84
+ 1267 0372 1B       		.uleb128 0x1b
+ 1268 0373 4F464600 		.ascii	"OFF\000"
+ 1269 0377 01       		.byte	0x1
+ 1270 0378 84       		.byte	0x84
+ 1271 0379 C7050000 		.4byte	0x5c7
+ 1272 037d 03       		.uleb128 0x3
+ 1273 037e 91       		.byte	0x91
+ 1274 037f B07F     		.sleb128 -80
+ 1275 0381 10       		.uleb128 0x10
+ 1276 0382 1B040000 		.4byte	.LASF43
+ 1277 0386 01       		.byte	0x1
+ 1278 0387 85       		.byte	0x85
+ 1279 0388 DC050000 		.4byte	0x5dc
+ 1280 038c 10       		.uleb128 0x10
+ 1281 038d 15040000 		.4byte	.LASF44
+ 1282 0391 01       		.byte	0x1
+ 1283 0392 86       		.byte	0x86
+ 1284 0393 F1050000 		.4byte	0x5f1
+ 1285 0397 1C       		.uleb128 0x1c
+ 1286 0398 D0020000 		.4byte	0x2d0
+ 1287 039c 52000000 		.4byte	.LBB8
+ 1288 03a0 0C000000 		.4byte	.LBE8-.LBB8
+ 1289 03a4 01       		.byte	0x1
+ 1290 03a5 88       		.byte	0x88
+ 1291 03a6 BF030000 		.4byte	0x3bf
+ 1292 03aa 1D       		.uleb128 0x1d
+ 1293 03ab E1020000 		.4byte	0x2e1
+ 1294 03af 1E       		.uleb128 0x1e
+ 1295 03b0 52000000 		.4byte	.LBB9
+ 1296 03b4 0C000000 		.4byte	.LBE9-.LBB9
+ 1297 03b8 1F       		.uleb128 0x1f
+ 1298 03b9 ED020000 		.4byte	0x2ed
+ 1299 03bd 00       		.byte	0
+ 1300 03be 00       		.byte	0
+ 1301 03bf 20       		.uleb128 0x20
+ 1302 03c0 FA020000 		.4byte	0x2fa
+ 1303 03c4 5E000000 		.4byte	.LBB10
+ 1304 03c8 00000000 		.4byte	.Ldebug_ranges0+0
+ 1305 03cc 01       		.byte	0x1
+ 1306 03cd 88       		.byte	0x88
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 38
+
+
+ 1307 03ce EB030000 		.4byte	0x3eb
+ 1308 03d2 21       		.uleb128 0x21
+ 1309 03d3 0B030000 		.4byte	0x30b
+ 1310 03d7 00000000 		.4byte	.LLST0
+ 1311 03db 22       		.uleb128 0x22
+ 1312 03dc 00000000 		.4byte	.Ldebug_ranges0+0
+ 1313 03e0 23       		.uleb128 0x23
+ 1314 03e1 17030000 		.4byte	0x317
+ 1315 03e5 13000000 		.4byte	.LLST1
+ 1316 03e9 00       		.byte	0
+ 1317 03ea 00       		.byte	0
+ 1318 03eb 20       		.uleb128 0x20
+ 1319 03ec A6020000 		.4byte	0x2a6
+ 1320 03f0 62000000 		.4byte	.LBB15
+ 1321 03f4 28000000 		.4byte	.Ldebug_ranges0+0x28
+ 1322 03f8 01       		.byte	0x1
+ 1323 03f9 88       		.byte	0x88
+ 1324 03fa 17040000 		.4byte	0x417
+ 1325 03fe 21       		.uleb128 0x21
+ 1326 03ff B7020000 		.4byte	0x2b7
+ 1327 0403 38000000 		.4byte	.LLST2
+ 1328 0407 22       		.uleb128 0x22
+ 1329 0408 28000000 		.4byte	.Ldebug_ranges0+0x28
+ 1330 040c 23       		.uleb128 0x23
+ 1331 040d C3020000 		.4byte	0x2c3
+ 1332 0411 4B000000 		.4byte	.LLST3
+ 1333 0415 00       		.byte	0
+ 1334 0416 00       		.byte	0
+ 1335 0417 15       		.uleb128 0x15
+ 1336 0418 10000000 		.4byte	.LVL5
+ 1337 041c A00A0000 		.4byte	0xaa0
+ 1338 0420 37040000 		.4byte	0x437
+ 1339 0424 14       		.uleb128 0x14
+ 1340 0425 01       		.uleb128 0x1
+ 1341 0426 52       		.byte	0x52
+ 1342 0427 01       		.uleb128 0x1
+ 1343 0428 3D       		.byte	0x3d
+ 1344 0429 14       		.uleb128 0x14
+ 1345 042a 01       		.uleb128 0x1
+ 1346 042b 51       		.byte	0x51
+ 1347 042c 02       		.uleb128 0x2
+ 1348 042d 74       		.byte	0x74
+ 1349 042e 00       		.sleb128 0
+ 1350 042f 14       		.uleb128 0x14
+ 1351 0430 01       		.uleb128 0x1
+ 1352 0431 50       		.byte	0x50
+ 1353 0432 03       		.uleb128 0x3
+ 1354 0433 91       		.byte	0x91
+ 1355 0434 B47F     		.sleb128 -76
+ 1356 0436 00       		.byte	0
+ 1357 0437 15       		.uleb128 0x15
+ 1358 0438 1C000000 		.4byte	.LVL6
+ 1359 043c C40A0000 		.4byte	0xac4
+ 1360 0440 55040000 		.4byte	0x455
+ 1361 0444 14       		.uleb128 0x14
+ 1362 0445 01       		.uleb128 0x1
+ 1363 0446 52       		.byte	0x52
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 39
+
+
+ 1364 0447 01       		.uleb128 0x1
+ 1365 0448 37       		.byte	0x37
+ 1366 0449 14       		.uleb128 0x14
+ 1367 044a 01       		.uleb128 0x1
+ 1368 044b 51       		.byte	0x51
+ 1369 044c 01       		.uleb128 0x1
+ 1370 044d 30       		.byte	0x30
+ 1371 044e 14       		.uleb128 0x14
+ 1372 044f 01       		.uleb128 0x1
+ 1373 0450 50       		.byte	0x50
+ 1374 0451 02       		.uleb128 0x2
+ 1375 0452 91       		.byte	0x91
+ 1376 0453 41       		.sleb128 -63
+ 1377 0454 00       		.byte	0
+ 1378 0455 15       		.uleb128 0x15
+ 1379 0456 2A000000 		.4byte	.LVL7
+ 1380 045a A00A0000 		.4byte	0xaa0
+ 1381 045e 75040000 		.4byte	0x475
+ 1382 0462 14       		.uleb128 0x14
+ 1383 0463 01       		.uleb128 0x1
+ 1384 0464 52       		.byte	0x52
+ 1385 0465 02       		.uleb128 0x2
+ 1386 0466 75       		.byte	0x75
+ 1387 0467 00       		.sleb128 0
+ 1388 0468 14       		.uleb128 0x14
+ 1389 0469 01       		.uleb128 0x1
+ 1390 046a 51       		.byte	0x51
+ 1391 046b 02       		.uleb128 0x2
+ 1392 046c 74       		.byte	0x74
+ 1393 046d 14       		.sleb128 20
+ 1394 046e 14       		.uleb128 0x14
+ 1395 046f 01       		.uleb128 0x1
+ 1396 0470 50       		.byte	0x50
+ 1397 0471 02       		.uleb128 0x2
+ 1398 0472 91       		.byte	0x91
+ 1399 0473 48       		.sleb128 -56
+ 1400 0474 00       		.byte	0
+ 1401 0475 15       		.uleb128 0x15
+ 1402 0476 36000000 		.4byte	.LVL8
+ 1403 047a C40A0000 		.4byte	0xac4
+ 1404 047e 94040000 		.4byte	0x494
+ 1405 0482 14       		.uleb128 0x14
+ 1406 0483 01       		.uleb128 0x1
+ 1407 0484 52       		.byte	0x52
+ 1408 0485 02       		.uleb128 0x2
+ 1409 0486 75       		.byte	0x75
+ 1410 0487 00       		.sleb128 0
+ 1411 0488 14       		.uleb128 0x14
+ 1412 0489 01       		.uleb128 0x1
+ 1413 048a 51       		.byte	0x51
+ 1414 048b 01       		.uleb128 0x1
+ 1415 048c 30       		.byte	0x30
+ 1416 048d 14       		.uleb128 0x14
+ 1417 048e 01       		.uleb128 0x1
+ 1418 048f 50       		.byte	0x50
+ 1419 0490 02       		.uleb128 0x2
+ 1420 0491 91       		.byte	0x91
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 40
+
+
+ 1421 0492 52       		.sleb128 -46
+ 1422 0493 00       		.byte	0
+ 1423 0494 15       		.uleb128 0x15
+ 1424 0495 40000000 		.4byte	.LVL9
+ 1425 0499 A00A0000 		.4byte	0xaa0
+ 1426 049d B7040000 		.4byte	0x4b7
+ 1427 04a1 14       		.uleb128 0x14
+ 1428 04a2 01       		.uleb128 0x1
+ 1429 04a3 52       		.byte	0x52
+ 1430 04a4 01       		.uleb128 0x1
+ 1431 04a5 33       		.byte	0x33
+ 1432 04a6 14       		.uleb128 0x14
+ 1433 04a7 01       		.uleb128 0x1
+ 1434 04a8 51       		.byte	0x51
+ 1435 04a9 05       		.uleb128 0x5
+ 1436 04aa 03       		.byte	0x3
+ 1437 04ab 27000000 		.4byte	.LC7
+ 1438 04af 14       		.uleb128 0x14
+ 1439 04b0 01       		.uleb128 0x1
+ 1440 04b1 50       		.byte	0x50
+ 1441 04b2 03       		.uleb128 0x3
+ 1442 04b3 91       		.byte	0x91
+ 1443 04b4 AC7F     		.sleb128 -84
+ 1444 04b6 00       		.byte	0
+ 1445 04b7 16       		.uleb128 0x16
+ 1446 04b8 48000000 		.4byte	.LVL10
+ 1447 04bc E10A0000 		.4byte	0xae1
+ 1448 04c0 15       		.uleb128 0x15
+ 1449 04c1 80000000 		.4byte	.LVL16
+ 1450 04c5 ED0A0000 		.4byte	0xaed
+ 1451 04c9 E4040000 		.4byte	0x4e4
+ 1452 04cd 14       		.uleb128 0x14
+ 1453 04ce 01       		.uleb128 0x1
+ 1454 04cf 51       		.byte	0x51
+ 1455 04d0 05       		.uleb128 0x5
+ 1456 04d1 03       		.byte	0x3
+ 1457 04d2 09000000 		.4byte	.LC10
+ 1458 04d6 14       		.uleb128 0x14
+ 1459 04d7 01       		.uleb128 0x1
+ 1460 04d8 50       		.byte	0x50
+ 1461 04d9 02       		.uleb128 0x2
+ 1462 04da 91       		.byte	0x91
+ 1463 04db 5C       		.sleb128 -36
+ 1464 04dc 14       		.uleb128 0x14
+ 1465 04dd 02       		.uleb128 0x2
+ 1466 04de 7D       		.byte	0x7d
+ 1467 04df 00       		.sleb128 0
+ 1468 04e0 02       		.uleb128 0x2
+ 1469 04e1 74       		.byte	0x74
+ 1470 04e2 00       		.sleb128 0
+ 1471 04e3 00       		.byte	0
+ 1472 04e4 15       		.uleb128 0x15
+ 1473 04e5 88000000 		.4byte	.LVL17
+ 1474 04e9 080B0000 		.4byte	0xb08
+ 1475 04ed 00050000 		.4byte	0x500
+ 1476 04f1 14       		.uleb128 0x14
+ 1477 04f2 01       		.uleb128 0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 41
+
+
+ 1478 04f3 51       		.byte	0x51
+ 1479 04f4 03       		.uleb128 0x3
+ 1480 04f5 91       		.byte	0x91
+ 1481 04f6 AC7F     		.sleb128 -84
+ 1482 04f8 14       		.uleb128 0x14
+ 1483 04f9 01       		.uleb128 0x1
+ 1484 04fa 50       		.byte	0x50
+ 1485 04fb 03       		.uleb128 0x3
+ 1486 04fc 91       		.byte	0x91
+ 1487 04fd B47F     		.sleb128 -76
+ 1488 04ff 00       		.byte	0
+ 1489 0500 15       		.uleb128 0x15
+ 1490 0501 90000000 		.4byte	.LVL18
+ 1491 0505 080B0000 		.4byte	0xb08
+ 1492 0509 1B050000 		.4byte	0x51b
+ 1493 050d 14       		.uleb128 0x14
+ 1494 050e 01       		.uleb128 0x1
+ 1495 050f 51       		.byte	0x51
+ 1496 0510 03       		.uleb128 0x3
+ 1497 0511 91       		.byte	0x91
+ 1498 0512 B07F     		.sleb128 -80
+ 1499 0514 14       		.uleb128 0x14
+ 1500 0515 01       		.uleb128 0x1
+ 1501 0516 50       		.byte	0x50
+ 1502 0517 02       		.uleb128 0x2
+ 1503 0518 91       		.byte	0x91
+ 1504 0519 48       		.sleb128 -56
+ 1505 051a 00       		.byte	0
+ 1506 051b 15       		.uleb128 0x15
+ 1507 051c 96000000 		.4byte	.LVL19
+ 1508 0520 7C0A0000 		.4byte	0xa7c
+ 1509 0524 2F050000 		.4byte	0x52f
+ 1510 0528 14       		.uleb128 0x14
+ 1511 0529 01       		.uleb128 0x1
+ 1512 052a 50       		.byte	0x50
+ 1513 052b 02       		.uleb128 0x2
+ 1514 052c 91       		.byte	0x91
+ 1515 052d 5C       		.sleb128 -36
+ 1516 052e 00       		.byte	0
+ 1517 052f 15       		.uleb128 0x15
+ 1518 0530 9C000000 		.4byte	.LVL20
+ 1519 0534 7C0A0000 		.4byte	0xa7c
+ 1520 0538 46050000 		.4byte	0x546
+ 1521 053c 14       		.uleb128 0x14
+ 1522 053d 01       		.uleb128 0x1
+ 1523 053e 50       		.byte	0x50
+ 1524 053f 05       		.uleb128 0x5
+ 1525 0540 03       		.byte	0x3
+ 1526 0541 00000000 		.4byte	OPT_Out_String
+ 1527 0545 00       		.byte	0
+ 1528 0546 15       		.uleb128 0x15
+ 1529 0547 A2000000 		.4byte	.LVL21
+ 1530 054b 7C0A0000 		.4byte	0xa7c
+ 1531 054f 5B050000 		.4byte	0x55b
+ 1532 0553 14       		.uleb128 0x14
+ 1533 0554 01       		.uleb128 0x1
+ 1534 0555 50       		.byte	0x50
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 42
+
+
+ 1535 0556 03       		.uleb128 0x3
+ 1536 0557 91       		.byte	0x91
+ 1537 0558 B47F     		.sleb128 -76
+ 1538 055a 00       		.byte	0
+ 1539 055b 15       		.uleb128 0x15
+ 1540 055c A8000000 		.4byte	.LVL22
+ 1541 0560 7C0A0000 		.4byte	0xa7c
+ 1542 0564 6F050000 		.4byte	0x56f
+ 1543 0568 14       		.uleb128 0x14
+ 1544 0569 01       		.uleb128 0x1
+ 1545 056a 50       		.byte	0x50
+ 1546 056b 02       		.uleb128 0x2
+ 1547 056c 91       		.byte	0x91
+ 1548 056d 48       		.sleb128 -56
+ 1549 056e 00       		.byte	0
+ 1550 056f 16       		.uleb128 0x16
+ 1551 0570 AC000000 		.4byte	.LVL23
+ 1552 0574 930A0000 		.4byte	0xa93
+ 1553 0578 13       		.uleb128 0x13
+ 1554 0579 B4000000 		.4byte	.LVL24
+ 1555 057d 590A0000 		.4byte	0xa59
+ 1556 0581 14       		.uleb128 0x14
+ 1557 0582 01       		.uleb128 0x1
+ 1558 0583 51       		.byte	0x51
+ 1559 0584 02       		.uleb128 0x2
+ 1560 0585 08       		.byte	0x8
+ 1561 0586 C8       		.byte	0xc8
+ 1562 0587 14       		.uleb128 0x14
+ 1563 0588 01       		.uleb128 0x1
+ 1564 0589 50       		.byte	0x50
+ 1565 058a 05       		.uleb128 0x5
+ 1566 058b 03       		.byte	0x3
+ 1567 058c 00000000 		.4byte	Main_Display_Print
+ 1568 0590 00       		.byte	0
+ 1569 0591 00       		.byte	0
+ 1570 0592 0A       		.uleb128 0xa
+ 1571 0593 A5000000 		.4byte	0xa5
+ 1572 0597 A2050000 		.4byte	0x5a2
+ 1573 059b 0B       		.uleb128 0xb
+ 1574 059c BD000000 		.4byte	0xbd
+ 1575 05a0 13       		.byte	0x13
+ 1576 05a1 00       		.byte	0
+ 1577 05a2 0A       		.uleb128 0xa
+ 1578 05a3 A5000000 		.4byte	0xa5
+ 1579 05a7 B2050000 		.4byte	0x5b2
+ 1580 05ab 0B       		.uleb128 0xb
+ 1581 05ac BD000000 		.4byte	0xbd
+ 1582 05b0 02       		.byte	0x2
+ 1583 05b1 00       		.byte	0
+ 1584 05b2 09       		.uleb128 0x9
+ 1585 05b3 A2050000 		.4byte	0x5a2
+ 1586 05b7 0A       		.uleb128 0xa
+ 1587 05b8 A5000000 		.4byte	0xa5
+ 1588 05bc C7050000 		.4byte	0x5c7
+ 1589 05c0 0B       		.uleb128 0xb
+ 1590 05c1 BD000000 		.4byte	0xbd
+ 1591 05c5 03       		.byte	0x3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 43
+
+
+ 1592 05c6 00       		.byte	0
+ 1593 05c7 09       		.uleb128 0x9
+ 1594 05c8 B7050000 		.4byte	0x5b7
+ 1595 05cc 0A       		.uleb128 0xa
+ 1596 05cd A5000000 		.4byte	0xa5
+ 1597 05d1 DC050000 		.4byte	0x5dc
+ 1598 05d5 0B       		.uleb128 0xb
+ 1599 05d6 BD000000 		.4byte	0xbd
+ 1600 05da 08       		.byte	0x8
+ 1601 05db 00       		.byte	0
+ 1602 05dc 09       		.uleb128 0x9
+ 1603 05dd CC050000 		.4byte	0x5cc
+ 1604 05e1 0A       		.uleb128 0xa
+ 1605 05e2 A5000000 		.4byte	0xa5
+ 1606 05e6 F1050000 		.4byte	0x5f1
+ 1607 05ea 0B       		.uleb128 0xb
+ 1608 05eb BD000000 		.4byte	0xbd
+ 1609 05ef 05       		.byte	0x5
+ 1610 05f0 00       		.byte	0
+ 1611 05f1 09       		.uleb128 0x9
+ 1612 05f2 E1050000 		.4byte	0x5e1
+ 1613 05f6 24       		.uleb128 0x24
+ 1614 05f7 BA030000 		.4byte	.LASF45
+ 1615 05fb 01       		.byte	0x1
+ 1616 05fc 93       		.byte	0x93
+ 1617 05fd 00000000 		.4byte	.LFB65
+ 1618 0601 80000000 		.4byte	.LFE65-.LFB65
+ 1619 0605 01       		.uleb128 0x1
+ 1620 0606 9C       		.byte	0x9c
+ 1621 0607 4B060000 		.4byte	0x64b
+ 1622 060b 1A       		.uleb128 0x1a
+ 1623 060c 16020000 		.4byte	.LASF46
+ 1624 0610 01       		.byte	0x1
+ 1625 0611 95       		.byte	0x95
+ 1626 0612 AC000000 		.4byte	0xac
+ 1627 0616 02       		.uleb128 0x2
+ 1628 0617 91       		.byte	0x91
+ 1629 0618 6E       		.sleb128 -18
+ 1630 0619 1B       		.uleb128 0x1b
+ 1631 061a 50574D00 		.ascii	"PWM\000"
+ 1632 061e 01       		.byte	0x1
+ 1633 061f 96       		.byte	0x96
+ 1634 0620 AC000000 		.4byte	0xac
+ 1635 0624 02       		.uleb128 0x2
+ 1636 0625 91       		.byte	0x91
+ 1637 0626 6F       		.sleb128 -17
+ 1638 0627 16       		.uleb128 0x16
+ 1639 0628 5E000000 		.4byte	.LVL31
+ 1640 062c 220B0000 		.4byte	0xb22
+ 1641 0630 13       		.uleb128 0x13
+ 1642 0631 68000000 		.4byte	.LVL32
+ 1643 0635 590A0000 		.4byte	0xa59
+ 1644 0639 14       		.uleb128 0x14
+ 1645 063a 01       		.uleb128 0x1
+ 1646 063b 51       		.byte	0x51
+ 1647 063c 03       		.uleb128 0x3
+ 1648 063d 0A       		.byte	0xa
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 44
+
+
+ 1649 063e D007     		.2byte	0x7d0
+ 1650 0640 14       		.uleb128 0x14
+ 1651 0641 01       		.uleb128 0x1
+ 1652 0642 50       		.byte	0x50
+ 1653 0643 05       		.uleb128 0x5
+ 1654 0644 03       		.byte	0x3
+ 1655 0645 00000000 		.4byte	Brightles_PID_Controll
+ 1656 0649 00       		.byte	0
+ 1657 064a 00       		.byte	0
+ 1658 064b 25       		.uleb128 0x25
+ 1659 064c E5010000 		.4byte	0x1e5
+ 1660 0650 00000000 		.4byte	.LFB60
+ 1661 0654 64000000 		.4byte	.LFE60-.LFB60
+ 1662 0658 01       		.uleb128 0x1
+ 1663 0659 9C       		.byte	0x9c
+ 1664 065a 1F070000 		.4byte	0x71f
+ 1665 065e 26       		.uleb128 0x26
+ 1666 065f F1010000 		.4byte	0x1f1
+ 1667 0663 02       		.uleb128 0x2
+ 1668 0664 91       		.byte	0x91
+ 1669 0665 6C       		.sleb128 -20
+ 1670 0666 26       		.uleb128 0x26
+ 1671 0667 FC010000 		.4byte	0x1fc
+ 1672 066b 02       		.uleb128 0x2
+ 1673 066c 91       		.byte	0x91
+ 1674 066d 6E       		.sleb128 -18
+ 1675 066e 23       		.uleb128 0x23
+ 1676 066f 07020000 		.4byte	0x207
+ 1677 0673 69000000 		.4byte	.LLST4
+ 1678 0677 27       		.uleb128 0x27
+ 1679 0678 3C000000 		.4byte	.LBB29
+ 1680 067c 10000000 		.4byte	.LBE29-.LBB29
+ 1681 0680 CB060000 		.4byte	0x6cb
+ 1682 0684 1F       		.uleb128 0x1f
+ 1683 0685 F1010000 		.4byte	0x1f1
+ 1684 0689 1F       		.uleb128 0x1f
+ 1685 068a FC010000 		.4byte	0x1fc
+ 1686 068e 1F       		.uleb128 0x1f
+ 1687 068f 07020000 		.4byte	0x207
+ 1688 0693 15       		.uleb128 0x15
+ 1689 0694 42000000 		.4byte	.LVL40
+ 1690 0698 7C0A0000 		.4byte	0xa7c
+ 1691 069c AA060000 		.4byte	0x6aa
+ 1692 06a0 14       		.uleb128 0x14
+ 1693 06a1 01       		.uleb128 0x1
+ 1694 06a2 50       		.byte	0x50
+ 1695 06a3 05       		.uleb128 0x5
+ 1696 06a4 03       		.byte	0x3
+ 1697 06a5 36000000 		.4byte	.LC19
+ 1698 06a9 00       		.byte	0
+ 1699 06aa 15       		.uleb128 0x15
+ 1700 06ab 48000000 		.4byte	.LVL41
+ 1701 06af 7C0A0000 		.4byte	0xa7c
+ 1702 06b3 C1060000 		.4byte	0x6c1
+ 1703 06b7 14       		.uleb128 0x14
+ 1704 06b8 01       		.uleb128 0x1
+ 1705 06b9 50       		.byte	0x50
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 45
+
+
+ 1706 06ba 05       		.uleb128 0x5
+ 1707 06bb 03       		.byte	0x3
+ 1708 06bc 3F000000 		.4byte	.LC21
+ 1709 06c0 00       		.byte	0
+ 1710 06c1 16       		.uleb128 0x16
+ 1711 06c2 4C000000 		.4byte	.LVL42
+ 1712 06c6 930A0000 		.4byte	0xa93
+ 1713 06ca 00       		.byte	0
+ 1714 06cb 15       		.uleb128 0x15
+ 1715 06cc 10000000 		.4byte	.LVL33
+ 1716 06d0 330B0000 		.4byte	0xb33
+ 1717 06d4 EB060000 		.4byte	0x6eb
+ 1718 06d8 14       		.uleb128 0x14
+ 1719 06d9 01       		.uleb128 0x1
+ 1720 06da 52       		.byte	0x52
+ 1721 06db 02       		.uleb128 0x2
+ 1722 06dc 74       		.byte	0x74
+ 1723 06dd 00       		.sleb128 0
+ 1724 06de 14       		.uleb128 0x14
+ 1725 06df 01       		.uleb128 0x1
+ 1726 06e0 51       		.byte	0x51
+ 1727 06e1 02       		.uleb128 0x2
+ 1728 06e2 08       		.byte	0x8
+ 1729 06e3 7F       		.byte	0x7f
+ 1730 06e4 14       		.uleb128 0x14
+ 1731 06e5 01       		.uleb128 0x1
+ 1732 06e6 50       		.byte	0x50
+ 1733 06e7 02       		.uleb128 0x2
+ 1734 06e8 08       		.byte	0x8
+ 1735 06e9 45       		.byte	0x45
+ 1736 06ea 00       		.byte	0
+ 1737 06eb 15       		.uleb128 0x15
+ 1738 06ec 1A000000 		.4byte	.LVL35
+ 1739 06f0 7C0A0000 		.4byte	0xa7c
+ 1740 06f4 02070000 		.4byte	0x702
+ 1741 06f8 14       		.uleb128 0x14
+ 1742 06f9 01       		.uleb128 0x1
+ 1743 06fa 50       		.byte	0x50
+ 1744 06fb 05       		.uleb128 0x5
+ 1745 06fc 03       		.byte	0x3
+ 1746 06fd 2A000000 		.4byte	.LC17
+ 1747 0701 00       		.byte	0
+ 1748 0702 13       		.uleb128 0x13
+ 1749 0703 28000000 		.4byte	.LVL38
+ 1750 0707 330B0000 		.4byte	0xb33
+ 1751 070b 14       		.uleb128 0x14
+ 1752 070c 01       		.uleb128 0x1
+ 1753 070d 52       		.byte	0x52
+ 1754 070e 02       		.uleb128 0x2
+ 1755 070f 75       		.byte	0x75
+ 1756 0710 00       		.sleb128 0
+ 1757 0711 14       		.uleb128 0x14
+ 1758 0712 01       		.uleb128 0x1
+ 1759 0713 51       		.byte	0x51
+ 1760 0714 02       		.uleb128 0x2
+ 1761 0715 08       		.byte	0x8
+ 1762 0716 7E       		.byte	0x7e
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 46
+
+
+ 1763 0717 14       		.uleb128 0x14
+ 1764 0718 01       		.uleb128 0x1
+ 1765 0719 50       		.byte	0x50
+ 1766 071a 02       		.uleb128 0x2
+ 1767 071b 08       		.byte	0x8
+ 1768 071c 45       		.byte	0x45
+ 1769 071d 00       		.byte	0
+ 1770 071e 00       		.byte	0
+ 1771 071f 25       		.uleb128 0x25
+ 1772 0720 13020000 		.4byte	0x213
+ 1773 0724 00000000 		.4byte	.LFB63
+ 1774 0728 6C000000 		.4byte	.LFE63-.LFB63
+ 1775 072c 01       		.uleb128 0x1
+ 1776 072d 9C       		.byte	0x9c
+ 1777 072e C1070000 		.4byte	0x7c1
+ 1778 0732 16       		.uleb128 0x16
+ 1779 0733 0E000000 		.4byte	.LVL43
+ 1780 0737 580B0000 		.4byte	0xb58
+ 1781 073b 15       		.uleb128 0x15
+ 1782 073c 1C000000 		.4byte	.LVL44
+ 1783 0740 590A0000 		.4byte	0xa59
+ 1784 0744 59070000 		.4byte	0x759
+ 1785 0748 14       		.uleb128 0x14
+ 1786 0749 01       		.uleb128 0x1
+ 1787 074a 51       		.byte	0x51
+ 1788 074b 03       		.uleb128 0x3
+ 1789 074c 0A       		.byte	0xa
+ 1790 074d E803     		.2byte	0x3e8
+ 1791 074f 14       		.uleb128 0x14
+ 1792 0750 01       		.uleb128 0x1
+ 1793 0751 50       		.byte	0x50
+ 1794 0752 05       		.uleb128 0x5
+ 1795 0753 03       		.byte	0x3
+ 1796 0754 00000000 		.4byte	OPT_Get_Result
+ 1797 0758 00       		.byte	0
+ 1798 0759 15       		.uleb128 0x15
+ 1799 075a 28000000 		.4byte	.LVL45
+ 1800 075e 590A0000 		.4byte	0xa59
+ 1801 0762 6E070000 		.4byte	0x76e
+ 1802 0766 14       		.uleb128 0x14
+ 1803 0767 01       		.uleb128 0x1
+ 1804 0768 51       		.byte	0x51
+ 1805 0769 03       		.uleb128 0x3
+ 1806 076a 0A       		.byte	0xa
+ 1807 076b 2C01     		.2byte	0x12c
+ 1808 076d 00       		.byte	0
+ 1809 076e 16       		.uleb128 0x16
+ 1810 076f 36000000 		.4byte	.LVL46
+ 1811 0773 690B0000 		.4byte	0xb69
+ 1812 0777 15       		.uleb128 0x15
+ 1813 0778 42000000 		.4byte	.LVL47
+ 1814 077c 740B0000 		.4byte	0xb74
+ 1815 0780 8E070000 		.4byte	0x78e
+ 1816 0784 14       		.uleb128 0x14
+ 1817 0785 01       		.uleb128 0x1
+ 1818 0786 50       		.byte	0x50
+ 1819 0787 05       		.uleb128 0x5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 47
+
+
+ 1820 0788 03       		.byte	0x3
+ 1821 0789 04000000 		.4byte	GlobalStruct+4
+ 1822 078d 00       		.byte	0
+ 1823 078e 15       		.uleb128 0x15
+ 1824 078f 4C000000 		.4byte	.LVL48
+ 1825 0793 590A0000 		.4byte	0xa59
+ 1826 0797 A9070000 		.4byte	0x7a9
+ 1827 079b 14       		.uleb128 0x14
+ 1828 079c 01       		.uleb128 0x1
+ 1829 079d 51       		.byte	0x51
+ 1830 079e 03       		.uleb128 0x3
+ 1831 079f 0A       		.byte	0xa
+ 1832 07a0 D007     		.2byte	0x7d0
+ 1833 07a2 14       		.uleb128 0x14
+ 1834 07a3 01       		.uleb128 0x1
+ 1835 07a4 50       		.byte	0x50
+ 1836 07a5 02       		.uleb128 0x2
+ 1837 07a6 75       		.byte	0x75
+ 1838 07a7 00       		.sleb128 0
+ 1839 07a8 00       		.byte	0
+ 1840 07a9 13       		.uleb128 0x13
+ 1841 07aa 5C000000 		.4byte	.LVL49
+ 1842 07ae 590A0000 		.4byte	0xa59
+ 1843 07b2 14       		.uleb128 0x14
+ 1844 07b3 01       		.uleb128 0x1
+ 1845 07b4 51       		.byte	0x51
+ 1846 07b5 03       		.uleb128 0x3
+ 1847 07b6 0A       		.byte	0xa
+ 1848 07b7 2003     		.2byte	0x320
+ 1849 07b9 14       		.uleb128 0x14
+ 1850 07ba 01       		.uleb128 0x1
+ 1851 07bb 50       		.byte	0x50
+ 1852 07bc 02       		.uleb128 0x2
+ 1853 07bd 75       		.byte	0x75
+ 1854 07be 00       		.sleb128 0
+ 1855 07bf 00       		.byte	0
+ 1856 07c0 00       		.byte	0
+ 1857 07c1 12       		.uleb128 0x12
+ 1858 07c2 E8010000 		.4byte	.LASF47
+ 1859 07c6 01       		.byte	0x1
+ 1860 07c7 28       		.byte	0x28
+ 1861 07c8 00000000 		.4byte	.LFB59
+ 1862 07cc 10000000 		.4byte	.LFE59-.LFB59
+ 1863 07d0 01       		.uleb128 0x1
+ 1864 07d1 9C       		.byte	0x9c
+ 1865 07d2 E9070000 		.4byte	0x7e9
+ 1866 07d6 16       		.uleb128 0x16
+ 1867 07d7 06000000 		.4byte	.LVL50
+ 1868 07db 8F0B0000 		.4byte	0xb8f
+ 1869 07df 16       		.uleb128 0x16
+ 1870 07e0 0E000000 		.4byte	.LVL51
+ 1871 07e4 9A0B0000 		.4byte	0xb9a
+ 1872 07e8 00       		.byte	0
+ 1873 07e9 12       		.uleb128 0x12
+ 1874 07ea 63040000 		.4byte	.LASF40
+ 1875 07ee 01       		.byte	0x1
+ 1876 07ef A5       		.byte	0xa5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 48
+
+
+ 1877 07f0 00000000 		.4byte	.LFB66
+ 1878 07f4 58000000 		.4byte	.LFE66-.LFB66
+ 1879 07f8 01       		.uleb128 0x1
+ 1880 07f9 9C       		.byte	0x9c
+ 1881 07fa 68080000 		.4byte	0x868
+ 1882 07fe 1A       		.uleb128 0x1a
+ 1883 07ff 4C000000 		.4byte	.LASF48
+ 1884 0803 01       		.byte	0x1
+ 1885 0804 A7       		.byte	0xa7
+ 1886 0805 68080000 		.4byte	0x868
+ 1887 0809 02       		.uleb128 0x2
+ 1888 080a 91       		.byte	0x91
+ 1889 080b 64       		.sleb128 -28
+ 1890 080c 28       		.uleb128 0x28
+ 1891 080d 496E6300 		.ascii	"Inc\000"
+ 1892 0811 01       		.byte	0x1
+ 1893 0812 A8       		.byte	0xa8
+ 1894 0813 76000000 		.4byte	0x76
+ 1895 0817 92000000 		.4byte	.LLST5
+ 1896 081b 15       		.uleb128 0x15
+ 1897 081c 16000000 		.4byte	.LVL53
+ 1898 0820 A10B0000 		.4byte	0xba1
+ 1899 0824 2F080000 		.4byte	0x82f
+ 1900 0828 14       		.uleb128 0x14
+ 1901 0829 01       		.uleb128 0x1
+ 1902 082a 50       		.byte	0x50
+ 1903 082b 02       		.uleb128 0x2
+ 1904 082c 74       		.byte	0x74
+ 1905 082d 00       		.sleb128 0
+ 1906 082e 00       		.byte	0
+ 1907 082f 16       		.uleb128 0x16
+ 1908 0830 1C000000 		.4byte	.LVL55
+ 1909 0834 BE0B0000 		.4byte	0xbbe
+ 1910 0838 16       		.uleb128 0x16
+ 1911 0839 30000000 		.4byte	.LVL60
+ 1912 083d BE0B0000 		.4byte	0xbbe
+ 1913 0841 16       		.uleb128 0x16
+ 1914 0842 38000000 		.4byte	.LVL61
+ 1915 0846 CA0B0000 		.4byte	0xbca
+ 1916 084a 15       		.uleb128 0x15
+ 1917 084b 46000000 		.4byte	.LVL64
+ 1918 084f 7C0A0000 		.4byte	0xa7c
+ 1919 0853 5E080000 		.4byte	0x85e
+ 1920 0857 14       		.uleb128 0x14
+ 1921 0858 01       		.uleb128 0x1
+ 1922 0859 50       		.byte	0x50
+ 1923 085a 02       		.uleb128 0x2
+ 1924 085b 74       		.byte	0x74
+ 1925 085c 00       		.sleb128 0
+ 1926 085d 00       		.byte	0
+ 1927 085e 16       		.uleb128 0x16
+ 1928 085f 4A000000 		.4byte	.LVL65
+ 1929 0863 930A0000 		.4byte	0xa93
+ 1930 0867 00       		.byte	0
+ 1931 0868 0A       		.uleb128 0xa
+ 1932 0869 A5000000 		.4byte	0xa5
+ 1933 086d 78080000 		.4byte	0x878
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 49
+
+
+ 1934 0871 0B       		.uleb128 0xb
+ 1935 0872 BD000000 		.4byte	0xbd
+ 1936 0876 09       		.byte	0x9
+ 1937 0877 00       		.byte	0
+ 1938 0878 29       		.uleb128 0x29
+ 1939 0879 0E010000 		.4byte	.LASF91
+ 1940 087d 01       		.byte	0x1
+ 1941 087e BA       		.byte	0xba
+ 1942 087f 5D000000 		.4byte	0x5d
+ 1943 0883 00000000 		.4byte	.LFB67
+ 1944 0887 68000000 		.4byte	.LFE67-.LFB67
+ 1945 088b 01       		.uleb128 0x1
+ 1946 088c 9C       		.byte	0x9c
+ 1947 088d 67090000 		.4byte	0x967
+ 1948 0891 16       		.uleb128 0x16
+ 1949 0892 08000000 		.4byte	.LVL66
+ 1950 0896 C1070000 		.4byte	0x7c1
+ 1951 089a 16       		.uleb128 0x16
+ 1952 089b 0C000000 		.4byte	.LVL67
+ 1953 089f D60B0000 		.4byte	0xbd6
+ 1954 08a3 16       		.uleb128 0x16
+ 1955 08a4 10000000 		.4byte	.LVL68
+ 1956 08a8 DE0B0000 		.4byte	0xbde
+ 1957 08ac 16       		.uleb128 0x16
+ 1958 08ad 14000000 		.4byte	.LVL69
+ 1959 08b1 E50B0000 		.4byte	0xbe5
+ 1960 08b5 16       		.uleb128 0x16
+ 1961 08b6 18000000 		.4byte	.LVL70
+ 1962 08ba EC0B0000 		.4byte	0xbec
+ 1963 08be 16       		.uleb128 0x16
+ 1964 08bf 1C000000 		.4byte	.LVL71
+ 1965 08c3 F30B0000 		.4byte	0xbf3
+ 1966 08c7 15       		.uleb128 0x15
+ 1967 08c8 26000000 		.4byte	.LVL72
+ 1968 08cc FB0B0000 		.4byte	0xbfb
+ 1969 08d0 E1080000 		.4byte	0x8e1
+ 1970 08d4 14       		.uleb128 0x14
+ 1971 08d5 01       		.uleb128 0x1
+ 1972 08d6 51       		.byte	0x51
+ 1973 08d7 03       		.uleb128 0x3
+ 1974 08d8 0A       		.byte	0xa
+ 1975 08d9 E803     		.2byte	0x3e8
+ 1976 08db 14       		.uleb128 0x14
+ 1977 08dc 01       		.uleb128 0x1
+ 1978 08dd 50       		.byte	0x50
+ 1979 08de 01       		.uleb128 0x1
+ 1980 08df 31       		.byte	0x31
+ 1981 08e0 00       		.byte	0
+ 1982 08e1 16       		.uleb128 0x16
+ 1983 08e2 2A000000 		.4byte	.LVL73
+ 1984 08e6 120C0000 		.4byte	0xc12
+ 1985 08ea 15       		.uleb128 0x15
+ 1986 08eb 30000000 		.4byte	.LVL74
+ 1987 08ef 1F0C0000 		.4byte	0xc1f
+ 1988 08f3 01090000 		.4byte	0x901
+ 1989 08f7 14       		.uleb128 0x14
+ 1990 08f8 01       		.uleb128 0x1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 50
+
+
+ 1991 08f9 50       		.byte	0x50
+ 1992 08fa 05       		.uleb128 0x5
+ 1993 08fb 03       		.byte	0x3
+ 1994 08fc 00000000 		.4byte	Brightles_PID_Controll
+ 1995 0900 00       		.byte	0
+ 1996 0901 16       		.uleb128 0x16
+ 1997 0902 34000000 		.4byte	.LVL75
+ 1998 0906 6F0A0000 		.4byte	0xa6f
+ 1999 090a 15       		.uleb128 0x15
+ 2000 090b 3A000000 		.4byte	.LVL76
+ 2001 090f 1F0C0000 		.4byte	0xc1f
+ 2002 0913 21090000 		.4byte	0x921
+ 2003 0917 14       		.uleb128 0x14
+ 2004 0918 01       		.uleb128 0x1
+ 2005 0919 50       		.byte	0x50
+ 2006 091a 05       		.uleb128 0x5
+ 2007 091b 03       		.byte	0x3
+ 2008 091c 00000000 		.4byte	WaitPowerStab
+ 2009 0920 00       		.byte	0
+ 2010 0921 15       		.uleb128 0x15
+ 2011 0922 42000000 		.4byte	.LVL77
+ 2012 0926 590A0000 		.4byte	0xa59
+ 2013 092a 3F090000 		.4byte	0x93f
+ 2014 092e 14       		.uleb128 0x14
+ 2015 092f 01       		.uleb128 0x1
+ 2016 0930 51       		.byte	0x51
+ 2017 0931 03       		.uleb128 0x3
+ 2018 0932 0A       		.byte	0xa
+ 2019 0933 1405     		.2byte	0x514
+ 2020 0935 14       		.uleb128 0x14
+ 2021 0936 01       		.uleb128 0x1
+ 2022 0937 50       		.byte	0x50
+ 2023 0938 05       		.uleb128 0x5
+ 2024 0939 03       		.byte	0x3
+ 2025 093a 00000000 		.4byte	OPT_Get_Result
+ 2026 093e 00       		.byte	0
+ 2027 093f 15       		.uleb128 0x15
+ 2028 0940 4C000000 		.4byte	.LVL78
+ 2029 0944 590A0000 		.4byte	0xa59
+ 2030 0948 5D090000 		.4byte	0x95d
+ 2031 094c 14       		.uleb128 0x14
+ 2032 094d 01       		.uleb128 0x1
+ 2033 094e 51       		.byte	0x51
+ 2034 094f 03       		.uleb128 0x3
+ 2035 0950 0A       		.byte	0xa
+ 2036 0951 D007     		.2byte	0x7d0
+ 2037 0953 14       		.uleb128 0x14
+ 2038 0954 01       		.uleb128 0x1
+ 2039 0955 50       		.byte	0x50
+ 2040 0956 05       		.uleb128 0x5
+ 2041 0957 03       		.byte	0x3
+ 2042 0958 00000000 		.4byte	Main_Display_Print
+ 2043 095c 00       		.byte	0
+ 2044 095d 16       		.uleb128 0x16
+ 2045 095e 50000000 		.4byte	.LVL79
+ 2046 0962 300C0000 		.4byte	0xc30
+ 2047 0966 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 51
+
+
+ 2048 0967 0A       		.uleb128 0xa
+ 2049 0968 3D010000 		.4byte	0x13d
+ 2050 096c 77090000 		.4byte	0x977
+ 2051 0970 0B       		.uleb128 0xb
+ 2052 0971 BD000000 		.4byte	0xbd
+ 2053 0975 0A       		.byte	0xa
+ 2054 0976 00       		.byte	0
+ 2055 0977 1A       		.uleb128 0x1a
+ 2056 0978 88040000 		.4byte	.LASF49
+ 2057 097c 05       		.byte	0x5
+ 2058 097d 14       		.byte	0x14
+ 2059 097e 88090000 		.4byte	0x988
+ 2060 0982 05       		.uleb128 0x5
+ 2061 0983 03       		.byte	0x3
+ 2062 0984 A8000000 		.4byte	TaskQueue
+ 2063 0988 05       		.uleb128 0x5
+ 2064 0989 67090000 		.4byte	0x967
+ 2065 098d 0A       		.uleb128 0xa
+ 2066 098e 48010000 		.4byte	0x148
+ 2067 0992 9D090000 		.4byte	0x99d
+ 2068 0996 0B       		.uleb128 0xb
+ 2069 0997 BD000000 		.4byte	0xbd
+ 2070 099b 14       		.byte	0x14
+ 2071 099c 00       		.byte	0
+ 2072 099d 1A       		.uleb128 0x1a
+ 2073 099e C5020000 		.4byte	.LASF50
+ 2074 09a2 05       		.byte	0x5
+ 2075 09a3 1B       		.byte	0x1b
+ 2076 09a4 AE090000 		.4byte	0x9ae
+ 2077 09a8 05       		.uleb128 0x5
+ 2078 09a9 03       		.byte	0x3
+ 2079 09aa 00000000 		.4byte	MainTimer
+ 2080 09ae 05       		.uleb128 0x5
+ 2081 09af 8D090000 		.4byte	0x98d
+ 2082 09b3 2A       		.uleb128 0x2a
+ 2083 09b4 64020000 		.4byte	.LASF51
+ 2084 09b8 06       		.byte	0x6
+ 2085 09b9 51       		.byte	0x51
+ 2086 09ba D7000000 		.4byte	0xd7
+ 2087 09be 05       		.uleb128 0x5
+ 2088 09bf 03       		.byte	0x3
+ 2089 09c0 00000000 		.4byte	OPT_Out_String
+ 2090 09c4 0A       		.uleb128 0xa
+ 2091 09c5 9A000000 		.4byte	0x9a
+ 2092 09c9 DA090000 		.4byte	0x9da
+ 2093 09cd 0B       		.uleb128 0xb
+ 2094 09ce BD000000 		.4byte	0xbd
+ 2095 09d2 03       		.byte	0x3
+ 2096 09d3 0B       		.uleb128 0xb
+ 2097 09d4 BD000000 		.4byte	0xbd
+ 2098 09d8 13       		.byte	0x13
+ 2099 09d9 00       		.byte	0
+ 2100 09da 2A       		.uleb128 0x2a
+ 2101 09db D5040000 		.4byte	.LASF52
+ 2102 09df 07       		.byte	0x7
+ 2103 09e0 0F       		.byte	0xf
+ 2104 09e1 EB090000 		.4byte	0x9eb
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 52
+
+
+ 2105 09e5 05       		.uleb128 0x5
+ 2106 09e6 03       		.byte	0x3
+ 2107 09e7 00000000 		.4byte	FrameDDR
+ 2108 09eb 05       		.uleb128 0x5
+ 2109 09ec C4090000 		.4byte	0x9c4
+ 2110 09f0 2A       		.uleb128 0x2a
+ 2111 09f1 75030000 		.4byte	.LASF53
+ 2112 09f5 07       		.byte	0x7
+ 2113 09f6 10       		.byte	0x10
+ 2114 09f7 AC000000 		.4byte	0xac
+ 2115 09fb 05       		.uleb128 0x5
+ 2116 09fc 03       		.byte	0x3
+ 2117 09fd 00000000 		.4byte	Frame_Tail
+ 2118 0a01 2A       		.uleb128 0x2a
+ 2119 0a02 04020000 		.4byte	.LASF54
+ 2120 0a06 04       		.byte	0x4
+ 2121 0a07 25       		.byte	0x25
+ 2122 0a08 120A0000 		.4byte	0xa12
+ 2123 0a0c 05       		.uleb128 0x5
+ 2124 0a0d 03       		.byte	0x3
+ 2125 0a0e 00000000 		.4byte	System_Timer_Flag
+ 2126 0a12 05       		.uleb128 0x5
+ 2127 0a13 2D010000 		.4byte	0x12d
+ 2128 0a17 2A       		.uleb128 0x2a
+ 2129 0a18 DA020000 		.4byte	.LASF55
+ 2130 0a1c 04       		.byte	0x4
+ 2131 0a1d 26       		.byte	0x26
+ 2132 0a1e 280A0000 		.4byte	0xa28
+ 2133 0a22 05       		.uleb128 0x5
+ 2134 0a23 03       		.byte	0x3
+ 2135 0a24 00000000 		.4byte	System_Timer
+ 2136 0a28 05       		.uleb128 0x5
+ 2137 0a29 08010000 		.4byte	0x108
+ 2138 0a2d 2A       		.uleb128 0x2a
+ 2139 0a2e E7020000 		.4byte	.LASF56
+ 2140 0a32 01       		.byte	0x1
+ 2141 0a33 1B       		.byte	0x1b
+ 2142 0a34 3E0A0000 		.4byte	0xa3e
+ 2143 0a38 05       		.uleb128 0x5
+ 2144 0a39 03       		.byte	0x3
+ 2145 0a3a 00000000 		.4byte	GlobalStruct
+ 2146 0a3e 05       		.uleb128 0x5
+ 2147 0a3f AE010000 		.4byte	0x1ae
+ 2148 0a43 2A       		.uleb128 0x2a
+ 2149 0a44 11000000 		.4byte	.LASF57
+ 2150 0a48 01       		.byte	0x1
+ 2151 0a49 22       		.byte	0x22
+ 2152 0a4a 540A0000 		.4byte	0xa54
+ 2153 0a4e 05       		.uleb128 0x5
+ 2154 0a4f 03       		.byte	0x3
+ 2155 0a50 00000000 		.4byte	TimeStruct
+ 2156 0a54 05       		.uleb128 0x5
+ 2157 0a55 DA010000 		.4byte	0x1da
+ 2158 0a59 2B       		.uleb128 0x2b
+ 2159 0a5a 33010000 		.4byte	.LASF60
+ 2160 0a5e 05       		.byte	0x5
+ 2161 0a5f 21       		.byte	0x21
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 53
+
+
+ 2162 0a60 6F0A0000 		.4byte	0xa6f
+ 2163 0a64 2C       		.uleb128 0x2c
+ 2164 0a65 3D010000 		.4byte	0x13d
+ 2165 0a69 2C       		.uleb128 0x2c
+ 2166 0a6a 81000000 		.4byte	0x81
+ 2167 0a6e 00       		.byte	0
+ 2168 0a6f 2D       		.uleb128 0x2d
+ 2169 0a70 B5040000 		.4byte	.LASF59
+ 2170 0a74 07       		.byte	0x7
+ 2171 0a75 13       		.byte	0x13
+ 2172 0a76 7C0A0000 		.4byte	0xa7c
+ 2173 0a7a 2E       		.uleb128 0x2e
+ 2174 0a7b 00       		.byte	0
+ 2175 0a7c 2B       		.uleb128 0x2b
+ 2176 0a7d CF020000 		.4byte	.LASF61
+ 2177 0a81 07       		.byte	0x7
+ 2178 0a82 14       		.byte	0x14
+ 2179 0a83 8D0A0000 		.4byte	0xa8d
+ 2180 0a87 2C       		.uleb128 0x2c
+ 2181 0a88 8D0A0000 		.4byte	0xa8d
+ 2182 0a8c 00       		.byte	0
+ 2183 0a8d 06       		.uleb128 0x6
+ 2184 0a8e 04       		.byte	0x4
+ 2185 0a8f 9A000000 		.4byte	0x9a
+ 2186 0a93 2D       		.uleb128 0x2d
+ 2187 0a94 7E040000 		.4byte	.LASF62
+ 2188 0a98 07       		.byte	0x7
+ 2189 0a99 15       		.byte	0x15
+ 2190 0a9a A00A0000 		.4byte	0xaa0
+ 2191 0a9e 2E       		.uleb128 0x2e
+ 2192 0a9f 00       		.byte	0
+ 2193 0aa0 2F       		.uleb128 0x2f
+ 2194 0aa1 1F010000 		.4byte	.LASF63
+ 2195 0aa5 C4000000 		.4byte	0xc4
+ 2196 0aa9 BD0A0000 		.4byte	0xabd
+ 2197 0aad 2C       		.uleb128 0x2c
+ 2198 0aae C4000000 		.4byte	0xc4
+ 2199 0ab2 2C       		.uleb128 0x2c
+ 2200 0ab3 BD0A0000 		.4byte	0xabd
+ 2201 0ab7 2C       		.uleb128 0x2c
+ 2202 0ab8 BD000000 		.4byte	0xbd
+ 2203 0abc 00       		.byte	0
+ 2204 0abd 06       		.uleb128 0x6
+ 2205 0abe 04       		.byte	0x4
+ 2206 0abf C30A0000 		.4byte	0xac3
+ 2207 0ac3 30       		.uleb128 0x30
+ 2208 0ac4 2F       		.uleb128 0x2f
+ 2209 0ac5 73020000 		.4byte	.LASF64
+ 2210 0ac9 C4000000 		.4byte	0xc4
+ 2211 0acd E10A0000 		.4byte	0xae1
+ 2212 0ad1 2C       		.uleb128 0x2c
+ 2213 0ad2 C4000000 		.4byte	0xc4
+ 2214 0ad6 2C       		.uleb128 0x2c
+ 2215 0ad7 5D000000 		.4byte	0x5d
+ 2216 0adb 2C       		.uleb128 0x2c
+ 2217 0adc BD000000 		.4byte	0xbd
+ 2218 0ae0 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 54
+
+
+ 2219 0ae1 31       		.uleb128 0x31
+ 2220 0ae2 13010000 		.4byte	.LASF70
+ 2221 0ae6 02       		.byte	0x2
+ 2222 0ae7 4601     		.2byte	0x146
+ 2223 0ae9 81000000 		.4byte	0x81
+ 2224 0aed 32       		.uleb128 0x32
+ 2225 0aee 35030000 		.4byte	.LASF65
+ 2226 0af2 08       		.byte	0x8
+ 2227 0af3 DE       		.byte	0xde
+ 2228 0af4 5D000000 		.4byte	0x5d
+ 2229 0af8 080B0000 		.4byte	0xb08
+ 2230 0afc 2C       		.uleb128 0x2c
+ 2231 0afd C6000000 		.4byte	0xc6
+ 2232 0b01 2C       		.uleb128 0x2c
+ 2233 0b02 CC000000 		.4byte	0xcc
+ 2234 0b06 2E       		.uleb128 0x2e
+ 2235 0b07 00       		.byte	0
+ 2236 0b08 32       		.uleb128 0x32
+ 2237 0b09 EE030000 		.4byte	.LASF66
+ 2238 0b0d 09       		.byte	0x9
+ 2239 0b0e 1A       		.byte	0x1a
+ 2240 0b0f C6000000 		.4byte	0xc6
+ 2241 0b13 220B0000 		.4byte	0xb22
+ 2242 0b17 2C       		.uleb128 0x2c
+ 2243 0b18 C6000000 		.4byte	0xc6
+ 2244 0b1c 2C       		.uleb128 0x2c
+ 2245 0b1d CC000000 		.4byte	0xcc
+ 2246 0b21 00       		.byte	0
+ 2247 0b22 2B       		.uleb128 0x2b
+ 2248 0b23 52020000 		.4byte	.LASF67
+ 2249 0b27 0A       		.byte	0xa
+ 2250 0b28 C7       		.byte	0xc7
+ 2251 0b29 330B0000 		.4byte	0xb33
+ 2252 0b2d 2C       		.uleb128 0x2c
+ 2253 0b2e 6B000000 		.4byte	0x6b
+ 2254 0b32 00       		.byte	0
+ 2255 0b33 32       		.uleb128 0x32
+ 2256 0b34 00000000 		.4byte	.LASF68
+ 2257 0b38 06       		.byte	0x6
+ 2258 0b39 55       		.byte	0x55
+ 2259 0b3a 6B000000 		.4byte	0x6b
+ 2260 0b3e 520B0000 		.4byte	0xb52
+ 2261 0b42 2C       		.uleb128 0x2c
+ 2262 0b43 6B000000 		.4byte	0x6b
+ 2263 0b47 2C       		.uleb128 0x2c
+ 2264 0b48 6B000000 		.4byte	0x6b
+ 2265 0b4c 2C       		.uleb128 0x2c
+ 2266 0b4d 520B0000 		.4byte	0xb52
+ 2267 0b51 00       		.byte	0
+ 2268 0b52 06       		.uleb128 0x6
+ 2269 0b53 04       		.byte	0x4
+ 2270 0b54 76000000 		.4byte	0x76
+ 2271 0b58 33       		.uleb128 0x33
+ 2272 0b59 4B040000 		.4byte	.LASF69
+ 2273 0b5d 06       		.byte	0x6
+ 2274 0b5e 58       		.byte	0x58
+ 2275 0b5f 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 55
+
+
+ 2276 0b63 690B0000 		.4byte	0xb69
+ 2277 0b67 2E       		.uleb128 0x2e
+ 2278 0b68 00       		.byte	0
+ 2279 0b69 34       		.uleb128 0x34
+ 2280 0b6a 4B030000 		.4byte	.LASF71
+ 2281 0b6e 06       		.byte	0x6
+ 2282 0b6f 53       		.byte	0x53
+ 2283 0b70 6B000000 		.4byte	0x6b
+ 2284 0b74 32       		.uleb128 0x32
+ 2285 0b75 A3020000 		.4byte	.LASF72
+ 2286 0b79 06       		.byte	0x6
+ 2287 0b7a 5A       		.byte	0x5a
+ 2288 0b7b C6000000 		.4byte	0xc6
+ 2289 0b7f 890B0000 		.4byte	0xb89
+ 2290 0b83 2C       		.uleb128 0x2c
+ 2291 0b84 890B0000 		.4byte	0xb89
+ 2292 0b88 00       		.byte	0
+ 2293 0b89 06       		.uleb128 0x6
+ 2294 0b8a 04       		.byte	0x4
+ 2295 0b8b B1000000 		.4byte	0xb1
+ 2296 0b8f 34       		.uleb128 0x34
+ 2297 0b90 24040000 		.4byte	.LASF73
+ 2298 0b94 0B       		.byte	0xb
+ 2299 0b95 20       		.byte	0x20
+ 2300 0b96 6B000000 		.4byte	0x6b
+ 2301 0b9a 35       		.uleb128 0x35
+ 2302 0b9b 91020000 		.4byte	.LASF77
+ 2303 0b9f 0D       		.byte	0xd
+ 2304 0ba0 59       		.byte	0x59
+ 2305 0ba1 36       		.uleb128 0x36
+ 2306 0ba2 D5010000 		.4byte	.LASF74
+ 2307 0ba6 0C       		.byte	0xc
+ 2308 0ba7 7701     		.2byte	0x177
+ 2309 0ba9 B30B0000 		.4byte	0xbb3
+ 2310 0bad 2C       		.uleb128 0x2c
+ 2311 0bae B30B0000 		.4byte	0xbb3
+ 2312 0bb2 00       		.byte	0
+ 2313 0bb3 06       		.uleb128 0x6
+ 2314 0bb4 04       		.byte	0x4
+ 2315 0bb5 B90B0000 		.4byte	0xbb9
+ 2316 0bb9 09       		.uleb128 0x9
+ 2317 0bba 9A000000 		.4byte	0x9a
+ 2318 0bbe 31       		.uleb128 0x31
+ 2319 0bbf 40010000 		.4byte	.LASF75
+ 2320 0bc3 0C       		.byte	0xc
+ 2321 0bc4 8601     		.2byte	0x186
+ 2322 0bc6 81000000 		.4byte	0x81
+ 2323 0bca 31       		.uleb128 0x31
+ 2324 0bcb 2A000000 		.4byte	.LASF76
+ 2325 0bcf 0C       		.byte	0xc
+ 2326 0bd0 8501     		.2byte	0x185
+ 2327 0bd2 81000000 		.4byte	0x81
+ 2328 0bd6 37       		.uleb128 0x37
+ 2329 0bd7 8D030000 		.4byte	.LASF78
+ 2330 0bdb 0E       		.byte	0xe
+ 2331 0bdc 3101     		.2byte	0x131
+ 2332 0bde 35       		.uleb128 0x35
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 56
+
+
+ 2333 0bdf AB040000 		.4byte	.LASF79
+ 2334 0be3 0A       		.byte	0xa
+ 2335 0be4 92       		.byte	0x92
+ 2336 0be5 35       		.uleb128 0x35
+ 2337 0be6 E3040000 		.4byte	.LASF80
+ 2338 0bea 0F       		.byte	0xf
+ 2339 0beb 68       		.byte	0x68
+ 2340 0bec 35       		.uleb128 0x35
+ 2341 0bed F5030000 		.4byte	.LASF81
+ 2342 0bf1 10       		.byte	0x10
+ 2343 0bf2 68       		.byte	0x68
+ 2344 0bf3 37       		.uleb128 0x37
+ 2345 0bf4 ED040000 		.4byte	.LASF82
+ 2346 0bf8 02       		.byte	0x2
+ 2347 0bf9 3C01     		.2byte	0x13c
+ 2348 0bfb 36       		.uleb128 0x36
+ 2349 0bfc 3D030000 		.4byte	.LASF83
+ 2350 0c00 02       		.byte	0x2
+ 2351 0c01 4101     		.2byte	0x141
+ 2352 0c03 120C0000 		.4byte	0xc12
+ 2353 0c07 2C       		.uleb128 0x2c
+ 2354 0c08 81000000 		.4byte	0x81
+ 2355 0c0c 2C       		.uleb128 0x2c
+ 2356 0c0d 81000000 		.4byte	0x81
+ 2357 0c11 00       		.byte	0
+ 2358 0c12 2D       		.uleb128 0x2d
+ 2359 0c13 41000000 		.4byte	.LASF84
+ 2360 0c17 05       		.byte	0x5
+ 2361 0c18 23       		.byte	0x23
+ 2362 0c19 1F0C0000 		.4byte	0xc1f
+ 2363 0c1d 2E       		.uleb128 0x2e
+ 2364 0c1e 00       		.byte	0
+ 2365 0c1f 2B       		.uleb128 0x2b
+ 2366 0c20 37040000 		.4byte	.LASF85
+ 2367 0c24 05       		.byte	0x5
+ 2368 0c25 1F       		.byte	0x1f
+ 2369 0c26 300C0000 		.4byte	0xc30
+ 2370 0c2a 2C       		.uleb128 0x2c
+ 2371 0c2b 3D010000 		.4byte	0x13d
+ 2372 0c2f 00       		.byte	0
+ 2373 0c30 35       		.uleb128 0x35
+ 2374 0c31 3F040000 		.4byte	.LASF86
+ 2375 0c35 05       		.byte	0x5
+ 2376 0c36 1E       		.byte	0x1e
+ 2377 0c37 00       		.byte	0
+ 2378              		.section	.debug_abbrev,"",%progbits
+ 2379              	.Ldebug_abbrev0:
+ 2380 0000 01       		.uleb128 0x1
+ 2381 0001 11       		.uleb128 0x11
+ 2382 0002 01       		.byte	0x1
+ 2383 0003 25       		.uleb128 0x25
+ 2384 0004 0E       		.uleb128 0xe
+ 2385 0005 13       		.uleb128 0x13
+ 2386 0006 0B       		.uleb128 0xb
+ 2387 0007 03       		.uleb128 0x3
+ 2388 0008 0E       		.uleb128 0xe
+ 2389 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 57
+
+
+ 2390 000a 0E       		.uleb128 0xe
+ 2391 000b 55       		.uleb128 0x55
+ 2392 000c 17       		.uleb128 0x17
+ 2393 000d 11       		.uleb128 0x11
+ 2394 000e 01       		.uleb128 0x1
+ 2395 000f 10       		.uleb128 0x10
+ 2396 0010 17       		.uleb128 0x17
+ 2397 0011 00       		.byte	0
+ 2398 0012 00       		.byte	0
+ 2399 0013 02       		.uleb128 0x2
+ 2400 0014 24       		.uleb128 0x24
+ 2401 0015 00       		.byte	0
+ 2402 0016 0B       		.uleb128 0xb
+ 2403 0017 0B       		.uleb128 0xb
+ 2404 0018 3E       		.uleb128 0x3e
+ 2405 0019 0B       		.uleb128 0xb
+ 2406 001a 03       		.uleb128 0x3
+ 2407 001b 0E       		.uleb128 0xe
+ 2408 001c 00       		.byte	0
+ 2409 001d 00       		.byte	0
+ 2410 001e 03       		.uleb128 0x3
+ 2411 001f 24       		.uleb128 0x24
+ 2412 0020 00       		.byte	0
+ 2413 0021 0B       		.uleb128 0xb
+ 2414 0022 0B       		.uleb128 0xb
+ 2415 0023 3E       		.uleb128 0x3e
+ 2416 0024 0B       		.uleb128 0xb
+ 2417 0025 03       		.uleb128 0x3
+ 2418 0026 08       		.uleb128 0x8
+ 2419 0027 00       		.byte	0
+ 2420 0028 00       		.byte	0
+ 2421 0029 04       		.uleb128 0x4
+ 2422 002a 16       		.uleb128 0x16
+ 2423 002b 00       		.byte	0
+ 2424 002c 03       		.uleb128 0x3
+ 2425 002d 0E       		.uleb128 0xe
+ 2426 002e 3A       		.uleb128 0x3a
+ 2427 002f 0B       		.uleb128 0xb
+ 2428 0030 3B       		.uleb128 0x3b
+ 2429 0031 0B       		.uleb128 0xb
+ 2430 0032 49       		.uleb128 0x49
+ 2431 0033 13       		.uleb128 0x13
+ 2432 0034 00       		.byte	0
+ 2433 0035 00       		.byte	0
+ 2434 0036 05       		.uleb128 0x5
+ 2435 0037 35       		.uleb128 0x35
+ 2436 0038 00       		.byte	0
+ 2437 0039 49       		.uleb128 0x49
+ 2438 003a 13       		.uleb128 0x13
+ 2439 003b 00       		.byte	0
+ 2440 003c 00       		.byte	0
+ 2441 003d 06       		.uleb128 0x6
+ 2442 003e 0F       		.uleb128 0xf
+ 2443 003f 00       		.byte	0
+ 2444 0040 0B       		.uleb128 0xb
+ 2445 0041 0B       		.uleb128 0xb
+ 2446 0042 49       		.uleb128 0x49
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 58
+
+
+ 2447 0043 13       		.uleb128 0x13
+ 2448 0044 00       		.byte	0
+ 2449 0045 00       		.byte	0
+ 2450 0046 07       		.uleb128 0x7
+ 2451 0047 15       		.uleb128 0x15
+ 2452 0048 00       		.byte	0
+ 2453 0049 27       		.uleb128 0x27
+ 2454 004a 19       		.uleb128 0x19
+ 2455 004b 00       		.byte	0
+ 2456 004c 00       		.byte	0
+ 2457 004d 08       		.uleb128 0x8
+ 2458 004e 0F       		.uleb128 0xf
+ 2459 004f 00       		.byte	0
+ 2460 0050 0B       		.uleb128 0xb
+ 2461 0051 0B       		.uleb128 0xb
+ 2462 0052 00       		.byte	0
+ 2463 0053 00       		.byte	0
+ 2464 0054 09       		.uleb128 0x9
+ 2465 0055 26       		.uleb128 0x26
+ 2466 0056 00       		.byte	0
+ 2467 0057 49       		.uleb128 0x49
+ 2468 0058 13       		.uleb128 0x13
+ 2469 0059 00       		.byte	0
+ 2470 005a 00       		.byte	0
+ 2471 005b 0A       		.uleb128 0xa
+ 2472 005c 01       		.uleb128 0x1
+ 2473 005d 01       		.byte	0x1
+ 2474 005e 49       		.uleb128 0x49
+ 2475 005f 13       		.uleb128 0x13
+ 2476 0060 01       		.uleb128 0x1
+ 2477 0061 13       		.uleb128 0x13
+ 2478 0062 00       		.byte	0
+ 2479 0063 00       		.byte	0
+ 2480 0064 0B       		.uleb128 0xb
+ 2481 0065 21       		.uleb128 0x21
+ 2482 0066 00       		.byte	0
+ 2483 0067 49       		.uleb128 0x49
+ 2484 0068 13       		.uleb128 0x13
+ 2485 0069 2F       		.uleb128 0x2f
+ 2486 006a 0B       		.uleb128 0xb
+ 2487 006b 00       		.byte	0
+ 2488 006c 00       		.byte	0
+ 2489 006d 0C       		.uleb128 0xc
+ 2490 006e 13       		.uleb128 0x13
+ 2491 006f 01       		.byte	0x1
+ 2492 0070 0B       		.uleb128 0xb
+ 2493 0071 0B       		.uleb128 0xb
+ 2494 0072 3A       		.uleb128 0x3a
+ 2495 0073 0B       		.uleb128 0xb
+ 2496 0074 3B       		.uleb128 0x3b
+ 2497 0075 0B       		.uleb128 0xb
+ 2498 0076 01       		.uleb128 0x1
+ 2499 0077 13       		.uleb128 0x13
+ 2500 0078 00       		.byte	0
+ 2501 0079 00       		.byte	0
+ 2502 007a 0D       		.uleb128 0xd
+ 2503 007b 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 59
+
+
+ 2504 007c 00       		.byte	0
+ 2505 007d 03       		.uleb128 0x3
+ 2506 007e 0E       		.uleb128 0xe
+ 2507 007f 3A       		.uleb128 0x3a
+ 2508 0080 0B       		.uleb128 0xb
+ 2509 0081 3B       		.uleb128 0x3b
+ 2510 0082 0B       		.uleb128 0xb
+ 2511 0083 49       		.uleb128 0x49
+ 2512 0084 13       		.uleb128 0x13
+ 2513 0085 38       		.uleb128 0x38
+ 2514 0086 0B       		.uleb128 0xb
+ 2515 0087 00       		.byte	0
+ 2516 0088 00       		.byte	0
+ 2517 0089 0E       		.uleb128 0xe
+ 2518 008a 0D       		.uleb128 0xd
+ 2519 008b 00       		.byte	0
+ 2520 008c 03       		.uleb128 0x3
+ 2521 008d 08       		.uleb128 0x8
+ 2522 008e 3A       		.uleb128 0x3a
+ 2523 008f 0B       		.uleb128 0xb
+ 2524 0090 3B       		.uleb128 0x3b
+ 2525 0091 0B       		.uleb128 0xb
+ 2526 0092 49       		.uleb128 0x49
+ 2527 0093 13       		.uleb128 0x13
+ 2528 0094 38       		.uleb128 0x38
+ 2529 0095 0B       		.uleb128 0xb
+ 2530 0096 00       		.byte	0
+ 2531 0097 00       		.byte	0
+ 2532 0098 0F       		.uleb128 0xf
+ 2533 0099 2E       		.uleb128 0x2e
+ 2534 009a 01       		.byte	0x1
+ 2535 009b 3F       		.uleb128 0x3f
+ 2536 009c 19       		.uleb128 0x19
+ 2537 009d 03       		.uleb128 0x3
+ 2538 009e 0E       		.uleb128 0xe
+ 2539 009f 3A       		.uleb128 0x3a
+ 2540 00a0 0B       		.uleb128 0xb
+ 2541 00a1 3B       		.uleb128 0x3b
+ 2542 00a2 0B       		.uleb128 0xb
+ 2543 00a3 20       		.uleb128 0x20
+ 2544 00a4 0B       		.uleb128 0xb
+ 2545 00a5 01       		.uleb128 0x1
+ 2546 00a6 13       		.uleb128 0x13
+ 2547 00a7 00       		.byte	0
+ 2548 00a8 00       		.byte	0
+ 2549 00a9 10       		.uleb128 0x10
+ 2550 00aa 34       		.uleb128 0x34
+ 2551 00ab 00       		.byte	0
+ 2552 00ac 03       		.uleb128 0x3
+ 2553 00ad 0E       		.uleb128 0xe
+ 2554 00ae 3A       		.uleb128 0x3a
+ 2555 00af 0B       		.uleb128 0xb
+ 2556 00b0 3B       		.uleb128 0x3b
+ 2557 00b1 0B       		.uleb128 0xb
+ 2558 00b2 49       		.uleb128 0x49
+ 2559 00b3 13       		.uleb128 0x13
+ 2560 00b4 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 60
+
+
+ 2561 00b5 00       		.byte	0
+ 2562 00b6 11       		.uleb128 0x11
+ 2563 00b7 2E       		.uleb128 0x2e
+ 2564 00b8 00       		.byte	0
+ 2565 00b9 3F       		.uleb128 0x3f
+ 2566 00ba 19       		.uleb128 0x19
+ 2567 00bb 03       		.uleb128 0x3
+ 2568 00bc 0E       		.uleb128 0xe
+ 2569 00bd 3A       		.uleb128 0x3a
+ 2570 00be 0B       		.uleb128 0xb
+ 2571 00bf 3B       		.uleb128 0x3b
+ 2572 00c0 0B       		.uleb128 0xb
+ 2573 00c1 20       		.uleb128 0x20
+ 2574 00c2 0B       		.uleb128 0xb
+ 2575 00c3 00       		.byte	0
+ 2576 00c4 00       		.byte	0
+ 2577 00c5 12       		.uleb128 0x12
+ 2578 00c6 2E       		.uleb128 0x2e
+ 2579 00c7 01       		.byte	0x1
+ 2580 00c8 3F       		.uleb128 0x3f
+ 2581 00c9 19       		.uleb128 0x19
+ 2582 00ca 03       		.uleb128 0x3
+ 2583 00cb 0E       		.uleb128 0xe
+ 2584 00cc 3A       		.uleb128 0x3a
+ 2585 00cd 0B       		.uleb128 0xb
+ 2586 00ce 3B       		.uleb128 0x3b
+ 2587 00cf 0B       		.uleb128 0xb
+ 2588 00d0 11       		.uleb128 0x11
+ 2589 00d1 01       		.uleb128 0x1
+ 2590 00d2 12       		.uleb128 0x12
+ 2591 00d3 06       		.uleb128 0x6
+ 2592 00d4 40       		.uleb128 0x40
+ 2593 00d5 18       		.uleb128 0x18
+ 2594 00d6 9742     		.uleb128 0x2117
+ 2595 00d8 19       		.uleb128 0x19
+ 2596 00d9 01       		.uleb128 0x1
+ 2597 00da 13       		.uleb128 0x13
+ 2598 00db 00       		.byte	0
+ 2599 00dc 00       		.byte	0
+ 2600 00dd 13       		.uleb128 0x13
+ 2601 00de 898201   		.uleb128 0x4109
+ 2602 00e1 01       		.byte	0x1
+ 2603 00e2 11       		.uleb128 0x11
+ 2604 00e3 01       		.uleb128 0x1
+ 2605 00e4 31       		.uleb128 0x31
+ 2606 00e5 13       		.uleb128 0x13
+ 2607 00e6 00       		.byte	0
+ 2608 00e7 00       		.byte	0
+ 2609 00e8 14       		.uleb128 0x14
+ 2610 00e9 8A8201   		.uleb128 0x410a
+ 2611 00ec 00       		.byte	0
+ 2612 00ed 02       		.uleb128 0x2
+ 2613 00ee 18       		.uleb128 0x18
+ 2614 00ef 9142     		.uleb128 0x2111
+ 2615 00f1 18       		.uleb128 0x18
+ 2616 00f2 00       		.byte	0
+ 2617 00f3 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 61
+
+
+ 2618 00f4 15       		.uleb128 0x15
+ 2619 00f5 898201   		.uleb128 0x4109
+ 2620 00f8 01       		.byte	0x1
+ 2621 00f9 11       		.uleb128 0x11
+ 2622 00fa 01       		.uleb128 0x1
+ 2623 00fb 31       		.uleb128 0x31
+ 2624 00fc 13       		.uleb128 0x13
+ 2625 00fd 01       		.uleb128 0x1
+ 2626 00fe 13       		.uleb128 0x13
+ 2627 00ff 00       		.byte	0
+ 2628 0100 00       		.byte	0
+ 2629 0101 16       		.uleb128 0x16
+ 2630 0102 898201   		.uleb128 0x4109
+ 2631 0105 00       		.byte	0
+ 2632 0106 11       		.uleb128 0x11
+ 2633 0107 01       		.uleb128 0x1
+ 2634 0108 31       		.uleb128 0x31
+ 2635 0109 13       		.uleb128 0x13
+ 2636 010a 00       		.byte	0
+ 2637 010b 00       		.byte	0
+ 2638 010c 17       		.uleb128 0x17
+ 2639 010d 2E       		.uleb128 0x2e
+ 2640 010e 01       		.byte	0x1
+ 2641 010f 03       		.uleb128 0x3
+ 2642 0110 0E       		.uleb128 0xe
+ 2643 0111 3A       		.uleb128 0x3a
+ 2644 0112 0B       		.uleb128 0xb
+ 2645 0113 3B       		.uleb128 0x3b
+ 2646 0114 05       		.uleb128 0x5
+ 2647 0115 27       		.uleb128 0x27
+ 2648 0116 19       		.uleb128 0x19
+ 2649 0117 49       		.uleb128 0x49
+ 2650 0118 13       		.uleb128 0x13
+ 2651 0119 20       		.uleb128 0x20
+ 2652 011a 0B       		.uleb128 0xb
+ 2653 011b 01       		.uleb128 0x1
+ 2654 011c 13       		.uleb128 0x13
+ 2655 011d 00       		.byte	0
+ 2656 011e 00       		.byte	0
+ 2657 011f 18       		.uleb128 0x18
+ 2658 0120 05       		.uleb128 0x5
+ 2659 0121 00       		.byte	0
+ 2660 0122 03       		.uleb128 0x3
+ 2661 0123 0E       		.uleb128 0xe
+ 2662 0124 3A       		.uleb128 0x3a
+ 2663 0125 0B       		.uleb128 0xb
+ 2664 0126 3B       		.uleb128 0x3b
+ 2665 0127 05       		.uleb128 0x5
+ 2666 0128 49       		.uleb128 0x49
+ 2667 0129 13       		.uleb128 0x13
+ 2668 012a 00       		.byte	0
+ 2669 012b 00       		.byte	0
+ 2670 012c 19       		.uleb128 0x19
+ 2671 012d 34       		.uleb128 0x34
+ 2672 012e 00       		.byte	0
+ 2673 012f 03       		.uleb128 0x3
+ 2674 0130 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 62
+
+
+ 2675 0131 3A       		.uleb128 0x3a
+ 2676 0132 0B       		.uleb128 0xb
+ 2677 0133 3B       		.uleb128 0x3b
+ 2678 0134 05       		.uleb128 0x5
+ 2679 0135 49       		.uleb128 0x49
+ 2680 0136 13       		.uleb128 0x13
+ 2681 0137 00       		.byte	0
+ 2682 0138 00       		.byte	0
+ 2683 0139 1A       		.uleb128 0x1a
+ 2684 013a 34       		.uleb128 0x34
+ 2685 013b 00       		.byte	0
+ 2686 013c 03       		.uleb128 0x3
+ 2687 013d 0E       		.uleb128 0xe
+ 2688 013e 3A       		.uleb128 0x3a
+ 2689 013f 0B       		.uleb128 0xb
+ 2690 0140 3B       		.uleb128 0x3b
+ 2691 0141 0B       		.uleb128 0xb
+ 2692 0142 49       		.uleb128 0x49
+ 2693 0143 13       		.uleb128 0x13
+ 2694 0144 02       		.uleb128 0x2
+ 2695 0145 18       		.uleb128 0x18
+ 2696 0146 00       		.byte	0
+ 2697 0147 00       		.byte	0
+ 2698 0148 1B       		.uleb128 0x1b
+ 2699 0149 34       		.uleb128 0x34
+ 2700 014a 00       		.byte	0
+ 2701 014b 03       		.uleb128 0x3
+ 2702 014c 08       		.uleb128 0x8
+ 2703 014d 3A       		.uleb128 0x3a
+ 2704 014e 0B       		.uleb128 0xb
+ 2705 014f 3B       		.uleb128 0x3b
+ 2706 0150 0B       		.uleb128 0xb
+ 2707 0151 49       		.uleb128 0x49
+ 2708 0152 13       		.uleb128 0x13
+ 2709 0153 02       		.uleb128 0x2
+ 2710 0154 18       		.uleb128 0x18
+ 2711 0155 00       		.byte	0
+ 2712 0156 00       		.byte	0
+ 2713 0157 1C       		.uleb128 0x1c
+ 2714 0158 1D       		.uleb128 0x1d
+ 2715 0159 01       		.byte	0x1
+ 2716 015a 31       		.uleb128 0x31
+ 2717 015b 13       		.uleb128 0x13
+ 2718 015c 11       		.uleb128 0x11
+ 2719 015d 01       		.uleb128 0x1
+ 2720 015e 12       		.uleb128 0x12
+ 2721 015f 06       		.uleb128 0x6
+ 2722 0160 58       		.uleb128 0x58
+ 2723 0161 0B       		.uleb128 0xb
+ 2724 0162 59       		.uleb128 0x59
+ 2725 0163 0B       		.uleb128 0xb
+ 2726 0164 01       		.uleb128 0x1
+ 2727 0165 13       		.uleb128 0x13
+ 2728 0166 00       		.byte	0
+ 2729 0167 00       		.byte	0
+ 2730 0168 1D       		.uleb128 0x1d
+ 2731 0169 05       		.uleb128 0x5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 63
+
+
+ 2732 016a 00       		.byte	0
+ 2733 016b 31       		.uleb128 0x31
+ 2734 016c 13       		.uleb128 0x13
+ 2735 016d 00       		.byte	0
+ 2736 016e 00       		.byte	0
+ 2737 016f 1E       		.uleb128 0x1e
+ 2738 0170 0B       		.uleb128 0xb
+ 2739 0171 01       		.byte	0x1
+ 2740 0172 11       		.uleb128 0x11
+ 2741 0173 01       		.uleb128 0x1
+ 2742 0174 12       		.uleb128 0x12
+ 2743 0175 06       		.uleb128 0x6
+ 2744 0176 00       		.byte	0
+ 2745 0177 00       		.byte	0
+ 2746 0178 1F       		.uleb128 0x1f
+ 2747 0179 34       		.uleb128 0x34
+ 2748 017a 00       		.byte	0
+ 2749 017b 31       		.uleb128 0x31
+ 2750 017c 13       		.uleb128 0x13
+ 2751 017d 00       		.byte	0
+ 2752 017e 00       		.byte	0
+ 2753 017f 20       		.uleb128 0x20
+ 2754 0180 1D       		.uleb128 0x1d
+ 2755 0181 01       		.byte	0x1
+ 2756 0182 31       		.uleb128 0x31
+ 2757 0183 13       		.uleb128 0x13
+ 2758 0184 52       		.uleb128 0x52
+ 2759 0185 01       		.uleb128 0x1
+ 2760 0186 55       		.uleb128 0x55
+ 2761 0187 17       		.uleb128 0x17
+ 2762 0188 58       		.uleb128 0x58
+ 2763 0189 0B       		.uleb128 0xb
+ 2764 018a 59       		.uleb128 0x59
+ 2765 018b 0B       		.uleb128 0xb
+ 2766 018c 01       		.uleb128 0x1
+ 2767 018d 13       		.uleb128 0x13
+ 2768 018e 00       		.byte	0
+ 2769 018f 00       		.byte	0
+ 2770 0190 21       		.uleb128 0x21
+ 2771 0191 05       		.uleb128 0x5
+ 2772 0192 00       		.byte	0
+ 2773 0193 31       		.uleb128 0x31
+ 2774 0194 13       		.uleb128 0x13
+ 2775 0195 02       		.uleb128 0x2
+ 2776 0196 17       		.uleb128 0x17
+ 2777 0197 00       		.byte	0
+ 2778 0198 00       		.byte	0
+ 2779 0199 22       		.uleb128 0x22
+ 2780 019a 0B       		.uleb128 0xb
+ 2781 019b 01       		.byte	0x1
+ 2782 019c 55       		.uleb128 0x55
+ 2783 019d 17       		.uleb128 0x17
+ 2784 019e 00       		.byte	0
+ 2785 019f 00       		.byte	0
+ 2786 01a0 23       		.uleb128 0x23
+ 2787 01a1 34       		.uleb128 0x34
+ 2788 01a2 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 64
+
+
+ 2789 01a3 31       		.uleb128 0x31
+ 2790 01a4 13       		.uleb128 0x13
+ 2791 01a5 02       		.uleb128 0x2
+ 2792 01a6 17       		.uleb128 0x17
+ 2793 01a7 00       		.byte	0
+ 2794 01a8 00       		.byte	0
+ 2795 01a9 24       		.uleb128 0x24
+ 2796 01aa 2E       		.uleb128 0x2e
+ 2797 01ab 01       		.byte	0x1
+ 2798 01ac 3F       		.uleb128 0x3f
+ 2799 01ad 19       		.uleb128 0x19
+ 2800 01ae 03       		.uleb128 0x3
+ 2801 01af 0E       		.uleb128 0xe
+ 2802 01b0 3A       		.uleb128 0x3a
+ 2803 01b1 0B       		.uleb128 0xb
+ 2804 01b2 3B       		.uleb128 0x3b
+ 2805 01b3 0B       		.uleb128 0xb
+ 2806 01b4 11       		.uleb128 0x11
+ 2807 01b5 01       		.uleb128 0x1
+ 2808 01b6 12       		.uleb128 0x12
+ 2809 01b7 06       		.uleb128 0x6
+ 2810 01b8 40       		.uleb128 0x40
+ 2811 01b9 18       		.uleb128 0x18
+ 2812 01ba 9642     		.uleb128 0x2116
+ 2813 01bc 19       		.uleb128 0x19
+ 2814 01bd 01       		.uleb128 0x1
+ 2815 01be 13       		.uleb128 0x13
+ 2816 01bf 00       		.byte	0
+ 2817 01c0 00       		.byte	0
+ 2818 01c1 25       		.uleb128 0x25
+ 2819 01c2 2E       		.uleb128 0x2e
+ 2820 01c3 01       		.byte	0x1
+ 2821 01c4 31       		.uleb128 0x31
+ 2822 01c5 13       		.uleb128 0x13
+ 2823 01c6 11       		.uleb128 0x11
+ 2824 01c7 01       		.uleb128 0x1
+ 2825 01c8 12       		.uleb128 0x12
+ 2826 01c9 06       		.uleb128 0x6
+ 2827 01ca 40       		.uleb128 0x40
+ 2828 01cb 18       		.uleb128 0x18
+ 2829 01cc 9742     		.uleb128 0x2117
+ 2830 01ce 19       		.uleb128 0x19
+ 2831 01cf 01       		.uleb128 0x1
+ 2832 01d0 13       		.uleb128 0x13
+ 2833 01d1 00       		.byte	0
+ 2834 01d2 00       		.byte	0
+ 2835 01d3 26       		.uleb128 0x26
+ 2836 01d4 34       		.uleb128 0x34
+ 2837 01d5 00       		.byte	0
+ 2838 01d6 31       		.uleb128 0x31
+ 2839 01d7 13       		.uleb128 0x13
+ 2840 01d8 02       		.uleb128 0x2
+ 2841 01d9 18       		.uleb128 0x18
+ 2842 01da 00       		.byte	0
+ 2843 01db 00       		.byte	0
+ 2844 01dc 27       		.uleb128 0x27
+ 2845 01dd 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 65
+
+
+ 2846 01de 01       		.byte	0x1
+ 2847 01df 11       		.uleb128 0x11
+ 2848 01e0 01       		.uleb128 0x1
+ 2849 01e1 12       		.uleb128 0x12
+ 2850 01e2 06       		.uleb128 0x6
+ 2851 01e3 01       		.uleb128 0x1
+ 2852 01e4 13       		.uleb128 0x13
+ 2853 01e5 00       		.byte	0
+ 2854 01e6 00       		.byte	0
+ 2855 01e7 28       		.uleb128 0x28
+ 2856 01e8 34       		.uleb128 0x34
+ 2857 01e9 00       		.byte	0
+ 2858 01ea 03       		.uleb128 0x3
+ 2859 01eb 08       		.uleb128 0x8
+ 2860 01ec 3A       		.uleb128 0x3a
+ 2861 01ed 0B       		.uleb128 0xb
+ 2862 01ee 3B       		.uleb128 0x3b
+ 2863 01ef 0B       		.uleb128 0xb
+ 2864 01f0 49       		.uleb128 0x49
+ 2865 01f1 13       		.uleb128 0x13
+ 2866 01f2 02       		.uleb128 0x2
+ 2867 01f3 17       		.uleb128 0x17
+ 2868 01f4 00       		.byte	0
+ 2869 01f5 00       		.byte	0
+ 2870 01f6 29       		.uleb128 0x29
+ 2871 01f7 2E       		.uleb128 0x2e
+ 2872 01f8 01       		.byte	0x1
+ 2873 01f9 3F       		.uleb128 0x3f
+ 2874 01fa 19       		.uleb128 0x19
+ 2875 01fb 03       		.uleb128 0x3
+ 2876 01fc 0E       		.uleb128 0xe
+ 2877 01fd 3A       		.uleb128 0x3a
+ 2878 01fe 0B       		.uleb128 0xb
+ 2879 01ff 3B       		.uleb128 0x3b
+ 2880 0200 0B       		.uleb128 0xb
+ 2881 0201 49       		.uleb128 0x49
+ 2882 0202 13       		.uleb128 0x13
+ 2883 0203 11       		.uleb128 0x11
+ 2884 0204 01       		.uleb128 0x1
+ 2885 0205 12       		.uleb128 0x12
+ 2886 0206 06       		.uleb128 0x6
+ 2887 0207 40       		.uleb128 0x40
+ 2888 0208 18       		.uleb128 0x18
+ 2889 0209 9742     		.uleb128 0x2117
+ 2890 020b 19       		.uleb128 0x19
+ 2891 020c 01       		.uleb128 0x1
+ 2892 020d 13       		.uleb128 0x13
+ 2893 020e 00       		.byte	0
+ 2894 020f 00       		.byte	0
+ 2895 0210 2A       		.uleb128 0x2a
+ 2896 0211 34       		.uleb128 0x34
+ 2897 0212 00       		.byte	0
+ 2898 0213 03       		.uleb128 0x3
+ 2899 0214 0E       		.uleb128 0xe
+ 2900 0215 3A       		.uleb128 0x3a
+ 2901 0216 0B       		.uleb128 0xb
+ 2902 0217 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 66
+
+
+ 2903 0218 0B       		.uleb128 0xb
+ 2904 0219 49       		.uleb128 0x49
+ 2905 021a 13       		.uleb128 0x13
+ 2906 021b 3F       		.uleb128 0x3f
+ 2907 021c 19       		.uleb128 0x19
+ 2908 021d 02       		.uleb128 0x2
+ 2909 021e 18       		.uleb128 0x18
+ 2910 021f 00       		.byte	0
+ 2911 0220 00       		.byte	0
+ 2912 0221 2B       		.uleb128 0x2b
+ 2913 0222 2E       		.uleb128 0x2e
+ 2914 0223 01       		.byte	0x1
+ 2915 0224 3F       		.uleb128 0x3f
+ 2916 0225 19       		.uleb128 0x19
+ 2917 0226 03       		.uleb128 0x3
+ 2918 0227 0E       		.uleb128 0xe
+ 2919 0228 3A       		.uleb128 0x3a
+ 2920 0229 0B       		.uleb128 0xb
+ 2921 022a 3B       		.uleb128 0x3b
+ 2922 022b 0B       		.uleb128 0xb
+ 2923 022c 27       		.uleb128 0x27
+ 2924 022d 19       		.uleb128 0x19
+ 2925 022e 3C       		.uleb128 0x3c
+ 2926 022f 19       		.uleb128 0x19
+ 2927 0230 01       		.uleb128 0x1
+ 2928 0231 13       		.uleb128 0x13
+ 2929 0232 00       		.byte	0
+ 2930 0233 00       		.byte	0
+ 2931 0234 2C       		.uleb128 0x2c
+ 2932 0235 05       		.uleb128 0x5
+ 2933 0236 00       		.byte	0
+ 2934 0237 49       		.uleb128 0x49
+ 2935 0238 13       		.uleb128 0x13
+ 2936 0239 00       		.byte	0
+ 2937 023a 00       		.byte	0
+ 2938 023b 2D       		.uleb128 0x2d
+ 2939 023c 2E       		.uleb128 0x2e
+ 2940 023d 01       		.byte	0x1
+ 2941 023e 3F       		.uleb128 0x3f
+ 2942 023f 19       		.uleb128 0x19
+ 2943 0240 03       		.uleb128 0x3
+ 2944 0241 0E       		.uleb128 0xe
+ 2945 0242 3A       		.uleb128 0x3a
+ 2946 0243 0B       		.uleb128 0xb
+ 2947 0244 3B       		.uleb128 0x3b
+ 2948 0245 0B       		.uleb128 0xb
+ 2949 0246 3C       		.uleb128 0x3c
+ 2950 0247 19       		.uleb128 0x19
+ 2951 0248 01       		.uleb128 0x1
+ 2952 0249 13       		.uleb128 0x13
+ 2953 024a 00       		.byte	0
+ 2954 024b 00       		.byte	0
+ 2955 024c 2E       		.uleb128 0x2e
+ 2956 024d 18       		.uleb128 0x18
+ 2957 024e 00       		.byte	0
+ 2958 024f 00       		.byte	0
+ 2959 0250 00       		.byte	0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 67
+
+
+ 2960 0251 2F       		.uleb128 0x2f
+ 2961 0252 2E       		.uleb128 0x2e
+ 2962 0253 01       		.byte	0x1
+ 2963 0254 3F       		.uleb128 0x3f
+ 2964 0255 19       		.uleb128 0x19
+ 2965 0256 03       		.uleb128 0x3
+ 2966 0257 0E       		.uleb128 0xe
+ 2967 0258 27       		.uleb128 0x27
+ 2968 0259 19       		.uleb128 0x19
+ 2969 025a 49       		.uleb128 0x49
+ 2970 025b 13       		.uleb128 0x13
+ 2971 025c 34       		.uleb128 0x34
+ 2972 025d 19       		.uleb128 0x19
+ 2973 025e 3C       		.uleb128 0x3c
+ 2974 025f 19       		.uleb128 0x19
+ 2975 0260 01       		.uleb128 0x1
+ 2976 0261 13       		.uleb128 0x13
+ 2977 0262 00       		.byte	0
+ 2978 0263 00       		.byte	0
+ 2979 0264 30       		.uleb128 0x30
+ 2980 0265 26       		.uleb128 0x26
+ 2981 0266 00       		.byte	0
+ 2982 0267 00       		.byte	0
+ 2983 0268 00       		.byte	0
+ 2984 0269 31       		.uleb128 0x31
+ 2985 026a 2E       		.uleb128 0x2e
+ 2986 026b 00       		.byte	0
+ 2987 026c 3F       		.uleb128 0x3f
+ 2988 026d 19       		.uleb128 0x19
+ 2989 026e 03       		.uleb128 0x3
+ 2990 026f 0E       		.uleb128 0xe
+ 2991 0270 3A       		.uleb128 0x3a
+ 2992 0271 0B       		.uleb128 0xb
+ 2993 0272 3B       		.uleb128 0x3b
+ 2994 0273 05       		.uleb128 0x5
+ 2995 0274 27       		.uleb128 0x27
+ 2996 0275 19       		.uleb128 0x19
+ 2997 0276 49       		.uleb128 0x49
+ 2998 0277 13       		.uleb128 0x13
+ 2999 0278 3C       		.uleb128 0x3c
+ 3000 0279 19       		.uleb128 0x19
+ 3001 027a 00       		.byte	0
+ 3002 027b 00       		.byte	0
+ 3003 027c 32       		.uleb128 0x32
+ 3004 027d 2E       		.uleb128 0x2e
+ 3005 027e 01       		.byte	0x1
+ 3006 027f 3F       		.uleb128 0x3f
+ 3007 0280 19       		.uleb128 0x19
+ 3008 0281 03       		.uleb128 0x3
+ 3009 0282 0E       		.uleb128 0xe
+ 3010 0283 3A       		.uleb128 0x3a
+ 3011 0284 0B       		.uleb128 0xb
+ 3012 0285 3B       		.uleb128 0x3b
+ 3013 0286 0B       		.uleb128 0xb
+ 3014 0287 27       		.uleb128 0x27
+ 3015 0288 19       		.uleb128 0x19
+ 3016 0289 49       		.uleb128 0x49
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 68
+
+
+ 3017 028a 13       		.uleb128 0x13
+ 3018 028b 3C       		.uleb128 0x3c
+ 3019 028c 19       		.uleb128 0x19
+ 3020 028d 01       		.uleb128 0x1
+ 3021 028e 13       		.uleb128 0x13
+ 3022 028f 00       		.byte	0
+ 3023 0290 00       		.byte	0
+ 3024 0291 33       		.uleb128 0x33
+ 3025 0292 2E       		.uleb128 0x2e
+ 3026 0293 01       		.byte	0x1
+ 3027 0294 3F       		.uleb128 0x3f
+ 3028 0295 19       		.uleb128 0x19
+ 3029 0296 03       		.uleb128 0x3
+ 3030 0297 0E       		.uleb128 0xe
+ 3031 0298 3A       		.uleb128 0x3a
+ 3032 0299 0B       		.uleb128 0xb
+ 3033 029a 3B       		.uleb128 0x3b
+ 3034 029b 0B       		.uleb128 0xb
+ 3035 029c 49       		.uleb128 0x49
+ 3036 029d 13       		.uleb128 0x13
+ 3037 029e 3C       		.uleb128 0x3c
+ 3038 029f 19       		.uleb128 0x19
+ 3039 02a0 01       		.uleb128 0x1
+ 3040 02a1 13       		.uleb128 0x13
+ 3041 02a2 00       		.byte	0
+ 3042 02a3 00       		.byte	0
+ 3043 02a4 34       		.uleb128 0x34
+ 3044 02a5 2E       		.uleb128 0x2e
+ 3045 02a6 00       		.byte	0
+ 3046 02a7 3F       		.uleb128 0x3f
+ 3047 02a8 19       		.uleb128 0x19
+ 3048 02a9 03       		.uleb128 0x3
+ 3049 02aa 0E       		.uleb128 0xe
+ 3050 02ab 3A       		.uleb128 0x3a
+ 3051 02ac 0B       		.uleb128 0xb
+ 3052 02ad 3B       		.uleb128 0x3b
+ 3053 02ae 0B       		.uleb128 0xb
+ 3054 02af 27       		.uleb128 0x27
+ 3055 02b0 19       		.uleb128 0x19
+ 3056 02b1 49       		.uleb128 0x49
+ 3057 02b2 13       		.uleb128 0x13
+ 3058 02b3 3C       		.uleb128 0x3c
+ 3059 02b4 19       		.uleb128 0x19
+ 3060 02b5 00       		.byte	0
+ 3061 02b6 00       		.byte	0
+ 3062 02b7 35       		.uleb128 0x35
+ 3063 02b8 2E       		.uleb128 0x2e
+ 3064 02b9 00       		.byte	0
+ 3065 02ba 3F       		.uleb128 0x3f
+ 3066 02bb 19       		.uleb128 0x19
+ 3067 02bc 03       		.uleb128 0x3
+ 3068 02bd 0E       		.uleb128 0xe
+ 3069 02be 3A       		.uleb128 0x3a
+ 3070 02bf 0B       		.uleb128 0xb
+ 3071 02c0 3B       		.uleb128 0x3b
+ 3072 02c1 0B       		.uleb128 0xb
+ 3073 02c2 27       		.uleb128 0x27
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 69
+
+
+ 3074 02c3 19       		.uleb128 0x19
+ 3075 02c4 3C       		.uleb128 0x3c
+ 3076 02c5 19       		.uleb128 0x19
+ 3077 02c6 00       		.byte	0
+ 3078 02c7 00       		.byte	0
+ 3079 02c8 36       		.uleb128 0x36
+ 3080 02c9 2E       		.uleb128 0x2e
+ 3081 02ca 01       		.byte	0x1
+ 3082 02cb 3F       		.uleb128 0x3f
+ 3083 02cc 19       		.uleb128 0x19
+ 3084 02cd 03       		.uleb128 0x3
+ 3085 02ce 0E       		.uleb128 0xe
+ 3086 02cf 3A       		.uleb128 0x3a
+ 3087 02d0 0B       		.uleb128 0xb
+ 3088 02d1 3B       		.uleb128 0x3b
+ 3089 02d2 05       		.uleb128 0x5
+ 3090 02d3 27       		.uleb128 0x27
+ 3091 02d4 19       		.uleb128 0x19
+ 3092 02d5 3C       		.uleb128 0x3c
+ 3093 02d6 19       		.uleb128 0x19
+ 3094 02d7 01       		.uleb128 0x1
+ 3095 02d8 13       		.uleb128 0x13
+ 3096 02d9 00       		.byte	0
+ 3097 02da 00       		.byte	0
+ 3098 02db 37       		.uleb128 0x37
+ 3099 02dc 2E       		.uleb128 0x2e
+ 3100 02dd 00       		.byte	0
+ 3101 02de 3F       		.uleb128 0x3f
+ 3102 02df 19       		.uleb128 0x19
+ 3103 02e0 03       		.uleb128 0x3
+ 3104 02e1 0E       		.uleb128 0xe
+ 3105 02e2 3A       		.uleb128 0x3a
+ 3106 02e3 0B       		.uleb128 0xb
+ 3107 02e4 3B       		.uleb128 0x3b
+ 3108 02e5 05       		.uleb128 0x5
+ 3109 02e6 27       		.uleb128 0x27
+ 3110 02e7 19       		.uleb128 0x19
+ 3111 02e8 3C       		.uleb128 0x3c
+ 3112 02e9 19       		.uleb128 0x19
+ 3113 02ea 00       		.byte	0
+ 3114 02eb 00       		.byte	0
+ 3115 02ec 00       		.byte	0
+ 3116              		.section	.debug_loc,"",%progbits
+ 3117              	.Ldebug_loc0:
+ 3118              	.LLST0:
+ 3119 0000 6C000000 		.4byte	.LVL12
+ 3120 0004 6E000000 		.4byte	.LVL13
+ 3121 0008 0100     		.2byte	0x1
+ 3122 000a 56       		.byte	0x56
+ 3123 000b 00000000 		.4byte	0
+ 3124 000f 00000000 		.4byte	0
+ 3125              	.LLST1:
+ 3126 0013 6C000000 		.4byte	.LVL12
+ 3127 0017 6E000000 		.4byte	.LVL13
+ 3128 001b 0800     		.2byte	0x8
+ 3129 001d 76       		.byte	0x76
+ 3130 001e 00       		.sleb128 0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 70
+
+
+ 3131 001f 3F       		.byte	0x3f
+ 3132 0020 1A       		.byte	0x1a
+ 3133 0021 74       		.byte	0x74
+ 3134 0022 00       		.sleb128 0
+ 3135 0023 22       		.byte	0x22
+ 3136 0024 9F       		.byte	0x9f
+ 3137 0025 74000000 		.4byte	.LVL15
+ 3138 0029 B6000000 		.4byte	.LVL25
+ 3139 002d 0100     		.2byte	0x1
+ 3140 002f 54       		.byte	0x54
+ 3141 0030 00000000 		.4byte	0
+ 3142 0034 00000000 		.4byte	0
+ 3143              	.LLST2:
+ 3144 0038 4E000000 		.4byte	.LVL11
+ 3145 003c 70000000 		.4byte	.LVL14
+ 3146 0040 0100     		.2byte	0x1
+ 3147 0042 50       		.byte	0x50
+ 3148 0043 00000000 		.4byte	0
+ 3149 0047 00000000 		.4byte	0
+ 3150              	.LLST3:
+ 3151 004b 6C000000 		.4byte	.LVL12
+ 3152 004f 70000000 		.4byte	.LVL14
+ 3153 0053 0C00     		.2byte	0xc
+ 3154 0055 70       		.byte	0x70
+ 3155 0056 00       		.sleb128 0
+ 3156 0057 4E       		.byte	0x4e
+ 3157 0058 3F       		.byte	0x3f
+ 3158 0059 24       		.byte	0x24
+ 3159 005a 1A       		.byte	0x1a
+ 3160 005b 40       		.byte	0x40
+ 3161 005c 25       		.byte	0x25
+ 3162 005d 72       		.byte	0x72
+ 3163 005e 00       		.sleb128 0
+ 3164 005f 22       		.byte	0x22
+ 3165 0060 9F       		.byte	0x9f
+ 3166 0061 00000000 		.4byte	0
+ 3167 0065 00000000 		.4byte	0
+ 3168              	.LLST4:
+ 3169 0069 10000000 		.4byte	.LVL33
+ 3170 006d 16000000 		.4byte	.LVL34
+ 3171 0071 0100     		.2byte	0x1
+ 3172 0073 50       		.byte	0x50
+ 3173 0074 1C000000 		.4byte	.LVL36
+ 3174 0078 20000000 		.4byte	.LVL37
+ 3175 007c 0100     		.2byte	0x1
+ 3176 007e 50       		.byte	0x50
+ 3177 007f 28000000 		.4byte	.LVL38
+ 3178 0083 3E000000 		.4byte	.LVL39
+ 3179 0087 0100     		.2byte	0x1
+ 3180 0089 50       		.byte	0x50
+ 3181 008a 00000000 		.4byte	0
+ 3182 008e 00000000 		.4byte	0
+ 3183              	.LLST5:
+ 3184 0092 12000000 		.4byte	.LVL52
+ 3185 0096 18000000 		.4byte	.LVL54
+ 3186 009a 0200     		.2byte	0x2
+ 3187 009c 30       		.byte	0x30
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 71
+
+
+ 3188 009d 9F       		.byte	0x9f
+ 3189 009e 18000000 		.4byte	.LVL54
+ 3190 00a2 20000000 		.4byte	.LVL56
+ 3191 00a6 0700     		.2byte	0x7
+ 3192 00a8 0A       		.byte	0xa
+ 3193 00a9 E903     		.2byte	0x3e9
+ 3194 00ab 75       		.byte	0x75
+ 3195 00ac 00       		.sleb128 0
+ 3196 00ad 1C       		.byte	0x1c
+ 3197 00ae 9F       		.byte	0x9f
+ 3198 00af 20000000 		.4byte	.LVL56
+ 3199 00b3 22000000 		.4byte	.LVL57
+ 3200 00b7 0700     		.2byte	0x7
+ 3201 00b9 0A       		.byte	0xa
+ 3202 00ba EA03     		.2byte	0x3ea
+ 3203 00bc 75       		.byte	0x75
+ 3204 00bd 00       		.sleb128 0
+ 3205 00be 1C       		.byte	0x1c
+ 3206 00bf 9F       		.byte	0x9f
+ 3207 00c0 2A000000 		.4byte	.LVL58
+ 3208 00c4 2C000000 		.4byte	.LVL59
+ 3209 00c8 0700     		.2byte	0x7
+ 3210 00ca 0A       		.byte	0xa
+ 3211 00cb E903     		.2byte	0x3e9
+ 3212 00cd 75       		.byte	0x75
+ 3213 00ce 00       		.sleb128 0
+ 3214 00cf 1C       		.byte	0x1c
+ 3215 00d0 9F       		.byte	0x9f
+ 3216 00d1 2C000000 		.4byte	.LVL59
+ 3217 00d5 3C000000 		.4byte	.LVL62
+ 3218 00d9 0100     		.2byte	0x1
+ 3219 00db 55       		.byte	0x55
+ 3220 00dc 3E000000 		.4byte	.LVL63
+ 3221 00e0 4A000000 		.4byte	.LVL65
+ 3222 00e4 0100     		.2byte	0x1
+ 3223 00e6 55       		.byte	0x55
+ 3224 00e7 00000000 		.4byte	0
+ 3225 00eb 00000000 		.4byte	0
+ 3226              		.section	.debug_aranges,"",%progbits
+ 3227 0000 5C000000 		.4byte	0x5c
+ 3228 0004 0200     		.2byte	0x2
+ 3229 0006 00000000 		.4byte	.Ldebug_info0
+ 3230 000a 04       		.byte	0x4
+ 3231 000b 00       		.byte	0
+ 3232 000c 0000     		.2byte	0
+ 3233 000e 0000     		.2byte	0
+ 3234 0010 00000000 		.4byte	.LFB62
+ 3235 0014 14000000 		.4byte	.LFE62-.LFB62
+ 3236 0018 00000000 		.4byte	.LFB61
+ 3237 001c 24000000 		.4byte	.LFE61-.LFB61
+ 3238 0020 00000000 		.4byte	.LFB64
+ 3239 0024 D4000000 		.4byte	.LFE64-.LFB64
+ 3240 0028 00000000 		.4byte	.LFB65
+ 3241 002c 80000000 		.4byte	.LFE65-.LFB65
+ 3242 0030 00000000 		.4byte	.LFB60
+ 3243 0034 64000000 		.4byte	.LFE60-.LFB60
+ 3244 0038 00000000 		.4byte	.LFB63
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 72
+
+
+ 3245 003c 6C000000 		.4byte	.LFE63-.LFB63
+ 3246 0040 00000000 		.4byte	.LFB59
+ 3247 0044 10000000 		.4byte	.LFE59-.LFB59
+ 3248 0048 00000000 		.4byte	.LFB66
+ 3249 004c 58000000 		.4byte	.LFE66-.LFB66
+ 3250 0050 00000000 		.4byte	.LFB67
+ 3251 0054 68000000 		.4byte	.LFE67-.LFB67
+ 3252 0058 00000000 		.4byte	0
+ 3253 005c 00000000 		.4byte	0
+ 3254              		.section	.debug_ranges,"",%progbits
+ 3255              	.Ldebug_ranges0:
+ 3256 0000 5E000000 		.4byte	.LBB10
+ 3257 0004 62000000 		.4byte	.LBE10
+ 3258 0008 64000000 		.4byte	.LBB20
+ 3259 000c 68000000 		.4byte	.LBE20
+ 3260 0010 6C000000 		.4byte	.LBB22
+ 3261 0014 6E000000 		.4byte	.LBE22
+ 3262 0018 72000000 		.4byte	.LBB24
+ 3263 001c 74000000 		.4byte	.LBE24
+ 3264 0020 00000000 		.4byte	0
+ 3265 0024 00000000 		.4byte	0
+ 3266 0028 62000000 		.4byte	.LBB15
+ 3267 002c 64000000 		.4byte	.LBE15
+ 3268 0030 68000000 		.4byte	.LBB21
+ 3269 0034 6C000000 		.4byte	.LBE21
+ 3270 0038 6E000000 		.4byte	.LBB23
+ 3271 003c 72000000 		.4byte	.LBE23
+ 3272 0040 74000000 		.4byte	.LBB25
+ 3273 0044 76000000 		.4byte	.LBE25
+ 3274 0048 00000000 		.4byte	0
+ 3275 004c 00000000 		.4byte	0
+ 3276 0050 00000000 		.4byte	.LFB62
+ 3277 0054 14000000 		.4byte	.LFE62
+ 3278 0058 00000000 		.4byte	.LFB61
+ 3279 005c 24000000 		.4byte	.LFE61
+ 3280 0060 00000000 		.4byte	.LFB64
+ 3281 0064 D4000000 		.4byte	.LFE64
+ 3282 0068 00000000 		.4byte	.LFB65
+ 3283 006c 80000000 		.4byte	.LFE65
+ 3284 0070 00000000 		.4byte	.LFB60
+ 3285 0074 64000000 		.4byte	.LFE60
+ 3286 0078 00000000 		.4byte	.LFB63
+ 3287 007c 6C000000 		.4byte	.LFE63
+ 3288 0080 00000000 		.4byte	.LFB59
+ 3289 0084 10000000 		.4byte	.LFE59
+ 3290 0088 00000000 		.4byte	.LFB66
+ 3291 008c 58000000 		.4byte	.LFE66
+ 3292 0090 00000000 		.4byte	.LFB67
+ 3293 0094 68000000 		.4byte	.LFE67
+ 3294 0098 00000000 		.4byte	0
+ 3295 009c 00000000 		.4byte	0
+ 3296              		.section	.debug_line,"",%progbits
+ 3297              	.Ldebug_line0:
+ 3298 0000 A2020000 		.section	.debug_str,"MS",%progbits,1
+ 3298      02007201 
+ 3298      00000201 
+ 3298      FB0E0D00 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 73
+
+
+ 3298      01010101 
+ 3299              	.LASF68:
+ 3300 0000 4932435F 		.ascii	"I2C_ReadRegister\000"
+ 3300      52656164 
+ 3300      52656769 
+ 3300      73746572 
+ 3300      00
+ 3301              	.LASF57:
+ 3302 0011 54696D65 		.ascii	"TimeStruct\000"
+ 3302      53747275 
+ 3302      637400
+ 3303              	.LASF22:
+ 3304 001c 44697370 		.ascii	"DisplayCursor\000"
+ 3304      6C617943 
+ 3304      7572736F 
+ 3304      7200
+ 3305              	.LASF76:
+ 3306 002a 55415254 		.ascii	"UART_SpiUartReadRxData\000"
+ 3306      5F537069 
+ 3306      55617274 
+ 3306      52656164 
+ 3306      52784461 
+ 3307              	.LASF84:
+ 3308 0041 52544F53 		.ascii	"RTOS_Start\000"
+ 3308      5F537461 
+ 3308      727400
+ 3309              	.LASF48:
+ 3310 004c 436F6D61 		.ascii	"Comand\000"
+ 3310      6E6400
+ 3311              	.LASF35:
+ 3312 0053 5254435F 		.ascii	"RTC_GetHours\000"
+ 3312      47657448 
+ 3312      6F757273 
+ 3312      00
+ 3313              	.LASF2:
+ 3314 0060 73686F72 		.ascii	"short int\000"
+ 3314      7420696E 
+ 3314      7400
+ 3315              	.LASF87:
+ 3316 006a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3316      4320342E 
+ 3316      392E3320 
+ 3316      32303135 
+ 3316      30333033 
+ 3317 009d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 3317      20726576 
+ 3317      6973696F 
+ 3317      6E203232 
+ 3317      31323230 
+ 3318 00d0 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 3318      66756E63 
+ 3318      74696F6E 
+ 3318      2D736563 
+ 3318      74696F6E 
+ 3319              	.LASF90:
+ 3320 00f8 4F50545F 		.ascii	"OPT_Get_Result\000"
+ 3320      4765745F 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 74
+
+
+ 3320      52657375 
+ 3320      6C7400
+ 3321              	.LASF17:
+ 3322 0107 4E756D62 		.ascii	"Number\000"
+ 3322      657200
+ 3323              	.LASF91:
+ 3324 010e 6D61696E 		.ascii	"main\000"
+ 3324      00
+ 3325              	.LASF70:
+ 3326 0113 5254435F 		.ascii	"RTC_GetTime\000"
+ 3326      47657454 
+ 3326      696D6500 
+ 3327              	.LASF63:
+ 3328 011f 6D656D63 		.ascii	"memcpy\000"
+ 3328      707900
+ 3329              	.LASF29:
+ 3330 0126 4D616E75 		.ascii	"Manufacturer\000"
+ 3330      66616374 
+ 3330      75726572 
+ 3330      00
+ 3331              	.LASF60:
+ 3332 0133 53657454 		.ascii	"SetTimerTask\000"
+ 3332      696D6572 
+ 3332      5461736B 
+ 3332      00
+ 3333              	.LASF75:
+ 3334 0140 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
+ 3334      5F537069 
+ 3334      55617274 
+ 3334      47657452 
+ 3334      78427566 
+ 3335              	.LASF38:
+ 3336 015c 5254435F 		.ascii	"RTC_GetSecond\000"
+ 3336      47657453 
+ 3336      65636F6E 
+ 3336      6400
+ 3337              	.LASF10:
+ 3338 016a 75696E74 		.ascii	"uint16\000"
+ 3338      313600
+ 3339              	.LASF41:
+ 3340 0171 4C616D70 		.ascii	"Lamp_Status\000"
+ 3340      5F537461 
+ 3340      74757300 
+ 3341              	.LASF89:
+ 3342 017d 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
+ 3342      73657273 
+ 3342      5C566974 
+ 3342      616C695C 
+ 3342      446F6375 
+ 3343 01ab 6E74726F 		.ascii	"ntroller_Workspace\\Expo_Controller2.cydsn\000"
+ 3343      6C6C6572 
+ 3343      5F576F72 
+ 3343      6B737061 
+ 3343      63655C45 
+ 3344              	.LASF74:
+ 3345 01d5 55415254 		.ascii	"UART_UartPutString\000"
+ 3345      5F556172 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 75
+
+
+ 3345      74507574 
+ 3345      53747269 
+ 3345      6E6700
+ 3346              	.LASF47:
+ 3347 01e8 43686563 		.ascii	"Check_Boot\000"
+ 3347      6B5F426F 
+ 3347      6F7400
+ 3348              	.LASF9:
+ 3349 01f3 75696E74 		.ascii	"uint8\000"
+ 3349      3800
+ 3350              	.LASF23:
+ 3351 01f9 4F50545F 		.ascii	"OPT_Status\000"
+ 3351      53746174 
+ 3351      757300
+ 3352              	.LASF54:
+ 3353 0204 53797374 		.ascii	"System_Timer_Flag\000"
+ 3353      656D5F54 
+ 3353      696D6572 
+ 3353      5F466C61 
+ 3353      6700
+ 3354              	.LASF46:
+ 3355 0216 50726F63 		.ascii	"Procent\000"
+ 3355      656E7400 
+ 3356              	.LASF26:
+ 3357 021e 4D795374 		.ascii	"MyStruct\000"
+ 3357      72756374 
+ 3357      00
+ 3358              	.LASF0:
+ 3359 0227 7369676E 		.ascii	"signed char\000"
+ 3359      65642063 
+ 3359      68617200 
+ 3360              	.LASF12:
+ 3361 0233 666C6F61 		.ascii	"float\000"
+ 3361      7400
+ 3362              	.LASF25:
+ 3363 0239 4D696E5F 		.ascii	"Min_Bright\000"
+ 3363      42726967 
+ 3363      687400
+ 3364              	.LASF6:
+ 3365 0244 6C6F6E67 		.ascii	"long long int\000"
+ 3365      206C6F6E 
+ 3365      6720696E 
+ 3365      7400
+ 3366              	.LASF67:
+ 3367 0252 50574D5F 		.ascii	"PWM_WriteCompare1\000"
+ 3367      57726974 
+ 3367      65436F6D 
+ 3367      70617265 
+ 3367      3100
+ 3368              	.LASF51:
+ 3369 0264 4F50545F 		.ascii	"OPT_Out_String\000"
+ 3369      4F75745F 
+ 3369      53747269 
+ 3369      6E6700
+ 3370              	.LASF64:
+ 3371 0273 6D656D73 		.ascii	"memset\000"
+ 3371      657400
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 76
+
+
+ 3372              	.LASF4:
+ 3373 027a 6C6F6E67 		.ascii	"long int\000"
+ 3373      20696E74 
+ 3373      00
+ 3374              	.LASF32:
+ 3375 0283 57616974 		.ascii	"WaitPowerStab\000"
+ 3375      506F7765 
+ 3375      72537461 
+ 3375      6200
+ 3376              	.LASF77:
+ 3377 0291 426F6F74 		.ascii	"Bootloadable_Load\000"
+ 3377      6C6F6164 
+ 3377      61626C65 
+ 3377      5F4C6F61 
+ 3377      6400
+ 3378              	.LASF72:
+ 3379 02a3 4F50545F 		.ascii	"OPT_GetResultString\000"
+ 3379      47657452 
+ 3379      6573756C 
+ 3379      74537472 
+ 3379      696E6700 
+ 3380              	.LASF33:
+ 3381 02b7 53746172 		.ascii	"Start_Display\000"
+ 3381      745F4469 
+ 3381      73706C61 
+ 3381      7900
+ 3382              	.LASF50:
+ 3383 02c5 4D61696E 		.ascii	"MainTimer\000"
+ 3383      54696D65 
+ 3383      7200
+ 3384              	.LASF61:
+ 3385 02cf 4164645F 		.ascii	"Add_To_DDR\000"
+ 3385      546F5F44 
+ 3385      445200
+ 3386              	.LASF55:
+ 3387 02da 53797374 		.ascii	"System_Timer\000"
+ 3387      656D5F54 
+ 3387      696D6572 
+ 3387      00
+ 3388              	.LASF56:
+ 3389 02e7 476C6F62 		.ascii	"GlobalStruct\000"
+ 3389      616C5374 
+ 3389      72756374 
+ 3389      00
+ 3390              	.LASF37:
+ 3391 02f4 696E7075 		.ascii	"inputTime\000"
+ 3391      7454696D 
+ 3391      6500
+ 3392              	.LASF18:
+ 3393 02fe 54696D65 		.ascii	"Time\000"
+ 3393      00
+ 3394              	.LASF27:
+ 3395 0303 416C6172 		.ascii	"Alarm\000"
+ 3395      6D00
+ 3396              	.LASF24:
+ 3397 0309 4D61785F 		.ascii	"Max_Bright\000"
+ 3397      42726967 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 77
+
+
+ 3397      687400
+ 3398              	.LASF1:
+ 3399 0314 756E7369 		.ascii	"unsigned char\000"
+ 3399      676E6564 
+ 3399      20636861 
+ 3399      7200
+ 3400              	.LASF39:
+ 3401 0322 4D61696E 		.ascii	"Main_Display_Print\000"
+ 3401      5F446973 
+ 3401      706C6179 
+ 3401      5F507269 
+ 3401      6E7400
+ 3402              	.LASF65:
+ 3403 0335 73707269 		.ascii	"sprintf\000"
+ 3403      6E746600 
+ 3404              	.LASF83:
+ 3405 033d 5254435F 		.ascii	"RTC_SetPeriod\000"
+ 3405      53657450 
+ 3405      6572696F 
+ 3405      6400
+ 3406              	.LASF71:
+ 3407 034b 4F50545F 		.ascii	"OPT_IsReady\000"
+ 3407      49735265 
+ 3407      61647900 
+ 3408              	.LASF30:
+ 3409 0357 44657669 		.ascii	"Device\000"
+ 3409      636500
+ 3410              	.LASF7:
+ 3411 035e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3411      206C6F6E 
+ 3411      6720756E 
+ 3411      7369676E 
+ 3411      65642069 
+ 3412              	.LASF53:
+ 3413 0375 4672616D 		.ascii	"Frame_Tail\000"
+ 3413      655F5461 
+ 3413      696C00
+ 3414              	.LASF8:
+ 3415 0380 756E7369 		.ascii	"unsigned int\000"
+ 3415      676E6564 
+ 3415      20696E74 
+ 3415      00
+ 3416              	.LASF78:
+ 3417 038d 54696D65 		.ascii	"Timer_RTOS_Start\000"
+ 3417      725F5254 
+ 3417      4F535F53 
+ 3417      74617274 
+ 3417      00
+ 3418              	.LASF5:
+ 3419 039e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3419      20756E73 
+ 3419      69676E65 
+ 3419      6420696E 
+ 3419      7400
+ 3420              	.LASF58:
+ 3421 03b0 43686563 		.ascii	"Check_OPT\000"
+ 3421      6B5F4F50 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 78
+
+
+ 3421      5400
+ 3422              	.LASF45:
+ 3423 03ba 42726967 		.ascii	"Brightles_PID_Controll\000"
+ 3423      68746C65 
+ 3423      735F5049 
+ 3423      445F436F 
+ 3423      6E74726F 
+ 3424              	.LASF3:
+ 3425 03d1 73686F72 		.ascii	"short unsigned int\000"
+ 3425      7420756E 
+ 3425      7369676E 
+ 3425      65642069 
+ 3425      6E7400
+ 3426              	.LASF19:
+ 3427 03e4 466C6167 		.ascii	"Flag\000"
+ 3427      00
+ 3428              	.LASF15:
+ 3429 03e9 63686172 		.ascii	"char\000"
+ 3429      00
+ 3430              	.LASF66:
+ 3431 03ee 73747263 		.ascii	"strcat\000"
+ 3431      617400
+ 3432              	.LASF81:
+ 3433 03f5 55415254 		.ascii	"UART_Start\000"
+ 3433      5F537461 
+ 3433      727400
+ 3434              	.LASF36:
+ 3435 0400 5254435F 		.ascii	"RTC_GetMinutes\000"
+ 3435      4765744D 
+ 3435      696E7574 
+ 3435      657300
+ 3436              	.LASF14:
+ 3437 040f 63686172 		.ascii	"char8\000"
+ 3437      3800
+ 3438              	.LASF44:
+ 3439 0415 4572726F 		.ascii	"Error\000"
+ 3439      7200
+ 3440              	.LASF43:
+ 3441 041b 436F6E65 		.ascii	"Conected\000"
+ 3441      63746564 
+ 3441      00
+ 3442              	.LASF73:
+ 3443 0424 426F6F74 		.ascii	"Bootloader_En_Read\000"
+ 3443      6C6F6164 
+ 3443      65725F45 
+ 3443      6E5F5265 
+ 3443      616400
+ 3444              	.LASF85:
+ 3445 0437 53657454 		.ascii	"SetTask\000"
+ 3445      61736B00 
+ 3446              	.LASF86:
+ 3447 043f 5461736B 		.ascii	"TaskManager\000"
+ 3447      4D616E61 
+ 3447      67657200 
+ 3448              	.LASF69:
+ 3449 044b 4F50545F 		.ascii	"OPT_StartConvert\000"
+ 3449      53746172 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 79
+
+
+ 3449      74436F6E 
+ 3449      76657274 
+ 3449      00
+ 3450              	.LASF11:
+ 3451 045c 75696E74 		.ascii	"uint32\000"
+ 3451      333200
+ 3452              	.LASF40:
+ 3453 0463 424C455F 		.ascii	"BLE_Status\000"
+ 3453      53746174 
+ 3453      757300
+ 3454              	.LASF28:
+ 3455 046e 54696D65 		.ascii	"TimeType\000"
+ 3455      54797065 
+ 3455      00
+ 3456              	.LASF13:
+ 3457 0477 646F7562 		.ascii	"double\000"
+ 3457      6C6500
+ 3458              	.LASF62:
+ 3459 047e 5072696E 		.ascii	"Print_DDR\000"
+ 3459      745F4444 
+ 3459      5200
+ 3460              	.LASF49:
+ 3461 0488 5461736B 		.ascii	"TaskQueue\000"
+ 3461      51756575 
+ 3461      6500
+ 3462              	.LASF21:
+ 3463 0492 476F546F 		.ascii	"GoToTask\000"
+ 3463      5461736B 
+ 3463      00
+ 3464              	.LASF88:
+ 3465 049b 2E5C6D61 		.ascii	".\\main.c\000"
+ 3465      696E2E63 
+ 3465      00
+ 3466              	.LASF31:
+ 3467 04a4 53746174 		.ascii	"Status\000"
+ 3467      757300
+ 3468              	.LASF79:
+ 3469 04ab 50574D5F 		.ascii	"PWM_Start\000"
+ 3469      53746172 
+ 3469      7400
+ 3470              	.LASF59:
+ 3471 04b5 4C43445F 		.ascii	"LCD_WS0010Start\000"
+ 3471      57533030 
+ 3471      31305374 
+ 3471      61727400 
+ 3472              	.LASF16:
+ 3473 04c5 73697A65 		.ascii	"sizetype\000"
+ 3473      74797065 
+ 3473      00
+ 3474              	.LASF34:
+ 3475 04ce 72657456 		.ascii	"retVal\000"
+ 3475      616C00
+ 3476              	.LASF52:
+ 3477 04d5 4672616D 		.ascii	"FrameDDR\000"
+ 3477      65444452 
+ 3477      00
+ 3478              	.LASF20:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc8OwDbK.s 			page 80
+
+
+ 3479 04de 54505452 		.ascii	"TPTR\000"
+ 3479      00
+ 3480              	.LASF80:
+ 3481 04e3 4932435F 		.ascii	"I2C_Start\000"
+ 3481      53746172 
+ 3481      7400
+ 3482              	.LASF82:
+ 3483 04ed 5254435F 		.ascii	"RTC_Start\000"
+ 3483      53746172 
+ 3483      7400
+ 3484              	.LASF42:
+ 3485 04f7 74696D65 		.ascii	"timeBuffer\000"
+ 3485      42756666 
+ 3485      657200
+ 3486              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
