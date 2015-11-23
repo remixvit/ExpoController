@@ -10,6 +10,8 @@
  * ========================================
 */
 #include "WS0010.h"
+#include <stdlib.h>
+#include <stdio.h>
 
     void inline Enable_Frame_DDR()
     {
@@ -99,6 +101,26 @@
                 LCD_PutChar(FrameDDR[Line][Col]);
             }
         }
+    }
+    
+    void ScreenSaver(char *Str)
+    {
+        uint8 Lenght;
+		uint8 x, y, scroll;
+        Lenght = strlen(Str);
+		Lenght = 19 - Lenght; // Максимальное смещение по x
+		srand(255);
+		x = 0 + rand() % Lenght; // Генерация случайного столбца
+		y = 0 + rand() % 3; //Генерация случайной строки
+		Lenght = 19 - Lenght;
+		LCD_ClearDisplay();
+		LCD_Position(x, y);
+		for(scroll = 0; scroll < Lenght; scroll++)
+		{
+			LCD_PutChar(Str[scroll]);
+			x++;
+			LCD_Position(x, y);
+		}        
     }
 
 /* [] END OF FILE */

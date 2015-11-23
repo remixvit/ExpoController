@@ -80,14 +80,14 @@
 
 char OPT_Out_String[25];
 
-uint8 OPT_IsReady(void);
-void OPT_Enable(uint8 enable);
-uint8 I2C_ReadRegister(uint8 ADR, uint8 Reg, uint16 *RetValue);
-uint8 I2C_WriteRegister(uint8 ADR, uint8 Reg, uint16 *RetValue);
-uint8 OPT_ReadResult(uint32 *Result);
-uint8 OPT_StartConvert();
+uint8 OPT_IsReady(void); //Проверка готовности измерений
+void OPT_Enable(uint8 enable);// Инициализация датчика
+uint8 I2C_ReadRegister(uint8 ADR, uint8 Reg, uint16 *RetValue);// Чтение регистра
+uint8 I2C_WriteRegister(uint8 ADR, uint8 Reg, uint16 *RetValue);// Запись в регистр
+uint8 OPT_ReadResult(uint32 *Result);// Чтение результата измерения и перевод значения в Люксы
+uint8 OPT_StartConvert();//Запуск процесса измерения освещенности
 uint16 OPT_Status(int type);
-char *OPT_GetResultString(volatile uint32 *Lux);
+char *OPT_GetResultString(volatile uint32 *Lux);// Конверсия значения в строку
 
 
 

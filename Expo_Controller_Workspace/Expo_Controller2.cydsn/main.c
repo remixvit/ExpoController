@@ -23,15 +23,18 @@ typedef struct
     uint8 OPT_Status;
     uint16 Max_Bright;
     uint16 Min_Bright;
+	uint8 BLE_Status;
+	uint8 Lamp_Status;
+	uint8 OS_Status;
 }MyStruct;
 volatile MyStruct GlobalStruct;
 
 typedef struct
 {
     uint32 Time;
-    uint32 Alarm;
 }TimeType;
 volatile TimeType TimeStruct;
+RTC_DATE_TIME AlarmTime;
 //volatile char Main_Display_Buf[4][21];
 
 
@@ -86,6 +89,7 @@ void Start_Display()
     Add_To_DDR("OS Start");
     Print_DDR();
 }
+
 void WaitPowerStab()
 {
    SetTimerTask(Start_Display, 1000);
@@ -123,25 +127,146 @@ void OPT_Get_Result()
     }
 }
 
+void Get_RealTimeString(char *TimeString)
+{
+	char timeBuffer[9];
+	uint8 scroll = 0;
+	TimeStruct.Time = RTC_GetTime();
+    sprintf(timeBuffer, "%02lu:%02lu:%02lu", RTC_GetHours(TimeStruct.Time), RTC_GetMinutes(TimeStruct.Time), RTC_GetSecond(TimeStruct.Time));
+	for(scroll = 0; scroll < 20; scroll++)
+	{
+		TimeString[scroll] = timeBuffer[scroll];
+	}
+}
+
+void Get_AlarmTimeString(char *TimeString)
+{
+	char timeBuffer[9];
+	uint32 scroll, sec, min, hour;
+	sec = 0;
+	min = 0;
+	hour = 0;
+	if(AlarmTime.status == 1)
+		{
+			RTC_GetAlarmDateAndTime(&AlarmTime);
+			TimeStruct.Time = RTC_GetTime();
+	
+			min = RTC_GetMinutes(AlarmTime.time);
+			hour = RTC_GetHours(AlarmTime.time);
+	
+			if(RTC_GetSecond(AlarmTime.time) < RTC_GetSecond(TimeStruct.Time))
+				{		
+					if(min)
+						{
+							min--;
+							sec = 59 - (RTC_GetSecond(TimeStruct.Time) - RTC_GetSecond(AlarmTime.time));
+						}
+					else
+						{		
+							hour--;
+							min = 59;
+							sec = 59 - (RTC_GetSecond(TimeStruct.Time) - RTC_GetSecond(AlarmTime.time));			
+						}			
+				}
+			else
+				{
+					sec = (RTC_GetSecond(AlarmTime.time) - RTC_GetSecond(TimeStruct.Time));
+				}
+			
+			if(min < RTC_GetMinutes(TimeStruct.Time))
+				{
+					hour--;
+					min = 59 - (RTC_GetMinutes(TimeStruct.Time) - min);
+				}
+			else
+				{
+					min = min - RTC_GetMinutes(TimeStruct.Time);
+				}
+				
+			hour = hour - RTC_GetHours(TimeStruct.Time);
+		}
+	
+    sprintf(timeBuffer, "%02lu:%02lu:%02lu", hour, min, sec);
+	for(scroll = 0; scroll < 20; scroll++)
+		{
+			TimeString[scroll] = timeBuffer[scroll];
+		}
+}
+
 void Main_Display_Print()
 {
     char BLE_Status[20] = "BLE_Status: ";
     char Lamp_Status[20] = "UV Lamp: ";
-    char timeBuffer[20];
+    char timeBuffer[9];
+	char DisplayTimeBufer[20];
     const char ON[3] = "ON";
     const char OFF[4] = "OFF";
     const char Conected[9] = "Conected";
     const char Error[6] = "Error";
-    TimeStruct.Time = RTC_GetTime();
-    sprintf(timeBuffer, "            %02lu:%02lu:%02lu", RTC_GetHours(TimeStruct.Time), RTC_GetMinutes(TimeStruct.Time), RTC_GetSecond(TimeStruct.Time));
-    strcat(BLE_Status, ON);
-    strcat(Lamp_Status, OFF);
-    Add_To_DDR(timeBuffer);
+    
+	Get_AlarmTimeString(timeBuffer);
+	strcat(DisplayTimeBufer, timeBuffer);
+	strcat(DisplayTimeBufer, "    ");
+	Get_RealTimeString(timeBuffer);
+	strcat(DisplayTimeBufer, timeBuffer);
+	
+	switch(GlobalStruct.BLE_Status)
+	{
+		case 0:
+			strcat(BLE_Status, OFF);
+			break;
+		case 1:
+			strcat(BLE_Status, ON);
+			break;
+		case 3:
+		    strcat(BLE_Status, Conected);
+			break;
+		case 4:
+		    strcat(BLE_Status, Error);
+			break;
+		default:
+			strcat(BLE_Status, Error);
+			break;
+	}
+	
+	switch(GlobalStruct.Lamp_Status)
+	{
+		case 0:
+			strcat(Lamp_Status, OFF);
+			break;
+		case 1:
+			strcat(Lamp_Status, ON);
+			break;
+		default:
+			strcat(Lamp_Status, Error);
+			break;
+	}
+	
+    Add_To_DDR(DisplayTimeBufer);
     Add_To_DDR(OPT_Out_String);    
     Add_To_DDR(BLE_Status);
     Add_To_DDR(Lamp_Status);
     Print_DDR();
-    SetTimerTask(Main_Display_Print, 200);
+}
+
+void ScreenSaver_Display()
+{
+		char TimeSTR[9];
+		Get_RealTimeString(TimeSTR);
+}
+
+void Display_Controll()
+{
+	switch(GlobalStruct.OS_Status)
+		{
+			case 0:
+				SetTask(ScreenSaver_Display);
+				break;
+			case 1:
+				SetTask(Main_Display_Print);
+		}
+	
+	SetTimerTask(Display_Controll, 250);
 }
 
 void Brightles_PID_Controll()
@@ -162,6 +287,7 @@ void Brightles_PID_Controll()
     }
     SetTimerTask(Brightles_PID_Controll, 2000);
 }
+
 void BLE_Status()
 {
     char Comand[10] = "AT";
@@ -182,10 +308,9 @@ void BLE_Status()
     Print_DDR();
 }
 
-
-int main()
+void Initial()
 {
-    CyGlobalIntEnable;
+	CyGlobalIntEnable;
     Check_Boot();
     Timer_RTOS_Start();
     PWM_Start();
@@ -199,11 +324,18 @@ int main()
     SetTask(WaitPowerStab);
     SetTimerTask(OPT_Get_Result, 1300);
     //BLE_Status();
-    SetTimerTask(Main_Display_Print, 2000);
+    SetTimerTask(Display_Controll, 2000);
+}
+
+
+int main()
+{
+	Initial();
     for(;;)
     {
         TaskManager();
     }
+	return 0;
 }
 
 /* [] END OF FILE */

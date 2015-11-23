@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
   30:.\Generated_Source\PSoC4/AMux.c **** *  void
   31:.\Generated_Source\PSoC4/AMux.c **** *
   32:.\Generated_Source\PSoC4/AMux.c **** * Return:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 2
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/AMux.c **** *  void
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
   60              		.thumb_func
   61              		.type	AMux_Select, %function
   62              	AMux_Select:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 3
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 3
 
 
   63              	.LFB1:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
   93              	.LFE1:
   94              		.size	AMux_Select, .-AMux_Select
   95              		.section	.text.AMux_FastSelect,"ax",%progbits
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 4
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 4
 
 
   96              		.align	1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  124              	.LVL8:
  125              	.L8:
  100:.\Generated_Source\PSoC4/AMux.c ****     }
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 5
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 5
 
 
  101:.\Generated_Source\PSoC4/AMux.c **** 
@@ -290,18 +290,18 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  159 000b 01       		.uleb128 0x1
  160 000c 08000000 		.4byte	.LASF18
  161 0010 01       		.byte	0x1
- 162 0011 B3010000 		.4byte	.LASF19
- 163 0015 2A010000 		.4byte	.LASF20
+ 162 0011 A5010000 		.4byte	.LASF19
+ 163 0015 42010000 		.4byte	.LASF20
  164 0019 00000000 		.4byte	.Ldebug_ranges0+0
  165 001d 00000000 		.4byte	0
  166 0021 00000000 		.4byte	.Ldebug_line0
  167 0025 02       		.uleb128 0x2
  168 0026 01       		.byte	0x1
  169 0027 06       		.byte	0x6
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 6
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 6
 
 
- 170 0028 D3010000 		.4byte	.LASF0
+ 170 0028 C5010000 		.4byte	.LASF0
  171 002c 02       		.uleb128 0x2
  172 002d 01       		.byte	0x1
  173 002e 08       		.byte	0x8
@@ -309,7 +309,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  175 0033 02       		.uleb128 0x2
  176 0034 02       		.byte	0x2
  177 0035 05       		.byte	0x5
- 178 0036 9A010000 		.4byte	.LASF2
+ 178 0036 8C010000 		.4byte	.LASF2
  179 003a 02       		.uleb128 0x2
  180 003b 02       		.byte	0x2
  181 003c 07       		.byte	0x7
@@ -317,7 +317,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  183 0041 02       		.uleb128 0x2
  184 0042 04       		.byte	0x4
  185 0043 05       		.byte	0x5
- 186 0044 AA010000 		.4byte	.LASF4
+ 186 0044 9C010000 		.4byte	.LASF4
  187 0048 02       		.uleb128 0x2
  188 0049 04       		.byte	0x4
  189 004a 07       		.byte	0x7
@@ -325,11 +325,11 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  191 004f 02       		.uleb128 0x2
  192 0050 08       		.byte	0x8
  193 0051 05       		.byte	0x5
- 194 0052 87010000 		.4byte	.LASF6
+ 194 0052 2F010000 		.4byte	.LASF6
  195 0056 02       		.uleb128 0x2
  196 0057 08       		.byte	0x8
  197 0058 07       		.byte	0x7
- 198 0059 13010000 		.4byte	.LASF7
+ 198 0059 03010000 		.4byte	.LASF7
  199 005d 03       		.uleb128 0x3
  200 005e 04       		.byte	0x4
  201 005f 05       		.byte	0x5
@@ -337,9 +337,9 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  203 0064 02       		.uleb128 0x2
  204 0065 04       		.byte	0x4
  205 0066 07       		.byte	0x7
- 206 0067 06010000 		.4byte	.LASF8
+ 206 0067 F6000000 		.4byte	.LASF8
  207 006b 04       		.uleb128 0x4
- 208 006c A4010000 		.4byte	.LASF21
+ 208 006c 96010000 		.4byte	.LASF21
  209 0070 02       		.byte	0x2
  210 0071 C2       		.byte	0xc2
  211 0072 2C000000 		.4byte	0x2c
@@ -350,15 +350,15 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  216 007d 02       		.uleb128 0x2
  217 007e 08       		.byte	0x8
  218 007f 04       		.byte	0x4
- 219 0080 F3000000 		.4byte	.LASF10
+ 219 0080 E3000000 		.4byte	.LASF10
  220 0084 02       		.uleb128 0x2
  221 0085 01       		.byte	0x1
  222 0086 08       		.byte	0x8
- 223 0087 95010000 		.4byte	.LASF11
+ 223 0087 3D010000 		.4byte	.LASF11
  224 008b 05       		.uleb128 0x5
  225 008c AA000000 		.4byte	.LASF12
  226 0090 01       		.byte	0x1
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 7
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 7
 
 
  227 0091 24       		.byte	0x24
@@ -368,7 +368,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  231 009b 9C       		.byte	0x9c
  232 009c D2000000 		.4byte	0xd2
  233 00a0 06       		.uleb128 0x6
- 234 00a1 82010000 		.4byte	.LASF16
+ 234 00a1 2A010000 		.4byte	.LASF16
  235 00a5 01       		.byte	0x1
  236 00a6 26       		.byte	0x26
  237 00a7 6B000000 		.4byte	0x6b
@@ -394,7 +394,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  257 00d0 00       		.byte	0
  258 00d1 00       		.byte	0
  259 00d2 05       		.uleb128 0x5
- 260 00d3 FA000000 		.4byte	.LASF13
+ 260 00d3 EA000000 		.4byte	.LASF13
  261 00d7 01       		.byte	0x1
  262 00d8 45       		.byte	0x45
  263 00d9 00000000 		.4byte	.LFB1
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  281 0109 01       		.uleb128 0x1
  282 010a 50       		.byte	0x50
  283 010b 02       		.uleb128 0x2
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 8
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 8
 
 
  284 010c 74       		.byte	0x74
@@ -426,7 +426,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  286 010e 00       		.byte	0
  287 010f 00       		.byte	0
  288 0110 05       		.uleb128 0x5
- 289 0111 E3000000 		.4byte	.LASF14
+ 289 0111 1A010000 		.4byte	.LASF14
  290 0115 01       		.byte	0x1
  291 0116 5E       		.byte	0x5e
  292 0117 00000000 		.4byte	.LFB2
@@ -455,7 +455,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  315 014c 00       		.byte	0
  316 014d 00       		.byte	0
  317 014e 0C       		.uleb128 0xc
- 318 014f EA010000 		.4byte	.LASF17
+ 318 014f DC010000 		.4byte	.LASF17
  319 0153 01       		.byte	0x1
  320 0154 14       		.byte	0x14
  321 0155 6B000000 		.4byte	0x6b
@@ -463,7 +463,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  323 015a 03       		.byte	0x3
  324 015b 00000000 		.4byte	AMux_lastChannel
  325 015f 0D       		.uleb128 0xd
- 326 0160 DF010000 		.4byte	.LASF22
+ 326 0160 D1010000 		.4byte	.LASF22
  327 0164 03       		.byte	0x3
  328 0165 1B       		.byte	0x1b
  329 0166 70010000 		.4byte	0x170
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  338 0178 6B000000 		.4byte	0x6b
  339 017c 00       		.byte	0
  340 017d 00       		.byte	0
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 9
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 9
 
 
  341              		.section	.debug_abbrev,"",%progbits
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  395 0034 00       		.byte	0
  396 0035 00       		.byte	0
  397 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 10
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 10
 
 
  398 0037 2E       		.uleb128 0x2e
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  452 0072 18       		.uleb128 0x18
  453 0073 9142     		.uleb128 0x2111
  454 0075 18       		.uleb128 0x18
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 11
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 11
 
 
  455 0076 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  509 00b0 19       		.uleb128 0x19
  510 00b1 03       		.uleb128 0x3
  511 00b2 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 12
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 12
 
 
  512 00b3 3A       		.uleb128 0x3a
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  566 0023 9F       		.byte	0x9f
  567 0024 00000000 		.4byte	0
  568 0028 00000000 		.4byte	0
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 13
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 13
 
 
  569              	.LLST1:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  623              		.section	.debug_line,"",%progbits
  624              	.Ldebug_line0:
  625 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 14
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 14
 
 
  625      02005500 
@@ -832,84 +832,84 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 1
  643 00da 414D7578 		.ascii	"AMux_Set\000"
  643      5F536574 
  643      00
- 644              	.LASF14:
- 645 00e3 414D7578 		.ascii	"AMux_FastSelect\000"
- 645      5F466173 
- 645      7453656C 
- 645      65637400 
- 646              	.LASF10:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 15
+ 644              	.LASF10:
+ 645 00e3 646F7562 		.ascii	"double\000"
+ 645      6C6500
+ 646              	.LASF13:
+ 647 00ea 414D7578 		.ascii	"AMux_Select\000"
+ 647      5F53656C 
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 15
 
 
- 647 00f3 646F7562 		.ascii	"double\000"
- 647      6C6500
- 648              	.LASF13:
- 649 00fa 414D7578 		.ascii	"AMux_Select\000"
- 649      5F53656C 
- 649      65637400 
- 650              	.LASF8:
- 651 0106 756E7369 		.ascii	"unsigned int\000"
- 651      676E6564 
- 651      20696E74 
- 651      00
- 652              	.LASF7:
- 653 0113 6C6F6E67 		.ascii	"long long unsigned int\000"
- 653      206C6F6E 
- 653      6720756E 
- 653      7369676E 
- 653      65642069 
- 654              	.LASF20:
- 655 012a 433A5C55 		.ascii	"C:\\Users\\Vitali\\Documents\\PSoC Creator\\Expo_Co"
- 655      73657273 
- 655      5C566974 
- 655      616C695C 
- 655      446F6375 
- 656 0158 6E74726F 		.ascii	"ntroller_Workspace\\Expo_Controller2.cydsn\000"
- 656      6C6C6572 
- 656      5F576F72 
- 656      6B737061 
- 656      63655C45 
- 657              	.LASF16:
- 658 0182 6368616E 		.ascii	"chan\000"
- 658      00
- 659              	.LASF6:
- 660 0187 6C6F6E67 		.ascii	"long long int\000"
- 660      206C6F6E 
- 660      6720696E 
- 660      7400
- 661              	.LASF11:
- 662 0195 63686172 		.ascii	"char\000"
- 662      00
+ 647      65637400 
+ 648              	.LASF8:
+ 649 00f6 756E7369 		.ascii	"unsigned int\000"
+ 649      676E6564 
+ 649      20696E74 
+ 649      00
+ 650              	.LASF7:
+ 651 0103 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 651      206C6F6E 
+ 651      6720756E 
+ 651      7369676E 
+ 651      65642069 
+ 652              	.LASF14:
+ 653 011a 414D7578 		.ascii	"AMux_FastSelect\000"
+ 653      5F466173 
+ 653      7453656C 
+ 653      65637400 
+ 654              	.LASF16:
+ 655 012a 6368616E 		.ascii	"chan\000"
+ 655      00
+ 656              	.LASF6:
+ 657 012f 6C6F6E67 		.ascii	"long long int\000"
+ 657      206C6F6E 
+ 657      6720696E 
+ 657      7400
+ 658              	.LASF11:
+ 659 013d 63686172 		.ascii	"char\000"
+ 659      00
+ 660              	.LASF20:
+ 661 0142 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 661      69744875 
+ 661      625C4578 
+ 661      706F436F 
+ 661      6E74726F 
+ 662 0172 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 662      78706F5F 
+ 662      436F6E74 
+ 662      726F6C6C 
+ 662      6572322E 
  663              	.LASF2:
- 664 019a 73686F72 		.ascii	"short int\000"
+ 664 018c 73686F72 		.ascii	"short int\000"
  664      7420696E 
  664      7400
  665              	.LASF21:
- 666 01a4 75696E74 		.ascii	"uint8\000"
+ 666 0196 75696E74 		.ascii	"uint8\000"
  666      3800
  667              	.LASF4:
- 668 01aa 6C6F6E67 		.ascii	"long int\000"
+ 668 019c 6C6F6E67 		.ascii	"long int\000"
  668      20696E74 
  668      00
  669              	.LASF19:
- 670 01b3 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\AMux.c\000"
+ 670 01a5 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\AMux.c\000"
  670      6E657261 
  670      7465645F 
  670      536F7572 
  670      63655C50 
  671              	.LASF0:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccFkcpLb.s 			page 16
+ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccEYwJc3.s 			page 16
 
 
- 672 01d3 7369676E 		.ascii	"signed char\000"
+ 672 01c5 7369676E 		.ascii	"signed char\000"
  672      65642063 
  672      68617200 
  673              	.LASF22:
- 674 01df 414D7578 		.ascii	"AMux_Unset\000"
+ 674 01d1 414D7578 		.ascii	"AMux_Unset\000"
  674      5F556E73 
  674      657400
  675              	.LASF17:
- 676 01ea 414D7578 		.ascii	"AMux_lastChannel\000"
+ 676 01dc 414D7578 		.ascii	"AMux_lastChannel\000"
  676      5F6C6173 
  676      74436861 
  676      6E6E656C 

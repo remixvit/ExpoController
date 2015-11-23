@@ -19,4 +19,5 @@
     void inline LCD_WS0010Start();
     void Add_To_DDR(char8 *string);
     void Print_DDR();
+    void ScreenSaver(char *Str);
 /* [] END OF FILE */
