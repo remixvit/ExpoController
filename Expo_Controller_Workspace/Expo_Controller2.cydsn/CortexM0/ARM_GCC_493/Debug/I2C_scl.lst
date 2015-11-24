@@ -1,4 +1,4 @@
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
   30:.\Generated_Source\PSoC4/I2C_scl.c **** ********************************************************************************
   31:.\Generated_Source\PSoC4/I2C_scl.c **** *
   32:.\Generated_Source\PSoC4/I2C_scl.c **** * Summary:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/I2C_scl.c **** *  Assign a new value to the digital port's data output register.  
@@ -118,7 +118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
   49:.\Generated_Source\PSoC4/I2C_scl.c **** 
   50:.\Generated_Source\PSoC4/I2C_scl.c **** /*******************************************************************************
   51:.\Generated_Source\PSoC4/I2C_scl.c **** * Function Name: I2C_scl_SetDriveMode
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 3
 
 
   52:.\Generated_Source\PSoC4/I2C_scl.c **** ********************************************************************************
@@ -178,7 +178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
   89              		.type	I2C_scl_Read, %function
   90              	I2C_scl_Read:
   91              	.LFB2:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 4
 
 
   77:.\Generated_Source\PSoC4/I2C_scl.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  103:.\Generated_Source\PSoC4/I2C_scl.c **** /*******************************************************************************
  104:.\Generated_Source\PSoC4/I2C_scl.c **** * Function Name: I2C_scl_ReadDataReg
  105:.\Generated_Source\PSoC4/I2C_scl.c **** ********************************************************************************
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 5
 
 
  106:.\Generated_Source\PSoC4/I2C_scl.c **** *
@@ -298,7 +298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  132:.\Generated_Source\PSoC4/I2C_scl.c ****     *  interrupt status register.
  133:.\Generated_Source\PSoC4/I2C_scl.c ****     *
  134:.\Generated_Source\PSoC4/I2C_scl.c ****     * Parameters:  
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 6
 
 
  135:.\Generated_Source\PSoC4/I2C_scl.c ****     *  None 
@@ -349,16 +349,16 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  177 000b 01       		.uleb128 0x1
  178 000c 06000000 		.4byte	.LASF24
  179 0010 01       		.byte	0x1
- 180 0011 D1010000 		.4byte	.LASF25
- 181 0015 60010000 		.4byte	.LASF26
+ 180 0011 87010000 		.4byte	.LASF25
+ 181 0015 BF010000 		.4byte	.LASF26
  182 0019 00000000 		.4byte	.Ldebug_ranges0+0
  183 001d 00000000 		.4byte	0
  184 0021 00000000 		.4byte	.Ldebug_line0
  185 0025 02       		.uleb128 0x2
  186 0026 01       		.byte	0x1
  187 0027 06       		.byte	0x6
- 188 0028 FD010000 		.4byte	.LASF0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 7
+ 188 0028 B3010000 		.4byte	.LASF0
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 7
 
 
  189 002c 02       		.uleb128 0x2
@@ -368,7 +368,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  193 0033 02       		.uleb128 0x2
  194 0034 02       		.byte	0x2
  195 0035 05       		.byte	0x5
- 196 0036 C1010000 		.4byte	.LASF2
+ 196 0036 77010000 		.4byte	.LASF2
  197 003a 02       		.uleb128 0x2
  198 003b 02       		.byte	0x2
  199 003c 07       		.byte	0x7
@@ -376,7 +376,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  201 0041 02       		.uleb128 0x2
  202 0042 04       		.byte	0x4
  203 0043 05       		.byte	0x5
- 204 0044 F4010000 		.4byte	.LASF4
+ 204 0044 AA010000 		.4byte	.LASF4
  205 0048 02       		.uleb128 0x2
  206 0049 04       		.byte	0x4
  207 004a 07       		.byte	0x7
@@ -398,7 +398,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  223 0066 07       		.byte	0x7
  224 0067 02010000 		.4byte	.LASF8
  225 006b 04       		.uleb128 0x4
- 226 006c CB010000 		.4byte	.LASF9
+ 226 006c 81010000 		.4byte	.LASF9
  227 0070 02       		.byte	0x2
  228 0071 C2       		.byte	0xc2
  229 0072 2C000000 		.4byte	0x2c
@@ -418,7 +418,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  243 008f 02       		.uleb128 0x2
  244 0090 01       		.byte	0x1
  245 0091 08       		.byte	0x8
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 8
 
 
  246 0092 5B010000 		.4byte	.LASF13
@@ -478,7 +478,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  300 0102 00       		.byte	0
  301 0103 0B       		.uleb128 0xb
  302 0104 9A000000 		.4byte	.LASF19
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 9
 
 
  303 0108 01       		.byte	0x1
@@ -498,7 +498,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  317 012b 01       		.uleb128 0x1
  318 012c 9C       		.byte	0x9c
  319 012d 0C       		.uleb128 0xc
- 320 012e AA010000 		.4byte	.LASF21
+ 320 012e 60010000 		.4byte	.LASF21
  321 0132 01       		.byte	0x1
  322 0133 8D       		.byte	0x8d
  323 0134 6B000000 		.4byte	0x6b
@@ -538,7 +538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  357 0012 00       		.byte	0
  358 0013 02       		.uleb128 0x2
  359 0014 24       		.uleb128 0x24
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 10
 
 
  360 0015 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  414 004b 2E       		.uleb128 0x2e
  415 004c 01       		.byte	0x1
  416 004d 3F       		.uleb128 0x3f
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 11
 
 
  417 004e 19       		.uleb128 0x19
@@ -658,7 +658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  471 0085 03       		.uleb128 0x3
  472 0086 0E       		.uleb128 0xe
  473 0087 3A       		.uleb128 0x3a
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 12
 
 
  474 0088 0B       		.uleb128 0xb
@@ -718,7 +718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  528 00bf 18       		.uleb128 0x18
  529 00c0 9742     		.uleb128 0x2117
  530 00c2 19       		.uleb128 0x19
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 13
 
 
  531 00c3 00       		.byte	0
@@ -778,7 +778,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  585              	.Ldebug_line0:
  586 0000 B2000000 		.section	.debug_str,"MS",%progbits,1
  586      02004600 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 14
 
 
  586      00000201 
@@ -838,7 +838,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  608 00e6 4932435F 		.ascii	"I2C_scl_Write\000"
  608      73636C5F 
  608      57726974 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 15
 
 
  608      6500
@@ -881,47 +881,47 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 1
  625              	.LASF13:
  626 015b 63686172 		.ascii	"char\000"
  626      00
- 627              	.LASF26:
- 628 0160 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
- 628      69744875 
- 628      625C4578 
- 628      706F436F 
- 628      6E74726F 
- 629 0190 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
- 629      78706F5F 
- 629      436F6E74 
- 629      726F6C6C 
- 629      6572322E 
- 630              	.LASF21:
- 631 01aa 4932435F 		.ascii	"I2C_scl_ClearInterrupt\000"
- 631      73636C5F 
- 631      436C6561 
- 631      72496E74 
- 631      65727275 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccqpyw8D.s 			page 16
+ 627              	.LASF21:
+ 628 0160 4932435F 		.ascii	"I2C_scl_ClearInterrupt\000"
+ 628      73636C5F 
+ 628      436C6561 
+ 628      72496E74 
+ 628      65727275 
+ 629              	.LASF2:
+ 630 0177 73686F72 		.ascii	"short int\000"
+ 630      7420696E 
+ 630      7400
+ 631              	.LASF9:
+ 632 0181 75696E74 		.ascii	"uint8\000"
+ 632      3800
+ 633              	.LASF25:
+ 634 0187 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\I2C_scl.c\000"
+ 634      6E657261 
+ 634      7465645F 
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccPmLIWF.s 			page 16
 
 
- 632              	.LASF2:
- 633 01c1 73686F72 		.ascii	"short int\000"
- 633      7420696E 
- 633      7400
- 634              	.LASF9:
- 635 01cb 75696E74 		.ascii	"uint8\000"
- 635      3800
- 636              	.LASF25:
- 637 01d1 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\I2C_scl.c\000"
- 637      6E657261 
- 637      7465645F 
- 637      536F7572 
- 637      63655C50 
- 638              	.LASF4:
- 639 01f4 6C6F6E67 		.ascii	"long int\000"
- 639      20696E74 
- 639      00
- 640              	.LASF0:
- 641 01fd 7369676E 		.ascii	"signed char\000"
- 641      65642063 
- 641      68617200 
+ 634      536F7572 
+ 634      63655C50 
+ 635              	.LASF4:
+ 636 01aa 6C6F6E67 		.ascii	"long int\000"
+ 636      20696E74 
+ 636      00
+ 637              	.LASF0:
+ 638 01b3 7369676E 		.ascii	"signed char\000"
+ 638      65642063 
+ 638      68617200 
+ 639              	.LASF26:
+ 640 01bf 443A5C47 		.ascii	"D:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 640      69744875 
+ 640      625C4578 
+ 640      706F436F 
+ 640      6E74726F 
+ 641 01ef 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 641      78706F5F 
+ 641      436F6E74 
+ 641      726F6C6C 
+ 641      6572322E 
  642              	.LASF20:
  643 0209 4932435F 		.ascii	"I2C_scl_ReadDataReg\000"
  643      73636C5F 

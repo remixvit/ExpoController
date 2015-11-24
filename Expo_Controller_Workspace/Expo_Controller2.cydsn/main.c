@@ -133,7 +133,7 @@ void Get_RealTimeString(char *TimeString)
 	uint8 scroll = 0;
 	TimeStruct.Time = RTC_GetTime();
     sprintf(timeBuffer, "%02lu:%02lu:%02lu", RTC_GetHours(TimeStruct.Time), RTC_GetMinutes(TimeStruct.Time), RTC_GetSecond(TimeStruct.Time));
-	for(scroll = 0; scroll < 20; scroll++)
+	for(scroll = 0; scroll < 9; scroll++)
 	{
 		TimeString[scroll] = timeBuffer[scroll];
 	}
@@ -142,10 +142,10 @@ void Get_RealTimeString(char *TimeString)
 void Get_AlarmTimeString(char *TimeString)
 {
 	char timeBuffer[9];
-	uint32 scroll, sec, min, hour;
-	sec = 0;
-	min = 0;
-	hour = 0;
+	volatile uint32 scroll, sec, min, hour;
+	sec = 0u;
+	min = 0u;
+	hour = 0u;
 	if(AlarmTime.status == 1)
 		{
 			RTC_GetAlarmDateAndTime(&AlarmTime);
@@ -187,7 +187,7 @@ void Get_AlarmTimeString(char *TimeString)
 		}
 	
     sprintf(timeBuffer, "%02lu:%02lu:%02lu", hour, min, sec);
-	for(scroll = 0; scroll < 20; scroll++)
+	for(scroll = 0; scroll < 9; scroll++)
 		{
 			TimeString[scroll] = timeBuffer[scroll];
 		}
@@ -199,14 +199,15 @@ void Main_Display_Print()
     char Lamp_Status[20] = "UV Lamp: ";
     char timeBuffer[9];
 	char DisplayTimeBufer[20];
+    DisplayTimeBufer[0] = '\0';
     const char ON[3] = "ON";
     const char OFF[4] = "OFF";
     const char Conected[9] = "Conected";
     const char Error[6] = "Error";
     
 	Get_AlarmTimeString(timeBuffer);
-	strcat(DisplayTimeBufer, timeBuffer);
-	strcat(DisplayTimeBufer, "    ");
+	strncat(DisplayTimeBufer, timeBuffer, 8);
+	strcat(DisplayTimeBufer, "  ");
 	Get_RealTimeString(timeBuffer);
 	strcat(DisplayTimeBufer, timeBuffer);
 	
@@ -253,6 +254,7 @@ void ScreenSaver_Display()
 {
 		char TimeSTR[9];
 		Get_RealTimeString(TimeSTR);
+        ScreenSaver(TimeSTR);
 }
 
 void Display_Controll()
@@ -311,7 +313,7 @@ void BLE_Status()
 void Initial()
 {
 	CyGlobalIntEnable;
-    Check_Boot();
+    //Check_Boot();
     Timer_RTOS_Start();
     PWM_Start();
     I2C_Start();
@@ -324,6 +326,7 @@ void Initial()
     SetTask(WaitPowerStab);
     SetTimerTask(OPT_Get_Result, 1300);
     //BLE_Status();
+    GlobalStruct.OS_Status = 0;
     SetTimerTask(Display_Controll, 2000);
 }
 

@@ -1,4 +1,4 @@
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
   30:.\Generated_Source\PSoC4/ADC_IRQ.c **** 
   31:.\Generated_Source\PSoC4/ADC_IRQ.c **** /* `#END` */
   32:.\Generated_Source\PSoC4/ADC_IRQ.c **** 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/ADC_IRQ.c **** extern cyisraddress CyRamVectors[CYINT_IRQ_BASE + CY_NUM_INTERRUPTS];
@@ -118,7 +118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
   87:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   {
   88:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   }
   89:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   Function prototype example:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 3
 
 
   90:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   CY_ISR_PROTO(MyISR);
@@ -178,7 +178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  144:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   The default Interrupt Service Routine for ADC_IRQ.
  145:.\Generated_Source\PSoC4/ADC_IRQ.c **** *
  146:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   Add custom code between the START and END comments to keep the next version
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 4
 
 
  147:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   of this file from over-writing your code.
@@ -238,7 +238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  180:.\Generated_Source\PSoC4/ADC_IRQ.c **** * 
  181:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
  182:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   used to provide consistent definition across compilers:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 5
 
 
  183:.\Generated_Source\PSoC4/ADC_IRQ.c **** *
@@ -298,7 +298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  237:.\Generated_Source\PSoC4/ADC_IRQ.c **** *
  238:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   Note This API has no effect on Non-maskable interrupt NMI).
  239:.\Generated_Source\PSoC4/ADC_IRQ.c **** *
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 6
 
 
  240:.\Generated_Source\PSoC4/ADC_IRQ.c **** * Parameters:
@@ -358,7 +358,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  294:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
  295:.\Generated_Source\PSoC4/ADC_IRQ.c **** *   function, which sets the vector and the priority, has been called.
  296:.\Generated_Source\PSoC4/ADC_IRQ.c **** *
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 7
 
 
  297:.\Generated_Source\PSoC4/ADC_IRQ.c **** * Parameters:
@@ -418,7 +418,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
   47 0000 8022     		mov	r2, #128
   48 0002 034B     		ldr	r3, .L3
   49 0004 D201     		lsl	r2, r2, #7
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 8
 
 
   50 0006 1A60     		str	r2, [r3]
@@ -478,7 +478,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
   96 0002 9867     		str	r0, [r3, #120]
  202:.\Generated_Source\PSoC4/ADC_IRQ.c **** 
   97              		.loc 1 202 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 9
 
 
   98 0004 7047     		bx	lr
@@ -538,7 +538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  250:.\Generated_Source\PSoC4/ADC_IRQ.c **** 	uint8 interruptState;
  146              		.loc 1 250 0
  147 0002 041C     		mov	r4, r0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 10
 
 
  254:.\Generated_Source\PSoC4/ADC_IRQ.c ****     *ADC_IRQ_INTC_PRIOR = (*ADC_IRQ_INTC_PRIOR & (uint32)(~ADC_IRQ__INTC_PRIOR_MASK)) |
@@ -598,7 +598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  195 0008 1C60     		str	r4, [r3]
  196              	.LVL5:
  197              	.LBE25:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 11
 
 
  198              	.LBE24:
@@ -658,7 +658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  244              		.align	1
  245              		.global	ADC_IRQ_StartEx
  246              		.code	16
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 12
 
 
  247              		.thumb_func
@@ -718,7 +718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  294              		.loc 1 112 0
  295 0018 10BD     		pop	{r4, pc}
  296              	.L19:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 13
 
 
  297 001a C046     		.align	2
@@ -778,7 +778,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  344              		.loc 1 305 0
  345              		.cfi_startproc
  307:.\Generated_Source\PSoC4/ADC_IRQ.c **** }
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 14
 
 
  346              		.loc 1 307 0
@@ -838,7 +838,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  394              	ADC_IRQ_Disable:
  395              	.LFB10:
  347:.\Generated_Source\PSoC4/ADC_IRQ.c ****     /* Disable the general interrupt. */
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 15
 
 
  396              		.loc 1 347 0
@@ -898,7 +898,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  424 0000 8022     		mov	r2, #128
  425 0002 024B     		ldr	r3, .L33
  426 0004 D201     		lsl	r2, r2, #7
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 16
 
 
  427 0006 1A60     		str	r2, [r3]
@@ -958,7 +958,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  455 0008 7047     		bx	lr
  456              	.L37:
  457 000a C046     		.align	2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 17
 
 
  458              	.L36:
@@ -980,14 +980,14 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  474 000c 06000000 		.4byte	.LASF32
  475 0010 01       		.byte	0x1
  476 0011 E4000000 		.4byte	.LASF33
- 477 0015 59020000 		.4byte	.LASF34
+ 477 0015 BA020000 		.4byte	.LASF34
  478 0019 60000000 		.4byte	.Ldebug_ranges0+0x60
  479 001d 00000000 		.4byte	0
  480 0021 00000000 		.4byte	.Ldebug_line0
  481 0025 02       		.uleb128 0x2
  482 0026 01       		.byte	0x1
  483 0027 06       		.byte	0x6
- 484 0028 D5020000 		.4byte	.LASF0
+ 484 0028 8B020000 		.4byte	.LASF0
  485 002c 02       		.uleb128 0x2
  486 002d 01       		.byte	0x1
  487 002e 08       		.byte	0x8
@@ -995,7 +995,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  489 0033 02       		.uleb128 0x2
  490 0034 02       		.byte	0x2
  491 0035 05       		.byte	0x5
- 492 0036 A3020000 		.4byte	.LASF2
+ 492 0036 59020000 		.4byte	.LASF2
  493 003a 02       		.uleb128 0x2
  494 003b 02       		.byte	0x2
  495 003c 07       		.byte	0x7
@@ -1003,7 +1003,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  497 0041 02       		.uleb128 0x2
  498 0042 04       		.byte	0x4
  499 0043 05       		.byte	0x5
- 500 0044 CC020000 		.4byte	.LASF4
+ 500 0044 82020000 		.4byte	.LASF4
  501 0048 02       		.uleb128 0x2
  502 0049 04       		.byte	0x4
  503 004a 07       		.byte	0x7
@@ -1018,7 +1018,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  512 0059 31010000 		.4byte	.LASF7
  513 005d 03       		.uleb128 0x3
  514 005e 04       		.byte	0x4
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 18
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 18
 
 
  515 005f 05       		.byte	0x5
@@ -1070,7 +1070,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  561 00bc 07       		.byte	0x7
  562 00bd 3D020000 		.4byte	.LASF16
  563 00c1 09       		.uleb128 0x9
- 564 00c2 AD020000 		.4byte	.LASF17
+ 564 00c2 63020000 		.4byte	.LASF17
  565 00c6 01       		.byte	0x1
  566 00c7 5A01     		.2byte	0x15a
  567 00c9 01       		.byte	0x1
@@ -1078,7 +1078,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  569 00cb AE000000 		.4byte	.LASF35
  570 00cf 01       		.byte	0x1
  571 00d0 C7       		.byte	0xc7
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 19
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 19
 
 
  572 00d1 01       		.byte	0x1
@@ -1090,7 +1090,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  578 00dd A7000000 		.4byte	0xa7
  579 00e1 00       		.byte	0
  580 00e2 09       		.uleb128 0x9
- 581 00e3 F5020000 		.4byte	.LASF18
+ 581 00e3 AB020000 		.4byte	.LASF18
  582 00e7 01       		.byte	0x1
  583 00e8 3001     		.2byte	0x130
  584 00ea 01       		.byte	0x1
@@ -1138,7 +1138,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  626 014a D6000000 		.4byte	0xd6
  627 014e 01       		.uleb128 0x1
  628 014f 50       		.byte	0x50
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 20
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 20
 
 
  629 0150 00       		.byte	0
@@ -1152,7 +1152,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  637 0164 01       		.uleb128 0x1
  638 0165 9C       		.byte	0x9c
  639 0166 0D       		.uleb128 0xd
- 640 0167 E1020000 		.4byte	.LASF20
+ 640 0167 97020000 		.4byte	.LASF20
  641 016b 01       		.byte	0x1
  642 016c F9       		.byte	0xf9
  643 016d 00000000 		.4byte	.LFB6
@@ -1173,7 +1173,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  658 0191 6B000000 		.4byte	0x6b
  659 0195 21000000 		.4byte	.LLST1
  660 0199 16       		.uleb128 0x16
- 661 019a BD020000 		.4byte	.LASF22
+ 661 019a 73020000 		.4byte	.LASF22
  662 019e 01       		.byte	0x1
  663 019f FC       		.byte	0xfc
  664 01a0 76000000 		.4byte	0x76
@@ -1198,7 +1198,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  683 01ce C1000000 		.4byte	0xc1
  684 01d2 02000000 		.4byte	.LBB24
  685 01d6 08000000 		.4byte	.LBE24-.LBB24
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 21
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 21
 
 
  686 01da 01       		.byte	0x1
@@ -1258,7 +1258,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  740 024f CA000000 		.4byte	0xca
  741 0253 0A000000 		.4byte	.LBB36
  742 0257 48000000 		.4byte	.Ldebug_ranges0+0x48
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 22
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 22
 
 
  743 025b 01       		.byte	0x1
@@ -1301,7 +1301,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  780 02ac 76000000 		.4byte	0x76
  781 02b0 90000000 		.4byte	.LLST4
  782 02b4 1F       		.uleb128 0x1f
- 783 02b5 BD020000 		.4byte	.LASF22
+ 783 02b5 73020000 		.4byte	.LASF22
  784 02b9 01       		.byte	0x1
  785 02ba 1801     		.2byte	0x118
  786 02bc 76000000 		.4byte	0x76
@@ -1318,7 +1318,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  797 02d6 01       		.byte	0x1
  798 02d7 4501     		.2byte	0x145
  799 02d9 6B000000 		.4byte	0x6b
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 23
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 23
 
 
  800 02dd 00000000 		.4byte	.LFB9
@@ -1378,7 +1378,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  854 0001 11       		.uleb128 0x11
  855 0002 01       		.byte	0x1
  856 0003 25       		.uleb128 0x25
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 24
 
 
  857 0004 0E       		.uleb128 0xe
@@ -1438,7 +1438,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  911 003a 0E       		.uleb128 0xe
  912 003b 3A       		.uleb128 0x3a
  913 003c 0B       		.uleb128 0xb
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 25
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 25
 
 
  914 003d 3B       		.uleb128 0x3b
@@ -1498,7 +1498,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  968 0073 0B       		.uleb128 0xb
  969 0074 3B       		.uleb128 0x3b
  970 0075 0B       		.uleb128 0xb
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 26
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 26
 
 
  971 0076 27       		.uleb128 0x27
@@ -1558,7 +1558,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1025 00ad 0B       		.uleb128 0xb
  1026 00ae 27       		.uleb128 0x27
  1027 00af 19       		.uleb128 0x19
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 27
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 27
 
 
  1028 00b0 11       		.uleb128 0x11
@@ -1618,7 +1618,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1082 00e7 11       		.uleb128 0x11
  1083 00e8 01       		.uleb128 0x1
  1084 00e9 12       		.uleb128 0x12
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 28
 
 
  1085 00ea 06       		.uleb128 0x6
@@ -1678,7 +1678,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1139 0122 02       		.uleb128 0x2
  1140 0123 17       		.uleb128 0x17
  1141 0124 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 29
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 29
 
 
  1142 0125 00       		.byte	0
@@ -1738,7 +1738,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1196 015d 13       		.uleb128 0x13
  1197 015e 00       		.byte	0
  1198 015f 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 30
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 30
 
 
  1199 0160 19       		.uleb128 0x19
@@ -1798,7 +1798,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1253 019b 19       		.uleb128 0x19
  1254 019c 49       		.uleb128 0x49
  1255 019d 13       		.uleb128 0x13
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 31
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 31
 
 
  1256 019e 11       		.uleb128 0x11
@@ -1858,7 +1858,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1310 01d6 19       		.uleb128 0x19
  1311 01d7 00       		.byte	0
  1312 01d8 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 32
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 32
 
 
  1313 01d9 21       		.uleb128 0x21
@@ -1918,7 +1918,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1367 0211 13       		.uleb128 0x13
  1368 0212 00       		.byte	0
  1369 0213 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 33
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 33
 
 
  1370 0214 24       		.uleb128 0x24
@@ -1978,7 +1978,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1424 024a 3B       		.uleb128 0x3b
  1425 024b 0B       		.uleb128 0xb
  1426 024c 27       		.uleb128 0x27
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 34
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 34
 
 
  1427 024d 19       		.uleb128 0x19
@@ -2038,7 +2038,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1481 005e 00000000 		.4byte	0
  1482              	.LLST3:
  1483 0062 0A000000 		.4byte	.LVL8
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 35
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 35
 
 
  1484 0066 10000000 		.4byte	.LVL9
@@ -2098,7 +2098,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1538 0048 00000000 		.4byte	.LFB7
  1539 004c 10000000 		.4byte	.LFE7-.LFB7
  1540 0050 00000000 		.4byte	.LFB8
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 36
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 36
 
 
  1541 0054 10000000 		.4byte	.LFE8-.LFB8
@@ -2158,7 +2158,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1595 00a4 10000000 		.4byte	.LFE8
  1596 00a8 00000000 		.4byte	.LFB9
  1597 00ac 10000000 		.4byte	.LFE9
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 37
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 37
 
 
  1598 00b0 00000000 		.4byte	.LFB10
@@ -2218,7 +2218,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1622      65642069 
  1622      6E7400
  1623              	.LASF28:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 38
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 38
 
 
  1624 00d3 4144435F 		.ascii	"ADC_IRQ_GetState\000"
@@ -2278,7 +2278,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1644      00
  1645              	.LASF30:
  1646 0186 4144435F 		.ascii	"ADC_IRQ_SetPending\000"
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 39
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 39
 
 
  1646      4952515F 
@@ -2338,7 +2338,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1668      4952515F 
  1668      53746172 
  1668      74457800 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 40
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 40
 
 
  1669              	.LASF16:
@@ -2353,51 +2353,51 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 1
  1673              	.LASF13:
  1674 0254 63686172 		.ascii	"char\000"
  1674      00
- 1675              	.LASF34:
- 1676 0259 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
- 1676      69744875 
- 1676      625C4578 
- 1676      706F436F 
- 1676      6E74726F 
- 1677 0289 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
- 1677      78706F5F 
- 1677      436F6E74 
- 1677      726F6C6C 
- 1677      6572322E 
- 1678              	.LASF2:
- 1679 02a3 73686F72 		.ascii	"short int\000"
- 1679      7420696E 
- 1679      7400
- 1680              	.LASF17:
- 1681 02ad 4144435F 		.ascii	"ADC_IRQ_Disable\000"
- 1681      4952515F 
- 1681      44697361 
- 1681      626C6500 
- 1682              	.LASF22:
- 1683 02bd 7072696F 		.ascii	"priorityOffset\000"
- 1683      72697479 
- 1683      4F666673 
- 1683      657400
- 1684              	.LASF4:
- 1685 02cc 6C6F6E67 		.ascii	"long int\000"
- 1685      20696E74 
- 1685      00
- 1686              	.LASF0:
- 1687 02d5 7369676E 		.ascii	"signed char\000"
- 1687      65642063 
- 1687      68617200 
- 1688              	.LASF20:
- 1689 02e1 4144435F 		.ascii	"ADC_IRQ_SetPriority\000"
- 1689      4952515F 
- 1689      53657450 
- 1689      72696F72 
- 1689      69747900 
- 1690              	.LASF18:
- 1691 02f5 4144435F 		.ascii	"ADC_IRQ_Enable\000"
- 1691      4952515F 
- 1691      456E6162 
- 1691      6C6500
+ 1675              	.LASF2:
+ 1676 0259 73686F72 		.ascii	"short int\000"
+ 1676      7420696E 
+ 1676      7400
+ 1677              	.LASF17:
+ 1678 0263 4144435F 		.ascii	"ADC_IRQ_Disable\000"
+ 1678      4952515F 
+ 1678      44697361 
+ 1678      626C6500 
+ 1679              	.LASF22:
+ 1680 0273 7072696F 		.ascii	"priorityOffset\000"
+ 1680      72697479 
+ 1680      4F666673 
+ 1680      657400
+ 1681              	.LASF4:
+ 1682 0282 6C6F6E67 		.ascii	"long int\000"
+ 1682      20696E74 
+ 1682      00
+ 1683              	.LASF0:
+ 1684 028b 7369676E 		.ascii	"signed char\000"
+ 1684      65642063 
+ 1684      68617200 
+ 1685              	.LASF20:
+ 1686 0297 4144435F 		.ascii	"ADC_IRQ_SetPriority\000"
+ 1686      4952515F 
+ 1686      53657450 
+ 1686      72696F72 
+ 1686      69747900 
+ 1687              	.LASF18:
+ 1688 02ab 4144435F 		.ascii	"ADC_IRQ_Enable\000"
+ 1688      4952515F 
+ 1688      456E6162 
+ 1688      6C6500
+ 1689              	.LASF34:
+ 1690 02ba 443A5C47 		.ascii	"D:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 1690      69744875 
+ 1690      625C4578 
+ 1690      706F436F 
+ 1690      6E74726F 
+ 1691 02ea 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 1691      78706F5F 
+ 1691      436F6E74 
+ 1691      726F6C6C 
+ 1691      6572322E 
  1692              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccM8jnBA.s 			page 41
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccdE1csb.s 			page 41
 
 

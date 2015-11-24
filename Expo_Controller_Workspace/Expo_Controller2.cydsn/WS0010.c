@@ -105,21 +105,28 @@
     
     void ScreenSaver(char *Str)
     {
-        uint8 Lenght;
-		uint8 x, y, scroll;
-        Lenght = strlen(Str);
+        srand(200);
+        volatile uint8 Lenght;
+		volatile uint8 x, y, scroll;
+        char Buf;
+        Buf = *Str;
+        while(Buf != (char)'\0')
+        {
+            Lenght++;
+            Buf = Str[Lenght];
+        }
 		Lenght = 19 - Lenght; // Максимальное смещение по x
-		srand(255);
-		x = 0 + rand() % Lenght; // Генерация случайного столбца
-		y = 0 + rand() % 3; //Генерация случайной строки
+		
+		x = 1 + rand() % Lenght; // Генерация случайного столбца
+		y = 1 + rand() % 3; //Генерация случайной строки
 		Lenght = 19 - Lenght;
 		LCD_ClearDisplay();
-		LCD_Position(x, y);
+		LCD_Position(y, x);
 		for(scroll = 0; scroll < Lenght; scroll++)
 		{
 			LCD_PutChar(Str[scroll]);
 			x++;
-			LCD_Position(x, y);
+			LCD_Position(y, x);
 		}        
     }
 

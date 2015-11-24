@@ -1,4 +1,4 @@
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
   30:.\Generated_Source\PSoC4/UART_PM.c ****     #include "UART_SPI_UART_PVT.h"
   31:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_SPI_INC || UART_SCB_MODE_UART_INC) */
   32:.\Generated_Source\PSoC4/UART_PM.c **** 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/UART_PM.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
   81:.\Generated_Source\PSoC4/UART_PM.c ****     #if(!UART_CY_SCBIP_V1)
   82:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_SPI_RUNTM_CFG)
   83:.\Generated_Source\PSoC4/UART_PM.c ****         {
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 3
 
 
   84:.\Generated_Source\PSoC4/UART_PM.c ****             UART_SpiSaveConfig();
@@ -178,7 +178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
   43              	.L1:
  127:.\Generated_Source\PSoC4/UART_PM.c ****         }
  128:.\Generated_Source\PSoC4/UART_PM.c **** 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 4
 
 
  129:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* defined (UART_SCB_MODE_I2C_CONST_CFG) && (UART_I2C_WAKE_ENABLE_CONST) */
@@ -238,7 +238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  158:.\Generated_Source\PSoC4/UART_PM.c ****         if(UART_SCB_MODE_I2C_RUNTM_CFG)
  159:.\Generated_Source\PSoC4/UART_PM.c ****         {
  160:.\Generated_Source\PSoC4/UART_PM.c ****             UART_I2CRestoreConfig();
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 5
 
 
  161:.\Generated_Source\PSoC4/UART_PM.c ****         }
@@ -298,7 +298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
   76              	.LVL1:
   77              	.L9:
  208:.\Generated_Source\PSoC4/UART_PM.c ****         }
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 6
 
 
  209:.\Generated_Source\PSoC4/UART_PM.c **** 
@@ -337,33 +337,33 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  106 000c 66000000 		.4byte	.LASF21
  107 0010 01       		.byte	0x1
  108 0011 43000000 		.4byte	.LASF22
- 109 0015 B2010000 		.4byte	.LASF23
+ 109 0015 30010000 		.4byte	.LASF23
  110 0019 00000000 		.4byte	.Ldebug_ranges0+0
  111 001d 00000000 		.4byte	0
  112 0021 00000000 		.4byte	.Ldebug_line0
  113 0025 02       		.uleb128 0x2
  114 0026 01       		.byte	0x1
  115 0027 06       		.byte	0x6
- 116 0028 8A010000 		.4byte	.LASF0
+ 116 0028 D4010000 		.4byte	.LASF0
  117 002c 02       		.uleb128 0x2
  118 002d 01       		.byte	0x1
  119 002e 08       		.byte	0x8
- 120 002f 3C010000 		.4byte	.LASF1
+ 120 002f 86010000 		.4byte	.LASF1
  121 0033 02       		.uleb128 0x2
  122 0034 02       		.byte	0x2
  123 0035 05       		.byte	0x5
- 124 0036 A8010000 		.4byte	.LASF2
+ 124 0036 F2010000 		.4byte	.LASF2
  125 003a 02       		.uleb128 0x2
  126 003b 02       		.byte	0x2
  127 003c 07       		.byte	0x7
  128 003d 1D010000 		.4byte	.LASF3
  129 0041 02       		.uleb128 0x2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 7
 
 
  130 0042 04       		.byte	0x4
  131 0043 05       		.byte	0x5
- 132 0044 75010000 		.4byte	.LASF4
+ 132 0044 BF010000 		.4byte	.LASF4
  133 0048 02       		.uleb128 0x2
  134 0049 04       		.byte	0x4
  135 004a 07       		.byte	0x7
@@ -385,7 +385,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  151 0066 07       		.byte	0x7
  152 0067 21000000 		.4byte	.LASF8
  153 006b 04       		.uleb128 0x4
- 154 006c 84010000 		.4byte	.LASF9
+ 154 006c CE010000 		.4byte	.LASF9
  155 0070 02       		.byte	0x2
  156 0071 C2       		.byte	0xc2
  157 0072 2C000000 		.4byte	0x2c
@@ -397,17 +397,17 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  163 0081 02       		.uleb128 0x2
  164 0082 04       		.byte	0x4
  165 0083 04       		.byte	0x4
- 166 0084 96010000 		.4byte	.LASF11
+ 166 0084 E0010000 		.4byte	.LASF11
  167 0088 02       		.uleb128 0x2
  168 0089 08       		.byte	0x8
  169 008a 04       		.byte	0x4
- 170 008b 6E010000 		.4byte	.LASF12
+ 170 008b B8010000 		.4byte	.LASF12
  171 008f 02       		.uleb128 0x2
  172 0090 01       		.byte	0x1
  173 0091 08       		.byte	0x8
- 174 0092 4A010000 		.4byte	.LASF13
+ 174 0092 94010000 		.4byte	.LASF13
  175 0096 05       		.uleb128 0x5
- 176 0097 7E010000 		.4byte	.LASF14
+ 176 0097 C8010000 		.4byte	.LASF14
  177 009b 02       		.byte	0x2
  178 009c 6E01     		.2byte	0x16e
  179 009e A2000000 		.4byte	0xa2
@@ -418,7 +418,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  184 00a9 07       		.byte	0x7
  185 00aa FC010000 		.4byte	.LASF15
  186 00ae 07       		.uleb128 0x7
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 8
 
 
  187 00af 01       		.byte	0x1
@@ -426,14 +426,14 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  189 00b1 5B       		.byte	0x5b
  190 00b2 C3000000 		.4byte	0xc3
  191 00b6 08       		.uleb128 0x8
- 192 00b7 62010000 		.4byte	.LASF24
+ 192 00b7 AC010000 		.4byte	.LASF24
  193 00bb 03       		.byte	0x3
  194 00bc 5D       		.byte	0x5d
  195 00bd 6B000000 		.4byte	0x6b
  196 00c1 00       		.byte	0
  197 00c2 00       		.byte	0
  198 00c3 04       		.uleb128 0x4
- 199 00c4 4F010000 		.4byte	.LASF16
+ 199 00c4 99010000 		.4byte	.LASF16
  200 00c8 03       		.byte	0x3
  201 00c9 5E       		.byte	0x5e
  202 00ca AE000000 		.4byte	0xae
@@ -451,7 +451,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  214 00e8 1D010000 		.4byte	0x11d
  215 00ec 00       		.byte	0
  216 00ed 09       		.uleb128 0x9
- 217 00ee 9C010000 		.4byte	.LASF18
+ 217 00ee E6010000 		.4byte	.LASF18
  218 00f2 01       		.byte	0x1
  219 00f3 98       		.byte	0x98
  220 00f4 00000000 		.4byte	.LFB1
@@ -476,9 +476,9 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  239 0122 03       		.byte	0x3
  240 0123 69       		.byte	0x69
  241 0124 0C       		.uleb128 0xc
- 242 0125 30010000 		.4byte	.LASF20
+ 242 0125 7A010000 		.4byte	.LASF20
  243 0129 03       		.byte	0x3
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 9
 
 
  244 012a 67       		.byte	0x67
@@ -538,7 +538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  298 0032 49       		.uleb128 0x49
  299 0033 13       		.uleb128 0x13
  300 0034 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 10
 
 
  301 0035 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  355 006b 03       		.uleb128 0x3
  356 006c 0E       		.uleb128 0xe
  357 006d 3A       		.uleb128 0x3a
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 11
 
 
  358 006e 0B       		.uleb128 0xb
@@ -658,7 +658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  412 00a7 27       		.uleb128 0x27
  413 00a8 19       		.uleb128 0x19
  414 00a9 3C       		.uleb128 0x3c
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 12
 
 
  415 00aa 19       		.uleb128 0x19
@@ -718,7 +718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  454              	.LASF17:
  455 0038 55415254 		.ascii	"UART_Sleep\000"
  455      5F536C65 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 13
 
 
  455      657000
@@ -762,70 +762,70 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 1
  467      7369676E 
  467      65642069 
  467      6E7400
- 468              	.LASF20:
- 469 0130 55415254 		.ascii	"UART_Enable\000"
- 469      5F456E61 
- 469      626C6500 
- 470              	.LASF1:
- 471 013c 756E7369 		.ascii	"unsigned char\000"
- 471      676E6564 
- 471      20636861 
- 471      7200
- 472              	.LASF13:
- 473 014a 63686172 		.ascii	"char\000"
- 473      00
- 474              	.LASF16:
- 475 014f 55415254 		.ascii	"UART_BACKUP_STRUCT\000"
- 475      5F424143 
- 475      4B55505F 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\cceIyu8D.s 			page 14
+ 468              	.LASF23:
+ 469 0130 443A5C47 		.ascii	"D:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 469      69744875 
+ 469      625C4578 
+ 469      706F436F 
+ 469      6E74726F 
+ 470 0160 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 470      78706F5F 
+ 470      436F6E74 
+ 470      726F6C6C 
+ 470      6572322E 
+ 471              	.LASF20:
+ 472 017a 55415254 		.ascii	"UART_Enable\000"
+ 472      5F456E61 
+ 472      626C6500 
+ 473              	.LASF1:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc2T9KCA.s 			page 14
 
 
- 475      53545255 
- 475      435400
- 476              	.LASF24:
- 477 0162 656E6162 		.ascii	"enableState\000"
- 477      6C655374 
- 477      61746500 
- 478              	.LASF12:
- 479 016e 646F7562 		.ascii	"double\000"
- 479      6C6500
- 480              	.LASF4:
- 481 0175 6C6F6E67 		.ascii	"long int\000"
- 481      20696E74 
- 481      00
- 482              	.LASF14:
- 483 017e 72656733 		.ascii	"reg32\000"
- 483      3200
- 484              	.LASF9:
- 485 0184 75696E74 		.ascii	"uint8\000"
- 485      3800
- 486              	.LASF0:
- 487 018a 7369676E 		.ascii	"signed char\000"
- 487      65642063 
- 487      68617200 
- 488              	.LASF11:
- 489 0196 666C6F61 		.ascii	"float\000"
- 489      7400
- 490              	.LASF18:
- 491 019c 55415254 		.ascii	"UART_Wakeup\000"
- 491      5F57616B 
- 491      65757000 
- 492              	.LASF2:
- 493 01a8 73686F72 		.ascii	"short int\000"
- 493      7420696E 
- 493      7400
- 494              	.LASF23:
- 495 01b2 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
- 495      69744875 
- 495      625C4578 
- 495      706F436F 
- 495      6E74726F 
- 496 01e2 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
- 496      78706F5F 
- 496      436F6E74 
- 496      726F6C6C 
- 496      6572322E 
+ 474 0186 756E7369 		.ascii	"unsigned char\000"
+ 474      676E6564 
+ 474      20636861 
+ 474      7200
+ 475              	.LASF13:
+ 476 0194 63686172 		.ascii	"char\000"
+ 476      00
+ 477              	.LASF16:
+ 478 0199 55415254 		.ascii	"UART_BACKUP_STRUCT\000"
+ 478      5F424143 
+ 478      4B55505F 
+ 478      53545255 
+ 478      435400
+ 479              	.LASF24:
+ 480 01ac 656E6162 		.ascii	"enableState\000"
+ 480      6C655374 
+ 480      61746500 
+ 481              	.LASF12:
+ 482 01b8 646F7562 		.ascii	"double\000"
+ 482      6C6500
+ 483              	.LASF4:
+ 484 01bf 6C6F6E67 		.ascii	"long int\000"
+ 484      20696E74 
+ 484      00
+ 485              	.LASF14:
+ 486 01c8 72656733 		.ascii	"reg32\000"
+ 486      3200
+ 487              	.LASF9:
+ 488 01ce 75696E74 		.ascii	"uint8\000"
+ 488      3800
+ 489              	.LASF0:
+ 490 01d4 7369676E 		.ascii	"signed char\000"
+ 490      65642063 
+ 490      68617200 
+ 491              	.LASF11:
+ 492 01e0 666C6F61 		.ascii	"float\000"
+ 492      7400
+ 493              	.LASF18:
+ 494 01e6 55415254 		.ascii	"UART_Wakeup\000"
+ 494      5F57616B 
+ 494      65757000 
+ 495              	.LASF2:
+ 496 01f2 73686F72 		.ascii	"short int\000"
+ 496      7420696E 
+ 496      7400
  497              	.LASF15:
  498 01fc 73697A65 		.ascii	"sizetype\000"
  498      74797065 

@@ -8165,7 +8165,7 @@ ARM GAS  .\Generated_Source\PSoC4\CyBootAsmGnu.s 			page 1
  1242              	.set CYDEV_IMO_TRIMMED_BY_WCO, 0
  1243              	.set CYDEV_IS_EXPORTING_CODE, 0
  1244              	.set CYDEV_IS_IMPORTING_CODE, 0
- 1245              	.set CYDEV_PROJ_TYPE, 2
+ 1245              	.set CYDEV_PROJ_TYPE, 0
  1246              	.set CYDEV_PROJ_TYPE_BOOTLOADER, 1
  1247              	.set CYDEV_PROJ_TYPE_LAUNCHER, 5
  1248              	.set CYDEV_PROJ_TYPE_LOADABLE, 2

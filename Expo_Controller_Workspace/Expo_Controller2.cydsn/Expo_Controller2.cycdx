@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="Timer_RTOS_ISR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Led_BLE" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="ADC_3V" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer_RTOS_ISR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Led_Strobe" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="AMux" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="ADC_3V" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="cy_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Bootloadable" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Bootloader_En" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Timer_RTOS" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="VMux_count" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VMux_reload" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -22,8 +23,6 @@
     <register name="PERIOD" address="0x40050114" bitWidth="32" desc="Period value" hidden="false" />
     <register name="PERIOD_BUF" address="0x40050118" bitWidth="32" desc="Period buffer value" hidden="false" />
   </block>
-  <block name="Bootloader_En" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="AMux" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LCD" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="LCDPort" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>

@@ -1,4 +1,4 @@
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
   30:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
   31:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** /* Receive buffer variables */
   32:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** volatile uint8 * I2C_mstrRdBufPtr;   /* Pointer to Master Read buffer */
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** volatile uint32  I2C_mstrRdBufSize;  /* Master Read buffer size       */
@@ -118,7 +118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
   87:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     {
   88:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         /* Check FSM state and bus before generating Start/ReStart condition */
   89:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         if(I2C_CHECK_I2C_FSM_IDLE)
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 3
 
 
   90:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         {
@@ -178,7 +178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  144:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             I2C_TX_FIFO_WR_REG = slaveAddress;
  145:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             I2C_I2C_MASTER_GENERATE_START;
  146:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 4
 
 
  147:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     }
@@ -238,7 +238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  201:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             errStatus = I2C_CHECK_I2C_STATUS(I2C_I2C_STATUS_BUS_BUSY) ?
  202:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****                             I2C_I2C_MSTR_BUS_BUSY : I2C_I2C_MSTR_NO_ERROR;
  203:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 5
 
 
  204:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         else if(I2C_CHECK_I2C_FSM_HALT)
@@ -298,7 +298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  258:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         {
  259:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             I2C_TX_FIFO_WR_REG = (slaveAddress);
  260:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             I2C_I2C_MASTER_GENERATE_START;
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 6
 
 
  261:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
@@ -358,7 +358,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  298:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
   39              		.loc 1 298 0
   40 0004 0422     		mov	r2, #4
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 7
 
 
   41              		.loc 1 301 0
@@ -418,7 +418,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  322:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             }
  323:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             else /* Read direction */
  324:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             {
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 8
 
 
  325:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****                 I2C_state = I2C_I2C_FSM_MSTR_RD_DATA;
@@ -478,7 +478,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  343:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****                 * Write: wait until address has been transferred
  344:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****                 * Read : wait until address has been transferred, data byte is going to RX FIFO as 
  345:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****                 */
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 9
 
 
  346:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             }
@@ -538,7 +538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  297:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     errStatus = I2C_I2C_MSTR_NOT_READY;
  136              		.loc 1 297 0
  137 007a 131C     		mov	r3, r2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 10
 
 
  138              	.LVL9:
@@ -598,7 +598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  174              		.size	I2C_I2CMasterSendStart, .-I2C_I2CMasterSendStart
  175              		.section	.text.I2C_I2CMasterSendStop,"ax",%progbits
  176              		.align	1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 11
 
 
  177              		.global	I2C_I2CMasterSendStop
@@ -658,7 +658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  433:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
  434:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         /* Clean-up interrupt status */
  435:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         I2C_ClearMasterInterruptSource(I2C_INTR_MASTER_ALL);
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 12
 
 
  436:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  490:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             I2C_SCB_SW_RESET;
  491:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
  492:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     }
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 13
 
 
  493:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  194 0004 184B     		ldr	r3, .L34
  531:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
  195              		.loc 1 531 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 14
 
 
  196 0006 0420     		mov	r0, #4
@@ -838,7 +838,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  555:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         {
  556:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             errStatus = I2C_I2C_MSTR_ERR_ARB_LOST;
  557:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****             resetIp   = I2C_I2C_RESET_ERROR;
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 15
 
 
  558:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
@@ -898,7 +898,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  264 0064 1360     		str	r3, [r2]
  265              	.LVL13:
  266              	.L20:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 16
 
 
  575:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
@@ -958,7 +958,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  607:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** {
  289              		.loc 1 607 0
  290              		.cfi_startproc
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 17
 
 
  291              	.LVL14:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  322 001e 0423     		mov	r3, #4
  323 0020 1068     		ldr	r0, [r2]
  324 0022 0340     		and	r3, r0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 18
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 18
 
 
  325 0024 04D0     		beq	.L39
@@ -1078,7 +1078,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  642:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****                          resetIp   = I2C_I2C_RESET_ERROR;
  643:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
  644:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         else /* I2C_INTR_MASTER_I2C_BUS_ERROR set is */
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 19
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 19
 
 
  645:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  397              	.LFE5:
  398              		.size	I2C_I2CMasterWriteByte, .-I2C_I2CMasterWriteByte
  399              		.section	.text.I2C_I2CMasterReadByte,"ax",%progbits
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 20
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 20
 
 
  400              		.align	1
@@ -1198,7 +1198,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  415 0002 184B     		ldr	r3, .L59
  416 0004 1A78     		ldrb	r2, [r3]
  417 0006 191C     		mov	r1, r3
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 21
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 21
 
 
  418 0008 9306     		lsl	r3, r2, #26
@@ -1258,7 +1258,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  452              		.loc 1 721 0
  453 0034 0F49     		ldr	r1, .L59+16
  454 0036 0A60     		str	r2, [r1]
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 22
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 22
 
 
  455 0038 11E0     		b	.L52
@@ -1318,7 +1318,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  488 005e 181C     		mov	r0, r3
  489              	.LVL29:
  490              		@ sp needed
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 23
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 23
 
 
  491 0060 10BD     		pop	{r4, pc}
@@ -1378,7 +1378,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  516 0000 014B     		ldr	r3, .L62
  769:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** }
  517              		.loc 1 769 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 24
 
 
  518              		@ sp needed
@@ -1438,7 +1438,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  799:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** }
  542              		.loc 1 799 0
  543              		@ sp needed
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 25
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 25
 
 
  798:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     return(I2C_mstrWrBufIndex);
@@ -1498,7 +1498,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  824:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
  825:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     I2C_mstrRdBufIndex = 0u;
  573              		.loc 1 825 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 26
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 26
 
 
  574 0008 0022     		mov	r2, #0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  837:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *  Resets the write buffer pointer back to the first byte in the buffer.
  838:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *
  839:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** * Parameters:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 27
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 27
 
 
  840:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *  None
@@ -1618,7 +1618,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  641 001a FFF7FEFF 		bl	CyIntEnable
  642              	.LVL33:
  643              		.loc 1 859 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 28
 
 
  644 001e 08BD     		pop	{r3, pc}
@@ -1678,7 +1678,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  672 0008 064B     		ldr	r3, .L76
  673 000a 1C88     		ldrh	r4, [r3]
  886:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 29
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 29
 
 
  887:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     if (I2C_CHECK_I2C_MASTER_ACTIVE)
@@ -1738,7 +1738,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  901:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** ********************************************************************************
  902:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *
  903:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** * Summary:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 30
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 30
 
 
  904:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *  Clears all status flags and returns the master status.
@@ -1798,7 +1798,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  737 0012 1A80     		strh	r2, [r3]
  926:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
  738              		.loc 1 926 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 31
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 31
 
 
  739 0014 FFF7FEFF 		bl	CyIntEnable
@@ -1858,7 +1858,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  963:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *  SCB IP V0: The NACK generation by the GPIO may cause a greater SCL period
  964:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *             than expected for the selected master data rate.
  965:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 32
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 32
 
 
  966:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** *******************************************************************************/
@@ -1918,7 +1918,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  791 001c 9343     		bic	r3, r2
  792 001e 2360     		str	r3, [r4]
  793              		.loc 1 986 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 33
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 33
 
 
  794 0020 2B68     		ldr	r3, [r5]
@@ -1978,7 +1978,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  830 0054 FFF7FEFF 		bl	CyDelayUs
  831              	.LVL52:
 1005:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 34
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 34
 
 
 1006:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****     /* Set command for Start generation: it will appear */
@@ -2038,7 +2038,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
 1016:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** #else
  858              		.loc 1 1016 0
  859 0074 FFF7FEFF 		bl	I2C_scl_Write
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 35
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 35
 
 
  860              	.LVL53:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  909 0014 102B     		cmp	r3, #16
  910 0016 08D1     		bne	.L94
   91:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 36
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 36
 
 
  911              		.loc 1 91 0
@@ -2158,7 +2158,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  954              		.loc 1 126 0
  955 004a 1849     		ldr	r1, .L104+8
  119:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         I2C_mstrWrBufSize     = cnt;
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 37
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 37
 
 
  956              		.loc 1 119 0
@@ -2218,7 +2218,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  997 007a 0B60     		str	r3, [r1]
  134:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
  998              		.loc 1 134 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 38
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 38
 
 
  999 007c 1549     		ldr	r1, .L104+48
@@ -2278,7 +2278,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1045 00cc 000F0640 		.word	1074138880
  1046 00d0 800F0640 		.word	1074139008
  1047 00d4 880F0640 		.word	1074139016
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 39
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 39
 
 
  1048 00d8 68000640 		.word	1074135144
@@ -2338,7 +2338,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1095 001e 264B     		ldr	r3, .L122+4
  1096 0020 2419     		add	r4, r4, r4
  1097 0022 1B68     		ldr	r3, [r3]
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 40
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 40
 
 
  1098 0024 DB07     		lsl	r3, r3, #31
@@ -2398,7 +2398,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  227:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         I2C_mstrControl    = (uint8) mode;
  1139              		.loc 1 227 0
  1140 0050 1E4B     		ldr	r3, .L122+24
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 41
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 41
 
 
  230:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c **** 
@@ -2458,7 +2458,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1182 0084 0343     		orr	r3, r0
  1183 0086 0B60     		str	r3, [r1]
  248:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         }
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 42
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 42
 
 
  1184              		.loc 1 248 0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1228 00b8 64000640 		.word	1074135140
  1229 00bc 00000000 		.word	I2C_mstrStatus
  1230 00c0 00000000 		.word	I2C_mstrRdBufIndex
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 43
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 43
 
 
  1231 00c4 00000000 		.word	I2C_mstrControl
@@ -2578,7 +2578,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1278 0016 2423     		mov	r3, #36
  1279 0018 2370     		strb	r3, [r4]
  1280 001a 03E0     		b	.L127
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 44
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 44
 
 
  1281              	.L126:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  469:.\Generated_Source\PSoC4/I2C_I2C_MASTER.c ****         {
  1326              		.loc 1 469 0
  1327 0058 2868     		ldr	r0, [r5]
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 45
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 45
 
 
  1328 005a 0E32     		add	r2, r2, #14
@@ -2698,7 +2698,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1372 008c 70BD     		pop	{r4, r5, r6, pc}
  1373              	.L141:
  1374 008e C046     		.align	2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 46
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 46
 
 
  1375              	.L140:
@@ -2737,7 +2737,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1408 000c 22000000 		.4byte	.LASF57
  1409 0010 01       		.byte	0x1
  1410 0011 07010000 		.4byte	.LASF58
- 1411 0015 E4020000 		.4byte	.LASF59
+ 1411 0015 BB030000 		.4byte	.LASF59
  1412 0019 00000000 		.4byte	.Ldebug_ranges0+0
  1413 001d 00000000 		.4byte	0
  1414 0021 00000000 		.4byte	.Ldebug_line0
@@ -2752,18 +2752,18 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1423 0033 02       		.uleb128 0x2
  1424 0034 02       		.byte	0x2
  1425 0035 05       		.byte	0x5
- 1426 0036 52030000 		.4byte	.LASF2
+ 1426 0036 1A030000 		.4byte	.LASF2
  1427 003a 02       		.uleb128 0x2
  1428 003b 02       		.byte	0x2
  1429 003c 07       		.byte	0x7
  1430 003d F4000000 		.4byte	.LASF3
  1431 0041 02       		.uleb128 0x2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 47
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 47
 
 
  1432 0042 04       		.byte	0x4
  1433 0043 05       		.byte	0x5
- 1434 0044 BA030000 		.4byte	.LASF4
+ 1434 0044 82030000 		.4byte	.LASF4
  1435 0048 02       		.uleb128 0x2
  1436 0049 04       		.byte	0x4
  1437 004a 07       		.byte	0x7
@@ -2771,7 +2771,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1439 004f 02       		.uleb128 0x2
  1440 0050 08       		.byte	0x8
  1441 0051 05       		.byte	0x5
- 1442 0052 BA020000 		.4byte	.LASF6
+ 1442 0052 CC020000 		.4byte	.LASF6
  1443 0056 02       		.uleb128 0x2
  1444 0057 08       		.byte	0x8
  1445 0058 07       		.byte	0x7
@@ -2810,7 +2810,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1478 009a 02       		.uleb128 0x2
  1479 009b 01       		.byte	0x1
  1480 009c 08       		.byte	0x8
- 1481 009d DF020000 		.4byte	.LASF14
+ 1481 009d F1020000 		.4byte	.LASF14
  1482 00a1 05       		.uleb128 0x5
  1483 00a2 6B000000 		.4byte	0x6b
  1484 00a6 05       		.uleb128 0x5
@@ -2818,7 +2818,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1486 00ab 06       		.uleb128 0x6
  1487 00ac 1C000000 		.4byte	.LASF15
  1488 00b0 02       		.byte	0x2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 48
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 48
 
 
  1489 00b1 6E01     		.2byte	0x16e
@@ -2828,7 +2828,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1493 00bc 02       		.uleb128 0x2
  1494 00bd 04       		.byte	0x4
  1495 00be 07       		.byte	0x7
- 1496 00bf B1020000 		.4byte	.LASF16
+ 1496 00bf C3020000 		.4byte	.LASF16
  1497 00c3 07       		.uleb128 0x7
  1498 00c4 94010000 		.4byte	.LASF21
  1499 00c8 01       		.byte	0x1
@@ -2878,7 +2878,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1543 0132 01       		.byte	0x1
  1544 0133 0D02     		.2byte	0x20d
  1545 0135 81000000 		.4byte	0x81
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 49
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 49
 
 
  1546 0139 00000000 		.4byte	.LFB4
@@ -2900,7 +2900,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1562 0163 E5000000 		.4byte	.LLST5
  1563 0167 00       		.byte	0
  1564 0168 07       		.uleb128 0x7
- 1565 0169 2E030000 		.4byte	.LASF23
+ 1565 0169 F6020000 		.4byte	.LASF23
  1566 016d 01       		.byte	0x1
  1567 016e 5E02     		.2byte	0x25e
  1568 0170 81000000 		.4byte	0x81
@@ -2910,7 +2910,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1572 017d 9C       		.byte	0x9c
  1573 017e B3010000 		.4byte	0x1b3
  1574 0182 08       		.uleb128 0x8
- 1575 0183 5C030000 		.4byte	.LASF24
+ 1575 0183 24030000 		.4byte	.LASF24
  1576 0187 01       		.byte	0x1
  1577 0188 5E02     		.2byte	0x25e
  1578 018a 81000000 		.4byte	0x81
@@ -2929,7 +2929,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1591 01ae 99010000 		.4byte	.LLST8
  1592 01b2 00       		.byte	0
  1593 01b3 07       		.uleb128 0x7
- 1594 01b4 7D030000 		.4byte	.LASF25
+ 1594 01b4 45030000 		.4byte	.LASF25
  1595 01b8 01       		.byte	0x1
  1596 01b9 B702     		.2byte	0x2b7
  1597 01bb 81000000 		.4byte	0x81
@@ -2938,7 +2938,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1600 01c7 01       		.uleb128 0x1
  1601 01c8 9C       		.byte	0x9c
  1602 01c9 EE010000 		.4byte	0x1ee
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 50
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 50
 
 
  1603 01cd 08       		.uleb128 0x8
@@ -2948,7 +2948,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1607 01d5 81000000 		.4byte	0x81
  1608 01d9 F6010000 		.4byte	.LLST9
  1609 01dd 09       		.uleb128 0x9
- 1610 01de 5C030000 		.4byte	.LASF24
+ 1610 01de 24030000 		.4byte	.LASF24
  1611 01e2 01       		.byte	0x1
  1612 01e3 B902     		.2byte	0x2b9
  1613 01e5 81000000 		.4byte	0x81
@@ -2964,7 +2964,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1623 0202 01       		.uleb128 0x1
  1624 0203 9C       		.byte	0x9c
  1625 0204 0C       		.uleb128 0xc
- 1626 0205 C3030000 		.4byte	.LASF28
+ 1626 0205 8B030000 		.4byte	.LASF28
  1627 0209 01       		.byte	0x1
  1628 020a 1C03     		.2byte	0x31c
  1629 020c 81000000 		.4byte	0x81
@@ -2998,7 +2998,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1657 024d 01       		.uleb128 0x1
  1658 024e 50       		.byte	0x50
  1659 024f 01       		.uleb128 0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 51
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 51
 
 
  1660 0250 3A       		.byte	0x3a
@@ -3058,7 +3058,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1714 02c5 50       		.byte	0x50
  1715 02c6 01       		.uleb128 0x1
  1716 02c7 3A       		.byte	0x3a
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 52
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 52
 
 
  1717 02c8 00       		.byte	0
@@ -3118,7 +3118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1771 0337 9C       		.byte	0x9c
  1772 0338 F3030000 		.4byte	0x3f3
  1773 033c 09       		.uleb128 0x9
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 53
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 53
 
 
  1774 033d 31010000 		.4byte	.LASF32
@@ -3178,7 +3178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1828 03b3 BD030000 		.4byte	0x3bd
  1829 03b7 0B       		.uleb128 0xb
  1830 03b8 01       		.uleb128 0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 54
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 54
 
 
  1831 03b9 50       		.byte	0x50
@@ -3238,7 +3238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1885 0422 83040000 		.4byte	0x483
  1886 0426 08030000 		.4byte	.LLST15
  1887 042a 12       		.uleb128 0x12
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 55
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 55
 
 
  1888 042b 636E7400 		.ascii	"cnt\000"
@@ -3298,7 +3298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1942 04a3 95020000 		.4byte	.LASF17
  1943 04a7 01       		.byte	0x1
  1944 04a8 BB       		.byte	0xbb
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 56
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 56
 
 
  1945 04a9 81000000 		.4byte	0x81
@@ -3351,14 +3351,14 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  1992 0517 00       		.byte	0
  1993 0518 00       		.byte	0
  1994 0519 07       		.uleb128 0x7
- 1995 051a 64030000 		.4byte	.LASF40
+ 1995 051a 2C030000 		.4byte	.LASF40
  1996 051e 01       		.byte	0x1
  1997 051f 9901     		.2byte	0x199
  1998 0521 81000000 		.4byte	0x81
  1999 0525 00000000 		.4byte	.LFB3
  2000 0529 A8000000 		.4byte	.LFE3-.LFB3
  2001 052d 01       		.uleb128 0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 57
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 57
 
 
  2002 052e 9C       		.byte	0x9c
@@ -3397,7 +3397,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2035 0583 1D       		.byte	0x1d
  2036 0584 A1000000 		.4byte	0xa1
  2037 0588 16       		.uleb128 0x16
- 2038 0589 A2020000 		.4byte	.LASF42
+ 2038 0589 B4020000 		.4byte	.LASF42
  2039 058d 01       		.byte	0x1
  2040 058e 1C       		.byte	0x1c
  2041 058f A6000000 		.4byte	0xa6
@@ -3413,12 +3413,12 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2051 05a5 03       		.byte	0x3
  2052 05a6 00000000 		.4byte	I2C_mstrControl
  2053 05aa 16       		.uleb128 0x16
- 2054 05ab 93030000 		.4byte	.LASF44
+ 2054 05ab 5B030000 		.4byte	.LASF44
  2055 05af 01       		.byte	0x1
  2056 05b0 20       		.byte	0x20
  2057 05b1 BB050000 		.4byte	0x5bb
  2058 05b5 05       		.uleb128 0x5
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 58
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 58
 
 
  2059 05b6 03       		.byte	0x3
@@ -3451,7 +3451,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2086 05ef 03       		.byte	0x3
  2087 05f0 00000000 		.4byte	I2C_mstrWrBufPtr
  2088 05f4 16       		.uleb128 0x16
- 2089 05f5 F3030000 		.4byte	.LASF48
+ 2089 05f5 A2020000 		.4byte	.LASF48
  2090 05f9 01       		.byte	0x1
  2091 05fa 26       		.byte	0x26
  2092 05fb B7000000 		.4byte	0xb7
@@ -3459,7 +3459,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2094 0600 03       		.byte	0x3
  2095 0601 00000000 		.4byte	I2C_mstrWrBufSize
  2096 0605 16       		.uleb128 0x16
- 2097 0606 E0030000 		.4byte	.LASF49
+ 2097 0606 A8030000 		.4byte	.LASF49
  2098 060a 01       		.byte	0x1
  2099 060b 27       		.byte	0x27
  2100 060c B7000000 		.4byte	0xb7
@@ -3467,7 +3467,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2102 0611 03       		.byte	0x3
  2103 0612 00000000 		.4byte	I2C_mstrWrBufIndex
  2104 0616 16       		.uleb128 0x16
- 2105 0617 A4030000 		.4byte	.LASF50
+ 2105 0617 6C030000 		.4byte	.LASF50
  2106 061b 01       		.byte	0x1
  2107 061c 28       		.byte	0x28
  2108 061d B7000000 		.4byte	0xb7
@@ -3475,10 +3475,10 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2110 0622 03       		.byte	0x3
  2111 0623 00000000 		.4byte	I2C_mstrWrBufIndexTmp
  2112 0627 17       		.uleb128 0x17
- 2113 0628 45030000 		.4byte	.LASF51
+ 2113 0628 0D030000 		.4byte	.LASF51
  2114 062c 04       		.byte	0x4
  2115 062d 4E       		.byte	0x4e
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 59
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 59
 
 
  2116 062e 38060000 		.4byte	0x638
@@ -3494,7 +3494,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2126 0644 6B000000 		.4byte	0x6b
  2127 0648 00       		.byte	0
  2128 0649 19       		.uleb128 0x19
- 2129 064a C8020000 		.4byte	.LASF55
+ 2129 064a DA020000 		.4byte	.LASF55
  2130 064e 06       		.byte	0x6
  2131 064f 20       		.byte	0x20
  2132 0650 6B000000 		.4byte	0x6b
@@ -3507,7 +3507,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2139 0660 6B000000 		.4byte	0x6b
  2140 0664 00       		.byte	0
  2141 0665 17       		.uleb128 0x17
- 2142 0666 D5020000 		.4byte	.LASF54
+ 2142 0666 E7020000 		.4byte	.LASF54
  2143 066a 04       		.byte	0x4
  2144 066b 58       		.byte	0x58
  2145 066c 76060000 		.4byte	0x676
@@ -3538,7 +3538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2170 000d 11       		.uleb128 0x11
  2171 000e 01       		.uleb128 0x1
  2172 000f 10       		.uleb128 0x10
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 60
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 60
 
 
  2173 0010 17       		.uleb128 0x17
@@ -3598,7 +3598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2227 0046 49       		.uleb128 0x49
  2228 0047 13       		.uleb128 0x13
  2229 0048 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 61
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 61
 
 
  2230 0049 00       		.byte	0
@@ -3658,7 +3658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2284 0080 02       		.uleb128 0x2
  2285 0081 17       		.uleb128 0x17
  2286 0082 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 62
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 62
 
 
  2287 0083 00       		.byte	0
@@ -3718,7 +3718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2341 00bf 05       		.uleb128 0x5
  2342 00c0 27       		.uleb128 0x27
  2343 00c1 19       		.uleb128 0x19
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 63
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 63
 
 
  2344 00c2 11       		.uleb128 0x11
@@ -3778,7 +3778,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2398 00fe 19       		.uleb128 0x19
  2399 00ff 01       		.uleb128 0x1
  2400 0100 13       		.uleb128 0x13
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 64
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 64
 
 
  2401 0101 00       		.byte	0
@@ -3838,7 +3838,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2455 0137 00       		.byte	0
  2456 0138 00       		.byte	0
  2457 0139 15       		.uleb128 0x15
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 65
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 65
 
 
  2458 013a 34       		.uleb128 0x34
@@ -3898,7 +3898,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2512 0170 00       		.byte	0
  2513 0171 49       		.uleb128 0x49
  2514 0172 13       		.uleb128 0x13
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 66
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 66
 
 
  2515 0173 00       		.byte	0
@@ -3958,7 +3958,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2569 0052 0400     		.2byte	0x4
  2570 0054 F3       		.byte	0xf3
  2571 0055 01       		.uleb128 0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 67
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 67
 
 
  2572 0056 51       		.byte	0x51
@@ -4018,7 +4018,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2626 00db 31       		.byte	0x31
  2627 00dc 9F       		.byte	0x9f
  2628 00dd 00000000 		.4byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 68
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 68
 
 
  2629 00e1 00000000 		.4byte	0
@@ -4078,7 +4078,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2683 016d F3       		.byte	0xf3
  2684 016e 01       		.uleb128 0x1
  2685 016f 50       		.byte	0x50
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 69
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 69
 
 
  2686 0170 9F       		.byte	0x9f
@@ -4138,7 +4138,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2740              	.LLST9:
  2741 01f6 00000000 		.4byte	.LVL25
  2742 01fa 60000000 		.4byte	.LVL29
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 70
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 70
 
 
  2743 01fe 0100     		.2byte	0x1
@@ -4198,7 +4198,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2797              	.LLST12:
  2798 027e 12000000 		.4byte	.LVL40
  2799 0282 1A000000 		.4byte	.LVL42
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 71
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 71
 
 
  2800 0286 0700     		.2byte	0x7
@@ -4258,7 +4258,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2854 0304 00000000 		.4byte	0
  2855              	.LLST15:
  2856 0308 00000000 		.4byte	.LVL55
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 72
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 72
 
 
  2857 030c 1D000000 		.4byte	.LVL58-1
@@ -4318,7 +4318,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2911 0399 53       		.byte	0x53
  2912 039a 14000000 		.4byte	.LVL56
  2913 039e DC000000 		.4byte	.LFE0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 73
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 73
 
 
  2914 03a2 0200     		.2byte	0x2
@@ -4378,7 +4378,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  2968 042a 2A000000 		.4byte	.LVL75
  2969 042e 0100     		.2byte	0x1
  2970 0430 57       		.byte	0x57
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 74
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 74
 
 
  2971 0431 2A000000 		.4byte	.LVL75
@@ -4438,7 +4438,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3025 04bc 34       		.byte	0x34
  3026 04bd 9F       		.byte	0x9f
  3027 04be 3C000000 		.4byte	.LVL78
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 75
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 75
 
 
  3028 04c2 AA000000 		.4byte	.LVL82
@@ -4498,7 +4498,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3082 0549 66000000 		.4byte	.LVL93
  3083 054d 6C000000 		.4byte	.LVL94
  3084 0551 0200     		.2byte	0x2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 76
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 76
 
 
  3085 0553 31       		.byte	0x31
@@ -4558,7 +4558,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3139 0048 00000000 		.4byte	.LFB10
  3140 004c 28000000 		.4byte	.LFE10-.LFB10
  3141 0050 00000000 		.4byte	.LFB11
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 77
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 77
 
 
  3142 0054 2C000000 		.4byte	.LFE11-.LFB11
@@ -4618,7 +4618,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3191      4932434D 
  3191      61737465 
  3191      72476574 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 78
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 78
 
 
  3191      52656164 
@@ -4678,7 +4678,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3211 0138 72657365 		.ascii	"resetIp\000"
  3211      74497000 
  3212              	.LASF56:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 79
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 79
 
 
  3213 0140 4932435F 		.ascii	"I2C_scl_Read\000"
@@ -4738,7 +4738,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3233      61737465 
  3233      72577269 
  3233      74654275 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 80
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 80
 
 
  3234              	.LASF9:
@@ -4798,7 +4798,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3262              	.LASF37:
  3263 0290 6D6F6465 		.ascii	"mode\000"
  3263      00
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 81
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 81
 
 
  3264              	.LASF17:
@@ -4806,110 +4806,110 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3265      65416464 
  3265      72657373 
  3265      00
- 3266              	.LASF42:
- 3267 02a2 4932435F 		.ascii	"I2C_mstrStatus\000"
+ 3266              	.LASF48:
+ 3267 02a2 4932435F 		.ascii	"I2C_mstrWrBufSize\000"
  3267      6D737472 
- 3267      53746174 
- 3267      757300
- 3268              	.LASF16:
- 3269 02b1 73697A65 		.ascii	"sizetype\000"
- 3269      74797065 
- 3269      00
- 3270              	.LASF6:
- 3271 02ba 6C6F6E67 		.ascii	"long long int\000"
- 3271      206C6F6E 
- 3271      6720696E 
- 3271      7400
- 3272              	.LASF55:
- 3273 02c8 4932435F 		.ascii	"I2C_sda_Read\000"
- 3273      7364615F 
- 3273      52656164 
- 3273      00
- 3274              	.LASF54:
- 3275 02d5 43794465 		.ascii	"CyDelayUs\000"
- 3275      6C617955 
- 3275      7300
- 3276              	.LASF14:
- 3277 02df 63686172 		.ascii	"char\000"
- 3277      00
- 3278              	.LASF59:
- 3279 02e4 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
- 3279      69744875 
- 3279      625C4578 
- 3279      706F436F 
- 3279      6E74726F 
- 3280 0314 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
- 3280      78706F5F 
- 3280      436F6E74 
- 3280      726F6C6C 
- 3280      6572322E 
- 3281              	.LASF23:
- 3282 032e 4932435F 		.ascii	"I2C_I2CMasterWriteByte\000"
- 3282      4932434D 
- 3282      61737465 
- 3282      72577269 
- 3282      74654279 
- 3283              	.LASF51:
- 3284 0345 4379496E 		.ascii	"CyIntDisable\000"
- 3284      74446973 
- 3284      61626C65 
- 3284      00
- 3285              	.LASF2:
- 3286 0352 73686F72 		.ascii	"short int\000"
- 3286      7420696E 
- 3286      7400
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 82
+ 3267      57724275 
+ 3267      6653697A 
+ 3267      6500
+ 3268              	.LASF42:
+ 3269 02b4 4932435F 		.ascii	"I2C_mstrStatus\000"
+ 3269      6D737472 
+ 3269      53746174 
+ 3269      757300
+ 3270              	.LASF16:
+ 3271 02c3 73697A65 		.ascii	"sizetype\000"
+ 3271      74797065 
+ 3271      00
+ 3272              	.LASF6:
+ 3273 02cc 6C6F6E67 		.ascii	"long long int\000"
+ 3273      206C6F6E 
+ 3273      6720696E 
+ 3273      7400
+ 3274              	.LASF55:
+ 3275 02da 4932435F 		.ascii	"I2C_sda_Read\000"
+ 3275      7364615F 
+ 3275      52656164 
+ 3275      00
+ 3276              	.LASF54:
+ 3277 02e7 43794465 		.ascii	"CyDelayUs\000"
+ 3277      6C617955 
+ 3277      7300
+ 3278              	.LASF14:
+ 3279 02f1 63686172 		.ascii	"char\000"
+ 3279      00
+ 3280              	.LASF23:
+ 3281 02f6 4932435F 		.ascii	"I2C_I2CMasterWriteByte\000"
+ 3281      4932434D 
+ 3281      61737465 
+ 3281      72577269 
+ 3281      74654279 
+ 3282              	.LASF51:
+ 3283 030d 4379496E 		.ascii	"CyIntDisable\000"
+ 3283      74446973 
+ 3283      61626C65 
+ 3283      00
+ 3284              	.LASF2:
+ 3285 031a 73686F72 		.ascii	"short int\000"
+ 3285      7420696E 
+ 3285      7400
+ 3286              	.LASF24:
+ 3287 0324 74686542 		.ascii	"theByte\000"
+ 3287      79746500 
+ 3288              	.LASF40:
+ 3289 032c 4932435F 		.ascii	"I2C_I2CMasterSendRestart\000"
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 82
 
 
- 3287              	.LASF24:
- 3288 035c 74686542 		.ascii	"theByte\000"
- 3288      79746500 
- 3289              	.LASF40:
- 3290 0364 4932435F 		.ascii	"I2C_I2CMasterSendRestart\000"
- 3290      4932434D 
- 3290      61737465 
- 3290      7253656E 
- 3290      64526573 
- 3291              	.LASF25:
- 3292 037d 4932435F 		.ascii	"I2C_I2CMasterReadByte\000"
- 3292      4932434D 
- 3292      61737465 
- 3292      72526561 
- 3292      64427974 
- 3293              	.LASF44:
- 3294 0393 4932435F 		.ascii	"I2C_mstrRdBufPtr\000"
- 3294      6D737472 
- 3294      52644275 
- 3294      66507472 
- 3294      00
- 3295              	.LASF50:
- 3296 03a4 4932435F 		.ascii	"I2C_mstrWrBufIndexTmp\000"
- 3296      6D737472 
- 3296      57724275 
- 3296      66496E64 
- 3296      6578546D 
- 3297              	.LASF4:
- 3298 03ba 6C6F6E67 		.ascii	"long int\000"
- 3298      20696E74 
- 3298      00
- 3299              	.LASF28:
- 3300 03c3 4932435F 		.ascii	"I2C_I2CMasterGetWriteBufSize\000"
- 3300      4932434D 
- 3300      61737465 
- 3300      72476574 
- 3300      57726974 
- 3301              	.LASF49:
- 3302 03e0 4932435F 		.ascii	"I2C_mstrWrBufIndex\000"
- 3302      6D737472 
- 3302      57724275 
- 3302      66496E64 
- 3302      657800
- 3303              	.LASF48:
- 3304 03f3 4932435F 		.ascii	"I2C_mstrWrBufSize\000"
- 3304      6D737472 
- 3304      57724275 
- 3304      6653697A 
- 3304      6500
+ 3289      4932434D 
+ 3289      61737465 
+ 3289      7253656E 
+ 3289      64526573 
+ 3290              	.LASF25:
+ 3291 0345 4932435F 		.ascii	"I2C_I2CMasterReadByte\000"
+ 3291      4932434D 
+ 3291      61737465 
+ 3291      72526561 
+ 3291      64427974 
+ 3292              	.LASF44:
+ 3293 035b 4932435F 		.ascii	"I2C_mstrRdBufPtr\000"
+ 3293      6D737472 
+ 3293      52644275 
+ 3293      66507472 
+ 3293      00
+ 3294              	.LASF50:
+ 3295 036c 4932435F 		.ascii	"I2C_mstrWrBufIndexTmp\000"
+ 3295      6D737472 
+ 3295      57724275 
+ 3295      66496E64 
+ 3295      6578546D 
+ 3296              	.LASF4:
+ 3297 0382 6C6F6E67 		.ascii	"long int\000"
+ 3297      20696E74 
+ 3297      00
+ 3298              	.LASF28:
+ 3299 038b 4932435F 		.ascii	"I2C_I2CMasterGetWriteBufSize\000"
+ 3299      4932434D 
+ 3299      61737465 
+ 3299      72476574 
+ 3299      57726974 
+ 3300              	.LASF49:
+ 3301 03a8 4932435F 		.ascii	"I2C_mstrWrBufIndex\000"
+ 3301      6D737472 
+ 3301      57724275 
+ 3301      66496E64 
+ 3301      657800
+ 3302              	.LASF59:
+ 3303 03bb 443A5C47 		.ascii	"D:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 3303      69744875 
+ 3303      625C4578 
+ 3303      706F436F 
+ 3303      6E74726F 
+ 3304 03eb 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 3304      78706F5F 
+ 3304      436F6E74 
+ 3304      726F6C6C 
+ 3304      6572322E 
  3305              	.LASF38:
  3306 0405 4932435F 		.ascii	"I2C_I2CMasterReadBuf\000"
  3306      4932434D 
@@ -4918,7 +4918,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 1
  3306      64427566 
  3307              	.LASF33:
  3308 041a 4932435F 		.ascii	"I2C_I2CMasterClearStatus\000"
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccjTGmBA.s 			page 83
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc7GJZ34.s 			page 83
 
 
  3308      4932434D 

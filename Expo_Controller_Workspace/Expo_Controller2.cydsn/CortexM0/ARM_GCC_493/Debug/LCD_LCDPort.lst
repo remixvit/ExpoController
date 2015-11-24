@@ -1,4 +1,4 @@
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
   30:.\Generated_Source\PSoC4/LCD_LCDPort.c **** ********************************************************************************
   31:.\Generated_Source\PSoC4/LCD_LCDPort.c **** *
   32:.\Generated_Source\PSoC4/LCD_LCDPort.c **** * Summary:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/LCD_LCDPort.c **** *  Assign a new value to the digital port's data output register.  
@@ -118,7 +118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
   49:.\Generated_Source\PSoC4/LCD_LCDPort.c **** 
   50:.\Generated_Source\PSoC4/LCD_LCDPort.c **** /*******************************************************************************
   51:.\Generated_Source\PSoC4/LCD_LCDPort.c **** * Function Name: LCD_LCDPort_SetDriveMode
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 3
 
 
   52:.\Generated_Source\PSoC4/LCD_LCDPort.c **** ********************************************************************************
@@ -178,7 +178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
   81 000e 1A60     		str	r2, [r3]
   76:.\Generated_Source\PSoC4/LCD_LCDPort.c **** 	SetP4PinDriveMode(LCD_LCDPort__1__SHIFT, mode);
   82              		.loc 1 76 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 4
 
 
   83 0010 1A68     		ldr	r2, [r3]
@@ -238,7 +238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  132 0064 FF8FFFFF 		.word	-28673
  133 0068 FF7FFCFF 		.word	-229377
  134 006c FFFFE3FF 		.word	-1835009
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 5
 
 
  135              		.cfi_endproc
@@ -298,7 +298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  164              		.size	LCD_LCDPort_Read, .-LCD_LCDPort_Read
  165              		.section	.text.LCD_LCDPort_ReadDataReg,"ax",%progbits
  166              		.align	1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 6
 
 
  167              		.global	LCD_LCDPort_ReadDataReg
@@ -358,7 +358,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  127:.\Generated_Source\PSoC4/LCD_LCDPort.c **** 
  128:.\Generated_Source\PSoC4/LCD_LCDPort.c **** 
  129:.\Generated_Source\PSoC4/LCD_LCDPort.c **** /* If Interrupts Are Enabled for this Pins component */ 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 7
 
 
  130:.\Generated_Source\PSoC4/LCD_LCDPort.c **** #if defined(LCD_LCDPort_INTSTAT) 
@@ -418,20 +418,20 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  229 0006 00000000 		.4byte	.Ldebug_abbrev0
  230 000a 04       		.byte	0x4
  231 000b 01       		.uleb128 0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 8
 
 
  232 000c 06000000 		.4byte	.LASF24
  233 0010 01       		.byte	0x1
  234 0011 52010000 		.4byte	.LASF25
- 235 0015 B5010000 		.4byte	.LASF26
+ 235 0015 EB010000 		.4byte	.LASF26
  236 0019 00000000 		.4byte	.Ldebug_ranges0+0
  237 001d 00000000 		.4byte	0
  238 0021 00000000 		.4byte	.Ldebug_line0
  239 0025 02       		.uleb128 0x2
  240 0026 01       		.byte	0x1
  241 0027 06       		.byte	0x6
- 242 0028 29020000 		.4byte	.LASF0
+ 242 0028 DF010000 		.4byte	.LASF0
  243 002c 02       		.uleb128 0x2
  244 002d 01       		.byte	0x1
  245 002e 08       		.byte	0x8
@@ -439,7 +439,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  247 0033 02       		.uleb128 0x2
  248 0034 02       		.byte	0x2
  249 0035 05       		.byte	0x5
- 250 0036 FF010000 		.4byte	.LASF2
+ 250 0036 B5010000 		.4byte	.LASF2
  251 003a 02       		.uleb128 0x2
  252 003b 02       		.byte	0x2
  253 003c 07       		.byte	0x7
@@ -447,7 +447,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  255 0041 02       		.uleb128 0x2
  256 0042 04       		.byte	0x4
  257 0043 05       		.byte	0x5
- 258 0044 20020000 		.4byte	.LASF4
+ 258 0044 D6010000 		.4byte	.LASF4
  259 0048 02       		.uleb128 0x2
  260 0049 04       		.byte	0x4
  261 004a 07       		.byte	0x7
@@ -469,7 +469,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  277 0066 07       		.byte	0x7
  278 0067 45010000 		.4byte	.LASF8
  279 006b 04       		.uleb128 0x4
- 280 006c 09020000 		.4byte	.LASF9
+ 280 006c BF010000 		.4byte	.LASF9
  281 0070 02       		.byte	0x2
  282 0071 C2       		.byte	0xc2
  283 0072 2C000000 		.4byte	0x2c
@@ -478,7 +478,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  286 007b 02       		.byte	0x2
  287 007c C4       		.byte	0xc4
  288 007d 48000000 		.4byte	0x48
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 9
 
 
  289 0081 02       		.uleb128 0x2
@@ -538,7 +538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  343 00e5 49       		.byte	0x49
  344 00e6 00000000 		.4byte	.LFB1
  345 00ea 70000000 		.4byte	.LFE1-.LFB1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 10
 
 
  346 00ee 01       		.uleb128 0x1
@@ -552,7 +552,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  354 00ff 00000000 		.4byte	.LLST0
  355 0103 00       		.byte	0
  356 0104 0B       		.uleb128 0xb
- 357 0105 0F020000 		.4byte	.LASF19
+ 357 0105 C5010000 		.4byte	.LASF19
  358 0109 01       		.byte	0x1
  359 010a 67       		.byte	0x67
  360 010b 6B000000 		.4byte	0x6b
@@ -598,7 +598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  400 0006 0B       		.uleb128 0xb
  401 0007 03       		.uleb128 0x3
  402 0008 0E       		.uleb128 0xe
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 11
 
 
  403 0009 1B       		.uleb128 0x1b
@@ -658,7 +658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  457 003f 49       		.uleb128 0x49
  458 0040 13       		.uleb128 0x13
  459 0041 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 12
 
 
  460 0042 00       		.byte	0
@@ -718,7 +718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  514 0079 0B       		.uleb128 0xb
  515 007a 3B       		.uleb128 0x3b
  516 007b 0B       		.uleb128 0xb
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 13
 
 
  517 007c 49       		.uleb128 0x49
@@ -778,7 +778,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  571 00b3 0B       		.uleb128 0xb
  572 00b4 3B       		.uleb128 0x3b
  573 00b5 0B       		.uleb128 0xb
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 14
 
 
  574 00b6 27       		.uleb128 0x27
@@ -838,7 +838,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  628 0004 18000000 		.4byte	.LFE0
  629 0008 00000000 		.4byte	.LFB1
  630 000c 70000000 		.4byte	.LFE1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 15
 
 
  631 0010 00000000 		.4byte	.LFB2
@@ -898,7 +898,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  655      72496E74 
  656              	.LASF11:
  657 00df 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 16
 
 
  657      7400
@@ -958,7 +958,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  681 0195 6C6F6E67 		.ascii	"long long int\000"
  681      206C6F6E 
  681      6720696E 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\cc04Gxh8.s 			page 17
 
 
  681      7400
@@ -970,36 +970,36 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccxMtuW6.s 			page 1
  684              	.LASF13:
  685 01b0 63686172 		.ascii	"char\000"
  685      00
- 686              	.LASF26:
- 687 01b5 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
- 687      69744875 
- 687      625C4578 
- 687      706F436F 
- 687      6E74726F 
- 688 01e5 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
- 688      78706F5F 
- 688      436F6E74 
- 688      726F6C6C 
- 688      6572322E 
- 689              	.LASF2:
- 690 01ff 73686F72 		.ascii	"short int\000"
- 690      7420696E 
- 690      7400
- 691              	.LASF9:
- 692 0209 75696E74 		.ascii	"uint8\000"
- 692      3800
- 693              	.LASF19:
- 694 020f 4C43445F 		.ascii	"LCD_LCDPort_Read\000"
- 694      4C434450 
- 694      6F72745F 
- 694      52656164 
- 694      00
- 695              	.LASF4:
- 696 0220 6C6F6E67 		.ascii	"long int\000"
- 696      20696E74 
- 696      00
- 697              	.LASF0:
- 698 0229 7369676E 		.ascii	"signed char\000"
- 698      65642063 
- 698      68617200 
+ 686              	.LASF2:
+ 687 01b5 73686F72 		.ascii	"short int\000"
+ 687      7420696E 
+ 687      7400
+ 688              	.LASF9:
+ 689 01bf 75696E74 		.ascii	"uint8\000"
+ 689      3800
+ 690              	.LASF19:
+ 691 01c5 4C43445F 		.ascii	"LCD_LCDPort_Read\000"
+ 691      4C434450 
+ 691      6F72745F 
+ 691      52656164 
+ 691      00
+ 692              	.LASF4:
+ 693 01d6 6C6F6E67 		.ascii	"long int\000"
+ 693      20696E74 
+ 693      00
+ 694              	.LASF0:
+ 695 01df 7369676E 		.ascii	"signed char\000"
+ 695      65642063 
+ 695      68617200 
+ 696              	.LASF26:
+ 697 01eb 443A5C47 		.ascii	"D:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 697      69744875 
+ 697      625C4578 
+ 697      706F436F 
+ 697      6E74726F 
+ 698 021b 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 698      78706F5F 
+ 698      436F6E74 
+ 698      726F6C6C 
+ 698      6572322E 
  699              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

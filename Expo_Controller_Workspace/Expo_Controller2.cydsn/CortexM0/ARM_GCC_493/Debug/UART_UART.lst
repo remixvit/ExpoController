@@ -1,4 +1,4 @@
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
   30:.\Generated_Source\PSoC4/UART_UART.c ****         UART_UART_SUB_MODE,
   31:.\Generated_Source\PSoC4/UART_UART.c ****         UART_UART_DIRECTION,
   32:.\Generated_Source\PSoC4/UART_UART.c ****         UART_UART_DATA_BITS_NUM,
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/UART_UART.c ****         UART_UART_PARITY_TYPE,
@@ -118,7 +118,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
   87:.\Generated_Source\PSoC4/UART_UART.c ****         }
   88:.\Generated_Source\PSoC4/UART_UART.c ****         else
   89:.\Generated_Source\PSoC4/UART_UART.c ****         {
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 3
 
 
   90:.\Generated_Source\PSoC4/UART_UART.c ****             /* Get direction to configure UART pins: TX, RX or TX+RX */
@@ -178,7 +178,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  144:.\Generated_Source\PSoC4/UART_UART.c **** 
  145:.\Generated_Source\PSoC4/UART_UART.c ****             if(UART_UART_PARITY_NONE != config->parity)
  146:.\Generated_Source\PSoC4/UART_UART.c ****             {
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 4
 
 
  147:.\Generated_Source\PSoC4/UART_UART.c ****                UART_UART_RX_CTRL_REG |= UART_GET_UART_RX_CTRL_PARITY(config->parity) |
@@ -238,7 +238,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  201:.\Generated_Source\PSoC4/UART_UART.c ****             UART_INTR_TX_MASK_REG     = config->txInterruptMask;
  202:.\Generated_Source\PSoC4/UART_UART.c **** 
  203:.\Generated_Source\PSoC4/UART_UART.c ****             /* Clear RX buffer indexes */
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 5
 
 
  204:.\Generated_Source\PSoC4/UART_UART.c ****             UART_rxBufferHead     = 0u;
@@ -298,7 +298,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  241:.\Generated_Source\PSoC4/UART_UART.c ****         UART_RX_FIFO_CTRL_REG = UART_UART_DEFAULT_RX_FIFO_CTRL;
   42              		.loc 1 241 0
   43 000c 0724     		mov	r4, #7
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 6
 
 
  236:.\Generated_Source\PSoC4/UART_UART.c **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  284:.\Generated_Source\PSoC4/UART_UART.c ****     #endif /* (UART_INTERNAL_TX_SW_BUFFER_CONST) */
  285:.\Generated_Source\PSoC4/UART_UART.c ****     }
   52              		.loc 1 285 0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 7
 
 
   53              		@ sp needed
@@ -418,7 +418,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
   94              	.L3:
   95 004a C046     		.align	2
   96              	.L2:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 8
 
 
   97 004c 0A000002 		.word	33554442
@@ -478,7 +478,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  310:.\Generated_Source\PSoC4/UART_UART.c ****     {
  311:.\Generated_Source\PSoC4/UART_UART.c ****         /* Set SCB UART to drive the output pin */
  312:.\Generated_Source\PSoC4/UART_UART.c ****         UART_SET_HSIOM_SEL(UART_TX_SDA_MISO_HSIOM_REG, UART_TX_SDA_MISO_HSIOM_MASK,
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 9
 
 
  313:.\Generated_Source\PSoC4/UART_UART.c ****                                        UART_TX_SDA_MISO_HSIOM_POS, UART_HSIOM_UART_SEL);
@@ -538,7 +538,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  152              		.code	16
  153              		.thumb_func
  154              		.type	UART_UartStop, %function
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 10
 
 
  155              	UART_UartStop:
@@ -598,7 +598,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  162 0004 1168     		ldr	r1, [r2]
  388:.\Generated_Source\PSoC4/UART_UART.c ****                                        UART_TX_HSIOM_POS, UART_HSIOM_GPIO_SEL);
  389:.\Generated_Source\PSoC4/UART_UART.c ****     #endif /* (UART_UART_TX_PIN) */
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 11
 
 
  390:.\Generated_Source\PSoC4/UART_UART.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  420:.\Generated_Source\PSoC4/UART_UART.c **** * Return:
  421:.\Generated_Source\PSoC4/UART_UART.c **** *  None
  422:.\Generated_Source\PSoC4/UART_UART.c **** *
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 12
 
 
  423:.\Generated_Source\PSoC4/UART_UART.c **** *******************************************************************************/
@@ -718,7 +718,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  223              		.type	UART_UartSetRxAddressMask, %function
  224              	UART_UartSetRxAddressMask:
  225              	.LFB4:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 13
 
 
  435:.\Generated_Source\PSoC4/UART_UART.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  249 000e 7047     		bx	lr
  250              	.L15:
  251              		.align	2
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 14
 
 
  252              	.L14:
@@ -838,7 +838,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  270              		.cfi_def_cfa_offset 8
  271              		.cfi_offset 3, -8
  272              		.cfi_offset 14, -4
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 15
 
 
  500:.\Generated_Source\PSoC4/UART_UART.c ****         uint32 rxData = 0u;
@@ -898,7 +898,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  310              		.section	.text.UART_UartGetByte,"ax",%progbits
  311              		.align	1
  312              		.global	UART_UartGetByte
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 16
 
 
  313              		.code	16
@@ -958,7 +958,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  325 0002 FFF7FEFF 		bl	UART_SpiUartGetRxBufferSize
  326              	.LVL15:
  327 0006 0028     		cmp	r0, #0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 17
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 17
 
 
  328 0008 02D0     		beq	.L28
@@ -1018,7 +1018,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  346              		.loc 1 590 0
  347 001a 1168     		ldr	r1, [r2]
  348              	.LVL19:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 18
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 18
 
 
  349              		.loc 1 591 0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  617:.\Generated_Source\PSoC4/UART_UART.c ****         *
  618:.\Generated_Source\PSoC4/UART_UART.c ****         *******************************************************************************/
  619:.\Generated_Source\PSoC4/UART_UART.c ****         void UART_UartSetRtsPolarity(uint32 polarity)
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 19
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 19
 
 
  620:.\Generated_Source\PSoC4/UART_UART.c ****         {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  674:.\Generated_Source\PSoC4/UART_UART.c ****     *  This function is blocking and waits until there is space available to put
  675:.\Generated_Source\PSoC4/UART_UART.c ****     *  all the requested data into the  transmit buffer.
  676:.\Generated_Source\PSoC4/UART_UART.c ****     *
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 20
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 20
 
 
  677:.\Generated_Source\PSoC4/UART_UART.c ****     * Parameters:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  410              		.code	16
  411              		.thumb_func
  412              		.type	UART_UartPutCRLF, %function
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 21
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 21
 
 
  413              	UART_UartPutCRLF:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  442              		.file 3 ".\\Generated_Source\\PSoC4\\UART_SPI_UART.h"
  443              		.section	.debug_info,"",%progbits
  444              	.Ldebug_info0:
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 22
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 22
 
 
  445 0000 AB020000 		.4byte	0x2ab
@@ -1269,14 +1269,14 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  450 000c 14000000 		.4byte	.LASF35
  451 0010 01       		.byte	0x1
  452 0011 10020000 		.4byte	.LASF36
- 453 0015 3A020000 		.4byte	.LASF37
+ 453 0015 9F020000 		.4byte	.LASF37
  454 0019 00000000 		.4byte	.Ldebug_ranges0+0
  455 001d 00000000 		.4byte	0
  456 0021 00000000 		.4byte	.Ldebug_line0
  457 0025 02       		.uleb128 0x2
  458 0026 01       		.byte	0x1
  459 0027 06       		.byte	0x6
- 460 0028 C1020000 		.4byte	.LASF0
+ 460 0028 77020000 		.4byte	.LASF0
  461 002c 02       		.uleb128 0x2
  462 002d 01       		.byte	0x1
  463 002e 08       		.byte	0x8
@@ -1284,7 +1284,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  465 0033 02       		.uleb128 0x2
  466 0034 02       		.byte	0x2
  467 0035 05       		.byte	0x5
- 468 0036 84020000 		.4byte	.LASF2
+ 468 0036 3A020000 		.4byte	.LASF2
  469 003a 02       		.uleb128 0x2
  470 003b 02       		.byte	0x2
  471 003c 07       		.byte	0x7
@@ -1292,7 +1292,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  473 0041 02       		.uleb128 0x2
  474 0042 04       		.byte	0x4
  475 0043 05       		.byte	0x5
- 476 0044 A5020000 		.4byte	.LASF4
+ 476 0044 5B020000 		.4byte	.LASF4
  477 0048 02       		.uleb128 0x2
  478 0049 04       		.byte	0x4
  479 004a 07       		.byte	0x7
@@ -1318,7 +1318,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  499 0070 02       		.byte	0x2
  500 0071 C4       		.byte	0xc4
  501 0072 48000000 		.4byte	0x48
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 23
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 23
 
 
  502 0076 02       		.uleb128 0x2
@@ -1378,7 +1378,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  556 00e8 01       		.byte	0x1
  557 00e9 A801     		.2byte	0x1a8
  558 00eb 00000000 		.4byte	.LFB3
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 24
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 24
 
 
  559 00ef 14000000 		.4byte	.LFE3-.LFB3
@@ -1392,7 +1392,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  567 0101 6B000000 		.4byte	0x6b
  568 0105 00000000 		.4byte	.LLST0
  569 0109 0B       		.uleb128 0xb
- 570 010a B8020000 		.4byte	.LASF23
+ 570 010a 6E020000 		.4byte	.LASF23
  571 010e 01       		.byte	0x1
  572 010f AA01     		.2byte	0x1aa
  573 0111 6B000000 		.4byte	0x6b
@@ -1414,7 +1414,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  589 0138 6B000000 		.4byte	0x6b
  590 013c 3F000000 		.4byte	.LLST2
  591 0140 0B       		.uleb128 0xb
- 592 0141 B8020000 		.4byte	.LASF23
+ 592 0141 6E020000 		.4byte	.LASF23
  593 0145 01       		.byte	0x1
  594 0146 C701     		.2byte	0x1c7
  595 0148 6B000000 		.4byte	0x6b
@@ -1438,7 +1438,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  613 0177 89000000 		.4byte	.LLST4
  614 017b 0D       		.uleb128 0xd
  615 017c 06000000 		.4byte	.LVL11
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 25
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 25
 
 
  616 0180 88020000 		.4byte	0x288
@@ -1463,7 +1463,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  635 01b0 6B000000 		.4byte	0x6b
  636 01b4 BF000000 		.4byte	.LLST5
  637 01b8 0E       		.uleb128 0xe
- 638 01b9 AE020000 		.4byte	.LASF27
+ 638 01b9 64020000 		.4byte	.LASF27
  639 01bd 01       		.byte	0x1
  640 01be 2502     		.2byte	0x225
  641 01c0 6B000000 		.4byte	0x6b
@@ -1498,7 +1498,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  670 0201 F3000000 		.4byte	.LLST6
  671 0205 0B       		.uleb128 0xb
  672 0206 E2010000 		.4byte	.LASF30
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 26
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 26
 
 
  673 020a 01       		.byte	0x1
@@ -1558,19 +1558,19 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  727 0282 01       		.uleb128 0x1
  728 0283 50       		.byte	0x50
  729 0284 01       		.uleb128 0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 27
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 27
 
 
  730 0285 3A       		.byte	0x3a
  731 0286 00       		.byte	0
  732 0287 00       		.byte	0
  733 0288 14       		.uleb128 0x14
- 734 0289 CD020000 		.4byte	.LASF33
+ 734 0289 83020000 		.4byte	.LASF33
  735 028d 03       		.byte	0x3
  736 028e 8601     		.2byte	0x186
  737 0290 6B000000 		.4byte	0x6b
  738 0294 14       		.uleb128 0x14
- 739 0295 8E020000 		.4byte	.LASF34
+ 739 0295 44020000 		.4byte	.LASF34
  740 0299 03       		.byte	0x3
  741 029a 8501     		.2byte	0x185
  742 029c 6B000000 		.4byte	0x6b
@@ -1618,7 +1618,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  784 001f 24       		.uleb128 0x24
  785 0020 00       		.byte	0
  786 0021 0B       		.uleb128 0xb
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 28
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 28
 
 
  787 0022 0B       		.uleb128 0xb
@@ -1678,7 +1678,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  841 0058 01       		.uleb128 0x1
  842 0059 12       		.uleb128 0x12
  843 005a 06       		.uleb128 0x6
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 29
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 29
 
 
  844 005b 40       		.uleb128 0x40
@@ -1738,7 +1738,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  898 0094 0A       		.uleb128 0xa
  899 0095 05       		.uleb128 0x5
  900 0096 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 30
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 30
 
 
  901 0097 03       		.uleb128 0x3
@@ -1798,7 +1798,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  955 00ce 0D       		.uleb128 0xd
  956 00cf 898201   		.uleb128 0x4109
  957 00d2 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 31
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 31
 
 
  958 00d3 11       		.uleb128 0x11
@@ -1858,7 +1858,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1012 010e 18       		.uleb128 0x18
  1013 010f 00       		.byte	0
  1014 0110 00       		.byte	0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 32
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 32
 
 
  1015 0111 13       		.uleb128 0x13
@@ -1918,7 +1918,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1069              	.Ldebug_loc0:
  1070              	.LLST0:
  1071 0000 00000000 		.4byte	.LVL0
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 33
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 33
 
 
  1072 0004 06000000 		.4byte	.LVL1
@@ -1978,7 +1978,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1126 008d 12000000 		.4byte	.LVL12
  1127 0091 0200     		.2byte	0x2
  1128 0093 30       		.byte	0x30
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 34
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 34
 
 
  1129 0094 9F       		.byte	0x9f
@@ -2038,7 +2038,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1183 0110 00000000 		.4byte	0
  1184              	.LLST7:
  1185 0114 04000000 		.4byte	.LVL23
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 35
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 35
 
 
  1186 0118 06000000 		.4byte	.LVL24
@@ -2098,7 +2098,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1240 0173 00000000 		.4byte	.LVL28
  1241 0177 05000000 		.4byte	.LVL29-1
  1242 017b 0100     		.2byte	0x1
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 36
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 36
 
 
  1243 017d 50       		.byte	0x50
@@ -2158,7 +2158,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1297 0038 00000000 		.4byte	.LFB7
  1298 003c 16000000 		.4byte	.LFE7
  1299 0040 00000000 		.4byte	.LFB8
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 37
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 37
 
 
  1300 0044 14000000 		.4byte	.LFE8
@@ -2218,7 +2218,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1323      5F556172 
  1323      74507574 
  1323      53747269 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 38
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 38
 
 
  1323      6E6700
@@ -2278,7 +2278,7 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1346              	.LASF19:
  1347 018b 55415254 		.ascii	"UART_UartSetRxAddress\000"
  1347      5F556172 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 39
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 39
 
 
  1347      74536574 
@@ -2333,50 +2333,50 @@ ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 1
  1368              	.LASF13:
  1369 0235 63686172 		.ascii	"char\000"
  1369      00
- 1370              	.LASF37:
- 1371 023a 433A5C47 		.ascii	"C:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
- 1371      69744875 
- 1371      625C4578 
- 1371      706F436F 
-ARM GAS  C:\DOCUME~1\Remixvit\LOCALS~1\Temp\ccUxu1eP.s 			page 40
+ 1370              	.LASF2:
+ 1371 023a 73686F72 		.ascii	"short int\000"
+ 1371      7420696E 
+ 1371      7400
+ 1372              	.LASF34:
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccOUwZYG.s 			page 40
 
 
- 1371      6E74726F 
- 1372 026a 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
- 1372      78706F5F 
- 1372      436F6E74 
- 1372      726F6C6C 
- 1372      6572322E 
- 1373              	.LASF2:
- 1374 0284 73686F72 		.ascii	"short int\000"
- 1374      7420696E 
- 1374      7400
- 1375              	.LASF34:
- 1376 028e 55415254 		.ascii	"UART_SpiUartReadRxData\000"
- 1376      5F537069 
- 1376      55617274 
- 1376      52656164 
- 1376      52784461 
- 1377              	.LASF4:
- 1378 02a5 6C6F6E67 		.ascii	"long int\000"
- 1378      20696E74 
- 1378      00
- 1379              	.LASF27:
- 1380 02ae 746D7053 		.ascii	"tmpStatus\000"
- 1380      74617475 
- 1380      7300
- 1381              	.LASF23:
- 1382 02b8 6D617463 		.ascii	"matchReg\000"
- 1382      68526567 
- 1382      00
- 1383              	.LASF0:
- 1384 02c1 7369676E 		.ascii	"signed char\000"
- 1384      65642063 
- 1384      68617200 
- 1385              	.LASF33:
- 1386 02cd 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
- 1386      5F537069 
- 1386      55617274 
- 1386      47657452 
- 1386      78427566 
+ 1373 0244 55415254 		.ascii	"UART_SpiUartReadRxData\000"
+ 1373      5F537069 
+ 1373      55617274 
+ 1373      52656164 
+ 1373      52784461 
+ 1374              	.LASF4:
+ 1375 025b 6C6F6E67 		.ascii	"long int\000"
+ 1375      20696E74 
+ 1375      00
+ 1376              	.LASF27:
+ 1377 0264 746D7053 		.ascii	"tmpStatus\000"
+ 1377      74617475 
+ 1377      7300
+ 1378              	.LASF23:
+ 1379 026e 6D617463 		.ascii	"matchReg\000"
+ 1379      68526567 
+ 1379      00
+ 1380              	.LASF0:
+ 1381 0277 7369676E 		.ascii	"signed char\000"
+ 1381      65642063 
+ 1381      68617200 
+ 1382              	.LASF33:
+ 1383 0283 55415254 		.ascii	"UART_SpiUartGetRxBufferSize\000"
+ 1383      5F537069 
+ 1383      55617274 
+ 1383      47657452 
+ 1383      78427566 
+ 1384              	.LASF37:
+ 1385 029f 443A5C47 		.ascii	"D:\\GitHub\\ExpoController\\Expo_Controller_Workspa"
+ 1385      69744875 
+ 1385      625C4578 
+ 1385      706F436F 
+ 1385      6E74726F 
+ 1386 02cf 63655C45 		.ascii	"ce\\Expo_Controller2.cydsn\000"
+ 1386      78706F5F 
+ 1386      436F6E74 
+ 1386      726F6C6C 
+ 1386      6572322E 
  1387              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
