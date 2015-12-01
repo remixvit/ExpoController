@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
   30:.\Generated_Source\PSoC4/AMux.c **** *  void
   31:.\Generated_Source\PSoC4/AMux.c **** *
   32:.\Generated_Source\PSoC4/AMux.c **** * Return:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/AMux.c **** *  void
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
   60              		.thumb_func
   61              		.type	AMux_Select, %function
   62              	AMux_Select:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 3
 
 
   63              	.LFB1:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
   93              	.LFE1:
   94              		.size	AMux_Select, .-AMux_Select
   95              		.section	.text.AMux_FastSelect,"ax",%progbits
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 4
 
 
   96              		.align	1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  124              	.LVL8:
  125              	.L8:
  100:.\Generated_Source\PSoC4/AMux.c ****     }
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 5
 
 
  101:.\Generated_Source\PSoC4/AMux.c **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  167 0025 02       		.uleb128 0x2
  168 0026 01       		.byte	0x1
  169 0027 06       		.byte	0x6
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 6
 
 
  170 0028 7B010000 		.4byte	.LASF0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  224 008b 05       		.uleb128 0x5
  225 008c AA000000 		.4byte	.LASF12
  226 0090 01       		.byte	0x1
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 7
 
 
  227 0091 24       		.byte	0x24
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  281 0109 01       		.uleb128 0x1
  282 010a 50       		.byte	0x50
  283 010b 02       		.uleb128 0x2
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 8
 
 
  284 010c 74       		.byte	0x74
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  338 0178 6B000000 		.4byte	0x6b
  339 017c 00       		.byte	0
  340 017d 00       		.byte	0
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 9
 
 
  341              		.section	.debug_abbrev,"",%progbits
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  395 0034 00       		.byte	0
  396 0035 00       		.byte	0
  397 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 10
 
 
  398 0037 2E       		.uleb128 0x2e
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  452 0072 18       		.uleb128 0x18
  453 0073 9142     		.uleb128 0x2111
  454 0075 18       		.uleb128 0x18
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 11
 
 
  455 0076 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  509 00b0 19       		.uleb128 0x19
  510 00b1 03       		.uleb128 0x3
  511 00b2 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 12
 
 
  512 00b3 3A       		.uleb128 0x3a
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  566 0023 9F       		.byte	0x9f
  567 0024 00000000 		.4byte	0
  568 0028 00000000 		.4byte	0
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 13
 
 
  569              	.LLST1:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  623              		.section	.debug_line,"",%progbits
  624              	.Ldebug_line0:
  625 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 14
 
 
  625      02005500 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  646              	.LASF13:
  647 00ea 414D7578 		.ascii	"AMux_Select\000"
  647      5F53656C 
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 15
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 15
 
 
  647      65637400 
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 1
  673 0192 414D7578 		.ascii	"AMux_lastChannel\000"
  673      5F6C6173 
  673      74436861 
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccM77Hll.s 			page 16
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccC22c4y.s 			page 16
 
 
  673      6E6E656C 

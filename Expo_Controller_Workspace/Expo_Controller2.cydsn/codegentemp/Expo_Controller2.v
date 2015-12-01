@@ -1,6 +1,6 @@
 // ======================================================================
 // Expo_Controller2.v generated from TopDesign.cysch
-// 11/25/2015 at 00:46
+// 11/27/2015 at 23:49
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 

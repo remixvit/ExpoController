@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
   30:.\Generated_Source\PSoC4/LCD_PM.c **** * Parameters:
   31:.\Generated_Source\PSoC4/LCD_PM.c **** *  None.
   32:.\Generated_Source\PSoC4/LCD_PM.c **** *
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 2
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 2
 
 
   33:.\Generated_Source\PSoC4/LCD_PM.c **** * Return:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
   54              		.thumb_func
   55              		.type	LCD_Sleep, %function
   56              	LCD_Sleep:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 3
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 3
 
 
   57              	.LFB2:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
   84              		.size	LCD_Sleep, .-LCD_Sleep
   85              		.section	.text.LCD_Wakeup,"ax",%progbits
   86              		.align	1
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 4
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 4
 
 
   87              		.global	LCD_Wakeup
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  109              		@ sp needed
  110 000e 08BD     		pop	{r3, pc}
  111              	.L10:
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 5
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 5
 
 
  112              		.align	2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  166 004f 02       		.uleb128 0x2
  167 0050 08       		.byte	0x8
  168 0051 05       		.byte	0x5
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 6
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 6
 
 
  169 0052 63010000 		.4byte	.LASF6
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  223 00b8 01       		.byte	0x1
  224 00b9 38       		.byte	0x38
  225 00ba 01       		.byte	0x1
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 7
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 7
 
 
  226 00bb 08       		.uleb128 0x8
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  280 0139 39       		.byte	0x39
  281 013a 0D       		.uleb128 0xd
  282 013b 00010000 		.4byte	.LASF19
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 8
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 8
 
 
  283 013f 03       		.byte	0x3
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  337 0031 0B       		.uleb128 0xb
  338 0032 49       		.uleb128 0x49
  339 0033 13       		.uleb128 0x13
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 9
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 9
 
 
  340 0034 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  394 006a 12       		.uleb128 0x12
  395 006b 06       		.uleb128 0x6
  396 006c 40       		.uleb128 0x40
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 10
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 10
 
 
  397 006d 18       		.uleb128 0x18
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  451 00a7 0C       		.uleb128 0xc
  452 00a8 34       		.uleb128 0x34
  453 00a9 00       		.byte	0
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 11
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 11
 
 
  454 00aa 03       		.uleb128 0x3
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  508 0008 00000000 		.4byte	.LFB1
  509 000c 02000000 		.4byte	.LFE1
  510 0010 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 12
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 12
 
 
  511 0014 18000000 		.4byte	.LFE2
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  535              	.LASF5:
  536 00d4 6C6F6E67 		.ascii	"long unsigned int\000"
  536      20756E73 
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 13
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 13
 
 
  536      69676E65 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 1
  558 0188 73686F72 		.ascii	"short int\000"
  558      7420696E 
  558      7400
-ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccGIy9J0.s 			page 14
+ARM GAS  C:\Users\Vitali\AppData\Local\Temp\ccExdSG5.s 			page 14
 
 
  559              	.LASF12:

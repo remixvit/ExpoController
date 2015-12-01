@@ -103,9 +103,8 @@
         }
     }
     
-    void ScreenSaver(char *Str)
+    void ScreenSaver(char *Str, uint16 Rand)
     {
-        srand(200);
         volatile uint8 Lenght;
 		volatile uint8 x, y, scroll;
         char Buf;
@@ -116,9 +115,10 @@
             Buf = Str[Lenght];
         }
 		Lenght = 19 - Lenght; // Максимальное смещение по x
-		
-		x = 1 + rand() % Lenght; // Генерация случайного столбца
-		y = 1 + rand() % 3; //Генерация случайной строки
+		srand(Rand);
+		x = rand() % Lenght; // Генерация случайного столбца
+        srand((uint16)Rand/2);
+		y = rand() % 5; //Генерация случайной строки
 		Lenght = 19 - Lenght;
 		LCD_ClearDisplay();
 		LCD_Position(y, x);

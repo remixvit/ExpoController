@@ -35,6 +35,8 @@ typedef struct
 }TimeType;
 volatile TimeType TimeStruct;
 RTC_DATE_TIME AlarmTime;
+
+volatile uint16 Counter;
 //volatile char Main_Display_Buf[4][21];
 
 
@@ -254,7 +256,7 @@ void ScreenSaver_Display()
 {
 		char TimeSTR[9];
 		Get_RealTimeString(TimeSTR);
-        ScreenSaver(TimeSTR);
+        ScreenSaver(TimeSTR, Counter);
 }
 
 void Display_Controll()
@@ -263,12 +265,13 @@ void Display_Controll()
 		{
 			case 0:
 				SetTask(ScreenSaver_Display);
+                SetTimerTask(Display_Controll, 1000);
 				break;
 			case 1:
 				SetTask(Main_Display_Print);
+                SetTimerTask(Display_Controll, 250);
 		}
 	
-	SetTimerTask(Display_Controll, 250);
 }
 
 void Brightles_PID_Controll()
@@ -337,6 +340,7 @@ int main()
     for(;;)
     {
         TaskManager();
+        Counter++;
     }
 	return 0;
 }
