@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.1.0">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -6341,16 +6341,17 @@ Source: AVX .. aphvc.pdf</description>
 </library>
 <library name="Semistors">
 <packages>
-<package name="TO220">
-<description>&lt;b&gt;TO 220 horizontal&lt;/b&gt;</description>
-<pad name="IN1" x="-2.54" y="0" drill="1.1176" shape="long" rot="R90"/>
-<pad name="IN2" x="0" y="0" drill="1.1176" shape="long" rot="R90"/>
-<pad name="CONTROL" x="2.54" y="0" drill="1.1176" shape="long" rot="R90"/>
-<hole x="0" y="11.176" drill="3.302"/>
-<wire x1="-5.08" y1="2.54" x2="5.08" y2="2.54" width="0.127" layer="21"/>
-<wire x1="5.08" y1="2.54" x2="5.08" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="5.08" y1="-3.81" x2="-5.08" y2="-3.81" width="0.127" layer="21"/>
-<wire x1="-5.08" y1="-3.81" x2="-5.08" y2="2.54" width="0.127" layer="21"/>
+<package name="TO220NORM">
+<pad name="MT1" x="-2.54" y="0" drill="0.8" shape="long" rot="R90"/>
+<pad name="MT2" x="0" y="0" drill="0.8" shape="long" rot="R90"/>
+<pad name="GATE" x="2.54" y="0" drill="0.8" shape="long" rot="R90"/>
+<wire x1="-5" y1="-1.6" x2="5.1" y2="-1.6" width="0.127" layer="21"/>
+<wire x1="5.1" y1="-1.6" x2="5.1" y2="1.8" width="0.127" layer="21"/>
+<wire x1="5.1" y1="1.8" x2="5.1" y2="2.8" width="0.127" layer="21"/>
+<wire x1="5.1" y1="2.8" x2="-5" y2="2.8" width="0.127" layer="21"/>
+<wire x1="-5" y1="2.8" x2="-5" y2="1.8" width="0.127" layer="21"/>
+<wire x1="-5" y1="1.8" x2="-5" y2="-1.6" width="0.127" layer="21"/>
+<wire x1="-5" y1="1.8" x2="5.1" y2="1.8" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -6384,15 +6385,19 @@ Source: AVX .. aphvc.pdf</description>
 </symbols>
 <devicesets>
 <deviceset name="BTB16">
+<description>Silicon Bidirectional Thyristors.
+Blocking Voltage to 800 V.
+On-State Current Rating of 16 A RMS at 25°C.
+http://www.onsemi.ru.com/pub_link/Collateral/BTB16-600CW3-D.PDF</description>
 <gates>
 <gate name="G$1" symbol="SEMISTOR" x="2.54" y="0"/>
 </gates>
 <devices>
-<device name="" package="TO220">
+<device name="" package="TO220NORM">
 <connects>
-<connect gate="G$1" pin="A1" pad="IN2"/>
-<connect gate="G$1" pin="A2" pad="IN1"/>
-<connect gate="G$1" pin="G" pad="CONTROL"/>
+<connect gate="G$1" pin="A1" pad="MT1"/>
+<connect gate="G$1" pin="A2" pad="MT2"/>
+<connect gate="G$1" pin="G" pad="GATE"/>
 </connects>
 <technologies>
 <technology name=""/>
